@@ -10,6 +10,11 @@ namespace Simput.Device
 		: IInputDevice
 	{
 		/// <summary>
+		/// Assigned device
+		/// </summary>
+		int DeviceId { get; set; }
+
+		/// <summary>
 		/// Registers a listener for the device
 		/// </summary>
 		/// <param name="listener"></param>

@@ -1,8 +1,7 @@
 ﻿using OpenTK.Input;
 using Simput.Helper;
-using System;
-using System.Collections.Generic;
 using Simput.Mapping;
+using System;
 
 namespace Simput.Device
 {
@@ -13,55 +12,39 @@ namespace Simput.Device
 		: InputDeviceBase
 	{
 		/// <summary>
-		/// Singleton instance
-		/// </summary>
-		private static InputDeviceMouse _instance;
-
-		/// <summary>
 		/// The last gotten mouse state
 		/// </summary>
-		private Dictionary<int, MouseState> OldStates { get; set; }
+		private MouseState OldState { get; set; }
 
 		/// <summary>
 		/// Initialises the mouse input
 		/// </summary>
-		private InputDeviceMouse()
-			: base(InputDeviceType.Mouse.ToString(), InputDeviceType.Mouse)
-		{
-			OldStates = new Dictionary<int, MouseState>();
-		}
-
-		/// <summary>
-		/// Returns the singleton instance
-		/// </summary>
-		public static InputDeviceMouse Instance => _instance ?? (_instance = new InputDeviceMouse());
-
+		public InputDeviceMouse(int deviceId)
+			: base(InputDeviceType.Mouse.ToString(), InputDeviceType.Mouse, deviceId) { }
+		
 		/// <summary>
 		/// Checks the input of the device by reference of the registered listener
 		/// </summary>
-		protected override void CheckDevices(object sender, EventArgs e)
+		protected override void CheckDevice(object sender, EventArgs e)
 		{
-			foreach (var deviceId in RequestedDevices)
+			ExecuteOnNewMouseState(mState =>
 			{
-				ExecuteOnNewMouseState(deviceId, mState =>
+				if (!mState.IsConnected) return;
+
+				InputPropertyInstances = ReflectionHelper.GetPropertiesOfInstanceRecursive(mState, 2);
+				foreach (var listener in RegisteredListener)
 				{
-					if (!mState.IsConnected) return;
-
-					InputPropertyInstances = ReflectionHelper.GetPropertiesOfInstanceRecursive(mState, 2);
-					foreach (var listener in RegisteredListener)
+					foreach (var inputMapItem in listener.InputMapping)
 					{
-						foreach (var inputMapItem in listener.InputMapping)
-						{
-							if (inputMapItem.DeviceId != deviceId) continue;
+						if (inputMapItem.DeviceId != DeviceId) continue;
 
-							var mapItem = (InputMapItem)inputMapItem;
-							var inputValue = mapItem.InputMember.GetValue(InputPropertyInstances[mapItem.InputMember]);
+						var mapItem = (InputMapItem)inputMapItem;
+						var inputValue = mapItem.InputMember.GetValue(InputPropertyInstances[mapItem.InputMember]);
 
-							listener.ProcessInput(this, mapItem, inputValue);
-						}
+						listener.ProcessInput(this, mapItem, inputValue);
 					}
-				});
-			}
+				}
+			});
 		}
 
 
@@ -69,21 +52,17 @@ namespace Simput.Device
 		/// <summary>
 		/// Checks the mouse state by id and execute the defined method if the state has been changed
 		/// </summary>
-		/// <param name="deviceId"></param>
 		/// <param name="action"></param>
-		private void ExecuteOnNewMouseState(int deviceId, Action<MouseState> action)
+		private void ExecuteOnNewMouseState(Action<MouseState> action)
 		{
 			try
 			{
-				var state = deviceId < 0 ? Mouse.GetState() : Mouse.GetState(deviceId);
+				var newState = DeviceId < 0 ? Mouse.GetState() : Mouse.GetState(DeviceId);
+				
+				if (!newState.Equals(OldState))
+					action(newState);
 
-				if (!OldStates.TryGetValue(deviceId, out MouseState oldState))
-					OldStates.Add(deviceId, state);
-
-				if (!state.Equals(oldState))
-					action(state);
-
-				OldStates[deviceId] = state;
+				OldState = newState;
 			}
 			catch (Exception)
 			{

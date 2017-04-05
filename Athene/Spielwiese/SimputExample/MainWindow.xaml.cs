@@ -21,27 +21,18 @@ namespace SimputExample
 
 			var gameActions = new InGameActions();
 			var testLayout = new InputLayout<InGameActions>(gameActions);
+			
+			testLayout.AddMappingGamePad(0, pad => pad.Buttons.A, act => act.BoolValue,	inp => inp == ButtonState.Pressed);
+			testLayout.AddMappingGamePad(0, pad => pad.Triggers.Left, act => act.FloatValue,	inp => inp);
 
-			var padMapping = new InputMapList<GamePadState, InGameActions>();
-			var mouseMapping = new InputMapList<MouseState, InGameActions>();
-			var keyMapping = new InputMapListKeyboard<InGameActions>();
+			testLayout.AddMappingGamePad(1, pad => pad.Buttons.A, act => act.BoolValue,	inp => inp == ButtonState.Pressed);
+			testLayout.AddMappingGamePad(1, pad => pad.Triggers.Right, act => act.FloatValue, inp => inp);
 
+			testLayout.AddMappingMouse(ms => ms.LeftButton,	act => act.BoolValue, inp => inp == ButtonState.Pressed);
+			testLayout.AddMappingMouse(ms => ms.X, act => act.FloatValue, inp => inp);
 
-			padMapping.AddMapping(0, pad => pad.Buttons.A,					act => act.BoolValue,	inp => inp == ButtonState.Pressed);
-			padMapping.AddMapping(0, pad => pad.ThumbSticks.Left.Length,	act => act.FloatValue,	inp => inp);
+			testLayout.AddMappingKeyboard(Key.Space, act => act.BoolValue, con => con);
 
-			padMapping.AddMapping(1, pad => pad.Buttons.A,					act => act.BoolValue,	inp => inp == ButtonState.Pressed);
-			padMapping.AddMapping(1, pad => pad.ThumbSticks.Left.Length,	act => act.FloatValue,	inp => inp);
-
-			mouseMapping.AddMapping(ms => ms.LeftButton,	act => act.BoolValue,	inp => inp == ButtonState.Pressed);
-			mouseMapping.AddMapping(ms => ms.X,				act => act.FloatValue,	inp => inp);
-
-			keyMapping.AddMapping(Key.Space, act => act.BoolValue, con => con);
-
-
-			testLayout.AddGamePadMapping(padMapping);
-			testLayout.AddMouseMapping(mouseMapping);
-			testLayout.AddKeyboardMapping(keyMapping);
 
 
 

@@ -1,21 +1,23 @@
-﻿using OpenTK.Input;
-using Simput.Mapping;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Simput.Device;
+using Simput.Mapping;
 
 namespace Simput.Listener
 {
-	/// <summary>
-	/// Defines a listener which can react to device inputs
-	/// </summary>
-	public interface IInputListener
+	internal interface IInputListener
 	{
 		/// <summary>
-		/// Mapping for the input capabilities to the ingame actions
+		/// Mapping, on wich input actions the listener will react and modify the game actions
 		/// </summary>
-		IEnumerable<IInputMapItem> InputMapping { get; set; }
+		ObservableCollection<IInputMapItem> InputMapping { get; set; }
 
 		/// <summary>
-		/// 
+		/// Object which contains the actions and will be modified
 		/// </summary>
 		IInputLayoutActions InputActions { get; set; }
 
@@ -25,6 +27,6 @@ namespace Simput.Listener
 		/// <param name="sender"></param>
 		/// <param name="triggeredMapping"></param>
 		/// <param name="inputValue"></param>
-		void ProcessInput(IInputDevice sender, IInputMapItem triggeredMapping, object inputValue);
+		void ProcessInput(IInputDeviceSimput sender, IInputMapItem triggeredMapping, object inputValue);
 	}
 }

@@ -11,6 +11,11 @@ namespace Simput.Device
 		: IInputDeviceSimput
 	{
 		/// <summary>
+		/// Assigned device
+		/// </summary>
+		public int DeviceId { get; set; }
+
+		/// <summary>
 		/// Description for the keyboard
 		/// </summary>
 		public string Description { get; set; }
@@ -29,12 +34,7 @@ namespace Simput.Device
 		/// All listener which will be informed when a input is made
 		/// </summary>
 		protected List<IInputListener> RegisteredListener { get; set; }
-
-		/// <summary>
-		/// List of all device ID's which are gonna be polled
-		/// </summary>
-		protected List<int> RequestedDevices { get; set; }
-
+		
 		/// <summary>
 		/// List of all input properties from the device
 		/// </summary>
@@ -45,31 +45,26 @@ namespace Simput.Device
 		/// </summary>
 		/// <param name="description"></param>
 		/// <param name="deviceType"></param>
-		protected InputDeviceBase(string description, InputDeviceType deviceType)
+		/// <param name="deviceId"></param>
+		protected InputDeviceBase(string description, InputDeviceType deviceType, int deviceId)
 		{
 			Description = description;
 			DeviceType = deviceType;
+			DeviceId = deviceId;
 
 			RegisteredListener = new List<IInputListener>();
-			RequestedDevices = new List<int>();
 			InputPropertyInstances = new Dictionary<PropertyInfo, object>();
 
 			InitialisePolling();
 		}
 
-		/// <summary>
+		/// <summary>hg
 		/// Adds a listener to the controller input
 		/// </summary>
 		/// <param name="listener"></param>
 		public void RegisterListener(IInputListener listener)
 		{
 			RegisteredListener.Add(listener);
-
-			foreach (var mapItem in listener.InputMapping)
-			{
-				if (!RequestedDevices.Contains(mapItem.DeviceId))
-					RequestedDevices.Add(mapItem.DeviceId);
-			}
 		}
 
 		/// <summary>
@@ -78,10 +73,10 @@ namespace Simput.Device
 		private void InitialisePolling()
 		{
 			PollingTimer = new Timer(10);
-			PollingTimer.Elapsed += CheckDevices;
+			PollingTimer.Elapsed += CheckDevice;
 			PollingTimer.Start();
 		}
 
-		protected abstract void CheckDevices(object sender, EventArgs e);
+		protected abstract void CheckDevice(object sender, EventArgs e);
 	}
 }

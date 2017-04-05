@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimputExample", "SimputExam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simput", "..\Simput\Simput.csproj", "{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimeraExample", "SimeraExample\SimeraExample.csproj", "{4DC59D6F-026F-4079-BD40-1E584C98A502}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC59D6F-026F-4079-BD40-1E584C98A502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC59D6F-026F-4079-BD40-1E584C98A502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC59D6F-026F-4079-BD40-1E584C98A502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC59D6F-026F-4079-BD40-1E584C98A502}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

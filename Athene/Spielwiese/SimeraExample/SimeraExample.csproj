@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simput</RootNamespace>
-    <AssemblyName>Simput</AssemblyName>
+    <ProjectGuid>{4DC59D6F-026F-4079-BD40-1E584C98A502}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SimeraExample</RootNamespace>
+    <AssemblyName>SimeraExample</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,26 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Device\IInputDeviceSimput.cs" />
-    <Compile Include="Device\InputDeviceBase.cs" />
-    <Compile Include="Device\InputDeviceFactory.cs" />
-    <Compile Include="Helper\PropertyHelper.cs" />
-    <Compile Include="IInputLayoutActions.cs" />
-    <Compile Include="Device\InputDeviceGamePad.cs" />
-    <Compile Include="Device\InputDeviceKeyboard.cs" />
-    <Compile Include="Device\InputDeviceMouse.cs" />
-    <Compile Include="InputLayout.cs" />
-    <Compile Include="Listener\IInputListener.cs" />
-    <Compile Include="Listener\InputListener.cs" />
-    <Compile Include="Mapping\IInputMapItem.cs" />
-    <Compile Include="Mapping\InputMapItem.cs" />
-    <Compile Include="Mapping\InputMapItemKeyboard.cs" />
+    <Compile Include="GameBase.cs" />
+    <Compile Include="Input.cs" />
+    <Compile Include="PreparedGameWindow.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helper\ReflectionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="trophy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Simput\Simput.csproj">
+      <Project>{2236f1bc-aac7-4fac-9e18-a622fd148f82}</Project>
+      <Name>Simput</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

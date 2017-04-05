@@ -1,7 +1,10 @@
-﻿using Simput.Listener;
-using Simput.Mapping;
-using System.Collections.Generic;
+﻿using OpenTK.Input;
 using Simput.Device;
+using Simput.Helper;
+using Simput.Listener;
+using Simput.Mapping;
+using System;
+using System.Linq.Expressions;
 
 namespace Simput
 {
@@ -13,14 +16,20 @@ namespace Simput
 		where TInputLayoutActions : IInputLayoutActions
 	{
 		/// <summary>
-		/// All listener that are registered for this layout
+		/// Listener for the gamepad input
 		/// </summary>
-		public List<IInputListener> RegisteredListener { get; set; }
+		private IInputListener GamePadListener { get; }
 
 		/// <summary>
-		/// Actions which will be modified by this layout
+		/// Listener for the keyboard input
 		/// </summary>
-		private TInputLayoutActions BoundActions { get; set; }
+		private IInputListener KeyboardListener { get; set; }
+
+		/// <summary>
+		/// Listener for the mouse input
+		/// </summary>
+		private IInputListener MouseListener { get; set; }
+
 
 		/// <summary>
 		/// Initialises the layout
@@ -28,35 +37,109 @@ namespace Simput
 		/// <param name="actions"></param>
 		public InputLayout(TInputLayoutActions actions)
 		{
-			BoundActions = actions;
-			RegisteredListener = new List<IInputListener>();
+			GamePadListener = new InputListener<InputDeviceGamePad>(actions);
+			KeyboardListener = new InputListener<InputDeviceKeyboard>(actions);
+			MouseListener = new InputListener<InputDeviceMouse>(actions);
+		}
+
+
+		/// <summary>
+		/// Adds a mapping by using lambda expressions
+		/// </summary>
+		public void AddMappingGamePad<TInputMemberType, TActionMemberType>(
+			Expression<Func<GamePadState, TInputMemberType>> inputMember,
+			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
+			Func<TInputMemberType, TActionMemberType> converter
+			)
+		{
+			AddMappingGamePad(-1, inputMember, actionMember, converter);
 		}
 
 		/// <summary>
-		/// Adds mapping for a gamepad to the actions
+		/// Adds a mapping by using lambda expressions
 		/// </summary>
-		/// <param name="mapping"></param>
-		public void AddGamePadMapping(List<InputMapItem> mapping)
+		public void AddMappingGamePad<TInputMemberType, TActionMemberType>(
+			int deviceId,
+			Expression<Func<GamePadState, TInputMemberType>> inputMember,
+			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
+			Func<TInputMemberType, TActionMemberType> converter
+			)
 		{
-			RegisteredListener.Add(new InputListener(BoundActions, mapping, InputDeviceGamePad.Instance));
+			var mapItem = new InputMapItem
+			{
+				DeviceId = deviceId,
+				InputMember = PropertyHelper.GetPropertyInfoByExpression(inputMember),
+				ActionMember = PropertyHelper.GetPropertyInfoByExpression(actionMember),
+				Converter = converter
+			};
+
+			GamePadListener.InputMapping.Add(mapItem);
 		}
 
 		/// <summary>
-		/// Adds mapping for a mouse to the actions
+		/// Adds a mapping by using lambda expressions
 		/// </summary>
-		/// <param name="mapping"></param>
-		public void AddMouseMapping(List<InputMapItem> mapping)
+		public void AddMappingMouse<TInputMemberType, TActionMemberType>(
+			Expression<Func<MouseState, TInputMemberType>> inputMember,
+			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
+			Func<TInputMemberType, TActionMemberType> converter
+			)
 		{
-			RegisteredListener.Add(new InputListener(BoundActions, mapping, InputDeviceMouse.Instance));
+			AddMappingMouse(-1, inputMember, actionMember, converter);
 		}
 
 		/// <summary>
-		/// Adds mapping for a keyboard to the actions
+		/// Adds a mapping by using lambda expressions
 		/// </summary>
-		/// <param name="mapping"></param>
-		public void AddKeyboardMapping(List<InputMapItemKeyboard> mapping)
+		public void AddMappingMouse<TInputMemberType, TActionMemberType>(
+			int deviceId,
+			Expression<Func<MouseState, TInputMemberType>> inputMember,
+			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
+			Func<TInputMemberType, TActionMemberType> converter
+			)
 		{
-			RegisteredListener.Add(new InputListener(BoundActions, mapping, InputDeviceKeyboard.Instance));
+			var mapItem = new InputMapItem
+			{
+				DeviceId = deviceId,
+				InputMember = PropertyHelper.GetPropertyInfoByExpression(inputMember),
+				ActionMember = PropertyHelper.GetPropertyInfoByExpression(actionMember),
+				Converter = converter
+			};
+
+			MouseListener.InputMapping.Add(mapItem);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public void AddMappingKeyboard<TActionMemberType>(
+			Key inputKey,
+			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
+			Func<bool, TActionMemberType> converter
+			)
+		{
+			AddMappingKeyboard(-1, inputKey, actionMember, converter);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public void AddMappingKeyboard<TActionMemberType>(
+			int deviceId,
+			Key inputKey,
+			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
+			Func<bool, TActionMemberType> converter
+			)
+		{
+			var mapItem = new InputMapItemKeyboard
+			{
+				DeviceId = deviceId,
+				KeyboardKey = inputKey,
+				ActionMember = PropertyHelper.GetPropertyInfoByExpression(actionMember),
+				Converter = converter
+			};
+
+			KeyboardListener.InputMapping.Add(mapItem);
 		}
 	}
 }

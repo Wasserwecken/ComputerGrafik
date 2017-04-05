@@ -12,73 +12,53 @@ namespace Simput.Device
 		: InputDeviceBase
 	{
 		/// <summary>
-		/// Singleton instance
-		/// </summary>
-		private static InputDeviceKeyboard _instance;
-
-		/// <summary>
 		/// The last gotten state
 		/// </summary>
-		private Dictionary<int, KeyboardState> OldStates { get; set; }
+		private KeyboardState OldState { get; set; }
 
 		/// <summary>
 		/// Initialises the controller input
 		/// </summary>
-		private InputDeviceKeyboard()
-			: base(InputDeviceType.Keyboard.ToString(), InputDeviceType.Keyboard)
-		{
-			OldStates = new Dictionary<int, KeyboardState>();
-		}
-
-		/// <summary>
-		/// Returns the singleton instance
-		/// </summary>
-		public static InputDeviceKeyboard Instance => _instance ?? (_instance = new InputDeviceKeyboard());
+		public InputDeviceKeyboard(int deviceId)
+			: base(InputDeviceType.Keyboard.ToString(), InputDeviceType.Keyboard, deviceId) { }
 
 		/// <summary>
 		/// Checks the input of the device by reference of the registered listener
 		/// </summary>
-		protected override void CheckDevices(object sender, EventArgs e)
+		protected override void CheckDevice(object sender, EventArgs e)
 		{
-			foreach (var deviceId in RequestedDevices)
+			ExecuteOnNewKeyState(keyState =>
 			{
-				ExecuteOnNewKeyState(deviceId, keyState =>
+				if (!keyState.IsConnected) return;
+
+				foreach (var listener in RegisteredListener)
 				{
-					if (!keyState.IsConnected) return;
-
-					foreach (var listener in RegisteredListener)
+					foreach (var inputMapItem in listener.InputMapping)
 					{
-						foreach (var inputMapItem in listener.InputMapping)
-						{
-							if (inputMapItem.DeviceId != deviceId) continue;
+						if (inputMapItem.DeviceId != DeviceId) continue;
 
-							var mapItem = (InputMapItemKeyboard)inputMapItem;
+						var mapItem = (InputMapItemKeyboard)inputMapItem;
 
-							listener.ProcessInput(this, mapItem, keyState.IsKeyDown(mapItem.KeyboardKey));
-						}
+						listener.ProcessInput(this, mapItem, keyState.IsKeyDown(mapItem.KeyboardKey));
 					}
-				});
-			}
+				}
+			});
 		}
 
 		/// <summary>
 		/// Checks the keyboard state by id and execute the defined method if the state has been changed
 		/// </summary>
-		/// <param name="deviceId"></param>
 		/// <param name="action"></param>
-		private void ExecuteOnNewKeyState(int deviceId, Action<KeyboardState> action)
+		private void ExecuteOnNewKeyState(Action<KeyboardState> action)
 		{
 			try
 			{
-				var state = deviceId < 0 ? Keyboard.GetState() : Keyboard.GetState(deviceId);
+				var newState = DeviceId < 0 ? Keyboard.GetState() : Keyboard.GetState(DeviceId);
+				
+				if (newState.IsAnyKeyDown || OldState.IsAnyKeyDown != newState.IsAnyKeyDown)
+					action(newState);
 
-				if (!OldStates.TryGetValue(deviceId, out KeyboardState oldState))
-					OldStates.Add(deviceId, state);
-
-				if (state.IsAnyKeyDown || oldState.IsAnyKeyDown != state.IsAnyKeyDown)
-					action(state);
-
-				OldStates[deviceId] = state;
+				OldState = newState;
 			}
 			catch (Exception)
 			{
