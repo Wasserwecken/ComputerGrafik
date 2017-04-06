@@ -15,7 +15,12 @@ namespace Simput.Helper
 		/// <returns></returns>
 		public static PropertyInfo GetPropertyInfoByExpression<TObjectType, TMemberType>(Expression<Func<TObjectType, TMemberType>> expression)
 		{
-			var context = (MemberExpression)expression.Body;
+			var context = expression.Body as MemberExpression;
+			if (context == null)
+			{
+				var op = ((UnaryExpression)expression.Body).Operand;
+				context = (MemberExpression)op;
+			}
 
 			return (PropertyInfo)context.Member;
 		}

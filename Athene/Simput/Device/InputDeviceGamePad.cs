@@ -54,20 +54,16 @@ namespace Simput.Device
 		/// <param name="action"></param>
 		private void ExecuteOnNewPadState(Action<GamePadState> action)
 		{
-			try
-			{
-				var newState = GamePad.GetState(DeviceId);
+			GamePadState newState = new GamePadState();
 
-				//It seems that the equals function misses to check the Triggers
-				if (!newState.Equals(OldState) || !newState.Triggers.Equals(OldState.Triggers))
-					action(newState);
+			try { newState = GamePad.GetState(DeviceId); }
+			catch (Exception) { }
+			
+			//It seems that the equals function misses to check the Triggers
+			if (!newState.Equals(OldState) || !newState.Triggers.Equals(OldState.Triggers))
+				action(newState);
 
-				OldState = newState;
-			}
-			catch (Exception)
-			{
-				// ignored
-			}
+			OldState = newState;
 		}
 	}
 }

@@ -55,19 +55,15 @@ namespace Simput.Device
 		/// <param name="action"></param>
 		private void ExecuteOnNewMouseState(Action<MouseState> action)
 		{
-			try
-			{
-				var newState = DeviceId < 0 ? Mouse.GetState() : Mouse.GetState(DeviceId);
-				
-				if (!newState.Equals(OldState))
-					action(newState);
+			MouseState newState = new MouseState();
 
-				OldState = newState;
-			}
-			catch (Exception)
-			{
-				// ignored
-			}
+			try { newState = DeviceId < 0 ? Mouse.GetState() : Mouse.GetState(DeviceId); }
+			catch (Exception) { }
+				
+			if (!newState.Equals(OldState))
+				action(newState);
+
+			OldState = newState;
 		}
 	}
 }
