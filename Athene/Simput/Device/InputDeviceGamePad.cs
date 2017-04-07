@@ -31,7 +31,9 @@ namespace Simput.Device
 			{
 				if (!padState.IsConnected) return;
 
-				InputPropertyInstances = ReflectionHelper.GetPropertiesOfInstanceRecursive(padState, 2);
+				var newInputPropertyInstances = ReflectionHelper.GetPropertiesOfInstanceRecursive(padState, 2);
+				var oldInputPropertyInstances = ReflectionHelper.GetPropertiesOfInstanceRecursive(OldState, 2);
+
 				foreach (var listener in RegisteredListener)
 				{
 					foreach (var inputMapItem in listener.InputMapping)
@@ -39,9 +41,12 @@ namespace Simput.Device
 						if (inputMapItem.DeviceId != DeviceId) continue;
 
 						var mapItem = (InputMapItem)inputMapItem;
-						var inputValue = mapItem.InputMember.GetValue(InputPropertyInstances[mapItem.InputMember]);
 
-						listener.ProcessInput(this, mapItem, inputValue);
+						var newValue = mapItem.InputMember.GetValue(newInputPropertyInstances[mapItem.InputMember]);
+						var oldValue = mapItem.InputMember.GetValue(oldInputPropertyInstances[mapItem.InputMember]);
+
+						if (!newValue.Equals(oldValue))
+							listener.ProcessInput(this, mapItem, newValue);
 					}
 				}
 			}

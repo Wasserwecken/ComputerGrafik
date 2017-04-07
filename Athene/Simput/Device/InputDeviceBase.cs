@@ -34,11 +34,6 @@ namespace Simput.Device
 		/// All listener which will be informed when a input is made
 		/// </summary>
 		protected List<IInputListener> RegisteredListener { get; set; }
-		
-		/// <summary>
-		/// List of all input properties from the device
-		/// </summary>
-		protected Dictionary<PropertyInfo, object> InputPropertyInstances { get; set; }
 
 		/// <summary>
 		/// Initialises the controller input
@@ -53,7 +48,6 @@ namespace Simput.Device
 			DeviceId = deviceId;
 
 			RegisteredListener = new List<IInputListener>();
-			InputPropertyInstances = new Dictionary<PropertyInfo, object>();
 
 			InitialisePolling();
 		}

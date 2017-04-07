@@ -39,7 +39,11 @@ namespace Simput.Device
 
 						var mapItem = (InputMapItemKeyboard)inputMapItem;
 
-						listener.ProcessInput(this, mapItem, keyState.IsKeyDown(mapItem.KeyboardKey));
+						var newValue = keyState.IsKeyDown(mapItem.KeyboardKey);
+						var oldValue = OldState.IsKeyDown(mapItem.KeyboardKey);
+
+						if (newValue != oldValue)
+							listener.ProcessInput(this, mapItem, newValue);
 					}
 				}
 			});
@@ -51,19 +55,15 @@ namespace Simput.Device
 		/// <param name="action"></param>
 		private void ExecuteOnNewKeyState(Action<KeyboardState> action)
 		{
-			try
-			{
-				var newState = DeviceId < 0 ? Keyboard.GetState() : Keyboard.GetState(DeviceId);
-				
-				if (newState.IsAnyKeyDown || OldState.IsAnyKeyDown != newState.IsAnyKeyDown)
-					action(newState);
+			var newState = new KeyboardState();
 
-				OldState = newState;
-			}
-			catch (Exception)
-			{
-				// ignored
-			}
+			try { newState = DeviceId < 0 ? Keyboard.GetState() : Keyboard.GetState(DeviceId); }
+			catch (Exception) { }
+				
+			if (newState.IsAnyKeyDown || OldState.IsAnyKeyDown != newState.IsAnyKeyDown)
+				action(newState);
+
+			OldState = newState;
 		}
 	}
 }

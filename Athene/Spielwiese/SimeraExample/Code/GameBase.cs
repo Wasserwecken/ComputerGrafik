@@ -23,11 +23,15 @@ namespace SimeraExample
 			var layout = new InputLayout<Input>(InputActions);
 			layout.AddMappingGamePad(0, pad => pad.Triggers.Right, inp => inp.Scale, val => 1.2f - val);
 			layout.AddMappingGamePad(0, pad => pad.Buttons.A, inp => inp.Reset, val => val == ButtonState.Pressed);
-			layout.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.Position, val => val.LengthSquared < 0.001f ? Vector2.Zero : Vector2.Multiply(val, 0.01F));
-			layout.AddMappingGamePad(0, pad => pad.ThumbSticks.Right, inp => inp.Rotation, val => val.LengthSquared < 0.5f ? 0 : (float) Math.Atan2(val.X, val.Y));
+			layout.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.PositionX, val => val.LengthSquared < 0.001f ? 0 : val.X * 0.01f);
+			layout.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.PositionY, val => val.LengthSquared < 0.001f ? 0 : val.Y * 0.01f);
+			layout.AddMappingGamePad(0, pad => pad.ThumbSticks.Right, inp => inp.Rotation, val => val.LengthSquared < 0.5f ? 0 : (float)Math.Atan2(val.X, val.Y));
 
-			layout.AddMappingKeyboard(Key.Up, inp => inp.Position, val => val ? new Vector2(0, 0.01f) : Vector2.Zero);
-			layout.AddMappingKeyboard(Key.Left, inp => inp.Position, val => val ? new Vector2(0.01f, 0) : Vector2.Zero);
+			layout.AddMappingKeyboard(Key.Space, inp => inp.Reset, val => val);
+			layout.AddMappingKeyboard(Key.Up, inp => inp.PositionY, val => val ? 0.01f : 0);
+			layout.AddMappingKeyboard(Key.Down, inp => inp.PositionY, val => val ? -0.01f : 0);
+			layout.AddMappingKeyboard(Key.Left, inp => inp.PositionX, val => val ? 0.01f : 0);
+			layout.AddMappingKeyboard(Key.Right, inp => inp.PositionX, val => val ? -0.01f : 0);
 			
 
 			Window = new PreparedGameWindow();
@@ -44,12 +48,12 @@ namespace SimeraExample
 			SpriteTrophy = new Sprite("Pics/trophy.png");
 			SpriteDirtEndLeft = new Sprite("Pics/dirt_end_left.png");
 			SpriteDirtEndRight = new Sprite("Pics/dirt_end_right.png");
-			//SpriteDirtMiddle = new Sprite("Pics/dirt_middle.png");
+			SpriteDirtMiddle = new Sprite("Pics/dirt_middle.png");
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
-			Window.Camera.Position = Vector2.Add(Window.Camera.Position, InputActions.Position);
+			Window.Camera.Position = Vector2.Add(Window.Camera.Position, new Vector2(InputActions.PositionX, InputActions.PositionY));
 			Window.Camera.Rotation = InputActions.Rotation;
 			Window.Camera.Zoom = InputActions.Scale;
 
@@ -61,7 +65,7 @@ namespace SimeraExample
 		{
 			SpriteTrophy.Draw(Vector2.Zero, new Vector2(0.005f));
 			SpriteDirtEndLeft.Draw(new Vector2(-0.5f, -0.5f), new Vector2(0.005f));
-			//SpriteDirtMiddle.Draw(new Vector2(0, 0.5f), new Vector2(0.005f));
+			SpriteDirtMiddle.Draw(new Vector2(0, -0.5f), new Vector2(0.005f));
 			SpriteDirtEndRight.Draw(new Vector2(0.5f, -0.5f), new Vector2(0.005f));
 
 
@@ -71,7 +75,7 @@ namespace SimeraExample
 			Console.WriteLine("\tPosition: X {0} | Y {1}", Window.Camera.Position.X, Window.Camera.Position.Y);
 			Console.WriteLine("\tZoom: {0}", Window.Camera.Zoom);
 			Console.WriteLine("\tRotation: {0}", Window.Camera.Rotation);
-			Console.WriteLine("Input:");
+			Console.WriteLine("\nInput:");
 			Console.WriteLine("\tLast device: {0}", InputActions.LastInputDeviceDescription);
 			Console.WriteLine("\t:Device Id: {0}", InputActions.LastInputDeviceId);
 		}
