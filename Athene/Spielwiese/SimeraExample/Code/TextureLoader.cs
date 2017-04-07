@@ -19,16 +19,20 @@ namespace SimeraExample
 			if (!File.Exists(path))
 				throw new FileNotFoundException(path);
 
+			var TextureResult = new Texture2D();
 			var textureFile = new Bitmap(path);
-			textureFile.RotateFlip(RotateFlipType.RotateNoneFlipY);
 
+			textureFile.RotateFlip(RotateFlipType.RotateNoneFlipY);
 			var textureDimensions = new Rectangle(0, 0, textureFile.Width, textureFile.Height);
-			var textureData = textureFile.LockBits
-				(textureDimensions,
+
+			var textureData = textureFile.LockBits(
+				textureDimensions,
 				ImageLockMode.ReadOnly,
 				textureFile.PixelFormat);
-			
-			var textureHandle = GL.GenTexture();
+
+			TextureResult = new Texture2D(GL.GenTexture(), textureDimensions.Width, textureDimensions.Height);
+			TextureResult.Enable();
+
 			GL.TexImage2D(
 				TextureTarget.Texture2D,
 				0,
@@ -47,8 +51,9 @@ namespace SimeraExample
 
 			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (float)TextureMinFilter.Linear);
 			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (float)TextureMagFilter.Linear);
-			
-			return new Texture2D(textureHandle, textureFile.Width, textureFile.Height);
+
+			TextureResult.Disable();
+			return TextureResult;
 		}
 	}
 }

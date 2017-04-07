@@ -30,8 +30,8 @@ namespace SimeraExample
 		/// </summary>
 		public void Draw(Vector2 position, Vector2 scale)
 		{
+			Texture.Enable();
 			GL.Begin(PrimitiveType.Quads);
-			GL.BindTexture(TextureTarget.Texture2D, Texture.Id);
 
 			var vertices = new Vector2[4]
 			{
@@ -54,6 +54,7 @@ namespace SimeraExample
 			}
 
 			GL.End();
+			Texture.Disable();
 		}
 	}
 }

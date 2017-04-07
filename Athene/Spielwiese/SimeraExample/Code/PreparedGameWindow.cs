@@ -51,6 +51,7 @@ namespace SimeraExample
 			base.OnResize(e);
 			
 			GL.Viewport(0, 0, Width, Height);
+			GL.Ortho(0, Width, 0, Height, 0f, 1f);
 		}
 	}
 }
