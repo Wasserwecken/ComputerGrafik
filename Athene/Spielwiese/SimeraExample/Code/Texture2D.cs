@@ -15,13 +15,16 @@ namespace SimeraExample
 
 		public int Height { get; set; }
 
+        public string Path { get; set; }
+
 		public Texture2D() { }
 
-		public Texture2D(int id, int width, int height)
+		public Texture2D(int id, int width, int height, string path)
 		{
 			Id = id;
 			Width = width;
 			Height = height;
+            Path = path;
 		}
 
 		public void Enable()

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using SimeraExample.Code;
 
 namespace SimeraExample
 {
@@ -15,6 +16,7 @@ namespace SimeraExample
 		/// Id of the texture handler from OpenGL
 		/// </summary>
 		public Texture2D Texture { get; set; }
+     
 
 		/// <summary>
 		/// Initialises a sprite

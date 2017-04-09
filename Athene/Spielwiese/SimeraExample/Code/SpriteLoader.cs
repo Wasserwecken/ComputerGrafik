@@ -6,21 +6,31 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 
 namespace SimeraExample
 {
-	public class SpriteLoader
+	public static class SpriteLoader
 	{
-		public static Texture2D LoadFromFile(string path)
+        private static List<Texture2D> _textures = new List<Texture2D>();
+        private static List<Sprite> _sprites = new List<Sprite>();
+
+        public static  List<Sprite> LoadedSprites { get { return _sprites; } }
+
+        public static Texture2D LoadFromFile(string path)
 		{
 			if (!File.Exists(path))
 				throw new FileNotFoundException(path);
-			
+
+            if (_textures.Count(t => t.Path == path) > 0)
+                return _textures.Where(t => t.Path == path).ToArray()[0];
+
 			//Loading the texture from the storage, locking the bits
 			var textureFile = new Bitmap(path);
+		
 			textureFile.RotateFlip(RotateFlipType.RotateNoneFlipY);
 			var textureDimensions = new Rectangle(0, 0, textureFile.Width, textureFile.Height);
 
@@ -30,7 +40,7 @@ namespace SimeraExample
 				textureFile.PixelFormat);
 
 			//Setting up the open GL texture
-			var textureResult = new Texture2D(GL.GenTexture(), textureDimensions.Width, textureDimensions.Height);
+			var textureResult = new Texture2D(GL.GenTexture(), textureDimensions.Width, textureDimensions.Height, path);
 			textureResult.Enable();
 
 			GL.TexImage2D(
@@ -53,7 +63,20 @@ namespace SimeraExample
 			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (float)TextureMagFilter.Linear);
 
 			textureResult.Disable();
+            _textures.Add(textureResult);
 			return textureResult;
 		}
-	}
+
+	    public static Sprite LoadSprite(string path)
+	    {
+            if (!File.Exists(path))
+                throw new FileNotFoundException(path);
+
+            var spriteResult = new Sprite(path);
+            _sprites.Add(spriteResult);
+	        return spriteResult;
+	    }
+
+
+    }
 }
