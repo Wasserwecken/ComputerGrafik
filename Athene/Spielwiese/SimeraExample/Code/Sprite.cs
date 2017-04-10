@@ -10,8 +10,8 @@ using SimeraExample.Code;
 
 namespace SimeraExample
 {
-	public class Sprite
-	{
+	public class Sprite : ISprite
+    {
 		/// <summary>
 		/// Id of the texture handler from OpenGL
 		/// </summary>

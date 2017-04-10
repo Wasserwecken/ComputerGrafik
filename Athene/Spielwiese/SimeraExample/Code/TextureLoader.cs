@@ -71,12 +71,10 @@ namespace SimeraExample
             for(int i = from; i <= to; i++)
             {
                 string filePath = path + i + "." + extension.ToString();
-
                 if(File.Exists(filePath))
                     returnList.Add(new Sprite(LoadFromFile(filePath)));
             }
 	        return returnList;
-
         }
 	  
 

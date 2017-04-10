@@ -9,7 +9,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace SimeraExample.Code
 {
-    class AnimatedSprite
+    class AnimatedSprite : ISprite
     {
         private List<Sprite> _textures;
         public float AnimationLength { get; set; }
