@@ -11,11 +11,11 @@ namespace SimeraExample.Code
 {
     class AnimatedSprite
     {
-        private List<Texture2D> _textures;
+        private List<Sprite> _textures;
         public float AnimationLength { get; set; }
         private Stopwatch _timeSource = new Stopwatch();
 
-        public AnimatedSprite(List<Texture2D> textures, float animationLength)
+        public AnimatedSprite(List<Sprite> textures, float animationLength)
         {
             AnimationLength = animationLength;
             _textures = textures;
@@ -23,13 +23,17 @@ namespace SimeraExample.Code
 
         public  AnimatedSprite() { }
 
-        public void AddFrame(Texture2D textureFrame)
+        public void AddFrame(Sprite textureFrame)
         {
             _textures.Add(textureFrame);
         }
 
+        public void ResetTimer()
+        {
+            _timeSource.Reset();
+        }
 
-        private Texture2D GetTextureFromTime(float time)
+        private Sprite GetTextureFromTime(float time)
         {
 
             float normalizedDeltaTime = (time % AnimationLength) / AnimationLength;
@@ -40,35 +44,10 @@ namespace SimeraExample.Code
 		public void Draw(Vector2 position, Vector2 scale)
         {
             if (!_timeSource.IsRunning) _timeSource.Start();
-            Texture2D texture = GetTextureFromTime((float)_timeSource.Elapsed.TotalSeconds);
+            var sprite = GetTextureFromTime((float)_timeSource.Elapsed.TotalSeconds);
+            sprite.Draw(position, scale);
 
-
-            //return;
-            texture.Enable();
-            GL.Begin(PrimitiveType.Quads);
-
-            var vertices = new Vector2[4]
-            {
-                new Vector2(0, 0),
-                new Vector2(0, 1),
-                new Vector2(1, 1),
-                new Vector2(1, 0),
-            };
-
-            for (int index = 0; index < 4; index++)
-            {
-                GL.TexCoord2(vertices[index]);
-
-                vertices[index].X *= texture.Width;
-                vertices[index].Y *= texture.Height;
-                vertices[index] *= scale;
-                vertices[index] += position;
-
-                GL.Vertex2(vertices[index]);
-            }
-
-            GL.End();
-            texture.Disable();
+          
         }
     }
 }

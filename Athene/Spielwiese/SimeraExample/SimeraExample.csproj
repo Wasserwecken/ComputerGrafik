@@ -54,7 +54,7 @@
     <Compile Include="Code\Texture2D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Code\SpriteLoader.cs" />
+    <Compile Include="Code\TextureLoader.cs" />
     <Compile Include="Code\Sprite.cs" />
     <Compile Include="Code\View.cs" />
   </ItemGroup>

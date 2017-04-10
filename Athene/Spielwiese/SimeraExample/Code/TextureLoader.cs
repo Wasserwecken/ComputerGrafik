@@ -13,13 +13,10 @@ using OpenTK.Graphics.OpenGL;
 
 namespace SimeraExample
 {
-	public static class SpriteLoader
+	public static class TextureLoader
 	{
         private static List<Texture2D> _textures = new List<Texture2D>();
-        private static List<Sprite> _sprites = new List<Sprite>();
-
-        public static  List<Sprite> LoadedSprites { get { return _sprites; } }
-
+       
         public static Texture2D LoadFromFile(string path)
 		{
 			if (!File.Exists(path))
@@ -67,16 +64,27 @@ namespace SimeraExample
 			return textureResult;
 		}
 
-	    public static Sprite LoadSprite(string path)
+
+	    public static List<Sprite> LoadAnimationImages(string path, int from, int to, ImageExtension extension)
 	    {
-            if (!File.Exists(path))
-                throw new FileNotFoundException(path);
+            var returnList = new List<Sprite>();
+            for(int i = from; i <= to; i++)
+            {
+                string filePath = path + i + "." + extension.ToString();
 
-            var spriteResult = new Sprite(path);
-            _sprites.Add(spriteResult);
-	        return spriteResult;
-	    }
+                if(File.Exists(filePath))
+                    returnList.Add(new Sprite(LoadFromFile(filePath)));
+            }
+	        return returnList;
 
+        }
+	  
 
+    }
+
+    public enum ImageExtension
+    {
+        png,
+        jpg
     }
 }

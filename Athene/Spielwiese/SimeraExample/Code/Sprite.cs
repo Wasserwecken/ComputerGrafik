@@ -16,15 +16,15 @@ namespace SimeraExample
 		/// Id of the texture handler from OpenGL
 		/// </summary>
 		public Texture2D Texture { get; set; }
-     
 
-		/// <summary>
-		/// Initialises a sprite
-		/// </summary>
-		/// <param name="path"></param>
-		public Sprite(string path)
+
+        /// <summary>
+        /// Initialises a sprite
+        /// </summary>
+        /// <param name="texture"></param>
+        public Sprite(Texture2D texture)
 		{
-			Texture = SpriteLoader.LoadFromFile(path);
+		    Texture = texture;
 		}
 
 		/// <summary>

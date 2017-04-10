@@ -51,34 +51,15 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-            SpriteTrophy = SpriteLoader.LoadSprite("Pics/trophy.png");
-            SpriteDirtEndLeft = SpriteLoader.LoadSprite("Pics/dirt_end_left.png");
-            SpriteDirtEndRight = SpriteLoader.LoadSprite("Pics/dirt_end_right.png");
-            SpriteDirtMiddle = SpriteLoader.LoadSprite("Pics/dirt_middle.png");
-
-		    var anList = new List<Texture2D>();
-            anList.Add(SpriteLoader.LoadFromFile("Pics/Worm/frame-1.png"));
-            anList.Add(SpriteLoader.LoadFromFile("Pics/Worm/frame-2.png"));
-            anList.Add(SpriteLoader.LoadFromFile("Pics/Worm/frame-3.png"));
-            anList.Add(SpriteLoader.LoadFromFile("Pics/Worm/frame-4.png"));
-            anList.Add(SpriteLoader.LoadFromFile("Pics/Worm/frame-5.png"));
-            anList.Add(SpriteLoader.LoadFromFile("Pics/Worm/frame-6.png"));
-            anList.Add(SpriteLoader.LoadFromFile("Pics/Worm/frame-7.png"));
-            anList.Add(SpriteLoader.LoadFromFile("Pics/Worm/frame-8.png"));
+            SpriteTrophy = new Sprite(TextureLoader.LoadFromFile("Pics/trophy.png"));
+            SpriteDirtEndLeft = new Sprite(TextureLoader.LoadFromFile("Pics/dirt_end_left.png"));
+            SpriteDirtEndRight = new Sprite(TextureLoader.LoadFromFile("Pics/dirt_end_right.png"));
+            SpriteDirtMiddle = new Sprite(TextureLoader.LoadFromFile("Pics/dirt_middle.png"));
 
 
+		    var anList = TextureLoader.LoadAnimationImages("Pics/Worm/frame-", 1, 8, ImageExtension.png);
             AnimatedSprite = new AnimatedSprite(anList, 1);
 
-		    //animation1 = new AnimationTextures(2000);
-		    //animation1.AddFrame(SpriteLoader.LoadFromFile("Pics/dirt_end_left.png"));
-		    //animation1.AddFrame(SpriteLoader.LoadFromFile("Pics/dirt_end_right.png"));
-		    //animation1.AddFrame(SpriteLoader.LoadFromFile("Pics/dirt_middle.png"));
-		    //animation1.AddFrame(SpriteLoader.LoadFromFile("Pics/dirt_end_left.png"));
-		    //animation1.AddFrame(SpriteLoader.LoadFromFile("Pics/dirt_end_right.png"));
-		    //animation1.AddFrame(SpriteLoader.LoadFromFile("Pics/dirt_middle.png"));
-		    //animation1.AddFrame(SpriteLoader.LoadFromFile("Pics/dirt_end_left.png"));
-		    //animation1.AddFrame(SpriteLoader.LoadFromFile("Pics/dirt_end_right.png"));
-		    //animation1.AddFrame(SpriteLoader.LoadFromFile("Pics/dirt_middle.png"));
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
@@ -91,7 +72,6 @@ namespace SimeraExample
 				Window.Camera.Position = Vector2.Zero;
 		}
 
-	    private int i = 0;
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
 			SpriteTrophy.Draw(Vector2.Zero, new Vector2(0.005f));
@@ -101,7 +81,7 @@ namespace SimeraExample
             AnimatedSprite.Draw(new Vector2(-1.5f, -1f), new Vector2(0.005f));
 		 
 
-           
+            Console.Clear();
 			Console.WriteLine("Camera:");
 			Console.WriteLine("\tPosition: X {0} | Y {1}", Window.Camera.Position.X, Window.Camera.Position.Y);
 			Console.WriteLine("\tZoom: {0}", Window.Camera.Zoom);
