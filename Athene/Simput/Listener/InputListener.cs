@@ -8,7 +8,7 @@ using Simput.Device;
 namespace Simput.Listener
 {
 	/// <summary>
-	/// Base for an input listener
+	/// Processes the input of the assigend devices
 	/// </summary>
 	internal class InputListener<TInputDevice>
 		: IInputListener
@@ -36,7 +36,8 @@ namespace Simput.Listener
 		}
 
 		/// <summary>
-		/// Whenever the collection changes, the listener has to manag its listening devices
+		/// Whenever the collection changes, the listener has to reorganize its listening devices.
+		/// If a item with a is added, the listener will get the inputdevice and registers itself
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -50,7 +51,7 @@ namespace Simput.Listener
 		}
 
 		/// <summary>
-		/// Processes an input which will be triggered by a device
+		/// Processes an input from a input device and manipulates the action object on changes
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="triggeredMapping"></param>

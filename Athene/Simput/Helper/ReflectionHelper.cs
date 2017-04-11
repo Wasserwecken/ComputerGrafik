@@ -3,7 +3,10 @@ using System.Reflection;
 
 namespace Simput.Helper
 {
-	public static class ReflectionHelper
+	/// <summary>
+	/// Helps to work with reflection
+	/// </summary>
+	internal static class ReflectionHelper
 	{
 		/// <summary>
 		/// Gets all properties with their related instance of a given object recursive to a given level

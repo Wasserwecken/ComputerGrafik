@@ -4,9 +4,9 @@ using System.Reflection;
 namespace Simput.Mapping
 {
 	/// <summary>
-	/// Information about a speciic mapping for a input object to an ingame action
+	/// Defines a mapping item which is the connection between the input device and game actions
 	/// </summary>
-	public class InputMapItem
+	internal class InputMapItem
 		: IInputMapItem
 	{
 		/// <summary>

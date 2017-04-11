@@ -5,9 +5,9 @@ using System.Reflection;
 namespace Simput.Mapping
 {
 	/// <summary>
-	/// Information about a specific mapping for a keyboard key to an ingame action
+	/// Specific map item for the keyboard, because the keyboard works with enums, not with properties
 	/// </summary>
-	public class InputMapItemKeyboard
+	internal class InputMapItemKeyboard
 		: IInputMapItem
 	{
 		/// <summary>

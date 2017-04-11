@@ -13,12 +13,12 @@ namespace Simput
 		InputDeviceType LastInputDevice { get; set; }
 
 		/// <summary>
-		/// The last device that triggered an input
+		/// The last device description that triggered an input
 		/// </summary>
 		string LastInputDeviceDescription { get; set; }
 
 		/// <summary>
-		/// The last device that triggered an input
+		/// The last device id that triggered an input
 		/// </summary>
 		int LastInputDeviceId { get; set; }
 

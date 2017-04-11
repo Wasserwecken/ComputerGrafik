@@ -9,6 +9,9 @@ using Simput.Mapping;
 
 namespace Simput.Listener
 {
+	/// <summary>
+	/// Defines a listener which processes inputs from devices
+	/// </summary>
 	internal interface IInputListener
 	{
 		/// <summary>
@@ -22,7 +25,7 @@ namespace Simput.Listener
 		IInputLayoutActions InputActions { get; set; }
 
 		/// <summary>
-		/// Processes an input which will be triggered by a device
+		/// Processes an input which is triggered by a device
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="triggeredMapping"></param>

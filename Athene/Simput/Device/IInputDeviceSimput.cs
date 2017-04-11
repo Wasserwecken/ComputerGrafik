@@ -4,13 +4,13 @@ using Simput.Listener;
 namespace Simput.Device
 {
 	/// <summary>
-	/// Input device for simput
+	/// Defines a dives which can be used for the simput lib
 	/// </summary>
 	internal interface IInputDeviceSimput
 		: IInputDevice
 	{
 		/// <summary>
-		/// Assigned device
+		/// Id of the device
 		/// </summary>
 		int DeviceId { get; set; }
 

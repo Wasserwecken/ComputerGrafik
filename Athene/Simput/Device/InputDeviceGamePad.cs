@@ -17,13 +17,14 @@ namespace Simput.Device
 		private GamePadState OldState { get; set; }
 
 		/// <summary>
-		/// Initialises the controller input
+		/// Initialises the gamepad input
 		/// </summary>
 		public InputDeviceGamePad(int deviceId)
 			: base("GamePad", InputDeviceType.Hid, deviceId) { }
 
 		/// <summary>
-		/// Checks the input of the device by reference of the registered listener
+		/// Analyses the current state of the gamepad and informs all assigend listener about
+		/// changes
 		/// </summary>
 		protected override void CheckDevice(object sender, EventArgs e)
 		{
@@ -54,7 +55,7 @@ namespace Simput.Device
 		}
 
 		/// <summary>
-		/// Checks the gaepad state by id and execute the defined method if the state has been changed
+		/// Checks the gamepad state and executes the given method if the state has been changed
 		/// </summary>
 		/// <param name="action"></param>
 		private void ExecuteOnNewPadState(Action<GamePadState> action)

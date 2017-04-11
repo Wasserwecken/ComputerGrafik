@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Simput.Device
 {
 	/// <summary>
-	/// Captures all input which is made on the Keyboard
+	/// Captures all input which is made on the keyboard
 	/// </summary>
 	internal class InputDeviceKeyboard
 		: InputDeviceBase
@@ -23,7 +23,7 @@ namespace Simput.Device
 			: base(InputDeviceType.Keyboard.ToString(), InputDeviceType.Keyboard, deviceId) { }
 
 		/// <summary>
-		/// Checks the input of the device by reference of the registered listener
+		/// Analyses the current state of the gamepad and informs all assigend listener about
 		/// </summary>
 		protected override void CheckDevice(object sender, EventArgs e)
 		{
@@ -50,9 +50,8 @@ namespace Simput.Device
 		}
 
 		/// <summary>
-		/// Checks the keyboard state by id and execute the defined method if the state has been changed
+		/// Checks the keyboard state and executes the given method if the state has been changed
 		/// </summary>
-		/// <param name="action"></param>
 		private void ExecuteOnNewKeyState(Action<KeyboardState> action)
 		{
 			var newState = new KeyboardState();

@@ -4,7 +4,10 @@ using System.Reflection;
 
 namespace Simput.Helper
 {
-	public static class PropertyHelper
+	/// <summary>
+	/// Helps to work with properties
+	/// </summary>
+	internal static class PropertyHelper
 	{
 		/// <summary>
 		/// Extracs a property info from a given expression

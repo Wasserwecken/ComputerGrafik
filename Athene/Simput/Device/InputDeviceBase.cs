@@ -2,21 +2,25 @@
 using Simput.Listener;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Timers;
 
 namespace Simput.Device
 {
+	/// <summary>
+	/// Base for an input device. Implementing basic tasks
+	/// </summary>
 	internal abstract class InputDeviceBase
 		: IInputDeviceSimput
 	{
 		/// <summary>
-		/// Assigned device
+		/// Id of the assigend device / instance
 		/// </summary>
 		public int DeviceId { get; set; }
 
 		/// <summary>
-		/// Description for the keyboard
+		/// Percise description for the device
 		/// </summary>
 		public string Description { get; set; }
 
@@ -26,12 +30,12 @@ namespace Simput.Device
 		public InputDeviceType DeviceType { get; set; }
 
 		/// <summary>
-		/// Timer for polling the keyboard
+		/// Timer for polling the device
 		/// </summary>
 		private Timer PollingTimer { get; set; }
 
 		/// <summary>
-		/// All listener which will be informed when a input is made
+		/// Llistener which will be informed when a input is registered
 		/// </summary>
 		protected List<IInputListener> RegisteredListener { get; set; }
 
@@ -53,16 +57,17 @@ namespace Simput.Device
 		}
 
 		/// <summary>hg
-		/// Adds a listener to the controller input
+		/// Adds a listener to the input device
 		/// </summary>
 		/// <param name="listener"></param>
 		public void RegisterListener(IInputListener listener)
 		{
-			RegisteredListener.Add(listener);
+			if (!RegisteredListener.Any(f => f.Equals(listener)))
+				RegisteredListener.Add(listener);
 		}
 
 		/// <summary>
-		/// Initialises the timer for polling the device
+		/// Initialises and starts the timer for polling the device
 		/// </summary>
 		private void InitialisePolling()
 		{
@@ -71,6 +76,11 @@ namespace Simput.Device
 			PollingTimer.Start();
 		}
 
+		/// <summary>
+		/// Checks the state of the device and has to inform the assigend listener
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		protected abstract void CheckDevice(object sender, EventArgs e);
 	}
 }

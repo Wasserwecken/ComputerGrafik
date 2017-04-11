@@ -57,10 +57,9 @@ namespace Simput.Device
 		/// <summary>
 		/// Checks the mouse state by id and execute the defined method if the state has been changed
 		/// </summary>
-		/// <param name="action"></param>
 		private void ExecuteOnNewMouseState(Action<MouseState> action)
 		{
-			MouseState newState = new MouseState();
+			var newState = new MouseState();
 
 			try { newState = DeviceId < 0 ? Mouse.GetState() : Mouse.GetState(DeviceId); }
 			catch (Exception) { }
