@@ -22,7 +22,7 @@ namespace SimeraExample.Code
 
         public void Draw()
         {
-            Sprite.Draw(new Vector2(X, Y), new Vector2(0.005f));
+            Sprite.Draw(new Vector2(X, Y), new Vector2(1f));
         }
     }
 }

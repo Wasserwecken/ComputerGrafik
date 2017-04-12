@@ -17,7 +17,6 @@ namespace SimeraExample
 		/// </summary>
 		public Texture2D Texture { get; set; }
 
-
         /// <summary>
         /// Initialises a sprite
         /// </summary>
@@ -47,8 +46,7 @@ namespace SimeraExample
 			{ 
 				GL.TexCoord2(vertices[index]);
 
-				vertices[index].X *= Texture.Width;
-				vertices[index].Y *= Texture.Height;
+				vertices[index].Y *= (float)Texture.Height / Texture.Width;
 				vertices[index] *= scale;
 				vertices[index] += position;
 

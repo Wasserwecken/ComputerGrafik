@@ -43,11 +43,11 @@ namespace SimeraExample
 			GL.TexImage2D(
 				TextureTarget.Texture2D,
 				0,
-				PixelInternalFormat.Rgba,
+				GetInternalPixelFormatBy(textureFile.PixelFormat),
 				textureData.Width,
 				textureData.Height,
 				0,
-				OpenTK.Graphics.OpenGL.PixelFormat.Bgra,
+				GetInputPixelFormatBy(textureFile.PixelFormat),
 				PixelType.UnsignedByte,
 				textureData.Scan0);
 
@@ -76,9 +76,53 @@ namespace SimeraExample
             }
 	        return returnList;
         }
-	  
 
-    }
+		/// <summary>
+		/// Gets the correct open gl pixel format for the given file pixel format
+		/// </summary>
+		/// <param name="pixelFormat"></param>
+		/// <returns></returns>
+		public static OpenTK.Graphics.OpenGL.PixelFormat GetInputPixelFormatBy(System.Drawing.Imaging.PixelFormat pixelFormat)
+		{
+			switch (pixelFormat)
+			{
+				case System.Drawing.Imaging.PixelFormat.Format8bppIndexed:
+					return OpenTK.Graphics.OpenGL.PixelFormat.Red;
+
+				case System.Drawing.Imaging.PixelFormat.Format24bppRgb:
+					return OpenTK.Graphics.OpenGL.PixelFormat.Bgr;
+
+				case System.Drawing.Imaging.PixelFormat.Format32bppArgb:
+					return OpenTK.Graphics.OpenGL.PixelFormat.Bgra;
+
+				default:
+					throw new FileLoadException("Pixel format '{0}' is not supported", pixelFormat.ToString());
+			}
+		}
+
+		/// <summary>
+		/// Gets the correct internal open gl pixel format for the given file pixel format
+		/// </summary>
+		/// <param name="pixelFormat"></param>
+		/// <returns></returns>
+		public static PixelInternalFormat GetInternalPixelFormatBy(System.Drawing.Imaging.PixelFormat pixelFormat)
+		{
+			switch (pixelFormat)
+			{
+				case System.Drawing.Imaging.PixelFormat.Format8bppIndexed:
+					return PixelInternalFormat.Luminance;
+
+				case System.Drawing.Imaging.PixelFormat.Format24bppRgb:
+					return PixelInternalFormat.Rgb;
+
+				case System.Drawing.Imaging.PixelFormat.Format32bppArgb:
+					return PixelInternalFormat.Rgba;
+
+				default:
+					throw new FileLoadException("Pixel format '{0}' is not supported", pixelFormat.ToString());
+			}
+		}
+	}
 
     public enum ImageExtension
     {

@@ -26,15 +26,20 @@ namespace SimeraExample.Code
         }
 
         public void InitTestData()
-        {
-            Blocks.Add(new Block(0,0, new Sprite(TextureLoader.LoadFromFile("Pics/trophy.png"))));
-            Blocks.Add(new Block(-0.5f, -0.5f, new Sprite(TextureLoader.LoadFromFile("Pics/dirt_end_left.png"))));
-            Blocks.Add(new Block(0.5f, -0.5f, new Sprite(TextureLoader.LoadFromFile("Pics/dirt_end_right.png"))));
-            Blocks.Add(new Block(0f, -0.5f, new Sprite(TextureLoader.LoadFromFile("Pics/dirt_middle.png"))));
+		{
+			Blocks.Add(new Block(0, 1, new Sprite(TextureLoader.LoadFromFile("Pics/trophy.png"))));
+			Blocks.Add(new Block(1, 1, new Sprite(TextureLoader.LoadFromFile("Pics/bigtree.png"))));
 
-            var anList = TextureLoader.LoadAnimationImages("Pics/Worm/frame-", 1, 8, ImageExtension.png);
-            Blocks.Add(new Block(-1.5f, -1f, new AnimatedSprite(anList, 1)));
-        }
+			Blocks.Add(new Block(-1, 0, new Sprite(TextureLoader.LoadFromFile("Pics/dirt_end_left.png"))));
+			Blocks.Add(new Block(0, 0, new Sprite(TextureLoader.LoadFromFile("Pics/dirt_middle.png"))));
+			Blocks.Add(new Block(1, 0, new Sprite(TextureLoader.LoadFromFile("Pics/dirt_end_right.png"))));
+			Blocks.Add(new Block(-1, -1, new Sprite(TextureLoader.LoadFromFile("Pics/dirt.png"))));
+			Blocks.Add(new Block(0, -1, new Sprite(TextureLoader.LoadFromFile("Pics/dirt.png"))));
+			Blocks.Add(new Block(1, -1, new Sprite(TextureLoader.LoadFromFile("Pics/dirt.png"))));
+
+			var anList = TextureLoader.LoadAnimationImages("Pics/Worm/frame-", 1, 8, ImageExtension.png);
+			Blocks.Add(new Block(-1, 1, new AnimatedSprite(anList, 1)));
+		}
 
     }
 }

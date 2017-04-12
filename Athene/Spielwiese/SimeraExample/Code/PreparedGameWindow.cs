@@ -8,6 +8,7 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using Simput.Mapping;
 using Simput;
+using Simera;
 
 namespace SimeraExample
 {
@@ -16,42 +17,48 @@ namespace SimeraExample
 		/// <summary>
 		/// Camera for the scenery
 		/// </summary>
-		public View Camera { get; set; }
+		public SimeraCamera Camera { get; set; }
 
 		/// <summary>
 		/// Initialises the game window
 		/// </summary>
 		public PreparedGameWindow()
 		{
-			Camera = new View(Vector2.Zero, 1, 0);
+			Camera = new SimeraCamera(Vector2.Zero, 1, 0);
 
+			//This will be needed to enable transparency
 			GL.Enable(EnableCap.Texture2D);
 			GL.Enable(EnableCap.Blend);
 			GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 		}
 
 		/// <summary>
-		/// 
+		/// Prepares the render process
 		/// </summary>
 		/// <param name="e"></param>
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
-			Camera.ApplyTransform();
+			Camera.ApplyTransform(3, (float)Width / Height);
 
 			GL.Clear(ClearBufferMask.ColorBufferBit);
 			GL.ClearColor(Color.CornflowerBlue);
+			GL.MatrixMode(MatrixMode.Modelview);
+			GL.LoadIdentity();
 
 			base.OnRenderFrame(e);
 
 			SwapBuffers();
 		}
 
+		/// <summary>
+		/// Handels changes in the windows resolution
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnResize(EventArgs e)
 		{
 			base.OnResize(e);
 			
 			GL.Viewport(0, 0, Width, Height);
-			GL.Ortho(0, Width, 0, Height, 0f, 1f);
 		}
 	}
 }

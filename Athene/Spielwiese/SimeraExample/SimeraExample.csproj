@@ -60,7 +60,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\TextureLoader.cs" />
     <Compile Include="Code\Sprite.cs" />
-    <Compile Include="Code\View.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -68,6 +67,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pics\dirt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Pics\dirt_end_left.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -93,6 +95,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Pics\GrumpyFly\6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pics\bigtree.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Pics\trophy.png">
@@ -124,6 +129,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Simera\Simera.csproj">
+      <Project>{59a1e69e-951a-4792-a387-b948970c6195}</Project>
+      <Name>Simera</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Simput\Simput.csproj">
       <Project>{2236f1bc-aac7-4fac-9e18-a622fd148f82}</Project>
       <Name>Simput</Name>

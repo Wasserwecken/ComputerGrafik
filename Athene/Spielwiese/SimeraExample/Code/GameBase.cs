@@ -18,12 +18,6 @@ namespace SimeraExample
 	    private Level Level1 { get; set; }
         
 
-        private Sprite SpriteTrophy { get; set; }
-		private Sprite SpriteDirtEndLeft { get; set; }
-		private Sprite SpriteDirtEndRight { get; set; }
-		private Sprite SpriteDirtMiddle { get; set; }
-        private AnimatedSprite AnimatedSprite { get; set; }
-
         public GameBase()
 		{
 			InputActions = new Input();
@@ -71,7 +65,7 @@ namespace SimeraExample
 		{
 			Window.Camera.Position = Vector2.Add(Window.Camera.Position, new Vector2(InputActions.PositionX, InputActions.PositionY));
 			Window.Camera.Rotation = InputActions.Rotation;
-			Window.Camera.Zoom = InputActions.Scale * 0.5f;
+			Window.Camera.Zoom = InputActions.Scale;
 
 			if (InputActions.Reset)
 				Window.Camera.Position = Vector2.Zero;
