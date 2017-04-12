@@ -13,6 +13,11 @@ namespace SimeraExample.Code
         public float Y { get; set; }
         public ISprite Sprite { get; set; }
 
+        public Block()
+        {
+            
+        }
+
         public Block(float x, float y, ISprite sprite)
         {
             X = x;

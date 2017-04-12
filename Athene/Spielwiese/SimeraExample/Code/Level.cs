@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimeraExample.Code
 {
-    class Level
+    public class Level
     {
         public List<Block> Blocks { get; set; }
 

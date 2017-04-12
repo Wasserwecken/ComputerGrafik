@@ -46,8 +46,10 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-            Level1 = new Level();
-            Level1.InitTestData();
+		    Level1 = LevelLoader.LoadLevel(2);
+
+            //Level1 = new Level();
+            //Level1.InitTestData();
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)

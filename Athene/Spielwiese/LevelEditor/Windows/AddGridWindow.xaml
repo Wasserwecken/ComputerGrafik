@@ -1,0 +1,33 @@
+﻿<Window x:Class="LevelEditor.Windows.AddGridWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LevelEditor.Windows"
+        mc:Ignorable="d"
+        Title="Grid hinzufügen" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="X-Start" Grid.Row="0" />
+        <TextBox Text="-3" x:Name="InputXStart" Grid.Row="1" />
+        <TextBlock Text="X-Ende" Grid.Row="2" />
+        <TextBox Text="3" x:Name="InputXEnd" Grid.Row="3" />
+        <TextBlock Text="Y-Start" Grid.Row="4" />
+        <TextBox Text="-3" x:Name="InputYStart" Grid.Row="5" />
+        <TextBlock Text="Y-Ende" Grid.Row="6" />
+        <TextBox Text="4" x:Name="InputYEnd" Grid.Row="7" />
+        <Button x:Name="ButtonAddGrid" IsDefault="True" Content="Grid erstellen" Margin="0,10,0,0" Grid.Row="8" />
+
+    </Grid>
+</Window>
