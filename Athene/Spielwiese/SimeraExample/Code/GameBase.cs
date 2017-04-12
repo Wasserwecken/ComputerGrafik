@@ -48,17 +48,6 @@ namespace SimeraExample
 		{
             Level1 = new Level();
             Level1.InitTestData();
-
-
-      //      SpriteTrophy = new Sprite(TextureLoader.LoadFromFile("Pics/trophy.png"));
-      //      SpriteDirtEndLeft = new Sprite(TextureLoader.LoadFromFile("Pics/dirt_end_left.png"));
-      //      SpriteDirtEndRight = new Sprite(TextureLoader.LoadFromFile("Pics/dirt_end_right.png"));
-      //      SpriteDirtMiddle = new Sprite(TextureLoader.LoadFromFile("Pics/dirt_middle.png"));
-
-
-		    //var anList = TextureLoader.LoadAnimationImages("Pics/Worm/frame-", 1, 8, ImageExtension.png);
-      //      AnimatedSprite = new AnimatedSprite(anList, 1);
-
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
@@ -73,12 +62,6 @@ namespace SimeraExample
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
-			//SpriteTrophy.Draw(Vector2.Zero, new Vector2(0.005f));
-			//SpriteDirtEndLeft.Draw(new Vector2(-0.5f, -0.5f), new Vector2(0.005f));
-			//SpriteDirtMiddle.Draw(new Vector2(0f, -0.5f), new Vector2(0.005f));
-			//SpriteDirtEndRight.Draw(new Vector2(0.5f, -0.5f), new Vector2(0.005f));
-   //         AnimatedSprite.Draw(new Vector2(-1.5f, -1f), new Vector2(0.005f));
-		 
             Level1.Draw();
 
             Console.Clear();

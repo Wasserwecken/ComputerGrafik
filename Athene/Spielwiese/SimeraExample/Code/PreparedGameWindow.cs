@@ -38,7 +38,7 @@ namespace SimeraExample
 		/// <param name="e"></param>
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
-			Camera.ApplyTransform(3, (float)Width / Height);
+			Camera.ApplyTransform(6, (float)Width / Height);
 
 			GL.Clear(ClearBufferMask.ColorBufferBit);
 			GL.ClearColor(Color.CornflowerBlue);

@@ -46,7 +46,11 @@ namespace SimeraExample
 			{ 
 				GL.TexCoord2(vertices[index]);
 
-				vertices[index].Y *= (float)Texture.Height / Texture.Width;
+				if (Texture.Height > Texture.Width)
+					vertices[index].Y *= (float)Texture.Height / Texture.Width;
+				else
+					vertices[index].X *= (float)Texture.Width / Texture.Height;
+
 				vertices[index] *= scale;
 				vertices[index] += position;
 

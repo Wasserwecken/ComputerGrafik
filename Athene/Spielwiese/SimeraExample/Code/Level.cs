@@ -15,7 +15,10 @@ namespace SimeraExample.Code
             Blocks = blocks;
         }
 
-        public  Level() { Blocks = new List<Block>(); }
+        public  Level()
+		{
+			Blocks = new List<Block>();
+		}
 
         public void Draw()
         {
