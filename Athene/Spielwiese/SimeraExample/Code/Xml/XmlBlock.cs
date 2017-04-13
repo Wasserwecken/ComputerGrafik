@@ -18,5 +18,17 @@ namespace SimeraExample.Code.Xml
 
         [XmlAttribute("Texture")]
         public string Texture { get; set; }
+
+        [XmlAttribute("BlockType")]
+        public BlockType BlockType { get; set; }
     }
+
+    public enum BlockType
+    {
+        Collectable,
+        Water,
+        Lava,
+        Plant,
+        Walkable
+    };
 }

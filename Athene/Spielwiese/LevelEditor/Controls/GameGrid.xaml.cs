@@ -44,38 +44,72 @@ namespace LevelEditor.Controls
         {
             GridButton button = sender as GridButton;
 
-            if (SelectedRadioButton == null) return;
+            if (SelectedRadioButton == null || button == null) return;
 
-            button.Path = @SelectedRadioButton.Texture;
-            button.TextureId = SelectedRadioButton.Id;
+            if (SelectedRadioButton.Action == TextureRadioButtonAction.Remove)
+            {
+                button.SetTexture(null, null);
+                return;
+            }
+            if (SelectedRadioButton.Action == TextureRadioButtonAction.Select)
+            {
+
+
+                return;
+            }
+
+            button.SetTexture(SelectedRadioButton.Id, @SelectedRadioButton.Texture);
         }
 
         /// <summary>
         /// Inits the Textures to choose
         /// </summary>
         /// <param name="path">Path of Images</param>
-        public void InitTextures(string path)
+        public void InitSelectionArea(string path)
         {
             var files = Directory.GetFiles(path);
             string groupName = "textures";
+            InitOptionButtons(groupName);
 
-            SelectTextureRadioButton nullButton = new SelectTextureRadioButton(null, "")
-            {
-                GroupName = groupName
-            };
-            nullButton.Checked += (s, e) => SelectedRadioButton = s as SelectTextureRadioButton;
-            TextureWrapPanel.Children.Add(nullButton);
 
             foreach (string fileName in files)
             {
-                SelectTextureRadioButton radioButton = new SelectTextureRadioButton(fileName, fileName.Replace(path, "").Replace(".png", ""));
+                SelectTextureRadioButton radioButton = new SelectTextureRadioButton(fileName, fileName.Replace(path, "").Replace(".png", ""), TextureRadioButtonAction.LoadTexture);
 
-                radioButton.Checked += (s, e) => SelectedRadioButton = s as SelectTextureRadioButton;
+                radioButton.Checked += TextureRadioButton_Checked;
 
                 radioButton.GroupName = groupName;
                 TextureWrapPanel.Children.Add(radioButton);
             }
+        }
 
+        private void TextureRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            var senderRadioButton = sender as SelectTextureRadioButton;
+            SelectedRadioButton = senderRadioButton;
+            
+        }
+
+        /// <summary>
+        /// Initializes the RadioButtons, which are there for the management,
+        /// for example: delete image & select image
+        /// </summary>
+        /// <param name="group"></param>
+        public void InitOptionButtons(string group)
+        {
+            SelectTextureRadioButton nullButton = new SelectTextureRadioButton("CommonImages/Delete-96.png", "", TextureRadioButtonAction.Remove, "Bild entfernen")
+            {
+                GroupName = group
+            };
+            SelectTextureRadioButton selectButton = new SelectTextureRadioButton("CommonImages/Cursor-96.png", "", TextureRadioButtonAction.Select, "Auswählen")
+            {
+                GroupName = group
+            };
+            nullButton.Checked += TextureRadioButton_Checked;
+            selectButton.Checked += TextureRadioButton_Checked;
+
+            TextureWrapPanel.Children.Add(nullButton);
+            TextureWrapPanel.Children.Add(selectButton);
         }
 
         /// <summary>
@@ -153,7 +187,8 @@ namespace LevelEditor.Controls
                 {
                     X = button.X,
                     Y = button.Y,
-                    Texture = button.TextureId
+                    Texture = button.TextureId,
+                    BlockType = BlockType.Walkable
                 };
                 levelReturn.Blocks.Add(block);
             }
@@ -172,10 +207,8 @@ namespace LevelEditor.Controls
                 {
                     if (button.X == block.X && button.Y == block.Y)
                     {
-                        var texture = level.Textures.Where(t => t.Id == block.Texture).First();
-
-                        button.TextureId = texture.Id;
-                        button.Path = texture.Path;
+                        var texture = level.Textures.First(t => t.Id == block.Texture);
+                        button.SetTexture(texture.Id, @texture.Path);
                     }
                 }
             }

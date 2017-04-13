@@ -58,7 +58,7 @@ namespace LevelEditor
             {
                 GameGrid = new GameGrid();
                 GameGrid.InitNewGrid(addWindow.XStart, addWindow.XEnd, addWindow.YStart, addWindow.YEnd);
-                GameGrid.InitTextures(@"Pics\");
+                GameGrid.InitSelectionArea(@"Pics\");
                 GridContentControl.Content = GameGrid;
             }
         }
@@ -78,7 +78,7 @@ namespace LevelEditor
 
                 GameGrid = new GameGrid();
                 GameGrid.InitNewGrid((int)minX, (int)maxX, (int)minY, (int)maxY);
-                GameGrid.InitTextures(@"Pics\");
+                GameGrid.InitSelectionArea(@"Pics\");
                 GridContentControl.Content = GameGrid;
                 GameGrid.InitXmlLevel(level);
             }

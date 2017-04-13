@@ -58,7 +58,7 @@
                                     </Grid.RowDefinitions>
 
                                     <Image Source="{Binding TexturePath, RelativeSource={RelativeSource TemplatedParent}}" Width="30" Height="30" Grid.Row="0" />
-                                    <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="-10,0,0,0" 
+                                    <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0,0,0,0" 
                                            Grid.Row="1" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 </Grid>
                             </Grid>

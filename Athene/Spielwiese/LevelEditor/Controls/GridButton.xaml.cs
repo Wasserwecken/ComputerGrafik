@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
+using SimeraExample.Code.Xml;
 
 namespace LevelEditor.Controls
 {
@@ -33,19 +34,21 @@ namespace LevelEditor.Controls
 
             MainButton.Content = X + " : " + Y;
 
-            MainButton.Click += (s,e) => OnClick(e);
+            MainButton.Click += (s,e) => 
+                OnClick(e);
         }
 
-        public string TextureId { get; set; }
+        public string TextureId { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
+        public BlockType BlockType { get; set; }
 
         private string path;
 
         public string Path
         {
             get { return path; }
-            set
+            private set
             {
                 path = value;
 
@@ -53,14 +56,7 @@ namespace LevelEditor.Controls
                 {
                     ImageSource src = new BitmapImage(new Uri(path, UriKind.Relative));
                     ImageBrush brush = new ImageBrush(src);
-
                     MainButton.Background = brush;
-                    //Uri resourceUri = new Uri(path, UriKind.Relative);
-                    //StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
-                    //BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-                    //var brush = new ImageBrush();
-                    //brush.ImageSource = temp;
-                    //MainButton.Background = brush;
                 }
                 else
                 {
@@ -83,7 +79,11 @@ namespace LevelEditor.Controls
             }
         }
 
-
+        public void SetTexture(string textureId, string path)
+        {
+            Path = path;
+            TextureId = textureId;
+        }
       
 
     }

@@ -40,6 +40,7 @@ namespace SimeraExample.Code
 
             foreach (var xmlBlock in xmlLevel.Blocks)
             {
+     
                 var texturePath = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.Texture);
 
                 if(texturePath == null)
