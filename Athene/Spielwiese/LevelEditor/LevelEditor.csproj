@@ -67,7 +67,7 @@
     <Compile Include="Windows\AddGridWindow.xaml.cs">
       <DependentUpon>AddGridWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XmlExporter.cs" />
+    <Compile Include="XmlManager.cs" />
     <Page Include="Controls\GameGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

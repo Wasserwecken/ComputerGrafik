@@ -22,13 +22,38 @@ namespace LevelEditor.Controls
     /// </summary>
     public partial class GameGrid : UserControl
     {
+        public SelectTextureRadioButton SelectedRadioButton { get; set; }
+
+        /// <summary>
+        /// Gamegrid shows the Management to create a new level
+        /// </summary>
         public GameGrid()
         {
             InitializeComponent();
         }
 
-        public SelectTextureRadioButton SelectedRadioButton { get; set; }
+        private void Button_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                GridButtonClicked(sender, e);
+            }
+        }
 
+        private void GridButtonClicked(object sender, EventArgs e)
+        {
+            GridButton button = sender as GridButton;
+
+            if (SelectedRadioButton == null) return;
+
+            button.Path = @SelectedRadioButton.Texture;
+            button.TextureId = SelectedRadioButton.Id;
+        }
+
+        /// <summary>
+        /// Inits the Textures to choose
+        /// </summary>
+        /// <param name="path">Path of Images</param>
         public void InitTextures(string path)
         {
             var files = Directory.GetFiles(path);
@@ -53,9 +78,16 @@ namespace LevelEditor.Controls
 
         }
 
+        /// <summary>
+        /// Initializes a Grid to create a new level
+        /// </summary>
+        /// <param name="xStart">start x</param>
+        /// <param name="xEnd">end x</param>
+        /// <param name="yStart">start y</param>
+        /// <param name="yEnd">end y</param>
         public void InitNewGrid(int xStart, int xEnd, int yStart, int yEnd)
         {
-            int size = 100;
+            int size = 50;
 
             for (int i = xStart; i < xEnd; i++)
             {
@@ -86,20 +118,19 @@ namespace LevelEditor.Controls
                     Grid.SetColumn(button, colunmIndex);
 
                     button.Click += GridButtonClicked;
+                    button.MouseMove += Button_MouseMove;
 
                     colunmIndex++;
                 }
-
-
                 colunmIndex = 0;
                 rowIndex++;
             }
-
-
-
-
         }
 
+        /// <summary>
+        /// Returns the XmlLevel of the current Grid
+        /// </summary>
+        /// <returns></returns>
         public XmlLevel GetXmlLevel()
         {
             XmlLevel levelReturn = new XmlLevel();
@@ -109,7 +140,6 @@ namespace LevelEditor.Controls
             foreach (GridButton button in MainGrid.Children)
             {
                 if(String.IsNullOrWhiteSpace(button.TextureId)) continue;
-
                 if (levelReturn.Textures.Count(t => t.Path == button.Path) == 0)
                 {
                     XmlTexture texture = new XmlTexture()
@@ -118,43 +148,38 @@ namespace LevelEditor.Controls
                         Path = button.Path
                     };
                     levelReturn.Textures.Add(texture);
-
                 }
-
-
                 XmlBlock block = new XmlBlock()
                 {
                     X = button.X,
                     Y = button.Y,
                     Texture = button.TextureId
                 };
-
-                
-
                 levelReturn.Blocks.Add(block);
-
-
             }
-
-
-
-
-
             return levelReturn;
         }
 
-
-
-        private void GridButtonClicked(object sender, EventArgs e)
+        /// <summary>
+        /// Initializes a new level on the grid
+        /// </summary>
+        /// <param name="level"></param>
+        public void InitXmlLevel(XmlLevel level)
         {
-            GridButton button = sender as GridButton;
+            foreach (var block in level.Blocks)
+            {
+                foreach (GridButton button in MainGrid.Children)
+                {
+                    if (button.X == block.X && button.Y == block.Y)
+                    {
+                        var texture = level.Textures.Where(t => t.Id == block.Texture).First();
 
-            if (SelectedRadioButton == null) return;
-
-            button.Path = @SelectedRadioButton.Texture;
-            button.TextureId = SelectedRadioButton.Id;
-
-
+                        button.TextureId = texture.Id;
+                        button.Path = texture.Path;
+                    }
+                }
+            }
         }
+
     }
 }

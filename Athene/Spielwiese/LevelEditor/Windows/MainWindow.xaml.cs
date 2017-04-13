@@ -30,8 +30,10 @@ namespace LevelEditor
             
             AddGridMenuItem.Click += AddGridMenuItem_Click;
             SaveGridMenu.Click += SaveGridMenu_Click;
+            ImportGridMenuItem.Click += ImportGridMenuItem_Click;
         }
 
+      
         public GameGrid GameGrid { get; set; }
 
         private void SaveGridMenu_Click(object sender, RoutedEventArgs e)
@@ -43,7 +45,7 @@ namespace LevelEditor
             if (saveFileDialog.ShowDialog() == true)
             {
                 var xmlLevel = GameGrid.GetXmlLevel();
-                XmlExporter.ConvertToXml(xmlLevel, saveFileDialog.FileName);
+                XmlManager.ConvertToXml(xmlLevel, saveFileDialog.FileName);
             }
         }
 
@@ -60,5 +62,27 @@ namespace LevelEditor
                 GridContentControl.Content = GameGrid;
             }
         }
+
+        private void ImportGridMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML-Files (.xml)|*.xml";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var level = XmlManager.LoadFromXml(openFileDialog.FileName);
+
+                var maxX = level.Blocks.Max(block => block.X);
+                var minX = level.Blocks.Min(block => block.X);
+                var maxY = level.Blocks.Max(block => block.Y);
+                var minY = level.Blocks.Min(block => block.Y);
+
+                GameGrid = new GameGrid();
+                GameGrid.InitNewGrid((int)minX, (int)maxX, (int)minY, (int)maxY);
+                GameGrid.InitTextures(@"Pics\");
+                GridContentControl.Content = GameGrid;
+                GameGrid.InitXmlLevel(level);
+            }
+        }
+
     }
 }

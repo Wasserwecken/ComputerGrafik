@@ -16,6 +16,7 @@
         <Menu Width="Auto" Grid.Row="0" Height="20">
             <MenuItem Header="Neues Grid" x:Name="AddGridMenuItem" />
             <MenuItem Header="Level exportieren" x:Name="SaveGridMenu" />
+            <MenuItem Header="Level importieren" x:Name="ImportGridMenuItem" />
         </Menu>
 
         <ContentControl HorizontalContentAlignment="Left"  x:Name="GridContentControl" Grid.Row="1" />

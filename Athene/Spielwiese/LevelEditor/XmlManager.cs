@@ -10,7 +10,7 @@ using SimeraExample.Code.Xml;
 
 namespace LevelEditor
 {
-    public static class XmlExporter
+    public static class XmlManager
     {
         public static bool ConvertToXml(XmlLevel level, string destination)
         {
@@ -23,6 +23,15 @@ namespace LevelEditor
             file.Close();
 
             return false;
+        }
+
+        public static XmlLevel LoadFromXml(string source)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(XmlLevel));
+            StreamReader reader = new StreamReader(source);
+            XmlLevel xmllevel = (XmlLevel)serializer.Deserialize(reader);
+
+            return xmllevel;
         }
     }
 }
