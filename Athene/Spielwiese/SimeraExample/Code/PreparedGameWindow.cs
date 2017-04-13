@@ -8,6 +8,7 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using Simput.Mapping;
 using Simput;
+using Simuals.Camera;
 
 namespace SimeraExample
 {
@@ -16,14 +17,14 @@ namespace SimeraExample
 		/// <summary>
 		/// Camera for the scenery
 		/// </summary>
-		public Camera Camera { get; set; }
+		public Camera GameCamera { get; set; }
 
 		/// <summary>
 		/// Initialises the game window
 		/// </summary>
 		public PreparedGameWindow()
 		{
-			Camera = new Camera(Vector2.Zero, 1, 0);
+			GameCamera = new Camera(Vector2.Zero, 1, 0, 3);
 
 			//This will be needed to enable transparency
 			GL.Enable(EnableCap.Texture2D);
@@ -37,7 +38,7 @@ namespace SimeraExample
 		/// <param name="e"></param>
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
-			Camera.ApplyTransform(6, (float)Width / Height);
+			GameCamera.ApplyTransform((float)Width / Height);
 
 			GL.Clear(ClearBufferMask.ColorBufferBit);
 			GL.ClearColor(Color.CornflowerBlue);
@@ -56,7 +57,7 @@ namespace SimeraExample
 		protected override void OnResize(EventArgs e)
 		{
 			base.OnResize(e);
-			
+
 			GL.Viewport(0, 0, Width, Height);
 		}
 	}

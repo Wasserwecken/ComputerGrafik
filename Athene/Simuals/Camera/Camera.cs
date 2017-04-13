@@ -24,21 +24,27 @@ namespace Simuals.Camera
 		/// Zoom of the camera. 1 is standard
 		/// </summary>
 		public float Zoom { get; set; }
+
+		/// <summary>
+		/// Size of the axis to the heigt and bottom of the window
+		/// </summary>
+		public int AxisSize { get; set; }
 		
 		/// <summary>
 		/// Initialises the view
 		/// </summary>
-		public Camera(Vector2 startPosition, float startZoom, float startRotation)
+		public Camera(Vector2 startPosition, float startZoom, float startRotation, int axisSize)
 		{
 			Position = startPosition;
 			Rotation = startRotation;
 			Zoom = startZoom;
+			AxisSize = axisSize;
 		}
 
 		/// <summary>
 		/// Applies the proteries of the view to the camera
 		/// </summary>
-		public void ApplyTransform(int axisSize, float aspectRatio)
+		public void ApplyTransform(float aspectRatio)
 		{
 			var transform = Matrix4.Identity;
 
@@ -49,7 +55,7 @@ namespace Simuals.Camera
 			GL.MatrixMode(MatrixMode.Projection);
 			GL.LoadIdentity();
 			GL.MultMatrix(ref transform);
-			GL.Ortho(-axisSize * aspectRatio, axisSize * aspectRatio, -axisSize, axisSize, -1f, 1f);
+			GL.Ortho(-AxisSize * aspectRatio, AxisSize * aspectRatio, -AxisSize, AxisSize, -1f, 1f);
 		}
 	}
 }

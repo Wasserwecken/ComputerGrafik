@@ -1,12 +1,9 @@
 ﻿using OpenTK;
-using OpenTK.Graphics.OpenGL;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
 using OpenTK.Input;
 using SimeraExample.Code;
 using Simput;
+using Simuals.Graphics;
+using System;
 
 namespace SimeraExample
 {
@@ -14,8 +11,10 @@ namespace SimeraExample
 	{
 		private PreparedGameWindow Window { get; }
 		private Input InputActions { get; set; }
-
 	    private Level Level1 { get; set; }
+
+		private SpriteAnimated AnimTest { get; set; }
+		private StaticSprite SpriteTest { get; set; }
         
 
         public GameBase()
@@ -48,29 +47,39 @@ namespace SimeraExample
 		{
 		    Level1 = LevelLoader.LoadLevel(3);
 
-            //Level1 = new Level();
-            //Level1.InitTestData();
+			AnimTest = new SpriteAnimated();
+			AnimTest.AddAnimation("Pics/Worm/idle", 1000);
+			AnimTest.AddAnimation("Pics/Worm/walk", 1000);
+			AnimTest.StartAnimation("walk");
+
+			SpriteTest = new StaticSprite("Pics/bigtree.png");
+
+			//Level1 = new Level();
+			//Level1.InitTestData();
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
-			Window.Camera.Position = Vector2.Add(Window.Camera.Position, new Vector2(InputActions.PositionX, InputActions.PositionY));
-			Window.Camera.Rotation = InputActions.Rotation;
-			Window.Camera.Zoom = InputActions.Scale;
+			Window.GameCamera.Position = Vector2.Add(Window.GameCamera.Position, new Vector2(InputActions.PositionX, InputActions.PositionY));
+			Window.GameCamera.Rotation = InputActions.Rotation;
+			Window.GameCamera.Zoom = InputActions.Scale;
 
 			if (InputActions.Reset)
-				Window.Camera.Position = Vector2.Zero;
+				Window.GameCamera.Position = Vector2.Zero;
 		}
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
-            Level1.Draw();
+            //Level1.Draw();
+
+			AnimTest.Draw(Vector2.Zero, Vector2.One);
+			SpriteTest.Draw(Vector2.One, Vector2.One);
 
             Console.Clear();
 			Console.WriteLine("Camera:");
-			Console.WriteLine("\tPosition: X {0} | Y {1}", Window.Camera.Position.X, Window.Camera.Position.Y);
-			Console.WriteLine("\tZoom: {0}", Window.Camera.Zoom);
-			Console.WriteLine("\tRotation: {0}", Window.Camera.Rotation);
+			Console.WriteLine("\tPosition: X {0} | Y {1}", Window.GameCamera.Position.X, Window.GameCamera.Position.Y);
+			Console.WriteLine("\tZoom: {0}", Window.GameCamera.Zoom);
+			Console.WriteLine("\tRotation: {0}", Window.GameCamera.Rotation);
 			Console.WriteLine("\nInput:");
 			Console.WriteLine("\tLast device: {0}", InputActions.LastInputDeviceDescription);
 			Console.WriteLine("\t:Device Id: {0}", InputActions.LastInputDeviceId);

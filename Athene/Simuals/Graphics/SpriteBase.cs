@@ -8,6 +8,9 @@ using OpenTK.Graphics.OpenGL;
 
 namespace Simuals.Graphics
 {
+	/// <summary>
+	/// Basis functionality for a sprite
+	/// </summary>
 	public class SpriteBase
 	{
 		/// <summary>
