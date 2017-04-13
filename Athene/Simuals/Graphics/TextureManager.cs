@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Simuals.Graphics
 {
-	public static class TextureManager
+	internal static class TextureManager
 	{
 		/// <summary>
 		/// Contains all textures that has been requested
@@ -85,9 +85,7 @@ namespace Simuals.Graphics
             var animationList = new List<Texture>();
 
 			foreach(var file in Directory.GetFiles(path, "*.png", SearchOption.TopDirectoryOnly).OrderBy(f => f))
-			{
 				animationList.Add(GetTextureByPath(file));
-			}
 
 			return animationList;
         }
@@ -97,7 +95,7 @@ namespace Simuals.Graphics
 		/// </summary>
 		/// <param name="pixelFormat"></param>
 		/// <returns></returns>
-		public static OpenTK.Graphics.OpenGL.PixelFormat GetInputPixelFormatBy(System.Drawing.Imaging.PixelFormat pixelFormat)
+		private static OpenTK.Graphics.OpenGL.PixelFormat GetInputPixelFormatBy(System.Drawing.Imaging.PixelFormat pixelFormat)
 		{
 			switch (pixelFormat)
 			{
@@ -120,7 +118,7 @@ namespace Simuals.Graphics
 		/// </summary>
 		/// <param name="pixelFormat"></param>
 		/// <returns></returns>
-		public static PixelInternalFormat GetInternalPixelFormatBy(System.Drawing.Imaging.PixelFormat pixelFormat)
+		private static PixelInternalFormat GetInternalPixelFormatBy(System.Drawing.Imaging.PixelFormat pixelFormat)
 		{
 			switch (pixelFormat)
 			{

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using SimeraExample.Code.Xml;
+using Simuals.Graphics;
 
 namespace SimeraExample.Code
 {
@@ -46,7 +47,7 @@ namespace SimeraExample.Code
                 if(texturePath == null)
                     throw new Exception("Texture not found in XML file");
 
-                Sprite sprite = new Sprite(TextureLoader.LoadFromFile(texturePath.Path));
+                StaticSprite sprite = new StaticSprite(texturePath.Path);
                 var block = new Block(xmlBlock.X, xmlBlock.Y, sprite);
                 returnLevel.Blocks.Add(block);
             }

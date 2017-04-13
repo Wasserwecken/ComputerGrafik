@@ -13,7 +13,7 @@ namespace Simuals.Graphics
 	/// Static spricte with no "texture" animation
 	/// </summary>
 	public class StaticSprite
-		: SpriteBase
+		: SpriteBase, ISprite
     {
 		/// <summary>
 		/// Texture that will be used for the sprite
@@ -23,10 +23,9 @@ namespace Simuals.Graphics
         /// <summary>
         /// Initialises a sprite
         /// </summary>
-        /// <param name="texture"></param>
-        public StaticSprite(Texture texture)
+        public StaticSprite(string path)
 		{
-			SpriteTexture = texture;
+			SpriteTexture = TextureManager.GetTextureByPath(path);
 		}
 
 		/// <summary>

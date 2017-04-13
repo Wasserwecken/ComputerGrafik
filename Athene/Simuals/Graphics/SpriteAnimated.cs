@@ -13,7 +13,7 @@ namespace Simuals.Graphics
 	/// Sprite with a texture animation
 	/// </summary>
     public class SpriteAnimated
-		: SpriteBase
+		: SpriteBase, ISprite
     {
 		/// <summary>
 		/// Availabe animations for the sprite
@@ -24,19 +24,55 @@ namespace Simuals.Graphics
 		/// Active animation cyclus
 		/// </summary>
 		private SpriteAnimationData ActiveAnimation { get; set; }
-
 		/// <summary>
 		/// Watch to measure the elapsed time for the animations
 		/// </summary>
 		private Stopwatch TimeSource { get; set; }
 
+
 		/// <summary>
-		/// Sets the animation that should be played back
+		/// Initialises a animated sprite
+		/// </summary>
+		public SpriteAnimated()
+		{
+			TimeSource = new Stopwatch();
+			Animations = new List<SpriteAnimationData>();
+		}
+
+		/// <summary>
+		/// Starts or unpauses the current setted animation
+		/// </summary>
+		public void StartAnimation()
+		{
+			TimeSource.Start();
+		}
+
+		/// <summary>
+		/// Sets and starts a animation
 		/// </summary>
 		/// <param name="animationName"></param>
-		public void SetAnimation(string animationName)
+		public void StartAnimation(string animationName)
 		{
 			ActiveAnimation = Animations.FirstOrDefault(f => f.Name == animationName);
+			TimeSource.Restart();
+		}
+
+		/// <summary>
+		/// Stops the current animation
+		/// </summary>
+		public void StopAnimation()
+		{
+			TimeSource.Stop();
+		}
+
+		/// <summary>
+		/// Adds an animation to the sprite. The animation name will be the name of the directory name
+		/// </summary>
+		/// <param name="path"></param>
+		/// <param name="playbacktime"></param>
+		public void AddAnimation(string path, int playbacktime)
+		{
+			Animations.Add(new SpriteAnimationData(path, playbacktime));
 		}
 
 		/// <summary>
@@ -46,16 +82,9 @@ namespace Simuals.Graphics
 		/// <param name="scale"></param>
 		public void Draw(Vector2 position, Vector2 scale)
         {
-			var normalizedDeltaTime = (TimeSource.ElapsedMilliseconds % ActiveAnimation.PlaybackTime);
-			var frame = normalizedDeltaTime 
+			var frame = (int)(TimeSource.ElapsedMilliseconds / ActiveAnimation.TimePerFrame) % ActiveAnimation.AnimationTextures.Count;
 
-			if (!_timeSource.IsRunning)
-				_timeSource.Start();
-
-
-
-			var sprite = GetTextureFromTime((float)_timeSource.Elapsed.TotalSeconds);
-            sprite.Draw(position, scale);
+			base.Draw(position, scale, ActiveAnimation.AnimationTextures[frame]);
         }
     }
 }
