@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Lib.Input.Device;
+using Lib.Input.Mapping;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Simput.Device;
-using Simput.Mapping;
 
-namespace Simput.Listener
+namespace Lib.Input.Listener
 {
 	/// <summary>
 	/// Defines a listener which processes inputs from devices

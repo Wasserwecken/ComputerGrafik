@@ -1,12 +1,11 @@
 ﻿using OpenTK.Input;
-using Simput.Listener;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Timers;
+using Lib.Input.Listener;
 
-namespace Simput.Device
+namespace Lib.Input.Device
 {
 	/// <summary>
 	/// Base for an input device. Implementing basic tasks

@@ -58,11 +58,5 @@
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Simput\Simput.csproj">
-      <Project>{2236f1bc-aac7-4fac-9e18-a622fd148f82}</Project>
-      <Name>Simput</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

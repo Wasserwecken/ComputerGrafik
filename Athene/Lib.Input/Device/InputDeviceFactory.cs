@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Simput.Device
+namespace Lib.Input.Device
 {
 	/// <summary>
 	/// Creates instances of input devices for requested types and id's

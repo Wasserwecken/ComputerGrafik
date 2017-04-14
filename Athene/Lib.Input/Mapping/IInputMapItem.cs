@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Simput.Mapping
+namespace Lib.Input.Mapping
 {
 	/// <summary>
 	/// Defines a mapping item which is the connection between the input device and game actions

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace Simput.Helper
+namespace Lib.Input.Helper
 {
 	/// <summary>
 	/// Helps to work with reflection

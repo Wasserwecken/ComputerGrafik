@@ -1,18 +1,24 @@
-﻿using System;
+﻿using OpenTK.Input;
+using System;
 using System.Reflection;
 
-namespace Simput.Mapping
+namespace Lib.Input.Mapping
 {
 	/// <summary>
-	/// Defines a mapping item which is the connection between the input device and game actions
+	/// Specific map item for the keyboard, because the keyboard works with enums, not with properties
 	/// </summary>
-	internal class InputMapItem
+	internal class InputMapItemKeyboard
 		: IInputMapItem
 	{
 		/// <summary>
-		/// Property which holds the input information
+		/// ID of the device where the mapping should be checked
 		/// </summary>
-		public PropertyInfo InputMember { get; set; }
+		public int DeviceId { get; set; }
+
+		/// <summary>
+		/// Key which is bind to an ingame action
+		/// </summary>
+		public Key KeyboardKey { get; set; }
 
 		/// <summary>
 		/// Property which will be modified by the input action
@@ -23,10 +29,5 @@ namespace Simput.Mapping
 		/// Converter, which will convert the input value to the ingame action value
 		/// </summary>
 		public Delegate Converter { get; set; }
-
-		/// <summary>
-		/// ID of the device where the mapping should be checked
-		/// </summary>
-		public int DeviceId { get; set; }
 	}
 }

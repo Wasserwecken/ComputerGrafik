@@ -1,12 +1,12 @@
-﻿using OpenTK.Input;
-using Simput.Device;
-using Simput.Helper;
-using Simput.Listener;
-using Simput.Mapping;
+﻿using Lib.Input.Device;
+using Lib.Input.Helper;
+using Lib.Input.Listener;
+using Lib.Input.Mapping;
+using OpenTK.Input;
 using System;
 using System.Linq.Expressions;
 
-namespace Simput
+namespace Lib.Input
 {
 	/// <summary>
 	/// Defines a Layout for multiple input devices

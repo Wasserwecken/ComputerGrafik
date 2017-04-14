@@ -7,8 +7,8 @@
     <ProjectGuid>{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simput</RootNamespace>
-    <AssemblyName>Simput</AssemblyName>
+    <RootNamespace>Lib.Input</RootNamespace>
+    <AssemblyName>Lib.Input</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

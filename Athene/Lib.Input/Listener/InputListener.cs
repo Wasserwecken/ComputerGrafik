@@ -1,11 +1,9 @@
-﻿using OpenTK.Input;
-using Simput.Mapping;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using Simput.Device;
+using Lib.Input.Device;
+using Lib.Input.Mapping;
 
-namespace Simput.Listener
+namespace Lib.Input.Listener
 {
 	/// <summary>
 	/// Processes the input of the assigend devices

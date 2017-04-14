@@ -1,9 +1,8 @@
 ﻿using OpenTK.Input;
-using Simput.Mapping;
 using System;
-using System.Collections.Generic;
+using Lib.Input.Mapping;
 
-namespace Simput.Device
+namespace Lib.Input.Device
 {
 	/// <summary>
 	/// Captures all input which is made on the keyboard

@@ -1,6 +1,6 @@
 ﻿using OpenTK.Input;
 
-namespace Simput
+namespace Lib.Input
 {
 	/// <summary>
 	/// Defines a object which can be modified by simput

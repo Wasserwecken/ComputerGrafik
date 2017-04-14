@@ -1,8 +1,8 @@
-﻿using OpenTK;
+﻿using Lib.Visuals.Graphics;
+using OpenTK;
 using OpenTK.Input;
-using Simput;
 using System;
-using Lib.Visuals.Graphics;
+using Lib.Input;
 
 namespace SimeraExample
 {

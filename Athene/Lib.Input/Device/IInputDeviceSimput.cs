@@ -1,7 +1,7 @@
-﻿using OpenTK.Input;
-using Simput.Listener;
+﻿using Lib.Input.Listener;
+using OpenTK.Input;
 
-namespace Simput.Device
+namespace Lib.Input.Device
 {
 	/// <summary>
 	/// Defines a dives which can be used for the simput lib

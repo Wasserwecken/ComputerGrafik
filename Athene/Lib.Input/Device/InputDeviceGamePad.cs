@@ -1,9 +1,9 @@
 ﻿using OpenTK.Input;
-using Simput.Helper;
-using Simput.Mapping;
 using System;
+using Lib.Input.Helper;
+using Lib.Input.Mapping;
 
-namespace Simput.Device
+namespace Lib.Input.Device
 {
 	/// <summary>
 	/// Tracks the input of a gamepad

@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Simput.Helper
+namespace Lib.Input.Helper
 {
 	/// <summary>
 	/// Helps to work with properties
