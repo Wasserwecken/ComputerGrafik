@@ -2,23 +2,26 @@
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
-using Lib.Visuals.Camera;
 
-namespace SimeraExample
+namespace Lib.Visuals.Window
 {
-	public class PreparedGameWindow : GameWindow
+	/// <summary>
+	/// Extended game window
+	/// </summary>
+	public class GameWindowBase
+		: GameWindow
 	{
 		/// <summary>
 		/// Camera for the scenery
 		/// </summary>
-		public Camera GameCamera { get; set; }
+		public GameCamera Camera { get; set; }
 
 		/// <summary>
 		/// Initialises the game window
 		/// </summary>
-		public PreparedGameWindow()
+		public GameWindowBase()
 		{
-			GameCamera = new Camera(Vector2.Zero, 6, 15f);
+			Camera = new GameCamera(Vector2.Zero, 6, 15f);
 
 			//This will be needed to enable transparency
 			GL.Enable(EnableCap.Texture2D);
@@ -32,7 +35,7 @@ namespace SimeraExample
 		/// <param name="e"></param>
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
-			GameCamera.ApplyTransform((float)Width / Height);
+			Camera.ApplyTransform((float)Width / Height);
 
 			GL.Clear(ClearBufferMask.ColorBufferBit);
 			GL.ClearColor(Color.Black);

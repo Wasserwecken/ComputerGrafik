@@ -3,9 +3,9 @@ using System.Timers;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
-namespace Lib.Visuals.Camera
+namespace Lib.Visuals.Window
 {
-	public class Camera
+	public class GameCamera
 	{
 		/// <summary>
 		/// Rotation of the camera, negative values gonne rotate clockwise
@@ -42,7 +42,7 @@ namespace Lib.Visuals.Camera
 		/// <summary>
 		/// Initialises the view
 		/// </summary>
-		public Camera(Vector2 startPosition, int axisSize, float cameraDelay)
+		public GameCamera(Vector2 startPosition, int axisSize, float cameraDelay)
 		{
 			Rotation = 0;
 			Zoom = 1;

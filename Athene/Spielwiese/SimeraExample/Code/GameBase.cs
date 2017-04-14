@@ -4,12 +4,13 @@ using OpenTK.Input;
 using System;
 using Lib.Input;
 using System.Collections.Generic;
+using Lib.Visuals.Window;
 
 namespace SimeraExample
 {
 	public class GameBase
 	{
-		private PreparedGameWindow Window { get; }
+		private GameWindowBase Window { get; }
 		private Input InputActions { get; set; }
 
 		private SpriteAnimated AnimTest { get; set; }
@@ -34,7 +35,7 @@ namespace SimeraExample
 			layout.AddMappingKeyboard(Key.Down, inp => inp.Vertical, val => val ? -1 : 0);
 			
 
-			Window = new PreparedGameWindow();
+			Window = new GameWindowBase();
 			Rand = new Random();
 
 			Window.Load += Window_Load;
@@ -77,7 +78,7 @@ namespace SimeraExample
 			y = PlayerPosition.Y + (maxOffset * InputActions.Vertical);
 
 			//setting the camera
-			Window.GameCamera.MoveTo(new Vector2(x, y));
+			Window.Camera.MoveTo(new Vector2(x, y));
 		}
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
