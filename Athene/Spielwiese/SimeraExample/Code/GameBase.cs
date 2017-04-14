@@ -54,28 +54,14 @@ namespace SimeraExample
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
-			Window.GameCamera.Position = Vector2.Add(Window.GameCamera.Position, new Vector2(InputActions.PositionX, InputActions.PositionY));
-			Window.GameCamera.Rotation = InputActions.Rotation;
-			Window.GameCamera.Zoom = InputActions.Scale;
-
 			if (InputActions.Reset)
-				Window.GameCamera.Position = Vector2.Zero;
+				Window.GameCamera.MoveTo(new Vector2(1, 1), Lib.Visuals.Camera.TransitionType.QuadraticInOut, 2000);
 		}
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
-
 			AnimTest.Draw(Vector2.Zero, Vector2.One);
 			SpriteTest.Draw(Vector2.One, Vector2.One);
-
-            Console.Clear();
-			Console.WriteLine("Camera:");
-			Console.WriteLine("\tPosition: X {0} | Y {1}", Window.GameCamera.Position.X, Window.GameCamera.Position.Y);
-			Console.WriteLine("\tZoom: {0}", Window.GameCamera.Zoom);
-			Console.WriteLine("\tRotation: {0}", Window.GameCamera.Rotation);
-			Console.WriteLine("\nInput:");
-			Console.WriteLine("\tLast device: {0}", InputActions.LastInputDeviceDescription);
-			Console.WriteLine("\t:Device Id: {0}", InputActions.LastInputDeviceId);
 		}
 	}
 }

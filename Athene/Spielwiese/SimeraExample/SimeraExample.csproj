@@ -241,11 +241,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Lib.Input\Lib.Input.csproj">
-      <Project>{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}</Project>
+      <Project>{2236f1bc-aac7-4fac-9e18-a622fd148f82}</Project>
       <Name>Lib.Input</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Lib.Visuals\Lib.Visuals.csproj">
-      <Project>{1B6562B4-EC7A-4E56-8E17-FA3040026200}</Project>
+      <Project>{1b6562b4-ec7a-4e56-8e17-fa3040026200}</Project>
       <Name>Lib.Visuals</Name>
     </ProjectReference>
   </ItemGroup>

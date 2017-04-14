@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera\Camera.cs" />
+    <Compile Include="Camera\TransitionType.cs" />
     <Compile Include="Graphics\SpriteAnimated.cs" />
     <Compile Include="Graphics\SpriteAnimationData.cs" />
     <Compile Include="Graphics\ISprite.cs" />
