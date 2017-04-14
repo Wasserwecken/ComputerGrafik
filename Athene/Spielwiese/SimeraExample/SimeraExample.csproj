@@ -240,17 +240,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Simloader\Simloader.csproj">
-      <Project>{1c4bb265-4030-4015-b781-1fa06d53b317}</Project>
-      <Name>Simloader</Name>
+    <ProjectReference Include="..\..\Lib.Visuals\Lib.Visuals.csproj">
+      <Project>{1B6562B4-EC7A-4E56-8E17-FA3040026200}</Project>
+      <Name>Lib.Visuals</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Simput\Simput.csproj">
       <Project>{2236f1bc-aac7-4fac-9e18-a622fd148f82}</Project>
       <Name>Simput</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Simuals\Simuals.csproj">
-      <Project>{1b6562b4-ec7a-4e56-8e17-fa3040026200}</Project>
-      <Name>Simuals</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

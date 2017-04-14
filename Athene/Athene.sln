@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simput", "Simput\Simput.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.LevelLoader", "Simloader\Lib.LevelLoader.csproj", "{1C4BB265-4030-4015-B781-1FA06D53B317}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simuals", "Simuals\Simuals.csproj", "{1B6562B4-EC7A-4E56-8E17-FA3040026200}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Visuals", "Simuals\Lib.Visuals.csproj", "{1B6562B4-EC7A-4E56-8E17-FA3040026200}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelEditor", "LevelEditor\LevelEditor.csproj", "{46BA9913-0003-4B98-AE8D-770D813D8EE8}"
 EndProject

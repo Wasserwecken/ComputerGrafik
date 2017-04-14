@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenTK;
+﻿using OpenTK;
 
-namespace Simuals.Graphics
+namespace Lib.Visuals.Graphics
 {
 	/// <summary>
 	/// Defines a sprite
 	/// </summary>
-    public interface ISprite
+	public interface ISprite
     {
 		/// <summary>
 		/// Draws the sprite on screen

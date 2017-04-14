@@ -1,10 +1,8 @@
 ﻿using OpenTK;
 using OpenTK.Input;
-using SimeraExample.Code;
 using Simput;
-using Simuals.Graphics;
 using System;
-using Simloader;
+using Lib.Visuals.Graphics;
 
 namespace SimeraExample
 {
@@ -12,7 +10,6 @@ namespace SimeraExample
 	{
 		private PreparedGameWindow Window { get; }
 		private Input InputActions { get; set; }
-	    private Level Level1 { get; set; }
 
 		private SpriteAnimated AnimTest { get; set; }
 		private SpriteStatic SpriteTest { get; set; }
@@ -46,14 +43,13 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-		    Level1 = LevelLoader.LoadLevel(7);
 
-			//AnimTest = new SpriteAnimated();
-			//AnimTest.AddAnimation("Pics/Worm/idle", 1000);
-			//AnimTest.AddAnimation("Pics/Worm/walk", 1000);
-			//AnimTest.StartAnimation("idle");
+			AnimTest = new SpriteAnimated();
+			AnimTest.AddAnimation("Pics/Worm/idle", 1000);
+			AnimTest.AddAnimation("Pics/Worm/walk", 1000);
+			AnimTest.StartAnimation("idle");
 
-			//SpriteTest = new StaticSprite("Pics/bigtree.png");
+			SpriteTest = new SpriteStatic("Pics/bigtree.png");
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
@@ -68,7 +64,6 @@ namespace SimeraExample
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
-            Level1.Draw();
 
 			AnimTest.Draw(Vector2.Zero, Vector2.One);
 			SpriteTest.Draw(Vector2.One, Vector2.One);

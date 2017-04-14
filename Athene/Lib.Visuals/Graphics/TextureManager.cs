@@ -4,10 +4,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 
-namespace Simuals.Graphics
+namespace Lib.Visuals.Graphics
 {
 	internal static class TextureManager
 	{

@@ -7,8 +7,8 @@
     <ProjectGuid>{1B6562B4-EC7A-4E56-8E17-FA3040026200}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simuals</RootNamespace>
-    <AssemblyName>Simuals</AssemblyName>
+    <RootNamespace>Lib.Visuals</RootNamespace>
+    <AssemblyName>Lib.Visuals</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

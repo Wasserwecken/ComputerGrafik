@@ -54,9 +54,9 @@
     <Compile Include="Xml\XmlTexture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Simuals\Simuals.csproj">
+    <ProjectReference Include="..\Simuals\Lib.Visuals.csproj">
       <Project>{1b6562b4-ec7a-4e56-8e17-fa3040026200}</Project>
-      <Name>Simuals</Name>
+      <Name>Lib.Visuals</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

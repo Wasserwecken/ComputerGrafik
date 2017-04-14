@@ -1,6 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL;
 
-namespace Simuals.Graphics
+namespace Lib.Visuals.Graphics
 {
 	/// <summary>
 	/// A registered open gl texture

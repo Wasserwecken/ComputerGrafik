@@ -1,18 +1,14 @@
-﻿using System;
+﻿using OpenTK;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenTK;
-using OpenTK.Graphics.OpenGL;
 
-namespace Simuals.Graphics
+namespace Lib.Visuals.Graphics
 {
 	/// <summary>
 	/// Sprite with a texture animation
 	/// </summary>
-    public class SpriteAnimated
+	public class SpriteAnimated
 		: SpriteBase, ISprite
     {
 		/// <summary>
