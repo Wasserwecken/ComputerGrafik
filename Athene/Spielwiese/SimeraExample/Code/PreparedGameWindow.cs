@@ -24,7 +24,7 @@ namespace SimeraExample
 		/// </summary>
 		public PreparedGameWindow()
 		{
-			GameCamera = new Camera(Vector2.Zero, 1, 0, 3);
+			GameCamera = new Camera(Vector2.Zero, 1, 0, 2);
 
 			//This will be needed to enable transparency
 			GL.Enable(EnableCap.Texture2D);
@@ -41,7 +41,7 @@ namespace SimeraExample
 			GameCamera.ApplyTransform((float)Width / Height);
 
 			GL.Clear(ClearBufferMask.ColorBufferBit);
-			GL.ClearColor(Color.CornflowerBlue);
+			GL.ClearColor(Color.Black);
 			GL.MatrixMode(MatrixMode.Modelview);
 			GL.LoadIdentity();
 

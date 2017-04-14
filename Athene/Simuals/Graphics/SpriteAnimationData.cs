@@ -40,7 +40,7 @@ namespace Simuals.Graphics
 		public SpriteAnimationData(string path, int playbackTime)
 		{
 			Name = new DirectoryInfo(path).Name;
-			AnimationTextures = TextureManager.GetAnimationTextures(path);
+			AnimationTextures = TextureManager.GetTextures(path);
 			PlaybackTime = playbackTime;
 			TimePerFrame = PlaybackTime / AnimationTextures.Count;
 		}

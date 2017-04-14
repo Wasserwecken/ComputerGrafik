@@ -47,7 +47,7 @@ namespace SimeraExample.Code
                 if(texturePath == null)
                     throw new Exception("Texture not found in XML file");
 
-                StaticSprite sprite = new StaticSprite(texturePath.Path);
+                SpriteStatic sprite = new SpriteStatic(texturePath.Path);
                 var block = new Block(xmlBlock.X, xmlBlock.Y, sprite);
                 returnLevel.Blocks.Add(block);
             }

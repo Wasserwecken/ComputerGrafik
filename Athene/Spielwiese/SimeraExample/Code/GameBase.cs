@@ -14,7 +14,7 @@ namespace SimeraExample
 	    private Level Level1 { get; set; }
 
 		private SpriteAnimated AnimTest { get; set; }
-		private StaticSprite SpriteTest { get; set; }
+		private SpriteStatic SpriteTest { get; set; }
         
 
         public GameBase()
@@ -45,14 +45,15 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-		    Level1 = LevelLoader.LoadLevel(3);
+		    Level1 = LevelLoader.LoadLevel(1);
 
 			AnimTest = new SpriteAnimated();
 			AnimTest.AddAnimation("Pics/Worm/idle", 1000);
 			AnimTest.AddAnimation("Pics/Worm/walk", 1000);
 			AnimTest.StartAnimation("walk");
 
-			SpriteTest = new StaticSprite("Pics/bigtree.png");
+			SpriteTest = new SpriteStatic("Pics/bigtree.png");
+			
 
 			//Level1 = new Level();
 			//Level1.InitTestData();
@@ -70,10 +71,9 @@ namespace SimeraExample
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
-            //Level1.Draw();
+			//Level1.Draw();
 
-			AnimTest.Draw(Vector2.Zero, Vector2.One);
-			SpriteTest.Draw(Vector2.One, Vector2.One);
+			AnimTest.Draw(Vector2.One, Vector2.One);
 
             Console.Clear();
 			Console.WriteLine("Camera:");
