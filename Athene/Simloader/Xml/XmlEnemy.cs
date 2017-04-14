@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace Lib.LevelLoader.Xml
 {
     [Serializable()]
-    public class XmlBlock : XmlLevelItem
+    class XmlEnemy
     {
         [XmlAttribute("X")]
         public float X { get; set; }
@@ -16,18 +16,7 @@ namespace Lib.LevelLoader.Xml
         [XmlAttribute("Y")]
         public float Y { get; set; }
 
-        [XmlAttribute("Texture")]
-        public string Texture { get; set; }
-
-        [XmlAttribute("BlockType")]
-        public BlockType BlockType { get; set; }
+        [XmlAttribute("Type")]
+        public string Type { get; set; }
     }
-
-    public enum BlockType
-    {
-        Water,
-        Lava,
-        Plant,
-        Walkable
-    };
 }

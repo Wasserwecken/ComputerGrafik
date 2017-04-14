@@ -58,8 +58,8 @@
     <Compile Include="Controls\LevelEditor.xaml.cs">
       <DependentUpon>LevelEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\GameItemButton.xaml.cs">
-      <DependentUpon>GameItemButton.xaml</DependentUpon>
+    <Compile Include="Controls\LevelItemButton.xaml.cs">
+      <DependentUpon>LevelItemButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\OperateControl.xaml.cs">
       <DependentUpon>OperateControl.xaml</DependentUpon>
@@ -68,6 +68,7 @@
     <Compile Include="Controls\TextureFolderControl.xaml.cs">
       <DependentUpon>TextureFolderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\LevelLoaderXmlExtension.cs" />
     <Compile Include="Windows\AddLevelWindow.xaml.cs">
       <DependentUpon>AddLevelWindow.xaml</DependentUpon>
     </Compile>
@@ -75,7 +76,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\GameItemButton.xaml">
+    <Page Include="Controls\LevelItemButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,9 +152,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Simloader\Simloader.csproj">
+    <ProjectReference Include="..\Simloader\Lib.LevelLoader.csproj">
       <Project>{1c4bb265-4030-4015-b781-1fa06d53b317}</Project>
-      <Name>Simloader</Name>
+      <Name>Lib.LevelLoader</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

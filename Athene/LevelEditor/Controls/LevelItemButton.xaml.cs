@@ -14,42 +14,28 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
-using Simloader.Xml;
+using Lib.LevelLoader.Xml;
 
 namespace LevelEditor.Controls
 {
     /// <summary>
-    /// GameItemButton represents a Block or an Enemy in the game.
-    /// GameItemButton is used in the grid to edit the level.
+    /// LevelItemButton represents a Block or an Enemy in the game.
+    /// LevelItemButton is used in the grid to edit the level.
     /// </summary>
-    public partial class GameItemButton : UserControl
+    public partial class LevelItemButton : UserControl
     {
         private string _path;
+
+        public XmlLevelItem LevelItem { get; set; }
+
 
         /// <summary>
         /// Represents the relative path of the current Texture
         /// </summary>
         public string TexturePathRelative { get; set; }
 
-        /// <summary>
-        /// Represents the texture of a block in the XML file
-        /// </summary>
-        public string TextureId { get; private set; }
-
-        /// <summary>
-        /// Represents the X coordinate of a block in the XML file
-        /// </summary>
-        public int X { get; private set; }
-
-        /// <summary>
-        /// Represents the Y coordinate of a block in the XML file
-        /// </summary>
-        public int Y { get; private set; }
-
-        /// <summary>
-        /// Represents the blocktype of a block in the XML file
-        /// </summary>
-        public BlockType BlockType { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
         /// <summary>
         /// Represents the ImagePath of the Image of the Control
@@ -81,33 +67,40 @@ namespace LevelEditor.Controls
         }
 
         /// <summary>
-        /// GameItemButton represents a Block or an Enemy in the game
+        /// LevelItemButton represents a Block or an Enemy in the game
         /// </summary>
-        /// <param name="x">X coordinate</param>
-        /// <param name="y">Y coordinate</param>
+        /// <param name="x">XmlX coordinate</param>
+        /// <param name="y">XmlY coordinate</param>
         /// <param name="path">The Absolute Path of the Image, can also be null</param>
-        public GameItemButton(int x, int y, string path = null)
+        public LevelItemButton(int x, int y)
         {
             InitializeComponent();
 
             X = x;
             Y = y;
-            Path = path;
             TitleTextBlock.Text = X + " : " + Y;
             MainButton.Click += (s,e) => 
                 OnClick(e);
         }
 
-        /// <summary>
-        /// Sets a Texture for the Button
-        /// </summary>
-        /// <param name="textureId">Texture Id (XML-Texture)</param>
-        /// <param name="path">Absolute path of the Texture</param>
-        public void SetTexture(string textureId, string path)
+        public void SetXmlBlock(string textureId, string path, BlockType type)
         {
+            LevelItem = new XmlBlock()
+            {
+                BlockType = type,
+                X = this.X,
+                Y = this.Y,
+                Texture = textureId
+            };
             Path = path;
-            TextureId = textureId;
         }
+
+        public void ResetItem()
+        {
+            LevelItem = null;
+        }
+
+
 
 
         /// <summary>

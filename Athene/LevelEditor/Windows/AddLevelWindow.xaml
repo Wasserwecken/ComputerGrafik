@@ -24,16 +24,16 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
-        <TextBlock Grid.Column="0" Text="X-Start" Grid.Row="0" />
+        <TextBlock Grid.Column="0" Text="XmlX-Start" Grid.Row="0" />
         <TextBox Grid.Column="0" Text="-3" x:Name="InputXStart" Grid.Row="1" />
 
-        <TextBlock Grid.Column="1" Text="X-Ende" Grid.Row="0" />
+        <TextBlock Grid.Column="1" Text="XmlX-Ende" Grid.Row="0" />
         <TextBox Grid.Column="1" Text="3" x:Name="InputXEnd" Grid.Row="1" />
 
-        <TextBlock Grid.Column="0" Text="Y-Start" Grid.Row="2" />
+        <TextBlock Grid.Column="0" Text="XmlY-Start" Grid.Row="2" />
         <TextBox Grid.Column="0" Text="-3" x:Name="InputYStart" Grid.Row="3" />
 
-        <TextBlock Grid.Column="1" Text="Y-Ende" Grid.Row="2" />
+        <TextBlock Grid.Column="1" Text="XmlY-Ende" Grid.Row="2" />
         <TextBox Grid.Column="1" Text="4" x:Name="InputYEnd" Grid.Row="3" />
       
         <Button x:Name="ButtonAddLevel" IsDefault="True" Content="Level erstellen" Margin="0,10,0,0" Grid.Row="8"

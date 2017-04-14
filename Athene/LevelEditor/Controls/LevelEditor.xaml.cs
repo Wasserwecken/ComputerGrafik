@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Simloader.Xml;
+using Lib.LevelLoader.Xml;
+
 
 namespace LevelEditor.Controls
 {
@@ -26,6 +27,10 @@ namespace LevelEditor.Controls
         /// Represents the current Selection in the OperateControl
         /// </summary>
         public SelectTextureRadioButton SelectedRadioButton { get; set; }
+
+        /// <summary>
+        /// The size of the buttons in the grid
+        /// </summary>
         public int GameItemButtonSize { get; set; }
 
         /// <summary>
@@ -35,11 +40,22 @@ namespace LevelEditor.Controls
         {
             InitializeComponent();
             GameItemButtonSize = 50;
+
             /* Initialize the OperateControl */
             OperateControl opControl = new OperateControl(this);
             ContentControlOperate.Content = opControl;
             opControl.InitOperateControl();
             opControl.InitDirectory(Directory.GetCurrentDirectory() + Properties.Settings.Default.ImageBaseFolder);
+
+            /* Init the block types */
+            foreach (var type in Enum.GetValues(typeof(BlockType)))
+            {
+                ComboBoxItem comboBoxItem = new ComboBoxItem()
+                {
+                    Content = type
+                };
+                BlockTypeComboBox.Items.Add(comboBoxItem);
+            }
         }
 
         /// <summary>
@@ -62,12 +78,12 @@ namespace LevelEditor.Controls
         /// <param name="e"></param>
         private void GridButtonClicked(object sender, EventArgs e)
         {
-            GameItemButton button = sender as GameItemButton;
+            LevelItemButton button = sender as LevelItemButton;
             if (SelectedRadioButton == null || button == null) return;
 
             if (SelectedRadioButton.Action == TextureRadioButtonAction.Remove)
             {
-                button.SetTexture(null, null);
+                button.ResetItem();
             }
             else if (SelectedRadioButton.Action == TextureRadioButtonAction.Select)
             {
@@ -75,7 +91,7 @@ namespace LevelEditor.Controls
             }
             else if (SelectedRadioButton.Action == TextureRadioButtonAction.LoadTexture)
             {
-                button.SetTexture(SelectedRadioButton.Id, @SelectedRadioButton.TexturePath);
+                button.SetXmlBlock(SelectedRadioButton.XmlId, @SelectedRadioButton.TexturePath, BlockType.Walkable);
             }
 
         }
@@ -120,7 +136,7 @@ namespace LevelEditor.Controls
             {
                 for (int x = xStart; x < xEnd; x++)
                 {
-                    GameItemButton button = new GameItemButton(x, y);
+                    LevelItemButton button = new LevelItemButton(x, y);
                     button.Width = GameItemButtonSize;
                     button.Height = GameItemButtonSize;
                     MainGrid.Children.Add(button);
@@ -135,67 +151,9 @@ namespace LevelEditor.Controls
             }
         }
 
-        /// <summary>
-        /// Returns the XmlLevel of the current Grid
-        /// </summary>
-        /// <returns></returns>
-        public XmlLevel GetXmlLevel()
-        {
-            XmlLevel levelReturn = new XmlLevel();
-            levelReturn.Blocks = new List<XmlBlock>();
-            levelReturn.Textures = new List<XmlTexture>();
+      
 
-            foreach (GameItemButton button in MainGrid.Children)
-            {
-                if(String.IsNullOrWhiteSpace(button.TextureId)) continue;
-                if (levelReturn.Textures.Count(t => t.Path == button.TexturePathRelative) == 0)
-                {
-                    XmlTexture texture = new XmlTexture()
-                    {
-                        Id = button.TextureId,
-                        Path = button.TexturePathRelative
-                    };
-                    levelReturn.Textures.Add(texture);
-                }
-                XmlBlock block = new XmlBlock()
-                {
-                    X = button.X,
-                    Y = button.Y,
-                    Texture = button.TextureId,
-                    BlockType = BlockType.Walkable
-                };
-                levelReturn.Blocks.Add(block);
-            }
-            return levelReturn;
-        }
+     
 
-        /// <summary>
-        /// Initializes a new level on the grid
-        /// </summary>
-        /// <param name="level"></param>
-        public void InitXmlLevel(XmlLevel level)
-        {
-            foreach (var block in level.Blocks)
-            {
-                foreach (GameItemButton button in MainGrid.Children)
-                {
-                    if (button.X == block.X && button.Y == block.Y)
-                    {
-                        var texture = level.Textures.First(t => t.Id == block.Texture);
-                        
-                        if(!File.Exists(texture.Path))
-                        {
-                            MessageBox.Show(texture.Path + " wurde nicht gefunden, Level kann nicht geladen werden",
-                                "XmlLevel laden fehlgeschlagen", MessageBoxButton.OK, MessageBoxImage.Error);
-                            MainGrid.Children.Clear();
-                            IsEnabled = false;
-                            return;
-                        }
-
-                        button.SetTexture(texture.Id, @texture.Path);
-                    }
-                }
-            }
-        }
     }
 }

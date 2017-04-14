@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Simuals.Graphics;
 
-namespace Simloader
+namespace Lib.LevelLoader
 {
     public class Block
     {

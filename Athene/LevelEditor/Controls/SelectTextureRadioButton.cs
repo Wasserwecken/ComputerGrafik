@@ -22,12 +22,12 @@ namespace LevelEditor.Controls
         /// <summary>
         /// Returns the ID of the TextureRadioButton (XML-ID)
         /// </summary>
-        public string Id { get; set; }
+        public string XmlId { get; set; }
 
         /// <summary>
         /// Relative Path of texture (XML-Path)
         /// </summary>
-        public string TextureRelative { get; set; }
+        public string XmlPath { get; set; }
 
         /// <summary>
         /// Absolute Path of texture
@@ -43,17 +43,17 @@ namespace LevelEditor.Controls
         /// Creates a RadioButton with an image
         /// </summary>
         /// <param name="texturePath">Absolute Path of the file</param>
-        /// <param name="id">Id for the texture, !equals ID in XML</param>
+        /// <param name="xmlId">XmlId for the texture, !equals ID in XML</param>
         /// <param name="action">Action of the button</param>
         /// <param name="title">Text of the button</param>
-        public SelectTextureRadioButton(string texturePath, string id, TextureRadioButtonAction action, string title = "")
+        public SelectTextureRadioButton(string texturePath, string xmlId, TextureRadioButtonAction action, string title = "")
         {
             Action = action;
             TexturePath = texturePath;
             Content = title;
             ToolTip = texturePath;
-            TextureRelative = texturePath.Replace(Directory.GetCurrentDirectory(), string.Empty);
-            Id = id;
+            XmlPath = texturePath.Replace(Directory.GetCurrentDirectory(), string.Empty);
+            XmlId = xmlId;
         }
     }
 

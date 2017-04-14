@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Simloader.Xml
+namespace Lib.LevelLoader.Xml
 {
     [Serializable()]
     [XmlRoot("Level")]

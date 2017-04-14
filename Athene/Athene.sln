@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Athene", "Athene\Athene.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simput", "Simput\Simput.csproj", "{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simloader", "Simloader\Simloader.csproj", "{1C4BB265-4030-4015-B781-1FA06D53B317}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.LevelLoader", "Simloader\Lib.LevelLoader.csproj", "{1C4BB265-4030-4015-B781-1FA06D53B317}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simuals", "Simuals\Simuals.csproj", "{1B6562B4-EC7A-4E56-8E17-FA3040026200}"
 EndProject

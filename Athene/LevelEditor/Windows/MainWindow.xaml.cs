@@ -14,9 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LevelEditor.Controls;
+using LevelEditor.Extensions;
 using LevelEditor.Windows;
+using Lib.LevelLoader;
 using Microsoft.Win32;
-using Simloader;
 
 namespace LevelEditor
 {

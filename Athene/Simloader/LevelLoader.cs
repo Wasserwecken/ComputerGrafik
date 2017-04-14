@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Simloader.Xml;
+using Lib.LevelLoader.Xml;
 using Simuals.Graphics;
 
-namespace Simloader
+namespace Lib.LevelLoader
 {
     public class LevelLoader
     {
@@ -69,12 +69,12 @@ namespace Simloader
             foreach (var xmlBlock in xmlLevel.Blocks)
             {
      
-                var texturePath = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.Texture);
+                var xmlTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.Texture);
 
-                if(texturePath == null)
+                if(xmlTexture == null)
                     throw new Exception("Texture not found in XML file");
 
-                StaticSprite sprite = new StaticSprite(texturePath.Path);
+                StaticSprite sprite = new StaticSprite(xmlTexture.Path);
                 var block = new Block(xmlBlock.X, xmlBlock.Y, sprite);
                 returnLevel.Blocks.Add(block);
             }

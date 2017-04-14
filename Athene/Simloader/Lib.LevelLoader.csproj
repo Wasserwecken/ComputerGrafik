@@ -7,8 +7,8 @@
     <ProjectGuid>{1C4BB265-4030-4015-B781-1FA06D53B317}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simloader</RootNamespace>
-    <AssemblyName>Simloader</AssemblyName>
+    <RootNamespace>Lib.LevelLoader</RootNamespace>
+    <AssemblyName>Lib.LevelLoader</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,7 +48,9 @@
     <Compile Include="LevelLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Xml\XmlBlock.cs" />
+    <Compile Include="Xml\XmlEnemy.cs" />
     <Compile Include="Xml\XmlLevel.cs" />
+    <Compile Include="Xml\XmlLevelItem.cs" />
     <Compile Include="Xml\XmlTexture.cs" />
   </ItemGroup>
   <ItemGroup>
