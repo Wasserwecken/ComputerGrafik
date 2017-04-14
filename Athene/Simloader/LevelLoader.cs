@@ -74,7 +74,7 @@ namespace Lib.LevelLoader
                 if(xmlTexture == null)
                     throw new Exception("Texture not found in XML file");
 
-                StaticSprite sprite = new StaticSprite(xmlTexture.Path);
+                SpriteStatic sprite = new SpriteStatic(xmlTexture.Path);
                 var block = new Block(xmlBlock.X, xmlBlock.Y, sprite);
                 returnLevel.Blocks.Add(block);
             }

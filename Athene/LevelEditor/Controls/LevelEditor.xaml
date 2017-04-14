@@ -8,6 +8,7 @@
              d:DesignHeight="500" d:DesignWidth="1300">
    
     <Grid HorizontalAlignment="Stretch">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="340"  />
             <ColumnDefinition Width="5" />
@@ -15,7 +16,7 @@
             <!--<ColumnDefinition Width="*" />-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -32,11 +33,30 @@
         </ScrollViewer>
        
         <Border Grid.Column="2" Grid.Row="0" Background="#CCCCCC" BorderThickness="0,0,0,1" BorderBrush="Black">
-            <StackPanel Orientation="Horizontal">
-                <Slider x:Name="LevelZoomer" ToolTip="Level Zoom"  Width="200" VerticalAlignment="Center" Value="1" Minimum="0.1" Maximum="4" />
-                <ComboBox x:Name="BlockTypeComboBox" />
+            <Border.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontFamily" Value="Segoe UI Light" />
+                    <Setter Property="FontSize" Value="14" />
+                </Style>
+            </Border.Resources>
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-            </StackPanel>
+                <TextBlock Text="Zoom" Grid.Row="0" Grid.Column="0" />
+                <TextBlock Text="Blocktyp auswählen" Grid.Row="0" Grid.Column="1" />
+
+                <Slider Grid.Column="0" Grid.Row="1" x:Name="LevelZoomer" ToolTip="Level Zoom"  Width="200" VerticalAlignment="Center" Value="1" Minimum="0.1" Maximum="4" />
+                <ComboBox Grid.Column="1" Grid.Row="1" x:Name="BlockTypeComboBox" />
+            </Grid>
+           
         </Border>
 
     </Grid>

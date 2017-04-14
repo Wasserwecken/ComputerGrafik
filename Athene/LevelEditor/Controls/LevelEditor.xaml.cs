@@ -52,10 +52,12 @@ namespace LevelEditor.Controls
             {
                 ComboBoxItem comboBoxItem = new ComboBoxItem()
                 {
-                    Content = type
+                    Content = type,
+                    DataContext = type
                 };
                 BlockTypeComboBox.Items.Add(comboBoxItem);
             }
+            BlockTypeComboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -91,7 +93,8 @@ namespace LevelEditor.Controls
             }
             else if (SelectedRadioButton.Action == TextureRadioButtonAction.LoadTexture)
             {
-                button.SetXmlBlock(SelectedRadioButton.XmlId, @SelectedRadioButton.TexturePath, BlockType.Walkable);
+                var selectedBlockType = (BlockType) ((ComboBoxItem) BlockTypeComboBox.SelectedItem).DataContext;
+                button.SetXmlBlock(SelectedRadioButton.XmlId, @SelectedRadioButton.TexturePath, selectedBlockType);
             }
 
         }

@@ -25,9 +25,9 @@ namespace Lib.LevelLoader.Xml
 
     public enum BlockType
     {
+        Collision,
+        NoCollision,
         Water,
-        Lava,
-        Plant,
-        Walkable
+        Lava
     };
 }
