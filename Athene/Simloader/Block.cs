@@ -1,14 +1,9 @@
-﻿using OpenTK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Simuals.Graphics;
+﻿using Lib.Visuals.Graphics;
+using OpenTK;
 
 namespace Lib.LevelLoader
 {
-    public class Block
+	public class Block
     {
         /// <summary>
         ///  x coordinate of the block

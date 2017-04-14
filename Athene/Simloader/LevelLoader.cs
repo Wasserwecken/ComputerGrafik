@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Lib.LevelLoader.Xml;
+using System;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Lib.LevelLoader.Xml;
-using Simuals.Graphics;
+using Lib.Visuals.Graphics;
 
 namespace Lib.LevelLoader
 {
-    public class LevelLoader
+	public class LevelLoader
     {
         /// <summary>
         /// Loads a level

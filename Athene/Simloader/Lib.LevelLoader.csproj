@@ -54,12 +54,6 @@
     <Compile Include="Xml\XmlTexture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Simuals\Lib.Visuals.csproj">
-      <Project>{1b6562b4-ec7a-4e56-8e17-fa3040026200}</Project>
-      <Name>Lib.Visuals</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -73,6 +67,12 @@
     <Content Include="Level\Level3.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lib.Visuals\Lib.Visuals.csproj">
+      <Project>{1b6562b4-ec7a-4e56-8e17-fa3040026200}</Project>
+      <Name>Lib.Visuals</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
