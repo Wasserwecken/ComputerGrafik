@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 
 namespace Simuals.Graphics
@@ -21,58 +22,30 @@ namespace Simuals.Graphics
 		/// </summary>
 		/// <param name="path">Path to the texture</param>
 		/// <returns></returns>
-        public static Texture GetTextureByPath(string path)
+        public static Texture GetTexture(string path)
 		{
 			if (!File.Exists(path))
 				throw new FileNotFoundException(path);
-
 
 			//Check for a cached texture, the path is used as unique identifer
 			if (_cachedTextures.TryGetValue(path, out Texture textureRequest))
 				return textureRequest;
 
-
 			//start loading the texture from file
-			textureRequest = new Texture(GL.GenTexture());
 			var textureFile = new Bitmap(path);
-			textureFile.RotateFlip(RotateFlipType.RotateNoneFlipY); // the texture has to be fliped because the texture will be drawn later upside down
 
 			var textureDimensions = new Rectangle(0, 0, textureFile.Width, textureFile.Height);
 			var textureData = textureFile.LockBits(textureDimensions, ImageLockMode.ReadOnly, textureFile.PixelFormat);
 
+			//Create a open gl texture
+			textureRequest = CreateGLTexture(textureData);
 
-			//Configuring the open gl texture
-			textureRequest.Enable();
-			textureRequest.Height = textureData.Height;
-			textureRequest.Width = textureData.Width;
-			
-			GL.TexImage2D(
-				TextureTarget.Texture2D,
-				0,
-				GetInternalPixelFormatBy(textureData.PixelFormat),
-				textureData.Width,
-				textureData.Height,
-				0,
-				GetInputPixelFormatBy(textureData.PixelFormat),
-				PixelType.UnsignedByte,
-				textureData.Scan0);
-
+			//clean up
 			textureFile.UnlockBits(textureData);
-
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (float)TextureWrapMode.Clamp);
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (float)TextureWrapMode.Clamp);
-
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (float)TextureMinFilter.Linear);
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (float)TextureMagFilter.Linear);
-
-
-			//cleaning up the loading pricess
-			textureRequest.Disable();
             _cachedTextures.Add(path, textureRequest);
 
 			return textureRequest;
 		}
-
 
 		/// <summary>
 		/// Loads a sequence of textures from a given directory. The pictues will be sorted alphabetical
@@ -80,15 +53,49 @@ namespace Simuals.Graphics
 		/// </summary>
 		/// <param name="path"></param>
 		/// <returns></returns>
-	    public static List<Texture> GetAnimationTextures(string path)
+	    public static List<Texture> GetTextures(string path)
 	    {
-            var animationList = new List<Texture>();
+            var textureList = new List<Texture>();
 
 			foreach(var file in Directory.GetFiles(path, "*.png", SearchOption.TopDirectoryOnly).OrderBy(f => f))
-				animationList.Add(GetTextureByPath(file));
+				textureList.Add(GetTexture(file));
 
-			return animationList;
+			return textureList;
         }
+
+		/// <summary>
+		/// Creates a open GL texture based on given bitmap data
+		/// </summary>
+		/// <param name="data"></param>
+		/// <returns></returns>
+		private static Texture CreateGLTexture(BitmapData data)
+		{
+			var newTexture = new Texture(GL.GenTexture());
+			newTexture.Enable();
+			newTexture.Height = data.Height;
+			newTexture.Width = data.Width;
+
+			GL.TexImage2D(
+				TextureTarget.Texture2D,
+				0,
+				GetInternalPixelFormatBy(data.PixelFormat),
+				data.Width,
+				data.Height,
+				0,
+				GetInputPixelFormatBy(data.PixelFormat),
+				PixelType.UnsignedByte,
+				data.Scan0);
+
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (float)TextureWrapMode.Clamp);
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (float)TextureWrapMode.Clamp);
+
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (float)TextureMinFilter.Linear);
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (float)TextureMagFilter.Linear);
+
+			newTexture.Disable();
+
+			return newTexture;
+		}
 
 		/// <summary>
 		/// Gets the correct open gl pixel format for the given file pixel format

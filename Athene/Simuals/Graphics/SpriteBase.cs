@@ -31,7 +31,8 @@ namespace Simuals.Graphics
 
 			for (int index = 0; index < 4; index++)
 			{
-				GL.TexCoord2(vertices[index]);
+				var textCoordinate = new Vector2(vertices[index].X, 1 - vertices[index].Y);
+				GL.TexCoord2(textCoordinate);
 
 				if (spriteTexture.Height > spriteTexture.Width)
 					vertices[index].Y *= (float)spriteTexture.Height / spriteTexture.Width;

@@ -15,7 +15,7 @@ namespace SimeraExample
 	    private Level Level1 { get; set; }
 
 		private SpriteAnimated AnimTest { get; set; }
-		private StaticSprite SpriteTest { get; set; }
+		private SpriteStatic SpriteTest { get; set; }
         
 
         public GameBase()
@@ -70,8 +70,8 @@ namespace SimeraExample
 		{
             Level1.Draw();
 
-			//AnimTest.Draw(Vector2.Zero, Vector2.One);
-			//SpriteTest.Draw(Vector2.One, Vector2.One);
+			AnimTest.Draw(Vector2.Zero, Vector2.One);
+			SpriteTest.Draw(Vector2.One, Vector2.One);
 
             Console.Clear();
 			Console.WriteLine("Camera:");
