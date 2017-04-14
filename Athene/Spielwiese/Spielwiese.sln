@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimeraExample", "SimeraExam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simuals", "..\Simuals\Simuals.csproj", "{1B6562B4-EC7A-4E56-8E17-FA3040026200}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelEditor", "LevelEditor\LevelEditor.csproj", "{46BA9913-0003-4B98-AE8D-770D813D8EE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simloader", "..\Simloader\Simloader.csproj", "{1C4BB265-4030-4015-B781-1FA06D53B317}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{1B6562B4-EC7A-4E56-8E17-FA3040026200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B6562B4-EC7A-4E56-8E17-FA3040026200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B6562B4-EC7A-4E56-8E17-FA3040026200}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46BA9913-0003-4B98-AE8D-770D813D8EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46BA9913-0003-4B98-AE8D-770D813D8EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46BA9913-0003-4B98-AE8D-770D813D8EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46BA9913-0003-4B98-AE8D-770D813D8EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C4BB265-4030-4015-B781-1FA06D53B317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C4BB265-4030-4015-B781-1FA06D53B317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C4BB265-4030-4015-B781-1FA06D53B317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C4BB265-4030-4015-B781-1FA06D53B317}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

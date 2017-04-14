@@ -1,0 +1,43 @@
+﻿<Window x:Class="LevelEditor.Windows.AddLevelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LevelEditor.Windows"
+        mc:Ignorable="d"
+        Title="Level hinzufügen" Height="300" Width="300">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0,0,10,0"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Column="0" Text="X-Start" Grid.Row="0" />
+        <TextBox Grid.Column="0" Text="-3" x:Name="InputXStart" Grid.Row="1" />
+
+        <TextBlock Grid.Column="1" Text="X-Ende" Grid.Row="0" />
+        <TextBox Grid.Column="1" Text="3" x:Name="InputXEnd" Grid.Row="1" />
+
+        <TextBlock Grid.Column="0" Text="Y-Start" Grid.Row="2" />
+        <TextBox Grid.Column="0" Text="-3" x:Name="InputYStart" Grid.Row="3" />
+
+        <TextBlock Grid.Column="1" Text="Y-Ende" Grid.Row="2" />
+        <TextBox Grid.Column="1" Text="4" x:Name="InputYEnd" Grid.Row="3" />
+      
+        <Button x:Name="ButtonAddLevel" IsDefault="True" Content="Level erstellen" Margin="0,10,0,0" Grid.Row="8"
+                Grid.Column="0" />
+
+    </Grid>
+</Window>
