@@ -58,5 +58,11 @@
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lib.Visuals\Lib.Visuals.csproj">
+      <Project>{1B6562B4-EC7A-4E56-8E17-FA3040026200}</Project>
+      <Name>Lib.Visuals</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

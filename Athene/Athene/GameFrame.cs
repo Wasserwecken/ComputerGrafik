@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lib.Visuals.Window;
 using OpenTK;
 
 namespace Athene
@@ -12,14 +13,14 @@ namespace Athene
 		/// <summary>
 		/// Window of the game, where all the logic and redering is attached
 		/// </summary>
-		public GameWindow Window { get; set; }
+		public GameWindowBase Window { get; set; }
 
 		/// <summary>
 		/// Initialises the game
 		/// </summary>
 		public GameFrame()
 		{
-			Window = new GameWindow();
+			Window = new GameWindowBase();
 
 			Window.Load += Window_Load;
 			Window.RenderFrame += Window_RenderFrame;
