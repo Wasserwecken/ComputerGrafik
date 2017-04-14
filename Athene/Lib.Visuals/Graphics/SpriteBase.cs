@@ -9,6 +9,25 @@ namespace Lib.Visuals.Graphics
 	public class SpriteBase
 	{
 		/// <summary>
+		/// Flips the texture of the sprite on the Y axis
+		/// </summary>
+		public bool FlipTextureHorizontal { get; set; }
+
+		/// <summary>
+		/// Flips the texture of the sprite on the Y axis
+		/// </summary>
+		public bool FlipTextureVertical { get; set; }
+
+		/// <summary>
+		/// Initialises a sprite
+		/// </summary>
+		public SpriteBase()
+		{
+			FlipTextureHorizontal = false;
+			FlipTextureVertical = true;
+		}
+
+		/// <summary>
 		/// Draws the sprite on the screen
 		/// </summary>
 		public void Draw(Vector2 position, Vector2 scale, Texture spriteTexture)
@@ -26,9 +45,23 @@ namespace Lib.Visuals.Graphics
 
 			for (int index = 0; index < 4; index++)
 			{
-				var textCoordinate = new Vector2(vertices[index].X, 1 - vertices[index].Y);
-				GL.TexCoord2(textCoordinate);
+				//Texture setup, first flipping then setting
+				float texturePositionY;
+				if (FlipTextureVertical)
+					texturePositionY = 1 - vertices[index].Y;
+				else
+					texturePositionY = vertices[index].Y;
 
+				float texturePositionX;
+				if (FlipTextureHorizontal)
+					texturePositionX = 1 - vertices[index].X;
+				else
+					texturePositionX = vertices[index].X;
+
+				GL.TexCoord2(new Vector2(texturePositionX, texturePositionY));
+
+
+				//Vertex setup
 				if (spriteTexture.Height > spriteTexture.Width)
 					vertices[index].Y *= (float)spriteTexture.Height / spriteTexture.Width;
 				else
