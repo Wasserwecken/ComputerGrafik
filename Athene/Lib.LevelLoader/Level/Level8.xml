@@ -216,17 +216,17 @@
     <Block X="30" Y="-5" Texture="snow_35" BlockType="Collision" />
   </Blocks>
   <AnimatedBlocks>
-    <AnimatedBlock X="-10" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="-9" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="-8" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="-7" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="-6" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="-5" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="-4" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="-3" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="-2" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="-1" Y="-2" Animation="water2" BlockType="Collision" />
-    <AnimatedBlock X="0" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-10" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-9" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-8" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-7" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-6" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-5" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-4" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-3" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-2" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-1" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="0" Y="-2" Animation="water_top" BlockType="Collision" />
   </AnimatedBlocks>
   <Textures>
     <Texture Path="Images\Environment\Volcano\volcano_pack_09.png" Id="volcano_pack_09" />

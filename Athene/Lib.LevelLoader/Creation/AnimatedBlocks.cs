@@ -18,8 +18,8 @@ namespace Lib.LevelLoader.Creation
         public static void Init()
         {
             animatedBlockList = new Dictionary<string, AnimatedBlockInformation>();
-            animatedBlockList.Add("water", new AnimatedBlockInformation("water", "Animations/water", 2500));
-            animatedBlockList.Add("water2", new AnimatedBlockInformation("water2", "Animations/water2", 2500));
+            animatedBlockList.Add("water_top", new AnimatedBlockInformation("water_top", "Animations/water_top", 2500));
+
         }
 
         private static Dictionary<string, AnimatedBlockInformation> animatedBlockList;

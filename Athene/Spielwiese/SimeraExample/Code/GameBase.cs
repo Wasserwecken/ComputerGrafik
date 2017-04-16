@@ -22,7 +22,7 @@ namespace SimeraExample
 		private List<Vector2> Objects { get; set; }
 		private Vector2 PlayerPosition { get; set; }
 
-	    private Lib.LevelLoader.Level Level { get; set; }
+	    private Level Level { get; set; }
 
         public GameBase()
 		{
@@ -57,12 +57,6 @@ namespace SimeraExample
 			AnimTest.FlipTextureHorizontal = true;
 
 			SpriteTest = new SpriteStatic("Pics/trophy.png");
-
-			//Objects = new List<Vector2>();
-			//for (int i = 0; i < 1000; i++)
-			//{
-			//	Objects.Add(new Vector2(Rand.Next(-50, 50), Rand.Next(-50, 50)));
-			//}
 			PlayerPosition = Vector2.Zero;
 		}
 
@@ -85,10 +79,6 @@ namespace SimeraExample
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
-			//foreach (var obj in Objects)
-			//{
-			//	AnimTest.Draw(obj, Vector2.One);
-			//}
             Level.Draw();
 
 			SpriteTest.Draw(PlayerPosition, Vector2.One);
