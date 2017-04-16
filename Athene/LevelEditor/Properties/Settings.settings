@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ImageBaseFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\Pics</Value>
+      <Value Profile="(Default)">\Images</Value>
     </Setting>
   </Settings>
 </SettingsFile>

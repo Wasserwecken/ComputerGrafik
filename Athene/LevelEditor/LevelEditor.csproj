@@ -64,13 +64,20 @@
     <Compile Include="Controls\OperateControl.xaml.cs">
       <DependentUpon>OperateControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SelectTextureRadioButton.cs" />
+    <Compile Include="Controls\RadioButtons\RadioButtonBase.cs" />
+    <Compile Include="Controls\RadioButtons\RadioButtonTool.cs" />
+    <Compile Include="Controls\RadioButtons\RadioButtonSelectAnimation.cs" />
+    <Compile Include="Controls\RadioButtons\RadioButtonSelectTexture.cs" />
     <Compile Include="Controls\TextureFolderControl.xaml.cs">
       <DependentUpon>TextureFolderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\LevelLoaderXmlExtension.cs" />
+    <Compile Include="Helper\FindWindowHelper.cs" />
     <Compile Include="Windows\AddLevelWindow.xaml.cs">
       <DependentUpon>AddLevelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowBlockItemWindow.xaml.cs">
+      <DependentUpon>ShowBlockItemWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\LevelEditor.xaml">
       <SubType>Designer</SubType>
@@ -116,6 +123,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\ShowBlockItemWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -836,11 +847,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Simloader\Lib.LevelLoader.csproj">
-      <Project>{1c4bb265-4030-4015-b781-1fa06d53b317}</Project>
+    <ProjectReference Include="..\Lib.LevelLoader\Lib.LevelLoader.csproj">
+      <Project>{1C4BB265-4030-4015-B781-1FA06D53B317}</Project>
       <Name>Lib.LevelLoader</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,16 +21,18 @@ namespace LevelEditor.Extensions
             XmlLevel levelReturn = new XmlLevel();
             levelReturn.Blocks = new List<XmlBlock>();
             levelReturn.Textures = new List<XmlTexture>();
+            levelReturn.AnimatedBlocks = new List<XmlAnimatedBlock>();
 
           
             foreach (LevelItemButton button in leveleditor.MainGrid.Children)
             {
-                if (button.LevelItem == null) continue;
+                if (button.XmLLevelItem == null) continue;
 
-                /* Each button needs to be checked which type the LevelItem is */
-                if (button.LevelItem is XmlBlock)
-                    HandleXmlBlock(button.LevelItem as XmlBlock, button.TexturePathRelative, levelReturn);
-
+                /* Each button needs to be checked which type the XmLLevelItem is */
+                if (button.XmLLevelItem is XmlBlock)
+                    HandleXmlBlock(button.XmLLevelItem as XmlBlock, button.XmlTexture.Path, levelReturn);
+                if (button.XmLLevelItem is XmlAnimatedBlock)
+                    HandleAnimatedXmlBlock(button.XmLLevelItem as XmlAnimatedBlock, levelReturn);
 
             }
             return levelReturn;
@@ -43,25 +45,44 @@ namespace LevelEditor.Extensions
         /// <param name="level"></param>
         public static void InitXmlLevel(this Controls.LevelEditor leveleditor, XmlLevel level)
         {
-            foreach (var block in level.Blocks)
+            foreach (LevelItemButton button in leveleditor.MainGrid.Children)
             {
-                foreach (LevelItemButton button in leveleditor.MainGrid.Children)
+                var block = level.Blocks.FirstOrDefault(t => t.X == button.X && t.Y == button.Y);
+                if (block != null)
                 {
-                    if (button.X == block.X && button.Y == block.Y)
-                    {
-                        var texture = level.Textures.First(t => t.Id == block.Texture);
+                    var texture = level.Textures.First(t => t.Id == block.Texture);
 
-                        if (!File.Exists(texture.Path))
-                        {
-                            MessageBox.Show(texture.Path + " wurde nicht gefunden, Level kann nicht geladen werden",
-                                "XmlLevel laden fehlgeschlagen", MessageBoxButton.OK, MessageBoxImage.Error);
-                            leveleditor.MainGrid.Children.Clear();
-                            leveleditor.IsEnabled = false;
-                            return;
-                        }
-                        button.SetXmlBlock(texture.Id, texture.Path, block.BlockType);
+                    if (!File.Exists(texture.Path))
+                    {
+                        MessageBox.Show(texture.Path + " wurde nicht gefunden, Level kann nicht geladen werden",
+                            "XmlLevel laden fehlgeschlagen", MessageBoxButton.OK, MessageBoxImage.Error);
+                        leveleditor.MainGrid.Children.Clear();
+                        leveleditor.IsEnabled = false;
+                        return;
                     }
+                    button.SetXmlBlock(texture, block.BlockType);
                 }
+
+                var animatedBlock = level.AnimatedBlocks.FirstOrDefault(t => t.X == button.X && t.Y == button.Y);
+                if (animatedBlock != null)
+                {
+                    var animation = Lib.LevelLoader.Creation.AnimatedBlocks.Get().First(t => t.Key == animatedBlock.Animation).Value;
+                    if (!Directory.Exists(animation.Path))
+                    {
+                        MessageBox.Show(animation.Path + " wurde nicht gefunden, Level kann nicht geladen werden",
+                            "XmlLevel laden fehlgeschlagen", MessageBoxButton.OK, MessageBoxImage.Error);
+                        leveleditor.MainGrid.Children.Clear();
+                        leveleditor.IsEnabled = false;
+                    }
+
+                    button.SetXmlAnimatedBlock(animation, animatedBlock.BlockType);
+                }
+
+
+
+
+
+
             }
         }
 
@@ -83,7 +104,11 @@ namespace LevelEditor.Extensions
                 level.Textures.Add(texture);
             }
             level.Blocks.Add(block);
+        }
 
+        private static void HandleAnimatedXmlBlock(XmlAnimatedBlock block, XmlLevel level)
+        {
+            level.AnimatedBlocks.Add(block);
         }
     }
 }

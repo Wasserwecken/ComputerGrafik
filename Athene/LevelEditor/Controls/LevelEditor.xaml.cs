@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LevelEditor.Controls.RadioButtons;
+using LevelEditor.Windows;
 using Lib.LevelLoader.Xml;
 
 
@@ -26,12 +28,17 @@ namespace LevelEditor.Controls
         /// <summary>
         /// Represents the current Selection in the OperateControl
         /// </summary>
-        public SelectTextureRadioButton SelectedRadioButton { get; set; }
+        public RadioButtonBase SelectedRadioButton { get; set; }
 
         /// <summary>
         /// The size of the buttons in the grid
         /// </summary>
         public int GameItemButtonSize { get; set; }
+
+        /// <summary>
+        /// Window to show infos about the selected block
+        /// </summary>
+        public ShowBlockItemWindow ShowBlockWindow { get; set; }
 
         /// <summary>
         /// Gamegrid shows the Management to create a new level
@@ -44,19 +51,12 @@ namespace LevelEditor.Controls
             /* Initialize the OperateControl */
             OperateControl opControl = new OperateControl(this);
             ContentControlOperate.Content = opControl;
-            opControl.InitOperateControl();
-            opControl.InitDirectory(Directory.GetCurrentDirectory() + Properties.Settings.Default.ImageBaseFolder);
 
+            opControl.InitOperateControl();
+            opControl.InitAnimatedBlocks();
+            opControl.InitDirectory(Directory.GetCurrentDirectory() + Properties.Settings.Default.ImageBaseFolder);
             /* Init the block types */
-            foreach (var type in Enum.GetValues(typeof(BlockType)))
-            {
-                ComboBoxItem comboBoxItem = new ComboBoxItem()
-                {
-                    Content = type,
-                    DataContext = type
-                };
-                BlockTypeComboBox.Items.Add(comboBoxItem);
-            }
+            BlockTypeComboBox.ItemsSource = Enum.GetValues(typeof(BlockType));
             BlockTypeComboBox.SelectedIndex = 0;
         }
 
@@ -83,20 +83,42 @@ namespace LevelEditor.Controls
             LevelItemButton button = sender as LevelItemButton;
             if (SelectedRadioButton == null || button == null) return;
 
-            if (SelectedRadioButton.Action == TextureRadioButtonAction.Remove)
+            if (SelectedRadioButton is RadioButtonSelectTexture)
             {
-                button.ResetItem();
+                var selectedBlockType = (BlockType)BlockTypeComboBox.SelectedItem;
+                button.SetXmlBlock(((RadioButtonSelectTexture)SelectedRadioButton).XmlTexture, selectedBlockType);
             }
-            else if (SelectedRadioButton.Action == TextureRadioButtonAction.Select)
+            if (SelectedRadioButton is RadioButtonSelectAnimation)
             {
-                return;
+                var selectedBlockType = (BlockType)BlockTypeComboBox.SelectedItem;
+                button.SetXmlAnimatedBlock(
+                    ((RadioButtonSelectAnimation) SelectedRadioButton).XmlAnimatedBlockInformation,
+                    selectedBlockType);
             }
-            else if (SelectedRadioButton.Action == TextureRadioButtonAction.LoadTexture)
+            if (SelectedRadioButton is RadioButtonTool)
             {
-                var selectedBlockType = (BlockType) ((ComboBoxItem) BlockTypeComboBox.SelectedItem).DataContext;
-                button.SetXmlBlock(SelectedRadioButton.XmlId, @SelectedRadioButton.TexturePath, selectedBlockType);
-            }
+                if (((RadioButtonTool)SelectedRadioButton).Action == TextureRadioButtonAction.Remove)
+                    button.ResetXmlItem();
+                if (((RadioButtonTool)SelectedRadioButton).Action == TextureRadioButtonAction.Select)
+                {
+                    if (button.XmLLevelItem is XmlBlock)
+                    {
+                        var win = Helper.FindWindowHelper.IsWindowOpen<Window>("ShowBlockWindow");
+                        if (win != null)
+                        {
+                            ((ShowBlockItemWindow)win).ShowBlock(button.XmLLevelItem as XmlBlock, button.XmlTexture);
+                            win.Show();
+                        }
+                        else
+                        {
+                            win = new ShowBlockItemWindow() { Name = "ShowBlockWindow" };
+                            ((ShowBlockItemWindow)win).ShowBlock(button.XmLLevelItem as XmlBlock, button.XmlTexture);
+                            win.Show();
+                        }
+                    }
+                }
 
+            }
         }
 
         /// <summary>
@@ -106,7 +128,7 @@ namespace LevelEditor.Controls
         /// <param name="e"></param>
         public void TextureRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            SelectedRadioButton = sender as SelectTextureRadioButton;
+            SelectedRadioButton = sender as RadioButtonBase;
         }
 
         /// <summary>
@@ -118,14 +140,14 @@ namespace LevelEditor.Controls
         /// <param name="yEnd">end y</param>
         public void InitNewGrid(int xStart, int xEnd, int yStart, int yEnd)
         {
-            for (int i = xStart; i < xEnd; i++)
+            for (int i = xStart; i <= xEnd; i++)
             {
                 ColumnDefinition colDef = new ColumnDefinition();
                 colDef.Width = new GridLength(GameItemButtonSize);
                 MainGrid.ColumnDefinitions.Add(colDef);
             }
 
-            for (int i = yStart; i < yEnd; i++)
+            for (int i = yStart; i <= yEnd; i++)
             {
                 RowDefinition rowDef = new RowDefinition();
                 rowDef.Height = new GridLength(GameItemButtonSize);
@@ -135,9 +157,9 @@ namespace LevelEditor.Controls
             int rowIndex = 0;
             int colunmIndex = 0;
 
-            for (int y = yEnd; y > yStart; y--)
+            for (int y = yEnd; y >= yStart; y--)
             {
-                for (int x = xStart; x < xEnd; x++)
+                for (int x = xStart; x <= xEnd; x++)
                 {
                     LevelItemButton button = new LevelItemButton(x, y);
                     button.Width = GameItemButtonSize;

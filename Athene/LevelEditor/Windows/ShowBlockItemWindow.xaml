@@ -1,0 +1,32 @@
+﻿<Window x:Class="LevelEditor.Windows.ShowBlockItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LevelEditor.Windows"
+        mc:Ignorable="d"
+        Title="Block anzeigen" Height="300" Width="300">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Margin="4"  Grid.Row="0" Grid.Column="0" BorderThickness="1"  BorderBrush="#000000">
+            <Image MaxWidth="100" MaxHeight="100"  MinHeight="50" MinWidth="50" x:Name="ImageBlock"  />
+        </Border>
+        <TextBlock x:Name="TextBlockCoordinates" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="20" Grid.Column="1" Text="(0|0)" />
+        
+        <TextBlock Margin="5"  FontSize="20"  Text="Blocktyp:" Grid.Row="1" Grid.Column="0"/>
+        <ComboBox Margin="5"  x:Name="ComboBoxBlockTypes" Grid.Row="1" Grid.Column="1" />
+        
+        <Button Margin="10" FontSize="16" x:Name="ButtonSave"  Content="Übernehmen" Grid.Row="2" Grid.Column="1" />
+        
+    </Grid>
+</Window>

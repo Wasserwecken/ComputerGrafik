@@ -25,7 +25,7 @@ namespace LevelEditor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\Pics")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\Images")]
         public string ImageBaseFolder {
             get {
                 return ((string)(this["ImageBaseFolder"]));

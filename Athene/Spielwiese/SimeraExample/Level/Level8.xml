@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Blocks>
+    <Block X="-5" Y="5" Texture="volcano_pack_09" BlockType="Collision" />
+    <Block X="-4" Y="5" Texture="volcano_pack_05" BlockType="Collision" />
+    <Block X="-3" Y="5" Texture="volcano_pack_05" BlockType="Collision" />
+    <Block X="-2" Y="5" Texture="volcano_pack_11" BlockType="Collision" />
+    <Block X="27" Y="5" Texture="snow_03" BlockType="Collision" />
+    <Block X="28" Y="5" Texture="snow_35" BlockType="Collision" />
+    <Block X="29" Y="5" Texture="snow_35" BlockType="Collision" />
+    <Block X="30" Y="5" Texture="snow_35" BlockType="Collision" />
+    <Block X="-9" Y="4" Texture="volcano_pack_69" BlockType="Collision" />
+    <Block X="6" Y="4" Texture="objects_49" BlockType="Collision" />
+    <Block X="26" Y="4" Texture="snow_03" BlockType="Collision" />
+    <Block X="27" Y="4" Texture="snow_35" BlockType="Collision" />
+    <Block X="28" Y="4" Texture="snow_35" BlockType="Collision" />
+    <Block X="29" Y="4" Texture="snow_35" BlockType="Collision" />
+    <Block X="30" Y="4" Texture="snow_35" BlockType="Collision" />
+    <Block X="-10" Y="3" Texture="volcano_pack_05" BlockType="Collision" />
+    <Block X="-9" Y="3" Texture="volcano_pack_05" BlockType="Collision" />
+    <Block X="-8" Y="3" Texture="volcano_pack_05" BlockType="Collision" />
+    <Block X="-7" Y="3" Texture="volcano_pack_11" BlockType="Collision" />
+    <Block X="13" Y="3" Texture="forest_pack_95" BlockType="Collision" />
+    <Block X="17" Y="3" Texture="forest_pack_92" BlockType="Collision" />
+    <Block X="26" Y="3" Texture="snow_35" BlockType="Collision" />
+    <Block X="27" Y="3" Texture="snow_35" BlockType="Collision" />
+    <Block X="28" Y="3" Texture="snow_35" BlockType="Collision" />
+    <Block X="29" Y="3" Texture="snow_35" BlockType="Collision" />
+    <Block X="30" Y="3" Texture="snow_35" BlockType="Collision" />
+    <Block X="-6" Y="2" Texture="volcano_pack_74" BlockType="Collision" />
+    <Block X="-4" Y="2" Texture="volcano_pack_59" BlockType="Collision" />
+    <Block X="13" Y="2" Texture="forest_pack_03" BlockType="Collision" />
+    <Block X="14" Y="2" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="15" Y="2" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="16" Y="2" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="17" Y="2" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="18" Y="2" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="19" Y="2" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="20" Y="2" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="21" Y="2" Texture="forest_pack_11" BlockType="Collision" />
+    <Block X="24" Y="2" Texture="snow_108" BlockType="Collision" />
+    <Block X="25" Y="2" Texture="snow_03" BlockType="Collision" />
+    <Block X="26" Y="2" Texture="snow_35" BlockType="Collision" />
+    <Block X="27" Y="2" Texture="snow_35" BlockType="Collision" />
+    <Block X="28" Y="2" Texture="snow_35" BlockType="Collision" />
+    <Block X="29" Y="2" Texture="snow_35" BlockType="Collision" />
+    <Block X="-8" Y="1" Texture="volcano_pack_09" BlockType="Collision" />
+    <Block X="-7" Y="1" Texture="volcano_pack_05" BlockType="Collision" />
+    <Block X="-6" Y="1" Texture="volcano_pack_05" BlockType="Collision" />
+    <Block X="-5" Y="1" Texture="volcano_pack_05" BlockType="Collision" />
+    <Block X="-4" Y="1" Texture="volcano_pack_11" BlockType="Collision" />
+    <Block X="12" Y="1" Texture="forest_pack_03" BlockType="Collision" />
+    <Block X="13" Y="1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="14" Y="1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="15" Y="1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="16" Y="1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="17" Y="1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="18" Y="1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="19" Y="1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="20" Y="1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="24" Y="1" Texture="snow_03" BlockType="Collision" />
+    <Block X="25" Y="1" Texture="snow_35" BlockType="Collision" />
+    <Block X="26" Y="1" Texture="snow_35" BlockType="Collision" />
+    <Block X="27" Y="1" Texture="snow_35" BlockType="Collision" />
+    <Block X="0" Y="0" Texture="objects_05" BlockType="Collision" />
+    <Block X="2" Y="0" Texture="forest_pack_94" BlockType="Collision" />
+    <Block X="5" Y="0" Texture="forest_pack_97" BlockType="Collision" />
+    <Block X="11" Y="0" Texture="forest_pack_03" BlockType="Collision" />
+    <Block X="12" Y="0" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="13" Y="0" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="14" Y="0" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="15" Y="0" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="16" Y="0" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="17" Y="0" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="18" Y="0" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="19" Y="0" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="0" Y="-1" Texture="forest_pack_09" BlockType="Collision" />
+    <Block X="1" Y="-1" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="2" Y="-1" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="3" Y="-1" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="4" Y="-1" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="5" Y="-1" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="6" Y="-1" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="7" Y="-1" Texture="forest_pack_07" BlockType="Collision" />
+    <Block X="9" Y="-1" Texture="forest_pack_03" BlockType="Collision" />
+    <Block X="10" Y="-1" Texture="forest_pack_05" BlockType="Collision" />
+    <Block X="11" Y="-1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="12" Y="-1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="13" Y="-1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="14" Y="-1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="15" Y="-1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="16" Y="-1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="17" Y="-1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="18" Y="-1" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="25" Y="-1" Texture="snow_113" BlockType="Collision" />
+    <Block X="29" Y="-1" Texture="snow_101" BlockType="Collision" />
+    <Block X="1" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="2" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="3" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="4" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="5" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="6" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="7" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="9" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="11" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="13" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="14" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="15" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="16" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="17" Y="-2" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="24" Y="-2" Texture="snow_09" BlockType="Collision" />
+    <Block X="25" Y="-2" Texture="snow_05" BlockType="Collision" />
+    <Block X="26" Y="-2" Texture="snow_05" BlockType="Collision" />
+    <Block X="27" Y="-2" Texture="snow_05" BlockType="Collision" />
+    <Block X="28" Y="-2" Texture="snow_05" BlockType="Collision" />
+    <Block X="29" Y="-2" Texture="snow_05" BlockType="Collision" />
+    <Block X="30" Y="-2" Texture="snow_05" BlockType="Collision" />
+    <Block X="-10" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-9" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-8" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-7" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-6" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-5" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-4" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-3" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-2" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-1" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="0" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="1" Y="-3" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="2" Y="-3" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="3" Y="-3" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="14" Y="-3" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="15" Y="-3" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="16" Y="-3" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="25" Y="-3" Texture="snow_35" BlockType="Collision" />
+    <Block X="26" Y="-3" Texture="snow_35" BlockType="Collision" />
+    <Block X="27" Y="-3" Texture="snow_35" BlockType="Collision" />
+    <Block X="28" Y="-3" Texture="snow_35" BlockType="Collision" />
+    <Block X="29" Y="-3" Texture="snow_35" BlockType="Collision" />
+    <Block X="30" Y="-3" Texture="snow_35" BlockType="Collision" />
+    <Block X="-10" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-9" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-8" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-7" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-6" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-5" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-4" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-3" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-2" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-1" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="0" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="1" Y="-4" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="2" Y="-4" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="5" Y="-4" Texture="forest_pack_94" BlockType="Collision" />
+    <Block X="6" Y="-4" Texture="objects_37" BlockType="Collision" />
+    <Block X="8" Y="-4" Texture="forest_pack_103" BlockType="Collision" />
+    <Block X="10" Y="-4" Texture="objects_21" BlockType="Collision" />
+    <Block X="12" Y="-4" Texture="forest_pack_95" BlockType="Collision" />
+    <Block X="14" Y="-4" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="15" Y="-4" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="16" Y="-4" Texture="forest_pack_89" BlockType="Collision" />
+    <Block X="17" Y="-4" Texture="forest_pack_89" BlockType="Collision" />
+    <Block X="18" Y="-4" Texture="forest_pack_89" BlockType="Collision" />
+    <Block X="19" Y="-4" Texture="forest_pack_89" BlockType="Collision" />
+    <Block X="20" Y="-4" Texture="forest_pack_89" BlockType="Collision" />
+    <Block X="21" Y="-4" Texture="forest_pack_89" BlockType="Collision" />
+    <Block X="22" Y="-4" Texture="forest_pack_89" BlockType="Collision" />
+    <Block X="23" Y="-4" Texture="forest_pack_89" BlockType="Collision" />
+    <Block X="24" Y="-4" Texture="forest_pack_89" BlockType="Collision" />
+    <Block X="25" Y="-4" Texture="snow_35" BlockType="Collision" />
+    <Block X="26" Y="-4" Texture="snow_35" BlockType="Collision" />
+    <Block X="27" Y="-4" Texture="snow_35" BlockType="Collision" />
+    <Block X="28" Y="-4" Texture="snow_35" BlockType="Collision" />
+    <Block X="29" Y="-4" Texture="snow_35" BlockType="Collision" />
+    <Block X="30" Y="-4" Texture="snow_35" BlockType="Collision" />
+    <Block X="-10" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-9" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-8" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-7" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-6" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-5" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-4" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-3" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-2" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="-1" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="0" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="1" Y="-5" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="2" Y="-5" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="3" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="4" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="5" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="6" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="7" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="8" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="9" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="10" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="11" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="12" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="13" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
+    <Block X="14" Y="-5" Texture="forest_pack_35" BlockType="Collision" />
+    <Block X="15" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="16" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="17" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="18" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="19" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="20" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="21" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="22" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="23" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="24" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
+    <Block X="25" Y="-5" Texture="snow_35" BlockType="Collision" />
+    <Block X="26" Y="-5" Texture="snow_35" BlockType="Collision" />
+    <Block X="27" Y="-5" Texture="snow_35" BlockType="Collision" />
+    <Block X="28" Y="-5" Texture="snow_35" BlockType="Collision" />
+    <Block X="29" Y="-5" Texture="snow_35" BlockType="Collision" />
+    <Block X="30" Y="-5" Texture="snow_35" BlockType="Collision" />
+  </Blocks>
+  <AnimatedBlocks>
+    <AnimatedBlock X="-10" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-9" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-8" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-7" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-6" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-5" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-4" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-3" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-2" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="-1" Y="-2" Animation="water2" BlockType="Collision" />
+    <AnimatedBlock X="0" Y="-2" Animation="water2" BlockType="Collision" />
+  </AnimatedBlocks>
+  <Textures>
+    <Texture Path="Images\Environment\Volcano\volcano_pack_09.png" Id="volcano_pack_09" />
+    <Texture Path="Images\Environment\Volcano\volcano_pack_05.png" Id="volcano_pack_05" />
+    <Texture Path="Images\Environment\Volcano\volcano_pack_11.png" Id="volcano_pack_11" />
+    <Texture Path="Images\Environment\Snow\snow_03.png" Id="snow_03" />
+    <Texture Path="Images\Environment\Snow\snow_35.png" Id="snow_35" />
+    <Texture Path="Images\Environment\Volcano\volcano_pack_69.png" Id="volcano_pack_69" />
+    <Texture Path="Images\Objects\Items\objects_49.png" Id="objects_49" />
+    <Texture Path="Images\Environment\Forest\forest_pack_95.png" Id="forest_pack_95" />
+    <Texture Path="Images\Environment\Forest\forest_pack_92.png" Id="forest_pack_92" />
+    <Texture Path="Images\Environment\Volcano\volcano_pack_74.png" Id="volcano_pack_74" />
+    <Texture Path="Images\Environment\Volcano\volcano_pack_59.png" Id="volcano_pack_59" />
+    <Texture Path="Images\Environment\Forest\forest_pack_03.png" Id="forest_pack_03" />
+    <Texture Path="Images\Environment\Forest\forest_pack_05.png" Id="forest_pack_05" />
+    <Texture Path="Images\Environment\Forest\forest_pack_11.png" Id="forest_pack_11" />
+    <Texture Path="Images\Environment\Snow\snow_108.png" Id="snow_108" />
+    <Texture Path="Images\Environment\Forest\forest_pack_35.png" Id="forest_pack_35" />
+    <Texture Path="Images\Objects\Items\objects_05.png" Id="objects_05" />
+    <Texture Path="Images\Environment\Forest\forest_pack_94.png" Id="forest_pack_94" />
+    <Texture Path="Images\Environment\Forest\forest_pack_97.png" Id="forest_pack_97" />
+    <Texture Path="Images\Environment\Forest\forest_pack_09.png" Id="forest_pack_09" />
+    <Texture Path="Images\Environment\Forest\forest_pack_07.png" Id="forest_pack_07" />
+    <Texture Path="Images\Environment\Snow\snow_113.png" Id="snow_113" />
+    <Texture Path="Images\Environment\Snow\snow_101.png" Id="snow_101" />
+    <Texture Path="Images\Environment\Snow\snow_09.png" Id="snow_09" />
+    <Texture Path="Images\Environment\Snow\snow_05.png" Id="snow_05" />
+    <Texture Path="Images\Environment\Forest\forest_pack_90.png" Id="forest_pack_90" />
+    <Texture Path="Images\Objects\Items\objects_37.png" Id="objects_37" />
+    <Texture Path="Images\Environment\Forest\forest_pack_103.png" Id="forest_pack_103" />
+    <Texture Path="Images\Objects\Items\objects_21.png" Id="objects_21" />
+    <Texture Path="Images\Environment\Forest\forest_pack_89.png" Id="forest_pack_89" />
+    <Texture Path="Images\Environment\Forest\forest_pack_52.png" Id="forest_pack_52" />
+  </Textures>
+</Level>

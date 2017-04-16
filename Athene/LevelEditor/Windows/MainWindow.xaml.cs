@@ -95,24 +95,26 @@ namespace LevelEditor
             {
                 var level = LevelLoader.LoadFromXml(openFileDialog.FileName);
 
-                var maxX = level.Blocks.Max(block => block.X);
-                var minX = level.Blocks.Min(block => block.X);
-                var maxY = level.Blocks.Max(block => block.Y);
-                var minY = level.Blocks.Min(block => block.Y);
+                var maxX = Math.Max(level.Blocks.Max(block => block.X), level.AnimatedBlocks.Max(block => block.X));
+                var minX = Math.Min(level.Blocks.Min(block => block.X), level.AnimatedBlocks.Min(block => block.X));
+                var maxY = Math.Max(level.Blocks.Max(block => block.Y), level.AnimatedBlocks.Max(block => block.Y));
+                var minY = Math.Min(level.Blocks.Min(block => block.Y), level.AnimatedBlocks.Min(block => block.Y));
 
-                try
-                {
+
+
+                //try
+                //{
                     LevelEditor = new Controls.LevelEditor();
                     LevelEditor.InitNewGrid((int)minX, (int)maxX, (int)minY, (int)maxY);
                     GridContentControl.Content = LevelEditor;
                     LevelEditor.InitXmlLevel(level);
-                }
-                catch
-                {
-                    MessageBox.Show(
-                    "Beim Laden des XmLlevels ist ein Fehler aufgetreten. Eventuell sind nicht alle Texturen, die benötigt werden, vorhanden.",
-                    "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show(
+                //    "Beim Laden des XmLlevels ist ein Fehler aufgetreten. Eventuell sind nicht alle Texturen, die benötigt werden, vorhanden.",
+                //    "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                //}
 
                
             }
