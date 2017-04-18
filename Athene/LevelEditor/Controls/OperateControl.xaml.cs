@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LevelEditor.Controls.RadioButtons;
+using Lib.LevelLoader;
 
 namespace LevelEditor.Controls
 {
@@ -66,14 +67,12 @@ namespace LevelEditor.Controls
 
         public void InitAnimatedBlocks()
         {
-            Lib.LevelLoader.Creation.AnimatedBlocks.Init();
-            var list = Lib.LevelLoader.Creation.AnimatedBlocks.Get();
-
+            var animationList = AnimationLoader.GetBlockAnimations();
             var folder = new TextureFolderControl("Animierte Blöcke");
 
-            foreach (var anBlock in list)
+            foreach (var xmlAnimatedBlock in animationList.Animations)
             {
-                RadioButtonSelectAnimation radioButton = new RadioButtonSelectAnimation(anBlock.Value);
+                RadioButtonSelectAnimation radioButton = new RadioButtonSelectAnimation(xmlAnimatedBlock);
                 radioButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
                 folder.AddRadioButton(radioButton);
             }

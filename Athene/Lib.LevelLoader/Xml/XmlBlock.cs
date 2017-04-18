@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace Lib.LevelLoader.Xml
 {
+    /// <summary>
+    /// class represents a block in the level.xml
+    /// </summary>
     [Serializable()]
     public class XmlBlock : XmlLevelItem
     {
@@ -23,6 +26,9 @@ namespace Lib.LevelLoader.Xml
         public BlockType BlockType { get; set; }
     }
 
+    /// <summary>
+    /// block type
+    /// </summary>
     public enum BlockType
     {
         Collision,

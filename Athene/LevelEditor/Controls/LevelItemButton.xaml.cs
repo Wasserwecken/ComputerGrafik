@@ -15,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
-using Lib.LevelLoader.Creation;
 
 
 namespace LevelEditor.Controls
@@ -80,10 +79,7 @@ namespace LevelEditor.Controls
                 Texture = texture.Id
             };
             XmlTexture = texture;
-
-            SetImage(texture.Path);
-           
-           
+            SetImage(XmlTexture.Path);
         }
 
         /// <summary>
@@ -91,17 +87,16 @@ namespace LevelEditor.Controls
         /// </summary>
         /// <param name="blockInformation">AnimatedBlockInformation</param>
         /// <param name="type">Blocktype</param>
-        public void SetXmlAnimatedBlock(AnimatedBlockInformation blockInformation, BlockType type)
+        public void SetXmlAnimatedBlock(XmlAnimation animation, BlockType type)
         {
             XmLLevelItem = new XmlAnimatedBlock()
             {
                 BlockType = type,
                 X = this.X,
                 Y = this.Y,
-                Animation = blockInformation.Name
+                Animation = animation.Id
             };
-            SetImage(blockInformation.GetFirstImage().FullName, UriKind.Absolute);
-            //SetImage(blockInformation.Path + @"\1.png");
+            SetImage(animation.GetFirstImage().FullName, UriKind.Absolute);
         }
 
         /// <summary>
@@ -112,7 +107,6 @@ namespace LevelEditor.Controls
             XmLLevelItem = null;
             XmlTexture = null;
             SetImage(null);
-
         }
 
         /// <summary>

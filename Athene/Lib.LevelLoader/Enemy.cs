@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.LevelLoader.Xml
+namespace Lib.LevelLoader
 {
-    /// <summary>
-    /// parent class for XmlElements
-    /// </summary>
-    public class XmlLevelItem
+    class Enemy
     {
     }
 }

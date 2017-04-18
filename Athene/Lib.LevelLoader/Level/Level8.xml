@@ -115,17 +115,6 @@
     <Block X="28" Y="-2" Texture="snow_05" BlockType="Collision" />
     <Block X="29" Y="-2" Texture="snow_05" BlockType="Collision" />
     <Block X="30" Y="-2" Texture="snow_05" BlockType="Collision" />
-    <Block X="-10" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-9" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-8" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-7" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-6" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-5" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-4" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-3" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-2" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-1" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="0" Y="-3" Texture="forest_pack_90" BlockType="Collision" />
     <Block X="1" Y="-3" Texture="forest_pack_35" BlockType="Collision" />
     <Block X="2" Y="-3" Texture="forest_pack_35" BlockType="Collision" />
     <Block X="3" Y="-3" Texture="forest_pack_35" BlockType="Collision" />
@@ -138,17 +127,6 @@
     <Block X="28" Y="-3" Texture="snow_35" BlockType="Collision" />
     <Block X="29" Y="-3" Texture="snow_35" BlockType="Collision" />
     <Block X="30" Y="-3" Texture="snow_35" BlockType="Collision" />
-    <Block X="-10" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-9" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-8" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-7" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-6" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-5" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-4" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-3" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-2" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-1" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="0" Y="-4" Texture="forest_pack_90" BlockType="Collision" />
     <Block X="1" Y="-4" Texture="forest_pack_35" BlockType="Collision" />
     <Block X="2" Y="-4" Texture="forest_pack_35" BlockType="Collision" />
     <Block X="5" Y="-4" Texture="forest_pack_94" BlockType="Collision" />
@@ -173,17 +151,6 @@
     <Block X="28" Y="-4" Texture="snow_35" BlockType="Collision" />
     <Block X="29" Y="-4" Texture="snow_35" BlockType="Collision" />
     <Block X="30" Y="-4" Texture="snow_35" BlockType="Collision" />
-    <Block X="-10" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-9" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-8" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-7" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-6" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-5" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-4" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-3" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-2" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="-1" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
-    <Block X="0" Y="-5" Texture="forest_pack_90" BlockType="Collision" />
     <Block X="1" Y="-5" Texture="forest_pack_35" BlockType="Collision" />
     <Block X="2" Y="-5" Texture="forest_pack_35" BlockType="Collision" />
     <Block X="3" Y="-5" Texture="forest_pack_52" BlockType="Collision" />
@@ -227,6 +194,39 @@
     <AnimatedBlock X="-2" Y="-2" Animation="water_top" BlockType="Collision" />
     <AnimatedBlock X="-1" Y="-2" Animation="water_top" BlockType="Collision" />
     <AnimatedBlock X="0" Y="-2" Animation="water_top" BlockType="Collision" />
+    <AnimatedBlock X="-10" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-9" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-8" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-7" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-6" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-5" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-4" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-3" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-2" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-1" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="0" Y="-3" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-10" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-9" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-8" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-7" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-6" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-5" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-4" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-3" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-2" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-1" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="0" Y="-4" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-10" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-9" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-8" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-7" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-6" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-5" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-4" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-3" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-2" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="-1" Y="-5" Animation="water" BlockType="Collision" />
+    <AnimatedBlock X="0" Y="-5" Animation="water" BlockType="Collision" />
   </AnimatedBlocks>
   <Textures>
     <Texture Path="Images\Environment\Volcano\volcano_pack_09.png" Id="volcano_pack_09" />
@@ -254,11 +254,11 @@
     <Texture Path="Images\Environment\Snow\snow_101.png" Id="snow_101" />
     <Texture Path="Images\Environment\Snow\snow_09.png" Id="snow_09" />
     <Texture Path="Images\Environment\Snow\snow_05.png" Id="snow_05" />
-    <Texture Path="Images\Environment\Forest\forest_pack_90.png" Id="forest_pack_90" />
     <Texture Path="Images\Objects\Items\objects_37.png" Id="objects_37" />
     <Texture Path="Images\Environment\Forest\forest_pack_103.png" Id="forest_pack_103" />
     <Texture Path="Images\Objects\Items\objects_21.png" Id="objects_21" />
     <Texture Path="Images\Environment\Forest\forest_pack_89.png" Id="forest_pack_89" />
     <Texture Path="Images\Environment\Forest\forest_pack_52.png" Id="forest_pack_52" />
+    <Texture Path="Images\Environment\Forest\forest_pack_90.png" Id="forest_pack_90" />
   </Textures>
 </Level>

@@ -7,6 +7,7 @@ using LevelEditor.Controls;
 using Lib.LevelLoader.Xml;
 using System.IO;
 using System.Windows;
+using Lib.LevelLoader;
 
 namespace LevelEditor.Extensions
 {
@@ -66,7 +67,8 @@ namespace LevelEditor.Extensions
                 var animatedBlock = level.AnimatedBlocks.FirstOrDefault(t => t.X == button.X && t.Y == button.Y);
                 if (animatedBlock != null)
                 {
-                    var animation = Lib.LevelLoader.Creation.AnimatedBlocks.Get().First(t => t.Key == animatedBlock.Animation).Value;
+                    var animation = AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == animatedBlock.Animation);
+
                     if (!Directory.Exists(animation.Path))
                     {
                         MessageBox.Show(animation.Path + " wurde nicht gefunden, Level kann nicht geladen werden",

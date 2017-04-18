@@ -23,5 +23,9 @@ namespace Lib.LevelLoader.Xml
         [XmlArrayItem("Texture", typeof(XmlTexture))]
         public List<XmlTexture> Textures { get; set; }
 
+        [XmlArray("Enemies")]
+        [XmlArrayItem("Enemy", typeof(XmlEnemy))]
+        public List<XmlEnemy> Enemies { get; set; }
+
     }
 }

@@ -4,21 +4,21 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lib.LevelLoader.Creation;
+using Lib.LevelLoader.Xml;
 
 namespace LevelEditor.Controls.RadioButtons
 {
     class RadioButtonSelectAnimation : RadioButtonBase
     {
-        public AnimatedBlockInformation XmlAnimatedBlockInformation { get; set; }
+        public XmlAnimation XmlAnimation { get; set; }
 
-        public RadioButtonSelectAnimation(AnimatedBlockInformation aimatedBlockInformation)
+        public RadioButtonSelectAnimation(XmlAnimation animation)
         {
-            XmlAnimatedBlockInformation = aimatedBlockInformation;
+            XmlAnimation = animation;
            
-            TexturePath = XmlAnimatedBlockInformation.GetFirstImage().FullName;
-            Content = aimatedBlockInformation.Name;
-            ToolTip = aimatedBlockInformation.Name;
+            TexturePath = animation.GetFirstImage().FullName;
+            Content = animation.Id;
+            ToolTip = animation.Id;
         }
 
 

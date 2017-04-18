@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace Lib.LevelLoader.Xml
 {
+    /// <summary>
+    /// represents a texture in the level.xml
+    /// </summary>
     [Serializable()]
     public class XmlTexture
     {

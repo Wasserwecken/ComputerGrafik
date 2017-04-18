@@ -7,8 +7,11 @@ using System.Xml.Serialization;
 
 namespace Lib.LevelLoader.Xml
 {
+    /// <summary>
+    /// represents a enemy in a level.xml
+    /// </summary>
     [Serializable()]
-    class XmlEnemy
+    public class XmlEnemy
     {
         [XmlAttribute("X")]
         public float X { get; set; }

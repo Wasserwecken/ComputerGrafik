@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
-using Lib.LevelLoader.Creation;
 using Lib.Visuals.Graphics;
 
 namespace Lib.LevelLoader
@@ -77,7 +76,8 @@ namespace Lib.LevelLoader
             foreach (var xmlAnimatedBlock in xmlLevel.AnimatedBlocks)
             {
                 var sprite = new SpriteAnimated();
-                var anBlockInfo = AnimatedBlocks.Get().First(t => t.Key == xmlAnimatedBlock.Animation).Value;
+                var anBlockInfo =
+                    AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == xmlAnimatedBlock.Animation);
                 sprite.AddAnimation(anBlockInfo.Path, anBlockInfo.AnimationLength);
                 sprite.StartAnimation(new DirectoryInfo(anBlockInfo.Path).Name);
                 var block = new Block(xmlAnimatedBlock.X, xmlAnimatedBlock.Y, sprite);

@@ -32,6 +32,16 @@ namespace LevelEditor.Windows
         {
             InitializeComponent();
             ButtonAddLevel.Click += ButtonAddLevel_Click;
+            InitDefaultValues();
+            InputXStart.Focus();
+        }
+
+        private void InitDefaultValues()
+        {
+            InputXStart.Text = Properties.Settings.Default.addNewLevelMinX.ToString();
+            InputXEnd.Text = Properties.Settings.Default.addNewLevelMaxX.ToString();
+            InputYStart.Text = Properties.Settings.Default.addNewLevelMinY.ToString();
+            InputYEnd.Text = Properties.Settings.Default.addNewLevelMaxY.ToString();
         }
 
         private void ButtonAddLevel_Click(object sender, RoutedEventArgs e)

@@ -92,7 +92,7 @@ namespace LevelEditor.Controls
             {
                 var selectedBlockType = (BlockType)BlockTypeComboBox.SelectedItem;
                 button.SetXmlAnimatedBlock(
-                    ((RadioButtonSelectAnimation) SelectedRadioButton).XmlAnimatedBlockInformation,
+                    ((RadioButtonSelectAnimation) SelectedRadioButton).XmlAnimation,
                     selectedBlockType);
             }
             if (SelectedRadioButton is RadioButtonTool)
