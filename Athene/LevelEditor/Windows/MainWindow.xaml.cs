@@ -93,30 +93,17 @@ namespace LevelEditor
             openFileDialog.Filter = "XML-Files (.xml)|*.xml";
             if (openFileDialog.ShowDialog() == true)
             {
-                var level = LevelLoader.LoadFromXml(openFileDialog.FileName);
-
-                var maxX = level.Blocks.Max(block => block.X);
-                var minX = level.Blocks.Min(block => block.X);
-                var maxY = level.Blocks.Max(block => block.Y);
-                var minY = level.Blocks.Min(block => block.Y);
-
-                try
+                var window = new ImportLevelWindow(openFileDialog.FileName);
+                window.Owner = this;
+                window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                if (window.ShowDialog() == true)
                 {
                     LevelEditor = new Controls.LevelEditor();
-                    LevelEditor.InitNewGrid((int)minX, (int)maxX, (int)minY, (int)maxY);
+                    LevelEditor.InitNewGrid(window.MinX, window.MaxX, window.MinY, window.MaxY);
                     GridContentControl.Content = LevelEditor;
-                    LevelEditor.InitXmlLevel(level);
+                    LevelEditor.InitXmlLevel(window.Level);
                 }
-                catch
-                {
-                    MessageBox.Show(
-                    "Beim Laden des XmLlevels ist ein Fehler aufgetreten. Eventuell sind nicht alle Texturen, die benötigt werden, vorhanden.",
-                    "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-
-               
             }
         }
-
     }
 }

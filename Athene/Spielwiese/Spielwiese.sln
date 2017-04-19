@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Visuals", "..\Lib.Visua
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Input", "..\Lib.Input\Lib.Input.csproj", "{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.LevelLoader", "..\Lib.LevelLoader\Lib.LevelLoader.csproj", "{1C4BB265-4030-4015-B781-1FA06D53B317}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Logic", "Lib.Logic\Lib.Logic.csproj", "{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}"
 EndProject
 Global
@@ -29,10 +31,6 @@ Global
 		{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2236F1BC-AAC7-4FAC-9E18-A622FD148F82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

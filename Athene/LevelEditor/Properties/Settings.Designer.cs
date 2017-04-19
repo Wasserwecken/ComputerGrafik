@@ -25,13 +25,61 @@ namespace LevelEditor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\Pics")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\Images")]
         public string ImageBaseFolder {
             get {
                 return ((string)(this["ImageBaseFolder"]));
             }
             set {
                 this["ImageBaseFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-15")]
+        public int addNewLevelMinX {
+            get {
+                return ((int)(this["addNewLevelMinX"]));
+            }
+            set {
+                this["addNewLevelMinX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("45")]
+        public int addNewLevelMaxX {
+            get {
+                return ((int)(this["addNewLevelMaxX"]));
+            }
+            set {
+                this["addNewLevelMaxX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-5")]
+        public int addNewLevelMinY {
+            get {
+                return ((int)(this["addNewLevelMinY"]));
+            }
+            set {
+                this["addNewLevelMinY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int addNewLevelMaxY {
+            get {
+                return ((int)(this["addNewLevelMaxY"]));
+            }
+            set {
+                this["addNewLevelMaxY"] = value;
             }
         }
     }

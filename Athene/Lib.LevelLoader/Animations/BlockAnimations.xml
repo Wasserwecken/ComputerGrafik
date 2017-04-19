@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AnimationList>
+  <Animations>
+    <Animation Id="water_top" AnimationLength="2500" Path="Animations/water_top" />
+    <Animation Id="water" AnimationLength="2500" Path="Animations/water" />
+  </Animations>
+</AnimationList>

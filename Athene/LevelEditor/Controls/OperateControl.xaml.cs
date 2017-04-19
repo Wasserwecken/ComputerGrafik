@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LevelEditor.Controls.RadioButtons;
+using Lib.LevelLoader;
 
 namespace LevelEditor.Controls
 {
@@ -23,7 +25,6 @@ namespace LevelEditor.Controls
     public partial class OperateControl : UserControl
     {
         private LevelEditor _parentLevelEditor;
-        private readonly string _groupName = "textures";
 
         public OperateControl(LevelEditor parentLevelEditor)
         {
@@ -39,7 +40,7 @@ namespace LevelEditor.Controls
         public void InitDirectory(string directory)
         {
             List<TextureFolderControl> listOut = new List<TextureFolderControl>();
-            LoadTextureEntries(Directory.GetCurrentDirectory() + @"\Pics\", listOut);
+            LoadTextureEntries(directory, listOut);
             foreach (var item in listOut)
             {
                 TextureWrapPanel.Children.Add(item);
@@ -50,14 +51,12 @@ namespace LevelEditor.Controls
         {
             TextureFolderControl folder = new TextureFolderControl("Werkzeuge");
 
-            SelectTextureRadioButton nullButton = new SelectTextureRadioButton(Directory.GetCurrentDirectory() + @"/CommonImages/Delete-96.png", "", TextureRadioButtonAction.Remove, "Bild entfernen")
-            {
-                GroupName = _groupName
-            };
-            SelectTextureRadioButton selectButton = new SelectTextureRadioButton(Directory.GetCurrentDirectory() + @"/CommonImages/Cursor-96.png", "", TextureRadioButtonAction.Select, "Auswählen")
-            {
-                GroupName = _groupName
-            };
+            RadioButtonTool nullButton = new RadioButtonTool("Bild entfernen",
+                Directory.GetCurrentDirectory() + @"/CommonImages/Delete-96.png", TextureRadioButtonAction.Remove);
+
+            RadioButtonTool selectButton = new RadioButtonTool("Auswählen",
+                Directory.GetCurrentDirectory() + @"/CommonImages/Cursor-96.png", TextureRadioButtonAction.Select);
+           
             nullButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
             selectButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
 
@@ -66,6 +65,20 @@ namespace LevelEditor.Controls
             TextureWrapPanel.Children.Add(folder);
         }
 
+        public void InitAnimatedBlocks()
+        {
+            var animationList = AnimationLoader.GetBlockAnimations();
+            var folder = new TextureFolderControl("Animierte Blöcke");
+
+            foreach (var xmlAnimatedBlock in animationList.Animations)
+            {
+                RadioButtonSelectAnimation radioButton = new RadioButtonSelectAnimation(xmlAnimatedBlock);
+                radioButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
+                folder.AddRadioButton(radioButton);
+            }
+            TextureWrapPanel.Children.Add(folder);
+
+        }
 
         /// <summary>
         /// Loads a list of TextureFolderControls
@@ -84,9 +97,8 @@ namespace LevelEditor.Controls
                     /* Only png files */
                     if (fileInfo.Extension != ".png")
                         continue;
-                    SelectTextureRadioButton button = new SelectTextureRadioButton(fileInfo.FullName, fileInfo.Name.Replace(fileInfo.Extension, string.Empty), TextureRadioButtonAction.LoadTexture, fileInfo.Name);
+                    RadioButtonSelectTexture button = new RadioButtonSelectTexture(fileInfo);
                     button.Checked += _parentLevelEditor.TextureRadioButton_Checked;
-                    button.GroupName = _groupName;
                     texFolderControl.AddRadioButton(button);
                 }
                 if(texFolderControl.CountRadioButtons() > 0)

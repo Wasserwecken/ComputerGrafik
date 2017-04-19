@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lib.LevelLoader.Xml;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
-using Lib.LevelLoader.Xml;
+
 
 namespace LevelEditor.Controls
 {
@@ -24,54 +25,33 @@ namespace LevelEditor.Controls
     /// </summary>
     public partial class LevelItemButton : UserControl
     {
-        private string _path;
-
-        public XmlLevelItem LevelItem { get; set; }
-
+        /// <summary>
+        /// XmlLevelItem represents the current Item in the grid
+        /// </summary>
+        public XmlLevelItem XmLLevelItem { get; private set; }
 
         /// <summary>
-        /// Represents the relative path of the current Texture
+        /// XmlTexture is for Blocks (Texture of Blocks)
         /// </summary>
-        public string TexturePathRelative { get; set; }
+        public XmlTexture XmlTexture { get; private set; }
 
+        /// <summary>
+        /// x coordinate
+        /// </summary>
         public int X { get; set; }
+
+        /// <summary>
+        /// y coordinate
+        /// </summary>
         public int Y { get; set; }
 
-        /// <summary>
-        /// Represents the ImagePath of the Image of the Control
-        /// </summary>
-        public string Path
-        {
-            get { return _path; }
-            private set
-            {
-                _path = value;
-
-                if (_path != null)
-                {
-                    /* Update the image */
-                    ImageSource src = new BitmapImage(new Uri(_path, UriKind.Relative));
-                    ImageBrush brush = new ImageBrush(src);
-                    MainButton.Background = brush;
-                    TexturePathRelative = _path.Replace(Directory.GetCurrentDirectory(), string.Empty);
-                    if (TexturePathRelative.StartsWith(@"\")) TexturePathRelative = TexturePathRelative.Remove(0, 1);
-                }
-                else
-                {
-                    /* remove the background */
-                    MainButton.Background = null;
-                }
-
-            }
-
-        }
+        
 
         /// <summary>
         /// LevelItemButton represents a Block or an Enemy in the game
         /// </summary>
         /// <param name="x">XmlX coordinate</param>
         /// <param name="y">XmlY coordinate</param>
-        /// <param name="path">The Absolute Path of the Image, can also be null</param>
         public LevelItemButton(int x, int y)
         {
             InitializeComponent();
@@ -83,24 +63,74 @@ namespace LevelEditor.Controls
                 OnClick(e);
         }
 
-        public void SetXmlBlock(string textureId, string path, BlockType type)
+        /// <summary>
+        /// Sets an xmlBlock to the Button
+        /// </summary>
+        /// <param name="texture">Texture of the Block</param>
+        /// <param name="path">Absolute ImagePath for the Button Icon</param>
+        /// <param name="type">Blocktype</param>
+        public void SetXmlBlock(XmlTexture texture, BlockType type)
         {
-            LevelItem = new XmlBlock()
+            XmLLevelItem = new XmlBlock()
             {
                 BlockType = type,
                 X = this.X,
                 Y = this.Y,
-                Texture = textureId
+                Texture = texture.Id
             };
-            Path = path;
+            XmlTexture = texture;
+            SetImage(XmlTexture.Path);
         }
 
-        public void ResetItem()
+        /// <summary>
+        ///  Sets an XmlAnimatedBlock to the Button
+        /// </summary>
+        /// <param name="blockInformation">AnimatedBlockInformation</param>
+        /// <param name="type">Blocktype</param>
+        public void SetXmlAnimatedBlock(XmlAnimation animation, BlockType type)
         {
-            LevelItem = null;
+            XmLLevelItem = new XmlAnimatedBlock()
+            {
+                BlockType = type,
+                X = this.X,
+                Y = this.Y,
+                Animation = animation.Id
+            };
+            SetImage(animation.GetFirstImage().FullName, UriKind.Absolute);
         }
 
+        /// <summary>
+        /// Resets the current xml item
+        /// </summary>
+        public void ResetXmlItem()
+        {
+            XmLLevelItem = null;
+            XmlTexture = null;
+            SetImage(null);
+        }
 
+        /// <summary>
+        /// Sets the ImageSource
+        /// </summary>
+        /// <param name="path">Path to image</param>
+        /// <param name="uriKind">Path kind</param>
+        private void SetImage(string path, UriKind uriKind = UriKind.Relative)
+        {
+            if (path != null)
+            {
+                BitmapImage logo = new BitmapImage();
+                logo.BeginInit();
+                logo.UriSource = uriKind == UriKind.Relative ? new Uri(Directory.GetCurrentDirectory() + "/" + path, UriKind.Absolute) : new Uri(path, UriKind.Absolute);
+                logo.EndInit();
+                ImageBrush brush = new ImageBrush(logo);
+                MainButton.Background = brush;
+            }
+            else
+            {
+                MainButton.Background = null;
+            }
+
+        }
 
 
         /// <summary>
