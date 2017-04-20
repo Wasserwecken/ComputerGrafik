@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Lib.LevelLoader.LevelItems;
 using Lib.Visuals.Graphics;
 
 namespace Lib.LevelLoader
@@ -65,24 +66,28 @@ namespace Lib.LevelLoader
 
             foreach (var xmlBlock in xmlLevel.Blocks)
             {
-                var xmlTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.Texture);
-                if(xmlTexture == null)
-                    throw new Exception("Texture not found in XML file");
-                SpriteStatic sprite = new SpriteStatic(xmlTexture.Path);
-                var block = new Block(xmlBlock.X, xmlBlock.Y, sprite);
+                ISprite sprite = null;
+
+                if (xmlBlock.LinkType == BlockLinkType.Image)
+                {
+                    var xmlTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.Link);
+                    if (xmlTexture == null)
+                        throw new Exception("Texture not found in XML file");
+                    sprite = new SpriteStatic(xmlTexture.Path);
+                }
+                if (xmlBlock.LinkType == BlockLinkType.Animation)
+                {
+                    sprite = new SpriteAnimated();
+                    var xmlAnimation = AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == xmlBlock.Link);
+                    if(xmlAnimation == null)
+                        throw new Exception("Animation not found");
+                    ((SpriteAnimated)sprite).AddAnimation(xmlAnimation.Path, xmlAnimation.AnimationLength);
+                    ((SpriteAnimated)sprite).StartAnimation(new DirectoryInfo(xmlAnimation.Path).Name);
+                }
+                var block = new Block(xmlBlock.X, xmlBlock.Y, sprite, xmlBlock.BlockType, xmlBlock.Collision, xmlBlock.Damage);
                 returnLevel.Blocks.Add(block);
             }
 
-            foreach (var xmlAnimatedBlock in xmlLevel.AnimatedBlocks)
-            {
-                var sprite = new SpriteAnimated();
-                var anBlockInfo =
-                    AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == xmlAnimatedBlock.Animation);
-                sprite.AddAnimation(anBlockInfo.Path, anBlockInfo.AnimationLength);
-                sprite.StartAnimation(new DirectoryInfo(anBlockInfo.Path).Name);
-                var block = new Block(xmlAnimatedBlock.X, xmlAnimatedBlock.Y, sprite);
-                returnLevel.Blocks.Add(block);
-            }
 
             return returnLevel;
         }

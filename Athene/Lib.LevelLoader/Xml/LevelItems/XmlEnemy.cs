@@ -11,14 +11,11 @@ namespace Lib.LevelLoader.Xml
     /// represents a enemy in a level.xml
     /// </summary>
     [Serializable()]
-    public class XmlEnemy
+    public class XmlEnemy : XmlLevelItemBase
     {
-        [XmlAttribute("X")]
-        public float X { get; set; }
-
-        [XmlAttribute("Y")]
-        public float Y { get; set; }
-
+        /// <summary>
+        /// name of the enemy type
+        /// </summary>
         [XmlAttribute("Type")]
         public string Type { get; set; }
     }

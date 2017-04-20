@@ -8,10 +8,9 @@ using System.Xml.Serialization;
 namespace Lib.LevelLoader.Xml
 {
     /// <summary>
-    /// class represents an animated block in the level.xml
+    /// parent class for XmlLevelElements
     /// </summary>
-    [Serializable()]
-    public class XmlAnimatedBlock : XmlLevelItem
+    public class XmlLevelItemBase
     {
         /// <summary>
         /// y coordinate
@@ -24,19 +23,5 @@ namespace Lib.LevelLoader.Xml
         /// </summary>
         [XmlAttribute("Y")]
         public float Y { get; set; }
-
-        /// <summary>
-        /// name of the animation
-        /// </summary>
-        [XmlAttribute("Animation")]
-        public string Animation { get; set; }
-
-        /// <summary>
-        /// type of the block
-        /// </summary>
-        [XmlAttribute("BlockType")]
-        public BlockType BlockType { get; set; }
-
-
     }
 }

@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.LevelLoader.Xml
+namespace Lib.LevelLoader.LevelItems
 {
     /// <summary>
-    /// parent class for XmlElements
+    /// block type
     /// </summary>
-    public class XmlLevelItem
+    public enum BlockType
     {
-    }
+        Solid,
+        Liquid,
+        Ladder
+    };
 }
