@@ -53,7 +53,7 @@ namespace SimeraExample
 			AnimTest = new SpriteAnimated();
 			AnimTest.AddAnimation("Pics/Worm/idle", 1000);
 			AnimTest.AddAnimation("Pics/Worm/walk", 1000);
-			AnimTest.StartAnimation("idle");
+			AnimTest.StartAnimation("walk");
 			AnimTest.FlipTextureHorizontal = true;
 
 			SpriteTest = new SpriteStatic("Pics/trophy.png");
