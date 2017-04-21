@@ -137,7 +137,7 @@ namespace Lib.LevelLoader.LevelItems
 			else
 			{
 				float easingStep = Math.Abs(energy / forceReference);
-				easingStep = LimitToRange(easingStep, 0, 1);
+				easingStep = easingStep.LimitToRange(0, 1);
 
 				easingValue = Easing.CubicOut(easingStep, 1);
 			}
@@ -185,41 +185,9 @@ namespace Lib.LevelLoader.LevelItems
 					energy = forceReference;
 			}
 			else
-				energy = ReduceToZero(Math.Abs(energy), Math.Abs(stepSize)) * Math.Sign(energy);
+				energy = energy.ReduceToZero(stepSize);
 			
 			return energy;
-		}
-
-		/// <summary>
-		/// /
-		/// </summary>
-		/// <param name="origin"></param>
-		/// <param name="substractValue"></param>
-		/// <returns></returns>
-		private float ReduceToZero(float origin, float substractValue)
-		{
-			float newOriginRelative = origin - substractValue;
-			newOriginRelative = newOriginRelative < 0 ? 0 : newOriginRelative;
-			
-			return newOriginRelative;
-		}
-
-		/// <summary>
-		/// Limits a number to a given range
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="min"></param>
-		/// <param name="max"></param>
-		/// <returns></returns>
-		private float LimitToRange(float value, float min, float max)
-		{
-			if (value < min)
-				return min;
-
-			if (value > max)
-				return max;
-
-			return value;
 		}
 
 		/// <summary>

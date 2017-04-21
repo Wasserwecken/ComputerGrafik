@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Lib.Input;
+using Lib.Logic;
 using OpenTK.Input;
 
 namespace SimeraExample
@@ -9,9 +10,11 @@ namespace SimeraExample
 		: IInputLayoutActions, INotifyPropertyChanged
 	{
 		private bool _jump;
-
-		public float Vertical { get; set; }
-		public float Horizontal { get; set; }
+		
+		public float MoveLeft { get; set; }
+		public float MoveRight { get; set; }
+		public float MoveUp { get; set; }
+		public float MoveDown { get; set; }
 
 		public bool Jump
 		{
@@ -33,8 +36,6 @@ namespace SimeraExample
 		public InputActionObject()
 		{
 			Jump = false;
-			Vertical = 0;
-			Horizontal = 0;
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

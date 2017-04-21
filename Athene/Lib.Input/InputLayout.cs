@@ -23,12 +23,12 @@ namespace Lib.Input
 		/// <summary>
 		/// Listener for the keyboard input
 		/// </summary>
-		private IInputListener KeyboardListener { get; set; }
+		private IInputListener KeyboardListener { get; }
 
 		/// <summary>
 		/// Listener for the mouse input
 		/// </summary>
-		private IInputListener MouseListener { get; set; }
+		private IInputListener MouseListener { get; }
 
 
 		/// <summary>
@@ -42,19 +42,6 @@ namespace Lib.Input
 			MouseListener = new InputListener<InputDeviceMouse>(actions);
 		}
 
-
-		/// <summary>
-		/// Adds a mapping by using lambda expressions
-		/// </summary>
-		public void AddMappingGamePad<TInputMemberType, TActionMemberType>(
-			Expression<Func<GamePadState, TInputMemberType>> inputMember,
-			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
-			Func<TInputMemberType, TActionMemberType> converter
-			)
-		{
-			AddMappingGamePad(-1, inputMember, actionMember, converter);
-		}
-
 		/// <summary>
 		/// Adds a mapping by using lambda expressions
 		/// </summary>
@@ -62,7 +49,7 @@ namespace Lib.Input
 			int deviceId,
 			Expression<Func<GamePadState, TInputMemberType>> inputMember,
 			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
-			Func<TInputMemberType, TActionMemberType> converter
+			Func<TInputMemberType, TActionMemberType, TActionMemberType> converter
 			)
 		{
 			var mapItem = new InputMapItem
@@ -80,22 +67,10 @@ namespace Lib.Input
 		/// Adds a mapping by using lambda expressions
 		/// </summary>
 		public void AddMappingMouse<TInputMemberType, TActionMemberType>(
-			Expression<Func<MouseState, TInputMemberType>> inputMember,
-			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
-			Func<TInputMemberType, TActionMemberType> converter
-			)
-		{
-			AddMappingMouse(-1, inputMember, actionMember, converter);
-		}
-
-		/// <summary>
-		/// Adds a mapping by using lambda expressions
-		/// </summary>
-		public void AddMappingMouse<TInputMemberType, TActionMemberType>(
 			int deviceId,
 			Expression<Func<MouseState, TInputMemberType>> inputMember,
 			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
-			Func<TInputMemberType, TActionMemberType> converter
+			Func<TInputMemberType, TActionMemberType, TActionMemberType> converter
 			)
 		{
 			var mapItem = new InputMapItem
@@ -115,7 +90,7 @@ namespace Lib.Input
 		public void AddMappingKeyboard<TActionMemberType>(
 			Key inputKey,
 			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
-			Func<bool, TActionMemberType> converter
+			Func<bool, TActionMemberType, TActionMemberType> converter
 			)
 		{
 			AddMappingKeyboard(-1, inputKey, actionMember, converter);
@@ -128,7 +103,7 @@ namespace Lib.Input
 			int deviceId,
 			Key inputKey,
 			Expression<Func<TInputLayoutActions, TActionMemberType>> actionMember,
-			Func<bool, TActionMemberType> converter
+			Func<bool, TActionMemberType, TActionMemberType> converter
 			)
 		{
 			var mapItem = new InputMapItemKeyboard

@@ -237,6 +237,10 @@
       <Project>{1c4bb265-4030-4015-b781-1fa06d53b317}</Project>
       <Name>Lib.LevelLoader</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lib.Logic\Lib.Logic.csproj">
+      <Project>{4e6f3535-2ac8-4b8d-850e-f9536ef50a25}</Project>
+      <Name>Lib.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

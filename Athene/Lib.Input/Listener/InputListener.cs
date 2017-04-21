@@ -56,11 +56,11 @@ namespace Lib.Input.Listener
 		/// <param name="inputValue"></param>
 		public void ProcessInput(IInputDeviceSimput sender, IInputMapItem triggeredMapping, object inputValue)
 		{
-			var inputPraras = new[] { inputValue };
 			var mapItem = triggeredMapping;
-
-			var newActionValue = mapItem.Converter.Method.Invoke(mapItem.Converter.Target, inputPraras);
 			var oldActionValue = mapItem.ActionMember.GetValue(InputActions);
+
+			var inputPraras = new[] { inputValue, oldActionValue };
+			var newActionValue = mapItem.Converter.Method.Invoke(mapItem.Converter.Target, inputPraras);
 
 			if (!oldActionValue.Equals(newActionValue))
 			{
