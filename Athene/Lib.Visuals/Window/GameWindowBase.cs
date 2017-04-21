@@ -21,7 +21,7 @@ namespace Lib.Visuals.Window
 		/// </summary>
 		public GameWindowBase()
 		{
-			Camera = new GameCamera(Vector2.Zero, 6, 15f);
+			Camera = new GameCamera(Vector2.Zero, 5, 15f);
 
 			//This will be needed to enable transparency
 			GL.Enable(EnableCap.Texture2D);

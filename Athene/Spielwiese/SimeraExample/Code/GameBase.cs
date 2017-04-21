@@ -12,33 +12,31 @@ namespace SimeraExample
 	public class GameBase
 	{
 		private GameWindowBase Window { get; }
-		private Input InputActions { get; set; }
+		private InputActionObject InputActions { get; set; }
 
-		private SpriteAnimated AnimTest { get; set; }
 		private SpriteStatic SpriteTest { get; set; }
 
-		private Random Rand { get; set; }
-
-		private List<Vector2> Objects { get; set; }
-		private Vector2 PlayerPosition { get; set; }
+		
 
 	    private Level Level { get; set; }
+		private FakePlayer Player { get; set; }
 
         public GameBase()
 		{
-			InputActions = new Input();
-			var layout = new InputLayout<Input>(InputActions);
+			InputActions = new InputActionObject();
+			var layout = new InputLayout<InputActionObject>(InputActions);
 			layout.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.Vertical, inval => inval.Length > 0.01 ? inval.Y : 0);
 			layout.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.Horizontal, inval => inval.Length > 0.01 ? inval.X : 0);
+			layout.AddMappingGamePad(0, pad => pad.Buttons.A, inp => inp.Jump, inval => inval == ButtonState.Pressed);
 			
-			layout.AddMappingKeyboard(Key.Left, inp => inp.Horizontal, val => val ? -1 : 0);
-			layout.AddMappingKeyboard(Key.Right, inp => inp.Horizontal, val => val ? 1 : 0);
-			layout.AddMappingKeyboard(Key.Up, inp => inp.Vertical, val => val ? 1 : 0);
-			layout.AddMappingKeyboard(Key.Down, inp => inp.Vertical, val => val ? -1 : 0);
-			
+			layout.AddMappingKeyboard(Key.Left, inp => inp.Horizontal, inval => inval ? -1 : 0);
+			layout.AddMappingKeyboard(Key.Right, inp => inp.Horizontal, inval => inval ? 1 : 0);
+			layout.AddMappingKeyboard(Key.Up, inp => inp.Vertical, inval => inval ? 1 : 0);
+			layout.AddMappingKeyboard(Key.Down, inp => inp.Vertical, inval => inval ? -1 : 0);
+			layout.AddMappingKeyboard(Key.Space, inp => inp.Jump, inval => inval);
+
 
 			Window = new GameWindowBase();
-			Rand = new Random();
 
 			Window.Load += Window_Load;
 			Window.UpdateFrame += Window_UpdateFrame;
@@ -47,41 +45,51 @@ namespace SimeraExample
            
         }
 
+
 		private void Window_Load(object sender, EventArgs e)
 		{
+			InputActions.PropertyChanged += InputActions_PropertyChanged;
 		    Level = LevelLoader.LoadLevel(8);
-			AnimTest = new SpriteAnimated();
-			AnimTest.AddAnimation("Pics/Worm/idle", 1000);
-			AnimTest.AddAnimation("Pics/Worm/walk", 1000);
-			AnimTest.StartAnimation("walk");
-			AnimTest.FlipTextureHorizontal = true;
+			Player = new FakePlayer();
+		}
 
-			SpriteTest = new SpriteStatic("Pics/trophy.png");
-			PlayerPosition = Vector2.Zero;
+		private void InputActions_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			if (InputActions.Jump)
+				Player.Jump();
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
-			//fake player
-			var x = PlayerPosition.X + InputActions.Horizontal / 5;
-			var y = PlayerPosition.Y + InputActions.Vertical / 5;
-			PlayerPosition = new Vector2(x, y);
+			Player.Move(InputActions.Horizontal, InputActions.Vertical);
+			Player.ExecuteLogic();
 
 			//offset for the camera for a better view
-			float maxOffset = 5.5f;
+			float maxOffset = 1f;
 
-			x = PlayerPosition.X + (maxOffset * InputActions.Horizontal);
-			y = PlayerPosition.Y + (maxOffset * InputActions.Vertical);
+			var x = Player.Position.X + (maxOffset * InputActions.Horizontal);
+			var y = Player.Position.Y + (maxOffset * InputActions.Vertical);
 
 			//setting the camera
 			Window.Camera.MoveTo(new Vector2(x, y));
 		}
+		
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
             Level.Draw();
+			Player.Draw();
 
-			SpriteTest.Draw(PlayerPosition, Vector2.One);
+			Console.Clear();
+			Console.WriteLine("Player:");
+			Console.WriteLine("\tPosition X: {0}", Player.Position.X);
+			Console.WriteLine("\tPosition Y: {0}", Player.Position.Y);
+			Console.WriteLine("Energy:");
+			Console.WriteLine("\tX: {0}", Player.Energy.X);
+			Console.WriteLine("\tY: {0}", Player.Energy.Y);
+			Console.WriteLine("Force:");
+			Console.WriteLine("\tX: {0}", Player.Force.X);
+			Console.WriteLine("\tY: {0}", Player.Force.Y);
 		}
 	}
 }

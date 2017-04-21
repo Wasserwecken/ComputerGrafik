@@ -45,9 +45,12 @@
   <ItemGroup>
     <Compile Include="AnimationLoader.cs" />
     <Compile Include="Block.cs" />
+    <Compile Include="ForceObject.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelLoader.cs" />
+    <Compile Include="ForceObjectProperties.cs" />
+    <Compile Include="LevelObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Xml\XmlAnimatedBlock.cs" />
     <Compile Include="Xml\XmlAnimation.cs" />
@@ -993,6 +996,10 @@
     <ProjectReference Include="..\Lib.Visuals\Lib.Visuals.csproj">
       <Project>{1b6562b4-ec7a-4e56-8e17-fa3040026200}</Project>
       <Name>Lib.Visuals</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spielwiese\Lib.Logic\Lib.Logic.csproj">
+      <Project>{4e6f3535-2ac8-4b8d-850e-f9536ef50a25}</Project>
+      <Name>Lib.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
