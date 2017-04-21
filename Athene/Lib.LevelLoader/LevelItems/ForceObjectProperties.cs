@@ -1,6 +1,6 @@
 ﻿using OpenTK;
 
-namespace Lib.LevelLoader
+namespace Lib.LevelLoader.LevelItems
 {
 	public class ForceObjectProperties
 	{

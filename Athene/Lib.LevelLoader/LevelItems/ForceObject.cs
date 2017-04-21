@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using Lib.Logic;
 
-namespace Lib.LevelLoader
+namespace Lib.LevelLoader.LevelItems
 {
 	public class ForceObject
-		: LevelObject
+		: LevelItemBase
 	{
 		/// <summary>
 		/// Boundaries of energy that is allowed
@@ -98,7 +98,8 @@ namespace Lib.LevelLoader
 			CutVectorTo(ref x, ref y, EnergyLimit);
 
 			//Set the new position
-			Position = Position + new Vector2(x, y);
+			X = X + x;
+			Y = Y + y;
 		}
 
 		/// <summary>

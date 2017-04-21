@@ -80,16 +80,16 @@ namespace SimeraExample
             Level.Draw();
 			Player.Draw();
 
-			Console.Clear();
-			Console.WriteLine("Player:");
-			Console.WriteLine("\tPosition X: {0}", Player.Position.X);
-			Console.WriteLine("\tPosition Y: {0}", Player.Position.Y);
-			Console.WriteLine("Energy:");
-			Console.WriteLine("\tX: {0}", Player.Energy.X);
-			Console.WriteLine("\tY: {0}", Player.Energy.Y);
-			Console.WriteLine("Force:");
-			Console.WriteLine("\tX: {0}", Player.Force.X);
-			Console.WriteLine("\tY: {0}", Player.Force.Y);
+			//Console.Clear();
+			//Console.WriteLine("Player:");
+			//Console.WriteLine("\tPosition X: {0}", Player.Position.X);
+			//Console.WriteLine("\tPosition Y: {0}", Player.Position.Y);
+			//Console.WriteLine("Energy:");
+			//Console.WriteLine("\tX: {0}", Player.Energy.X);
+			//Console.WriteLine("\tY: {0}", Player.Energy.Y);
+			//Console.WriteLine("Force:");
+			//Console.WriteLine("\tX: {0}", Player.Force.X);
+			//Console.WriteLine("\tY: {0}", Player.Force.Y);
 		}
 	}
 }
