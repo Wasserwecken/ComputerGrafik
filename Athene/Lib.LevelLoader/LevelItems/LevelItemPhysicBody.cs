@@ -66,6 +66,7 @@ namespace Lib.LevelLoader.LevelItems
 			//converts the force to energy and adding gravity
 			//This will build up energy like "pusching" something
 			SetEnergy(new Vector2(ForceToProcess.X, ForceToProcess.Y - CurrentProperties.Mass));
+			ForceToProcess = Vector2.Zero;
 
 			//Apply force, calculate x and y again for easing
 			//energy is used as reference

@@ -67,7 +67,7 @@ namespace Lib.LevelLoader.LevelItems
 			Physics = new LevelItemPhysicBody(physicProps, startEnvironment, startPosition);
 
 			//Set basic values
-			MovementSpeed = 0.01f;
+			MovementSpeed = 0.1f;
 
 			//set graphics
 			Sprite = sprite;
@@ -111,7 +111,7 @@ namespace Lib.LevelLoader.LevelItems
 			// tries to execute a jump of the player. In some environments or sitiations
 			// it will be not allowed to jump (e.g. water)
 			if (InputValues.Jump)
-				Physics.ApplyImpulse(new Vector2(0.02f));
+				Physics.ApplyImpulse(new Vector2(0, 0.02f));
 		}
 
 		/// <summary>
