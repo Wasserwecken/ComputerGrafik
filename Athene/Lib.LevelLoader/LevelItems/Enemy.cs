@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.LevelLoader
+namespace Lib.LevelLoader.LevelItems
 {
-    class Enemy
+    class Enemy : LevelItemBase
     {
+        
     }
 }

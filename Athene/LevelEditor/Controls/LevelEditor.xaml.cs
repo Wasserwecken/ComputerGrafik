@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LevelEditor.Controls.RadioButtons;
 using LevelEditor.Windows;
+using Lib.LevelLoader.LevelItems;
 using Lib.LevelLoader.Xml;
 
 
@@ -31,9 +32,9 @@ namespace LevelEditor.Controls
         public RadioButtonBase SelectedRadioButton { get; set; }
 
         /// <summary>
-        /// The size of the buttons in the grid
+        /// The grid for the level
         /// </summary>
-        public int GameItemButtonSize { get; set; }
+        public  LevelGrid LevelGrid { get; set; }
 
         /// <summary>
         /// Window to show infos about the selected block
@@ -46,7 +47,7 @@ namespace LevelEditor.Controls
         public LevelEditor()
         {
             InitializeComponent();
-            GameItemButtonSize = 50;
+
 
             /* Initialize the OperateControl */
             OperateControl opControl = new OperateControl(this);
@@ -58,67 +59,7 @@ namespace LevelEditor.Controls
             /* Init the block types */
             BlockTypeComboBox.ItemsSource = Enum.GetValues(typeof(BlockType));
             BlockTypeComboBox.SelectedIndex = 0;
-        }
 
-        /// <summary>
-        /// If mouse is hold while going over buttons, they are saved like you click on them
-        /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="e">events</param>
-        private void Button_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (Mouse.LeftButton == MouseButtonState.Pressed)
-            {
-                GridButtonClicked(sender, e);
-            }
-        }
-
-        /// <summary>
-        /// When a button in the Grid is clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GridButtonClicked(object sender, EventArgs e)
-        {
-            LevelItemButton button = sender as LevelItemButton;
-            if (SelectedRadioButton == null || button == null) return;
-
-            if (SelectedRadioButton is RadioButtonSelectTexture)
-            {
-                var selectedBlockType = (BlockType)BlockTypeComboBox.SelectedItem;
-                button.SetXmlBlock(((RadioButtonSelectTexture)SelectedRadioButton).XmlTexture, selectedBlockType);
-            }
-            if (SelectedRadioButton is RadioButtonSelectAnimation)
-            {
-                var selectedBlockType = (BlockType)BlockTypeComboBox.SelectedItem;
-                button.SetXmlAnimatedBlock(
-                    ((RadioButtonSelectAnimation) SelectedRadioButton).XmlAnimation,
-                    selectedBlockType);
-            }
-            if (SelectedRadioButton is RadioButtonTool)
-            {
-                if (((RadioButtonTool)SelectedRadioButton).Action == TextureRadioButtonAction.Remove)
-                    button.ResetXmlItem();
-                if (((RadioButtonTool)SelectedRadioButton).Action == TextureRadioButtonAction.Select)
-                {
-                    if (button.XmLLevelItem is XmlBlock)
-                    {
-                        var win = Helper.FindWindowHelper.IsWindowOpen<Window>("ShowBlockWindow");
-                        if (win != null)
-                        {
-                            ((ShowBlockItemWindow)win).ShowBlock(button.XmLLevelItem as XmlBlock, button.XmlTexture);
-                            win.Show();
-                        }
-                        else
-                        {
-                            win = new ShowBlockItemWindow() { Name = "ShowBlockWindow" };
-                            ((ShowBlockItemWindow)win).ShowBlock(button.XmLLevelItem as XmlBlock, button.XmlTexture);
-                            win.Show();
-                        }
-                    }
-                }
-
-            }
         }
 
         /// <summary>
@@ -140,45 +81,11 @@ namespace LevelEditor.Controls
         /// <param name="yEnd">end y</param>
         public void InitNewGrid(int xStart, int xEnd, int yStart, int yEnd)
         {
-            for (int i = xStart; i <= xEnd; i++)
-            {
-                ColumnDefinition colDef = new ColumnDefinition();
-                colDef.Width = new GridLength(GameItemButtonSize);
-                MainGrid.ColumnDefinitions.Add(colDef);
-            }
+            LevelGrid = new LevelGrid(this);
+            LevelGrid.InitNewGrid(xStart, xEnd, yStart, yEnd);
+            LevelGridScrollViewer.Content = LevelGrid;
 
-            for (int i = yStart; i <= yEnd; i++)
-            {
-                RowDefinition rowDef = new RowDefinition();
-                rowDef.Height = new GridLength(GameItemButtonSize);
-                MainGrid.RowDefinitions.Add(rowDef);
-            }
 
-            int rowIndex = 0;
-            int colunmIndex = 0;
-
-            for (int y = yEnd; y >= yStart; y--)
-            {
-                for (int x = xStart; x <= xEnd; x++)
-                {
-                    LevelItemButton button = new LevelItemButton(x, y);
-                    button.Width = GameItemButtonSize;
-                    button.Height = GameItemButtonSize;
-                    MainGrid.Children.Add(button);
-                    Grid.SetRow(button, rowIndex);
-                    Grid.SetColumn(button, colunmIndex);
-                    button.Click += GridButtonClicked;
-                    button.MouseMove += Button_MouseMove;
-                    colunmIndex++;
-                }
-                colunmIndex = 0;
-                rowIndex++;
-            }
         }
-
-      
-
-     
-
     }
 }

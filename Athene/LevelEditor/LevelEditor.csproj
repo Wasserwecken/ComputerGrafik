@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Extensions\LevelLoaderXmlExtension.cs" />
     <Compile Include="Helper\FindWindowHelper.cs" />
+    <Compile Include="Controls\LevelGrid.cs" />
     <Compile Include="Windows\AddLevelWindow.xaml.cs">
       <DependentUpon>AddLevelWindow.xaml</DependentUpon>
     </Compile>
@@ -174,6 +175,9 @@
       <Project>{1C4BB265-4030-4015-B781-1FA06D53B317}</Project>
       <Name>Lib.LevelLoader</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Manager\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

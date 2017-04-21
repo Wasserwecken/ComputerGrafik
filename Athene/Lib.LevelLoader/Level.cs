@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lib.LevelLoader.LevelItems;
 
 namespace Lib.LevelLoader
 {
@@ -12,15 +13,6 @@ namespace Lib.LevelLoader
         /// List of all blocks drawn in the level, like walkable, water, lava, trees..
         /// </summary>
         public List<Block> Blocks { get; set; }
-
-        /// <summary>
-        /// Initializes a level with a list of blocks
-        /// </summary>
-        /// <param name="blocks"></param>
-        public Level(List<Block> blocks)
-        {
-            Blocks = blocks;
-        }
 
         /// <summary>
         /// Initializes a empty level

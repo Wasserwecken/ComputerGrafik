@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
+using Lib.LevelLoader.LevelItems;
 
 
 namespace LevelEditor.Controls
@@ -26,9 +27,9 @@ namespace LevelEditor.Controls
     public partial class LevelItemButton : UserControl
     {
         /// <summary>
-        /// XmlLevelItem represents the current Item in the grid
+        /// XmlLevelItemBase represents the current Item in the grid
         /// </summary>
-        public XmlLevelItem XmLLevelItem { get; private set; }
+        public XmlLevelItemBase XmLLevelItemBase { get; private set; }
 
         /// <summary>
         /// XmlTexture is for Blocks (Texture of Blocks)
@@ -71,12 +72,13 @@ namespace LevelEditor.Controls
         /// <param name="type">Blocktype</param>
         public void SetXmlBlock(XmlTexture texture, BlockType type)
         {
-            XmLLevelItem = new XmlBlock()
+            XmLLevelItemBase = new XmlBlock()
             {
                 BlockType = type,
-                X = this.X,
-                Y = this.Y,
-                Texture = texture.Id
+                X = X,
+                Y = Y,
+                Link = texture.Id,
+                LinkType = BlockLinkType.Image
             };
             XmlTexture = texture;
             SetImage(XmlTexture.Path);
@@ -85,16 +87,17 @@ namespace LevelEditor.Controls
         /// <summary>
         ///  Sets an XmlAnimatedBlock to the Button
         /// </summary>
-        /// <param name="blockInformation">AnimatedBlockInformation</param>
+        /// <param name="animation">animation</param>
         /// <param name="type">Blocktype</param>
         public void SetXmlAnimatedBlock(XmlAnimation animation, BlockType type)
         {
-            XmLLevelItem = new XmlAnimatedBlock()
+            XmLLevelItemBase = new XmlBlock()
             {
                 BlockType = type,
-                X = this.X,
-                Y = this.Y,
-                Animation = animation.Id
+                X = X,
+                Y = Y,
+                Link = animation.Id,
+                LinkType = BlockLinkType.Animation
             };
             SetImage(animation.GetFirstImage().FullName, UriKind.Absolute);
         }
@@ -104,7 +107,7 @@ namespace LevelEditor.Controls
         /// </summary>
         public void ResetXmlItem()
         {
-            XmLLevelItem = null;
+            XmLLevelItemBase = null;
             XmlTexture = null;
             SetImage(null);
         }

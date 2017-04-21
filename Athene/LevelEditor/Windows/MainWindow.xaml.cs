@@ -57,7 +57,7 @@ namespace LevelEditor
             saveFileDialog.Filter = "XML-Files (.xml)|*.xml"; 
             if (saveFileDialog.ShowDialog() == true)
             {
-                var xmlLevel = LevelEditor.GetXmlLevel();
+                var xmlLevel = LevelEditor.LevelGrid.GetXmlLevel();
                 LevelLoader.ConvertToXml(xmlLevel, saveFileDialog.FileName);
             }
         }
@@ -101,7 +101,7 @@ namespace LevelEditor
                     LevelEditor = new Controls.LevelEditor();
                     LevelEditor.InitNewGrid(window.MinX, window.MaxX, window.MinY, window.MaxY);
                     GridContentControl.Content = LevelEditor;
-                    LevelEditor.InitXmlLevel(window.Level);
+                    LevelEditor.LevelGrid.InitXmlLevel(window.Level);
                 }
             }
         }

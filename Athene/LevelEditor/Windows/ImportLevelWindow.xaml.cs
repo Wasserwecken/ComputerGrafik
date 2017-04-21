@@ -30,19 +30,22 @@ namespace LevelEditor.Windows
 
             var level = LevelLoader.LoadFromXml(fileName);
 
-            var maxX = Math.Max(level.Blocks.Max(block => block.X), level.AnimatedBlocks.Max(block => block.X));
-            var minX = Math.Min(level.Blocks.Min(block => block.X), level.AnimatedBlocks.Min(block => block.X));
-            var maxY = Math.Max(level.Blocks.Max(block => block.Y), level.AnimatedBlocks.Max(block => block.Y));
-            var minY = Math.Min(level.Blocks.Min(block => block.Y), level.AnimatedBlocks.Min(block => block.Y));
 
+            float maxX, minX, maxY, minY;
+
+            maxX = level.Blocks.Max(block => block.X);
+            minX = level.Blocks.Min(block => block.X);
+            maxY = level.Blocks.Max(block => block.Y);
+            minY = level.Blocks.Min(block => block.Y);
+
+          
             InputXStart.Text = minX.ToString();
             InputYStart.Text = minY.ToString();
             InputXEnd.Text = maxX.ToString();
             InputYEnd.Text = maxY.ToString();
             Level = level;
 
-            TextBlockFoundBlocks.Text = "Es wurden " + (level.Blocks.Count + level.AnimatedBlocks.Count) +
-                                        " Blöcke gefunden";
+            TextBlockFoundBlocks.Text = "Es wurden " + level.Blocks.Count + " Blöcke gefunden";
 
             ButtonImportLevel.Click += ButtonImportLevel_Click;
         }

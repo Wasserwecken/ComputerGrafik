@@ -1,24 +1,24 @@
 ﻿using Lib.Visuals.Graphics;
 using OpenTK;
 
-namespace Lib.LevelLoader
+namespace Lib.LevelLoader.LevelItems
 {
-	public class Block
+	public class Block : LevelItemBase
     {
         /// <summary>
-        ///  x coordinate of the block
+        /// blocktype of the block
         /// </summary>
-        public float X { get; set; }
+        public BlockType BlockType { get; set; }
 
         /// <summary>
-        /// y coordinate of the block
+        /// collission of the block
         /// </summary>
-        public float Y { get; set; }
+        public bool Collision { get; set; }
 
         /// <summary>
-        /// the sprite of the block
+        /// damage of the block
         /// </summary>
-        public ISprite Sprite { get; set; }
+        public int Damage { get; set; }
 
         /// <summary>
         /// Initializes a empty block with no coordinates and no sprite
@@ -34,11 +34,17 @@ namespace Lib.LevelLoader
         /// <param name="x">x coordinate</param>
         /// <param name="y">y coordinate</param>
         /// <param name="sprite">sprite</param>
-        public Block(float x, float y, ISprite sprite)
+        /// <param name="blockType">blocktype</param>
+        /// <param name="collision"></param>
+        /// <param name="damage"></param>
+        public Block(float x, float y, ISprite sprite, BlockType blockType, bool collision, int damage)
         {
             X = x;
             Y = y;
             Sprite = sprite;
+            BlockType = blockType;
+            Collision = collision;
+            Damage = damage;
         }
 
         /// <summary>

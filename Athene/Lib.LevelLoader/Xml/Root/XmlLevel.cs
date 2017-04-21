@@ -15,10 +15,6 @@ namespace Lib.LevelLoader.Xml
         [XmlArrayItem("Block", typeof(XmlBlock))]
         public List<XmlBlock> Blocks { get; set; }
 
-        [XmlArray("AnimatedBlocks")]
-        [XmlArrayItem("AnimatedBlock", typeof(XmlAnimatedBlock))]
-        public List<XmlAnimatedBlock> AnimatedBlocks { get; set; }
-
         [XmlArray("Textures")]
         [XmlArrayItem("Texture", typeof(XmlTexture))]
         public List<XmlTexture> Textures { get; set; }
