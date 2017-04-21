@@ -73,9 +73,9 @@ namespace Lib.LevelLoader.LevelItems
 		/// <param name="impuls"></param>
 		public void ApplyImpulse(Vector2 impuls)
 		{
-			//An implus does not build up energy, its like a "dash"
-			Energy = impuls;
-			ApplyForce(impuls);
+			//An implus does not build up energy, its directly added
+			Energy = Energy + impuls;
+			SetForceReference(impuls);
 		}
 
 		/// <summary>
