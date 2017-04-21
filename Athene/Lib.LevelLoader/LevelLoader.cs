@@ -1,5 +1,6 @@
 ﻿using Lib.LevelLoader.Xml;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -64,6 +65,11 @@ namespace Lib.LevelLoader
 
             Level returnLevel = new Level();
 
+            // all animated sprites should start at the same time.
+            // all animated sprites are later started from the list
+            // spriteAnimated is the sprite, string is the animation name
+            var animatedSpriteList = new Dictionary<SpriteAnimated, string>();
+           
             foreach (var xmlBlock in xmlLevel.Blocks)
             {
                 ISprite sprite = null;
@@ -82,12 +88,18 @@ namespace Lib.LevelLoader
                     if(xmlAnimation == null)
                         throw new Exception("Animation not found");
                     ((SpriteAnimated)sprite).AddAnimation(xmlAnimation.Path, xmlAnimation.AnimationLength);
-                    ((SpriteAnimated)sprite).StartAnimation(new DirectoryInfo(xmlAnimation.Path).Name);
+                    animatedSpriteList.Add((SpriteAnimated)sprite, new DirectoryInfo(xmlAnimation.Path).Name);
+   
                 }
                 var block = new Block(xmlBlock.X, xmlBlock.Y, sprite, xmlBlock.BlockType, xmlBlock.Collision, xmlBlock.Damage);
                 returnLevel.Blocks.Add(block);
             }
 
+            // start animations
+            foreach (var anSprite in animatedSpriteList)
+            {
+                anSprite.Key.StartAnimation(anSprite.Value);
+            }
 
             return returnLevel;
         }
