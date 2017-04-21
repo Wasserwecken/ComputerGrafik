@@ -13,16 +13,16 @@ namespace Lib.LevelLoader.LevelItems
 		/// </summary>
 		public Vector2 EnergyLimit { get; set; }
 
+
 		/// <summary>
 		/// Available environments with the object behaviours
 		/// </summary>
-		public Dictionary<BlockType, LevelItemPhysicBodyProperties> Properties { get; set; }
+		private Dictionary<BlockType, LevelItemPhysicBodyProperties> Properties { get; set; }
 
 		/// <summary>
 		/// Current energy of the object
 		/// </summary>
-		public Vector2 Energy { get; set; }
-
+		private Vector2 Energy { get; set; }
 
 		/// <summary>
 		/// Current used environment
@@ -37,13 +37,19 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Last invoked force
 		/// </summary>
-		public Vector2 ForceReference { get; set; }
+		private Vector2 LastProcessedForce { get; set; }
+
+		/// <summary>
+		/// This force will be processed every step and reseted afterwords
+		/// </summary>
+		private Vector2 ForceToProcess { get; set; }
 
 
 		/// <summary>
 		/// Initialises a forceable object
 		/// </summary>
-		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType startEnvironment)
+		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType startEnvironment, Vector2 startPosition)
+			: base(startPosition)
 		{
 			Properties = properties;
 			EnergyLimit = Vector2.Zero;
@@ -52,6 +58,30 @@ namespace Lib.LevelLoader.LevelItems
 			SetEnvironment(startEnvironment);
 		}
 
+		/// <summary>
+		/// Updates all values for one step
+		/// </summary>
+		public void UpdateLogic()
+		{
+			//converts the force to energy and adding gravity
+			//This will build up energy like "pusching" something
+			SetEnergy(new Vector2(ForceToProcess.X, ForceToProcess.Y - CurrentProperties.Mass));
+
+			//Apply force, calculate x and y again for easing
+			//energy is used as reference
+			float x = GetEasingValue(LastProcessedForce.X, Energy.X) * Energy.X;
+			float y = GetEasingValue(LastProcessedForce.Y, Energy.Y) * Energy.Y;
+
+			//Limit the energy
+			if (EnergyLimit.X > 0)
+				x = x.LimitToRange(-EnergyLimit.X, -EnergyLimit.X);
+
+			if (EnergyLimit.Y > 0)
+				y = y.LimitToRange(-EnergyLimit.Y, -EnergyLimit.Y);
+
+			//Set the new position
+			Position = Position + new Vector2(x, y);
+		}
 
 		/// <summary>
 		/// Sets the enivornment for the object
@@ -80,29 +110,11 @@ namespace Lib.LevelLoader.LevelItems
 
 		/// <summary>
 		/// Applys a force to the object like pushing it.
-		/// Builds up energy first
 		/// </summary>
 		/// <param name="force"></param>
 		public void ApplyForce(Vector2 force)
 		{
-			//converts the force to energy and adding gravity
-			//This will build up energy like "pusching" something
-			SetEnergy(new Vector2(force.X, force.Y - CurrentProperties.Mass));
-
-			//Apply force, calculate x and y again for easing
-			//energy is used as reference
-			float x = GetEasingValue(ForceReference.X, Energy.X) * Energy.X;
-			float y = GetEasingValue(ForceReference.Y, Energy.Y) * Energy.Y;
-
-			//Limit the energy
-			if (EnergyLimit.X > 0)
-				x = x.LimitToRange(-EnergyLimit.X, -EnergyLimit.X);
-
-			if (EnergyLimit.Y > 0)
-				y = y.LimitToRange(-EnergyLimit.Y, -EnergyLimit.Y);
-
-			//Set the new position
-			Position = Position + new Vector2(x, y);
+			ForceToProcess = ForceToProcess + force;
 		}
 
 		/// <summary>
@@ -115,13 +127,13 @@ namespace Lib.LevelLoader.LevelItems
 			SetForceReference(force);
 
 			//Calc energy
-			float newEnergyX = ManipulateEnergy(Energy.X, force.X, ForceReference.X, CurrentProperties.Momentum.X);
+			float newEnergyX = ManipulateEnergy(Energy.X, force.X, LastProcessedForce.X, CurrentProperties.Momentum.X);
 			if (Math.Abs(newEnergyX) <= 0)
-				ForceReference = new Vector2(0, ForceReference.Y);
+				LastProcessedForce = new Vector2(0, LastProcessedForce.Y);
 
-			float newEnergyY = ManipulateEnergy(Energy.Y, force.Y, ForceReference.Y, CurrentProperties.Momentum.Y);
+			float newEnergyY = ManipulateEnergy(Energy.Y, force.Y, LastProcessedForce.Y, CurrentProperties.Momentum.Y);
 			if (Math.Abs(newEnergyY) <= 0)
-				ForceReference = new Vector2(ForceReference.X, 0);
+				LastProcessedForce = new Vector2(LastProcessedForce.X, 0);
 
 			Energy = new Vector2(newEnergyX, newEnergyY);
 		}
@@ -154,16 +166,16 @@ namespace Lib.LevelLoader.LevelItems
 		/// <param name="force"></param>
 		private void SetForceReference(Vector2 force)
 		{
-			float newForceX = ForceReference.X;
-			float newForceY = ForceReference.Y;
+			float newForceX = LastProcessedForce.X;
+			float newForceY = LastProcessedForce.Y;
 
-			if (Math.Abs(force.X) > Math.Abs(ForceReference.X))
+			if (Math.Abs(force.X) > Math.Abs(LastProcessedForce.X))
 				newForceX = force.X;
 
-			if (Math.Abs(force.Y) > Math.Abs(ForceReference.Y))
+			if (Math.Abs(force.Y) > Math.Abs(LastProcessedForce.Y))
 				newForceY = force.Y;
 
-			ForceReference = new Vector2(newForceX, newForceY);
+			LastProcessedForce = new Vector2(newForceX, newForceY);
 		}
 
 		/// <summary>

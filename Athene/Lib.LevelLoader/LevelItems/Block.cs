@@ -19,27 +19,20 @@ namespace Lib.LevelLoader.LevelItems
         /// damage of the block
         /// </summary>
         public int Damage { get; set; }
-
-        /// <summary>
-        /// Initializes a empty block with no coordinates and no sprite
-        /// </summary>
-        public Block()
+		
+	    /// <summary>
+	    /// Initializes a block
+	    /// </summary>
+	    /// <param name="x">x coordinate</param>
+	    /// <param name="y">y coordinate</param>
+	    /// <param name="startPosition"></param>
+	    /// <param name="sprite">sprite</param>
+	    /// <param name="blockType">blocktype</param>
+	    /// <param name="collision"></param>
+	    /// <param name="damage"></param>
+	    public Block(Vector2 startPosition, ISprite sprite, BlockType blockType, bool collision, int damage)
+			: base(startPosition)
         {
-            
-        }
-
-        /// <summary>
-        /// Initializes a block
-        /// </summary>
-        /// <param name="x">x coordinate</param>
-        /// <param name="y">y coordinate</param>
-        /// <param name="sprite">sprite</param>
-        /// <param name="blockType">blocktype</param>
-        /// <param name="collision"></param>
-        /// <param name="damage"></param>
-        public Block(float x, float y, ISprite sprite, BlockType blockType, bool collision, int damage)
-        {
-			Position = new Vector2(x, y);
             Sprite = sprite;
             BlockType = blockType;
             Collision = collision;

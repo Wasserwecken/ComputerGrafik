@@ -6,6 +6,7 @@ using Lib.Input;
 using Lib.Logic;
 using System.Collections.Generic;
 using Lib.LevelLoader;
+using Lib.LevelLoader.LevelItems;
 using Lib.Visuals.Window;
 
 namespace SimeraExample
@@ -20,7 +21,7 @@ namespace SimeraExample
 		
 
 	    private Level Level { get; set; }
-		private FakePlayer Player { get; set; }
+		private LevelItemPlayer Player1 { get; set; }
 
         public GameBase()
 		{
@@ -51,50 +52,30 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-			InputActions.PropertyChanged += InputActions_PropertyChanged;
 		    Level = LevelLoader.LoadLevel(8);
-			Player = new FakePlayer();
-		}
 
-		private void InputActions_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-		{
-			if (InputActions.Jump)
-				Player.Jump();
+
+			SpriteAnimated playerSprite = new SpriteAnimated();
+			playerSprite.AddAnimation("Pics/Worm/walk", 1000);
+			playerSprite.AddAnimation("Pics/Worm/idle", 1000);
+			playerSprite.StartAnimation("walk");
+
+			Player1 = new LevelItemPlayer(Vector2.Zero, BlockType.Solid, null, playerSprite);
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
-			var moveDirection = new Vector2(InputActions.MoveRight - InputActions.MoveLeft, InputActions.MoveUp - InputActions.MoveDown);
-
-			Player.Move(moveDirection.X, moveDirection.Y);
-			Player.ExecuteLogic();
-
-			//offset for the camera for a better view
-			float maxOffset = 1f;
-
-			var x = Player.Position.X + (maxOffset * moveDirection.X);
-			var y = Player.Position.Y + (maxOffset * moveDirection.Y);
-
+			Player1.UpdateLogic();
+			
 			//setting the camera
-			Window.Camera.MoveTo(new Vector2(x, y));
+			Window.Camera.MoveTo(Player1.ViewPoint);
 		}
 		
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
             Level.Draw();
-			Player.Draw();
-
-            Console.Clear();
-            Console.WriteLine("Player:");
-            Console.WriteLine("\tPosition X: {0}", Player.Position.X);
-            Console.WriteLine("\tPosition Y: {0}", Player.Position.Y);
-            Console.WriteLine("Energy:");
-            Console.WriteLine("\tX: {0}", Player.Energy.X);
-            Console.WriteLine("\tY: {0}", Player.Energy.Y);
-            Console.WriteLine("Force:");
-            Console.WriteLine("\tX: {0}", Player.Force.X);
-            Console.WriteLine("\tY: {0}", Player.Force.Y);
+			Player1.Draw();
         }
 	}
 }

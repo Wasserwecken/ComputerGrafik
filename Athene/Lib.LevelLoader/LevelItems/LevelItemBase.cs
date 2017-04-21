@@ -19,5 +19,14 @@ namespace Lib.LevelLoader.LevelItems
         /// the sprite of the item
         /// </summary>
         public ISprite Sprite { get; set; }
+
+		/// <summary>
+		/// Initialises a new level item
+		/// </summary>
+		/// <param name="startPosition"></param>
+		public LevelItemBase(Vector2 startPosition)
+		{
+			Position = startPosition;
+		}
     }
 }

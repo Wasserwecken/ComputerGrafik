@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lib.LevelLoader.LevelItems
 {
-    class Enemy : LevelItemBase
+    class Enemy
     {
         
     }

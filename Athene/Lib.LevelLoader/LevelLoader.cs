@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using Lib.LevelLoader.LevelItems;
 using Lib.Visuals.Graphics;
+using OpenTK;
 
 namespace Lib.LevelLoader
 {
@@ -91,7 +92,8 @@ namespace Lib.LevelLoader
                     animatedSpriteList.Add((SpriteAnimated)sprite, new DirectoryInfo(xmlAnimation.Path).Name);
    
                 }
-                var block = new Block(xmlBlock.X, xmlBlock.Y, sprite, xmlBlock.BlockType, xmlBlock.Collision, xmlBlock.Damage);
+				var startPosition = new Vector2(xmlBlock.X, xmlBlock.Y);
+                var block = new Block(startPosition, sprite, xmlBlock.BlockType, xmlBlock.Collision, xmlBlock.Damage);
                 returnLevel.Blocks.Add(block);
             }
 
