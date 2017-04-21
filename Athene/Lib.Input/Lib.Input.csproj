@@ -58,6 +58,7 @@
     <Compile Include="Mapping\IInputMapItem.cs" />
     <Compile Include="Mapping\InputMapItem.cs" />
     <Compile Include="Mapping\InputMapItemKeyboard.cs" />
+    <Compile Include="Mapping\InputMapList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\ReflectionHelper.cs" />
   </ItemGroup>

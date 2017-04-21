@@ -1,5 +1,6 @@
 ﻿using OpenTK;
 using Lib.Input;
+using Lib.Input.Mapping;
 using System.Collections.Generic;
 using Lib.Visuals.Graphics;
 
@@ -26,7 +27,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Setted values from the input
 		/// </summary>
-		private LevelItemPlayerActions InputActionValues { get; set; }
+		private LevelItemPlayerActions InputValues { get; }
 
 		/// <summary>
 		/// Input layout for the player
@@ -41,7 +42,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Sprite of the player
 		/// </summary>
-		private SpriteAnimated Sprite { get; set; }
+		private SpriteAnimated Sprite { get; }
 
 
 		/// <summary>
@@ -50,11 +51,12 @@ namespace Lib.LevelLoader.LevelItems
 		public LevelItemPlayer(
 			Vector2 startPosition,
 			BlockType startEnvironment,
-			InputLayout<LevelItemPlayerActions> inputLayout,
+			InputMapList<LevelItemPlayerActions> inputMapping,
 			SpriteAnimated sprite)
 		{
 			//Bind the input
-			InputLayout = inputLayout;
+			InputValues = new LevelItemPlayerActions();
+			InputLayout = new InputLayout<LevelItemPlayerActions>(InputValues, inputMapping);
 
 			//set physic behaviour
 			var physicProps = new Dictionary<BlockType, LevelItemPhysicBodyProperties>
@@ -77,7 +79,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// </summary>
 		public void UpdateLogic()
 		{
-			//ProcessInput();
+			ProcessInput();
 
 			Physics.UpdateLogic();
 
@@ -100,7 +102,7 @@ namespace Lib.LevelLoader.LevelItems
 		{
 			// tries to move the player in a given direction.
 			// The direction values should be between -1 and 1 for x and y
-			var moveDirection = new Vector2(InputActionValues.MoveRight - InputActionValues.MoveLeft, InputActionValues.MoveUp - InputActionValues.MoveDown);
+			var moveDirection = new Vector2(InputValues.MoveRight - InputValues.MoveLeft, InputValues.MoveUp - InputValues.MoveDown);
 
 			moveDirection *= MovementSpeed;
 			Physics.ApplyForce(moveDirection);
@@ -108,7 +110,7 @@ namespace Lib.LevelLoader.LevelItems
 
 			// tries to execute a jump of the player. In some environments or sitiations
 			// it will be not allowed to jump (e.g. water)
-			if (InputActionValues.Jump)
+			if (InputValues.Jump)
 				Physics.ApplyImpulse(new Vector2(0.02f));
 		}
 

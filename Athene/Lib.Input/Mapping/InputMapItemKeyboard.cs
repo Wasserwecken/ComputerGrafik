@@ -16,6 +16,11 @@ namespace Lib.Input.Mapping
 		public int DeviceId { get; set; }
 
 		/// <summary>
+		/// Type of the input device
+		/// </summary>
+		public Type DeviceType { get; set; }
+
+		/// <summary>
 		/// Key which is bind to an ingame action
 		/// </summary>
 		public Key KeyboardKey { get; set; }

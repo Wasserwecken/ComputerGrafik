@@ -25,6 +25,11 @@ namespace Lib.Input.Mapping
 		public Delegate Converter { get; set; }
 
 		/// <summary>
+		/// Type of the input device
+		/// </summary>
+		public Type DeviceType { get; set; }
+
+		/// <summary>
 		/// ID of the device where the mapping should be checked
 		/// </summary>
 		public int DeviceId { get; set; }
