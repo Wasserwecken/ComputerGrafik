@@ -16,7 +16,7 @@ namespace SimeraExample
 		public Vector2 Energy => PlayerPhysics.Energy;
 		public Vector2 Force => PlayerPhysics.ForceReference;
 
-		private ForceObject PlayerPhysics { get; set; }
+		private LevelItemPhysicBody PlayerPhysics { get; set; }
 		private SpriteStatic Sprite { get; set; }
 		private Vector2 ForceInput { get; set; }
 
@@ -28,14 +28,13 @@ namespace SimeraExample
 			Sprite = new SpriteStatic("Pics/trophy.png");
 
 			//set physics
-			var forceProps = new Dictionary<Enum, ForceObjectProperties>
+			var forceProps = new Dictionary<BlockType, LevelItemPhysicBodyProperties>
 			{
-				{Movement.Walk, new ForceObjectProperties(1f, 30f, 0.2f)},
-				{Movement.Swimming, new ForceObjectProperties(30f, 30f, -0.005f)}
+				{BlockType.Solid, new LevelItemPhysicBodyProperties(1f, 30f, 0.2f)},
+				{BlockType.Liquid, new LevelItemPhysicBodyProperties(30f, 30f, -0.005f)}
 			};
-			PlayerPhysics = new ForceObject(forceProps, new Vector2(200.0f));
-			
-			PlayerPhysics.SetEnvironment(Movement.Walk);
+
+			PlayerPhysics = new LevelItemPhysicBody(forceProps, BlockType.Solid);
 			PlayerPhysics.X = 0;
 			PlayerPhysics.Y = 0;
 		}
@@ -50,7 +49,7 @@ namespace SimeraExample
 
 			if (Position.X > 0)
 			{
-				PlayerPhysics.SetEnvironment(Movement.Walk);
+				PlayerPhysics.SetEnvironment(BlockType.Solid);
 				if (Position.Y < 0)
 				{
 					PlayerPhysics.Energy = new Vector2(PlayerPhysics.Energy.X, 0);
@@ -60,9 +59,9 @@ namespace SimeraExample
 			else
 			{
 				if (Position.Y < 0)
-					PlayerPhysics.SetEnvironment(Movement.Swimming);
+					PlayerPhysics.SetEnvironment(BlockType.Liquid);
 				else
-					PlayerPhysics.SetEnvironment(Movement.Walk);
+					PlayerPhysics.SetEnvironment(BlockType.Solid);
 			}
 		}
 

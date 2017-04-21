@@ -5,7 +5,7 @@ using Lib.Logic;
 
 namespace Lib.LevelLoader.LevelItems
 {
-	public class ForceObject
+	public class LevelItemPhysicBody
 		: LevelItemBase
 	{
 		/// <summary>
@@ -16,7 +16,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Available environments with the object behaviours
 		/// </summary>
-		public Dictionary<Enum, ForceObjectProperties> Properties { get; set; }
+		public Dictionary<BlockType, LevelItemPhysicBodyProperties> Properties { get; set; }
 
 		/// <summary>
 		/// Current energy of the object
@@ -32,7 +32,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Current used behaviour
 		/// </summary>
-		private ForceObjectProperties CurrentProperties { get; set; }
+		private LevelItemPhysicBodyProperties CurrentProperties { get; set; }
 
 		/// <summary>
 		/// Last invoked force
@@ -43,13 +43,13 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Initialises a forceable object
 		/// </summary>
-		/// <param name="properties"></param>
-		/// <param name="energyLimit"></param>
-		public ForceObject(Dictionary<Enum, ForceObjectProperties> properties, Vector2 energyLimit)
+		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType startEnvironment)
 		{
 			Properties = properties;
-			EnergyLimit = energyLimit;
+			EnergyLimit = Vector2.Zero;
 			Energy = Vector2.Zero;
+
+			SetEnvironment(startEnvironment);
 		}
 
 
@@ -57,7 +57,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// Sets the enivornment for the object
 		/// </summary>
 		/// <param name="environment"></param>
-		public void SetEnvironment(Enum environment)
+		public void SetEnvironment(BlockType environment)
 		{
 			//check for the environment
 			if (!environment.Equals(CurrentEnvironment))
@@ -95,7 +95,11 @@ namespace Lib.LevelLoader.LevelItems
 			float y = GetEasingValue(ForceReference.Y, Energy.Y) * Energy.Y;
 
 			//Limit the energy
-			CutVectorTo(ref x, ref y, EnergyLimit);
+			if (EnergyLimit.X > 0)
+				x = x.LimitToRange(-EnergyLimit.X, -EnergyLimit.X);
+
+			if (EnergyLimit.Y > 0)
+				y = y.LimitToRange(-EnergyLimit.Y, -EnergyLimit.Y);
 
 			//Set the new position
 			X = X + x;
@@ -188,23 +192,6 @@ namespace Lib.LevelLoader.LevelItems
 				energy = energy.ReduceToZero(stepSize);
 			
 			return energy;
-		}
-
-		/// <summary>
-		/// Cuts a vector to the given limits. the limit has to be positive and sets limits for the positive and negative boundaries
-		/// </summary>
-		/// <returns></returns>
-		private void CutVectorTo(ref float x, ref float y, Vector2 limits)
-		{
-			if (x < -limits.X)
-				x = -limits.X;
-			else if (x > limits.X)
-				x = limits.X;
-
-			if (y < -limits.Y)
-				y = -limits.Y;
-			else if (y > limits.Y)
-				y = limits.Y;
 		}
 	}
 }

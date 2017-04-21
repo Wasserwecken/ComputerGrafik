@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationLoader.cs" />
-    <Compile Include="LevelItems\ForceObject.cs" />
+    <Compile Include="LevelItems\LevelItemPhysicBody.cs" />
     <Compile Include="LevelItems\Block.cs" />
     <Compile Include="LevelItems\BlockLinkType.cs" />
     <Compile Include="LevelItems\BlockType.cs" />
@@ -52,7 +52,7 @@
     <Compile Include="Level.cs" />
     <Compile Include="LevelItems\LevelItemBase.cs" />
     <Compile Include="LevelLoader.cs" />
-    <Compile Include="LevelItems\ForceObjectProperties.cs" />
+    <Compile Include="LevelItems\LevelItemPhysicBodyProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Xml\LinkTypes\XmlAnimation.cs" />
     <Compile Include="Xml\Root\XmlAnimationList.cs" />

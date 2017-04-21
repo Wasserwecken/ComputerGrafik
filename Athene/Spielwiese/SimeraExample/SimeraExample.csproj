@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\Environments.cs" />
     <Compile Include="Code\FakePlayer.cs" />
     <Compile Include="Code\GameBase.cs" />
     <Compile Include="Code\IDrawable.cs" />

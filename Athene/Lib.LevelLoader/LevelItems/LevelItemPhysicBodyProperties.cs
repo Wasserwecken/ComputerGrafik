@@ -2,7 +2,7 @@
 
 namespace Lib.LevelLoader.LevelItems
 {
-	public class ForceObjectProperties
+	public class LevelItemPhysicBodyProperties
 	{
 		/// <summary>
 		/// Interia of the object. 1 is for instant movment, as higher the value more "sliding"
@@ -20,7 +20,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <param name="momentumHorizontal"></param>
 		/// <param name="momentumVertical"></param>
 		/// <param name="mass"></param>
-		public ForceObjectProperties(float momentumHorizontal, float momentumVertical, float mass)
+		public LevelItemPhysicBodyProperties(float momentumHorizontal, float momentumVertical, float mass)
 		{
 			Momentum = new Vector2(momentumHorizontal, momentumVertical);
 			Mass = mass;
