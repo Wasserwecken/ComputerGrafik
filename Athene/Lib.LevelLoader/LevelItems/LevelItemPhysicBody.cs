@@ -102,8 +102,7 @@ namespace Lib.LevelLoader.LevelItems
 				y = y.LimitToRange(-EnergyLimit.Y, -EnergyLimit.Y);
 
 			//Set the new position
-			X = X + x;
-			Y = Y + y;
+			Position = Position + new Vector2(x, y);
 		}
 
 		/// <summary>

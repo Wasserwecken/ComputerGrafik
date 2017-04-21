@@ -4,20 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lib.Visuals.Graphics;
+using OpenTK;
 
 namespace Lib.LevelLoader.LevelItems
 {
     public class LevelItemBase
     {
         /// <summary>
-        ///  x coordinate of the item
+        /// Position of the item
         /// </summary>
-        public float X { get; set; }
-
-        /// <summary>
-        /// y coordinate of the item
-        /// </summary>
-        public float Y { get; set; }
+        public Vector2 Position { get; set; }
 
         /// <summary>
         /// the sprite of the item

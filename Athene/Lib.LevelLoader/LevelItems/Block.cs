@@ -39,8 +39,7 @@ namespace Lib.LevelLoader.LevelItems
         /// <param name="damage"></param>
         public Block(float x, float y, ISprite sprite, BlockType blockType, bool collision, int damage)
         {
-            X = x;
-            Y = y;
+			Position = new Vector2(x, y);
             Sprite = sprite;
             BlockType = blockType;
             Collision = collision;
@@ -52,7 +51,7 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         public void Draw()
         {
-            Sprite.Draw(new Vector2(X, Y), new Vector2(1f));
+            Sprite.Draw(Position, new Vector2(1f));
         }
     }
 }

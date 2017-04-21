@@ -12,7 +12,7 @@ namespace SimeraExample
 {
 	class FakePlayer
 	{
-		public Vector2 Position => new Vector2(PlayerPhysics.X, PlayerPhysics.Y);
+		public Vector2 Position => PlayerPhysics.Position;
 		public Vector2 Energy => PlayerPhysics.Energy;
 		public Vector2 Force => PlayerPhysics.ForceReference;
 
@@ -34,9 +34,7 @@ namespace SimeraExample
 				{BlockType.Liquid, new LevelItemPhysicBodyProperties(30f, 30f, -0.005f)}
 			};
 
-			PlayerPhysics = new LevelItemPhysicBody(forceProps, BlockType.Solid);
-			PlayerPhysics.X = 0;
-			PlayerPhysics.Y = 0;
+			PlayerPhysics = new LevelItemPhysicBody(forceProps, BlockType.Solid) {Position = Vector2.Zero};
 		}
 
 		/// <summary>
@@ -53,7 +51,7 @@ namespace SimeraExample
 				if (Position.Y < 0)
 				{
 					PlayerPhysics.Energy = new Vector2(PlayerPhysics.Energy.X, 0);
-					PlayerPhysics.Y = 0;
+					PlayerPhysics.Position = new Vector2(PlayerPhysics.Position.X, 0);
 				}
 			}
 			else
@@ -87,7 +85,7 @@ namespace SimeraExample
 		/// </summary>
 		public void Draw()
 		{
-			Sprite.Draw(new Vector2(PlayerPhysics.X, PlayerPhysics.Y), new Vector2(0.8f));
+			Sprite.Draw(PlayerPhysics.Position, new Vector2(0.8f));
 		}
 	}
 }
