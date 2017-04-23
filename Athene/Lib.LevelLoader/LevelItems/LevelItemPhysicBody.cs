@@ -110,7 +110,7 @@ namespace Lib.LevelLoader.LevelItems
 		{
 			//An implus does not build up energy, its directly added
 			Energy = Energy + impuls;
-			SetForceReference(impuls);
+			SetLastProcessedForce(impuls);
 		}
 
 		/// <summary>
@@ -122,21 +122,42 @@ namespace Lib.LevelLoader.LevelItems
 			ForceToProcess = ForceToProcess + force;
 		}
 
-		/// <summary>
-		/// Sets the new energy by a given force. Limits the maximums to the given force
-		/// </summary>
-		/// <param name="force"></param>
-		private void SetEnergy(Vector2 force)
+        /// <summary>
+        /// Stops the body immidiatly on the x axis, by removing all energy and force
+        /// </summary>
+        public void StopBodyOnAxisX()
+        {
+            ForceToProcess = new Vector2(0, ForceToProcess.Y);
+            Energy = new Vector2(0, Energy.Y);
+            LastProcessedForce = new Vector2(0, LastProcessedForce.Y);
+        }
+
+        /// <summary>
+        /// Stops the body immidiatly on the x axis, by removing all energy and force
+        /// </summary>
+        public void StopBodyOnAxisY()
+        {
+            ForceToProcess = new Vector2(ForceToProcess.X, 0);
+            Energy = new Vector2(Energy.X, 0);
+            LastProcessedForce = new Vector2(LastProcessedForce.X, 0);
+        }
+
+
+        /// <summary>
+        /// Sets the new energy by a given force. Limits the maximums to the given force
+        /// </summary>
+        /// <param name="forceToProcess"></param>
+        private void SetEnergy(Vector2 forceToProcess)
 		{
 			//sets the reference, ignoring 0's in x and y
-			SetForceReference(force);
+			SetLastProcessedForce(forceToProcess);
 
-			//Calc energy
-			float newEnergyX = ManipulateEnergy(Energy.X, force.X, LastProcessedForce.X, CurrentProperties.Momentum.X);
+			//Calc energy, also resets the last processed force if there is no input anymore and all energy has been build down
+			float newEnergyX = ManipulateEnergy(Energy.X, forceToProcess.X, LastProcessedForce.X, CurrentProperties.Momentum.X);
 			if (Math.Abs(newEnergyX) <= 0)
 				LastProcessedForce = new Vector2(0, LastProcessedForce.Y);
 
-			float newEnergyY = ManipulateEnergy(Energy.Y, force.Y, LastProcessedForce.Y, CurrentProperties.Momentum.Y);
+			float newEnergyY = ManipulateEnergy(Energy.Y, forceToProcess.Y, LastProcessedForce.Y, CurrentProperties.Momentum.Y);
 			if (Math.Abs(newEnergyY) <= 0)
 				LastProcessedForce = new Vector2(LastProcessedForce.X, 0);
 
@@ -144,11 +165,11 @@ namespace Lib.LevelLoader.LevelItems
 		}
 
 		/// <summary>
-		/// 
+		/// Caclulates from the energy level the easing value for a smooth movement
 		/// </summary>
-		/// <param name="forceReference"></param>
+		/// <param name="lastProcessedForce"></param>
 		/// <param name="energy"></param>
-		private float GetEasingValue(float forceReference, float energy)
+		private float GetEasingValue(float lastProcessedForce, float energy)
 		{
 			float easingValue;
 
@@ -156,7 +177,7 @@ namespace Lib.LevelLoader.LevelItems
 				easingValue = 0;
 			else
 			{
-				float easingStep = Math.Abs(energy / forceReference);
+				float easingStep = Math.Abs(energy / lastProcessedForce);
 				easingStep = easingStep.LimitToRange(0, 1);
 
 				easingValue = Easing.CubicOut(easingStep, 1);
@@ -168,41 +189,43 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Sets the last given force, if the force should be 0 in x or y, the force remains the same
 		/// </summary>
-		/// <param name="force"></param>
-		private void SetForceReference(Vector2 force)
+		/// <param name="forceToProcess"></param>
+		private void SetLastProcessedForce(Vector2 forceToProcess)
 		{
-			float newForceX = LastProcessedForce.X;
-			float newForceY = LastProcessedForce.Y;
+			float newForceRefX = LastProcessedForce.X;
+			float newForceRefY = LastProcessedForce.Y;
 
-			if (Math.Abs(force.X) > Math.Abs(LastProcessedForce.X))
-				newForceX = force.X;
+			if (Math.Abs(forceToProcess.X) > Math.Abs(LastProcessedForce.X))
+				newForceRefX = forceToProcess.X;
 
-			if (Math.Abs(force.Y) > Math.Abs(LastProcessedForce.Y))
-				newForceY = force.Y;
+			if (Math.Abs(forceToProcess.Y) > Math.Abs(LastProcessedForce.Y))
+				newForceRefY = forceToProcess.Y;
 
-			LastProcessedForce = new Vector2(newForceX, newForceY);
+			LastProcessedForce = new Vector2(newForceRefX, newForceRefY);
 		}
 
 		/// <summary>
-		/// 
+		/// Decides if the energy has to be increasing or decreasing. Also determines the values and speed for that
 		/// </summary>
-		/// <param name="force"></param>
+		/// <param name="forceToProcess"></param>
 		/// <param name="energy"></param>
-		/// <param name="forceReference"></param>
+		/// <param name="lastProcessedForce"></param>
 		/// <param name="momentum"></param>
 		/// <returns></returns>
-		private float ManipulateEnergy(float energy, float force, float forceReference, float momentum)
+		private float ManipulateEnergy(float energy, float forceToProcess, float lastProcessedForce, float momentum)
 		{
-			float stepSize = forceReference / momentum;
+            //Calculating how much energy will be added for one tick, more momentum -> less energy
+			float stepSize = lastProcessedForce / momentum;
 
 			//Check for increasing or decreasing the energy
-			if (force * energy >= 0 && Math.Abs(force) >= Math.Abs(energy))
+			if (forceToProcess * energy >= 0 && Math.Abs(forceToProcess) >= Math.Abs(energy))
 			{
 				energy += stepSize;
-				if (energy > 0 && energy > forceReference)
-					energy = forceReference;
-				if (energy < 0 && energy < forceReference)
-					energy = forceReference;
+
+				if (energy > 0 && energy > lastProcessedForce)
+					energy = lastProcessedForce;
+				if (energy < 0 && energy < lastProcessedForce)
+					energy = lastProcessedForce;
 			}
 			else
 				energy = energy.ReduceToZero(stepSize);
