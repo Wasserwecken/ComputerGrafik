@@ -13,6 +13,5 @@ namespace Lib.LevelLoader.LevelItems
         public Block BlockBottom { get; set; }
         public Block BlockTop { get; set; }
         public Block BlockBehind { get; set; }
-
     }
 }

@@ -22,7 +22,6 @@ namespace SimeraExample
 		
 
 	    private Level Level { get; set; }
-		private LevelItemPlayer Player1 { get; set; }
 
         public GameBase()
 		{
@@ -39,28 +38,7 @@ namespace SimeraExample
 		{
 		    Level = LevelLoader.LoadLevel(8);
 
-			SpriteAnimated playerSprite = new SpriteAnimated();
-			playerSprite.AddAnimation("Pics/Worm/walk", 1000);
-			playerSprite.AddAnimation("Pics/Worm/idle", 1000);
-			playerSprite.StartAnimation("walk");
-
-			var mapList = new InputMapList<LevelItemPlayerActions>();
-
-			mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveLeft, (inval, curval) => inval.Length > 0.01 && inval.X > 0 ? -inval.X : 0);
-			mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveRight, (inval, curval) => inval.Length > 0.01 && inval.X < 0 ? inval.X : 0);
-			mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveUp, (inval, curval) => inval.Length > 0.01 && inval.Y > 0 ? inval.Y : 0);
-			mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveDown, (inval, curval) => inval.Length > 0.01 && inval.Y < 0 ? -inval.Y : 0);
-			mapList.AddMappingGamePad(0, pad => pad.Buttons.A, inp => inp.Jump, (inval, curval) => inval == ButtonState.Pressed);
-
-			mapList.AddMappingKeyboard(Key.Left, inp => inp.MoveLeft, (inval, curval) => inval ? +1 : 0);
-			mapList.AddMappingKeyboard(Key.Right, inp => inp.MoveRight, (inval, curval) => inval ? +1 : 0);
-			mapList.AddMappingKeyboard(Key.Up, inp => inp.MoveUp, (inval, curval) => inval ? +1 : 0);
-			mapList.AddMappingKeyboard(Key.Down, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
-			mapList.AddMappingKeyboard(Key.Space, inp => inp.Jump, (inval, curval) => inval);
-
-			Player1 = new LevelItemPlayer(Vector2.Zero, BlockType.Solid, mapList, playerSprite);
-
-            Level.Players.Add(Player1);
+		
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
@@ -68,7 +46,7 @@ namespace SimeraExample
 			//Player1.UpdateLogic();
 			Level.UpdateLogic();
 			//setting the camera
-			Window.Camera.MoveTo(Player1.ViewPoint);
+			Window.Camera.MoveTo(Level.Players[0].ViewPoint);
 		}
 		
 

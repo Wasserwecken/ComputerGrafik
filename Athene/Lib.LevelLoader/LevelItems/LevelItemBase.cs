@@ -9,7 +9,7 @@ using OpenTK;
 
 namespace Lib.LevelLoader.LevelItems
 {
-    public class LevelItemBase
+    public abstract class LevelItemBase
     {
         /// <summary>
         /// Position of the item
@@ -33,5 +33,7 @@ namespace Lib.LevelLoader.LevelItems
 			Position = startPosition;
             Box2D = new Box2D(startPosition.X, startPosition.Y, boxSize.X, boxSize.Y);
 		}
+
+        public abstract void ReactToCollision(LevelItemBase collidingBlock);
     }
 }

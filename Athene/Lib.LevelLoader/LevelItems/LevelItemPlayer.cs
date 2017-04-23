@@ -245,15 +245,15 @@ namespace Lib.LevelLoader.LevelItems
             var blocksTopRight = (from block in level.Blocks where (block.Position.Y > Math.Round(Physics.Position.Y)) && (block.Position.X > Math.Round(Physics.Position.X))
                                orderby block.Position.X
                                select block).ToArray();
-            if (blocksTopRight.Length > 0)
-                returnInformation.BlockTopRight = blocksTopRight[0];
+            //if (blocksTopRight.Length > 0)
+            //    returnInformation.BlockTopRight = blocksTopRight[0];
 
             var blocksBottomRight = (from block in level.Blocks
                                   where (block.Position.Y < Math.Round(Physics.Position.Y)) && (block.Position.X > Math.Round(Physics.Position.X))
                                   orderby block.Position.X
                                   select block).ToArray();
-            if (blocksBottomRight.Length > 0)
-                returnInformation.BlockBottomRight = blocksBottomRight[0];
+            //if (blocksBottomRight.Length > 0)
+            //    returnInformation.BlockBottomRight = blocksBottomRight[0];
 
             returnInformation.BlockBehind = level.Blocks.FirstOrDefault(b => (b.Position.X == Math.Round(Physics.Position.X)) && (b.Position.Y == Math.Round(Physics.Position.Y)));
 

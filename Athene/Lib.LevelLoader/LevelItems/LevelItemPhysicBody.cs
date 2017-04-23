@@ -209,5 +209,10 @@ namespace Lib.LevelLoader.LevelItems
 			
 			return energy;
 		}
-	}
+
+        public override void ReactToCollision(LevelItemBase collidingBlock)
+        {
+             
+        }
+    }
 }

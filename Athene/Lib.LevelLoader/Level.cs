@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lib.Input.Mapping;
 using Lib.LevelLoader.LevelItems;
+using Lib.Visuals.Graphics;
 using OpenTK;
+using OpenTK.Input;
 
 namespace Lib.LevelLoader
 {
@@ -27,6 +30,7 @@ namespace Lib.LevelLoader
 		{
 			Blocks = new List<Block>();
             Players = new List<LevelItemPlayer>();
+            CreateTestPlayer();
 		}
 
         /// <summary>
@@ -43,6 +47,39 @@ namespace Lib.LevelLoader
 
                 
             }
+        }
+
+        public void CheckCollision()
+        {
+            
+        }
+
+        private void CreateTestPlayer()
+        {
+            LevelItemPlayer player = null;
+
+            SpriteAnimated playerSprite = new SpriteAnimated();
+            playerSprite.AddAnimation("Pics/Worm/walk", 1000);
+            playerSprite.AddAnimation("Pics/Worm/idle", 1000);
+            playerSprite.StartAnimation("walk");
+
+            var mapList = new InputMapList<LevelItemPlayerActions>();
+
+            mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveLeft, (inval, curval) => inval.Length > 0.01 && inval.X > 0 ? -inval.X : 0);
+            mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveRight, (inval, curval) => inval.Length > 0.01 && inval.X < 0 ? inval.X : 0);
+            mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveUp, (inval, curval) => inval.Length > 0.01 && inval.Y > 0 ? inval.Y : 0);
+            mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveDown, (inval, curval) => inval.Length > 0.01 && inval.Y < 0 ? -inval.Y : 0);
+            mapList.AddMappingGamePad(0, pad => pad.Buttons.A, inp => inp.Jump, (inval, curval) => inval == ButtonState.Pressed);
+
+            mapList.AddMappingKeyboard(Key.Left, inp => inp.MoveLeft, (inval, curval) => inval ? +1 : 0);
+            mapList.AddMappingKeyboard(Key.Right, inp => inp.MoveRight, (inval, curval) => inval ? +1 : 0);
+            mapList.AddMappingKeyboard(Key.Up, inp => inp.MoveUp, (inval, curval) => inval ? +1 : 0);
+            mapList.AddMappingKeyboard(Key.Down, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
+            mapList.AddMappingKeyboard(Key.Space, inp => inp.Jump, (inval, curval) => inval);
+
+            player = new LevelItemPlayer(Vector2.Zero, BlockType.Solid, mapList, playerSprite);
+            Players.Add(player);
+
         }
 
         /// <summary>
