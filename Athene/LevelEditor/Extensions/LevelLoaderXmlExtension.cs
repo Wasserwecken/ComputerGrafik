@@ -100,6 +100,7 @@ namespace LevelEditor.Extensions
                     Id = block.Link,
                     Path = texturePath
                 };
+                block.Collision = true;
                 level.Textures.Add(texture);
             }
             level.Blocks.Add(block);

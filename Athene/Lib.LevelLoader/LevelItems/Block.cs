@@ -31,7 +31,7 @@ namespace Lib.LevelLoader.LevelItems
 	    /// <param name="collision"></param>
 	    /// <param name="damage"></param>
 	    public Block(Vector2 startPosition, ISprite sprite, BlockType blockType, bool collision, int damage)
-			: base(startPosition)
+			: base(startPosition, new Vector2(1,1))
         {
             Sprite = sprite;
             BlockType = blockType;

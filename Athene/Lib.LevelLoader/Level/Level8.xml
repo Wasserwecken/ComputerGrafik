@@ -1,105 +1,67 @@
 <?xml version="1.0"?>
 <Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Blocks>
-    <Block X="6" Y="3" Link="jungle_pack_09" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="7" Y="3" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="8" Y="3" Link="jungle_pack_11" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-9" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-8" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-7" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-6" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-5" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-4" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-3" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-2" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-1" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="0" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="1" Y="0" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="2" Y="0" Link="jungle_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="3" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="4" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="5" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="6" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="7" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="8" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="9" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="10" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="11" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="12" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="13" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="14" Y="0" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-9" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-8" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-7" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-6" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-5" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-4" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-3" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-2" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-1" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="0" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="1" Y="-1" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="2" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="3" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="4" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="5" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="6" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="7" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="8" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="9" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="10" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="11" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="12" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="13" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="14" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-9" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-8" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-7" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-6" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-5" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-4" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-3" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-2" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-1" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="0" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="1" Y="-2" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="2" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="3" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="4" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="5" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="6" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="7" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="8" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="9" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="10" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="11" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="12" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="13" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="14" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-9" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-8" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-7" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-6" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-5" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-4" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-3" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-2" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-1" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="0" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="1" Y="-3" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="2" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="3" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="4" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="5" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="6" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="7" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="8" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="9" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="10" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="11" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="12" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="13" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="14" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-9" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="true" Damage="0" />
+    <Block X="-7" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-9" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-7" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-10" Y="4" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-9" Y="4" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-8" Y="4" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-7" Y="4" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-6" Y="4" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-10" Y="3" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-9" Y="3" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-8" Y="3" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-7" Y="3" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-6" Y="3" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-13" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-12" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-11" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-10" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-9" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-8" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-7" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-6" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-5" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-4" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-3" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-2" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-15" Y="-2" Link="desert_pack_05" LinkType="Image" BlockType="Solid" Collision="true" Damage="0" />
+    <Block X="-14" Y="-2" Link="desert_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-13" Y="-2" Link="desert_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-12" Y="-2" Link="desert_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-2" Y="-2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-1" Y="-2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="0" Y="-2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="1" Y="-2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="2" Y="-2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="3" Y="-2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-15" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="true" Damage="0" />
+    <Block X="-14" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-13" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-12" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-11" Y="-3" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-10" Y="-3" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-9" Y="-3" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-8" Y="-3" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-7" Y="-3" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-6" Y="-3" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-5" Y="-3" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-4" Y="-3" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-3" Y="-3" Link="water_top" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-2" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-1" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="0" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="1" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="2" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="3" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-15" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-14" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-13" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-12" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-11" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-10" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-9" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-8" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-7" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
@@ -107,23 +69,18 @@
     <Block X="-5" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-4" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-3" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-2" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-1" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="0" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="1" Y="-4" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="2" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="3" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="4" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="5" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="6" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="7" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="8" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="9" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="10" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="11" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="12" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="13" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="14" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-2" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-1" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="0" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="1" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="2" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="3" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-15" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-14" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-13" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-12" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-11" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-10" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-9" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-8" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-7" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
@@ -131,29 +88,16 @@
     <Block X="-5" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-4" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-3" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-2" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="-1" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="0" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="1" Y="-5" Link="water" LinkType="Animation" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="2" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="3" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="4" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="5" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="6" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="7" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="8" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="9" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="10" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="11" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="12" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="13" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
-    <Block X="14" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-2" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-1" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="0" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="1" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="2" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="3" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
   </Blocks>
   <Textures>
-    <Texture Path="Images\Environment\Jungle\jungle_pack_09.png" Id="jungle_pack_09" />
-    <Texture Path="Images\Environment\Jungle\jungle_pack_05.png" Id="jungle_pack_05" />
-    <Texture Path="Images\Environment\Jungle\jungle_pack_11.png" Id="jungle_pack_11" />
-    <Texture Path="Images\Environment\Jungle\jungle_pack_03.png" Id="jungle_pack_03" />
-    <Texture Path="Images\Environment\Jungle\jungle_pack_35.png" Id="jungle_pack_35" />
+    <Texture Path="Images\Environment\Desert\desert_pack_03.png" Id="desert_pack_03" />
+    <Texture Path="Images\Environment\Desert\desert_pack_05.png" Id="desert_pack_05" />
+    <Texture Path="Images\Environment\Desert\desert_pack_35.png" Id="desert_pack_35" />
   </Textures>
 </Level>

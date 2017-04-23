@@ -1,6 +1,7 @@
 ﻿using OpenTK;
 using System;
 using System.Collections.Generic;
+using Lib.LevelLoader.Geometry;
 using Lib.Logic;
 
 namespace Lib.LevelLoader.LevelItems
@@ -49,7 +50,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// Initialises a forceable object
 		/// </summary>
 		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType startEnvironment, Vector2 startPosition)
-			: base(startPosition)
+			: base(startPosition, new Vector2(0.75f, 1f))
 		{
 			Properties = properties;
 			EnergyLimit = Vector2.Zero;
@@ -82,7 +83,10 @@ namespace Lib.LevelLoader.LevelItems
 
 			//Set the new position
 			Position = Position + new Vector2(x, y);
-		}
+
+            // update the 2DBox
+            Box2D = new Box2D(Position.X, Position.Y, Box2D.SizeX, Box2D.SizeY);
+        }
 
 		/// <summary>
 		/// Sets the enivornment for the object

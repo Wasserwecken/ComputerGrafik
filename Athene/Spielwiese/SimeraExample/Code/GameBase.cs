@@ -58,13 +58,15 @@ namespace SimeraExample
 			mapList.AddMappingKeyboard(Key.Down, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
 			mapList.AddMappingKeyboard(Key.Space, inp => inp.Jump, (inval, curval) => inval);
 
-			Player1 = new LevelItemPlayer(Vector2.Zero, BlockType.Liquid, mapList, playerSprite);
+			Player1 = new LevelItemPlayer(Vector2.Zero, BlockType.Solid, mapList, playerSprite);
+
+            Level.Players.Add(Player1);
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
-			Player1.UpdateLogic();
-			
+			//Player1.UpdateLogic();
+			Level.UpdateLogic();
 			//setting the camera
 			Window.Camera.MoveTo(Player1.ViewPoint);
 		}
@@ -72,8 +74,12 @@ namespace SimeraExample
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
+            //Console.Clear();
             Level.Draw();
-			Player1.Draw();
+			//Player1.Draw();
+            //Console.WriteLine("Player Position: (" + Player1.Position.X + "|" + Player1.Position.Y + ")");
+
+            
         }
 	}
 }

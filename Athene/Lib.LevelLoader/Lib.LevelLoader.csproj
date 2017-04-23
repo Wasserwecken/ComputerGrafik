@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationLoader.cs" />
+    <Compile Include="Geometry\Box2D.cs" />
+    <Compile Include="Geometry\CollisionInformation.cs" />
+    <Compile Include="Geometry\CollisionType.cs" />
     <Compile Include="LevelItems\LevelItemPhysicBody.cs" />
     <Compile Include="LevelItems\Block.cs" />
     <Compile Include="LevelItems\BlockLinkType.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="LevelItems\LevelItemBase.cs" />
     <Compile Include="LevelItems\LevelItemPlayer.cs" />
     <Compile Include="LevelItems\LevelItemPlayerActions.cs" />
+    <Compile Include="LevelItems\PlayerBlockEnvironmentSet.cs" />
     <Compile Include="LevelLoader.cs" />
     <Compile Include="LevelItems\LevelItemPhysicBodyProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
