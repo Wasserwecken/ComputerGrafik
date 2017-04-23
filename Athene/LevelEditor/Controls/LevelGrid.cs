@@ -81,18 +81,20 @@ namespace LevelEditor.Controls
             LevelItemButton button = sender as LevelItemButton;
             var selectedRadioButton = LevelEditor.SelectedRadioButton;
             var selectedBlockType = (BlockType) LevelEditor.BlockTypeComboBox.SelectedItem;
+            var selectedCollision = (bool)LevelEditor.CollisionYesRadioButton.IsChecked;
+            var selectedDamage = (int)LevelEditor.DamageSlider.Value;
 
             if (selectedRadioButton == null || button == null) return;
 
             if (selectedRadioButton is RadioButtonSelectTexture)
             {
-                button.SetXmlBlock(((RadioButtonSelectTexture)selectedRadioButton).XmlTexture, selectedBlockType);
+                button.SetXmlBlock(((RadioButtonSelectTexture)selectedRadioButton).XmlTexture, selectedBlockType, selectedCollision, selectedDamage);
             }
             if (selectedRadioButton is RadioButtonSelectAnimation)
             {
                 button.SetXmlAnimatedBlock(
                     ((RadioButtonSelectAnimation)selectedRadioButton).XmlAnimation,
-                    selectedBlockType);
+                    selectedBlockType, selectedCollision, selectedDamage);
             }
             if (selectedRadioButton is RadioButtonTool)
             {

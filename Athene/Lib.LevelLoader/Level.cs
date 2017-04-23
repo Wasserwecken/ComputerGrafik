@@ -52,14 +52,27 @@ namespace Lib.LevelLoader
             foreach (var player in Players)
             {
                 var oldPositionOfPlayer = new Vector2(player.Position.X, player.Position.Y);
+                BlockType playerEnvironment = BlockType.Solid;
+                
 
                 foreach (var block in Blocks)
                 {
+                    if (block.Position.X == 5 && block.Position.Y == -8)
+                    {
+                        
+                    }
                     if (block.Collision && player.Physics.Box2D.Intersects(block.Box2D))
                     {
+                        
                         player.Physics.ReactToCollision(block, oldPositionOfPlayer);
                     }
+
+                    if (block.Position.X == Math.Round(player.Position.X) &&
+                        block.Position.Y == Math.Round(player.Position.Y))
+                        playerEnvironment = block.BlockType;
+
                 }
+                player.Physics.SetEnvironment(playerEnvironment);
             }
         }
 

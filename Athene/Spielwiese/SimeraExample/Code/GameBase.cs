@@ -36,7 +36,7 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-		    Level = LevelLoader.LoadLevel(8);
+		    Level = LevelLoader.LoadLevel(9);
 
 		
 		}

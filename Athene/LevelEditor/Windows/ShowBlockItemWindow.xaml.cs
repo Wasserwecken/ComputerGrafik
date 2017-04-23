@@ -36,7 +36,12 @@ namespace LevelEditor.Windows
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             BlockType newBlockType = (BlockType)ComboBoxBlockTypes.SelectedItem;
+            var selectedCollision = (bool)CollisionYesRadioButton.IsChecked;
+            var selectedDamage = (int)DamageSlider.Value;
+
             _currentXmlBlock.BlockType = newBlockType;
+            _currentXmlBlock.Damage = selectedDamage;
+            _currentXmlBlock.Collision = selectedCollision;
         }
 
 
@@ -48,14 +53,17 @@ namespace LevelEditor.Windows
             TextBlockCoordinates.Text = "(" + block.X + "|" + block.Y + ")";
 
             /* Update the image */
-            BitmapImage logo = new BitmapImage();
-            logo.BeginInit();
-            logo.UriSource = new Uri(@"\" + texture.Path, UriKind.Relative);
-            logo.EndInit();
-            ImageBlock.Source = logo;
-
+            if (texture != null)
+            {
+                BitmapImage logo = new BitmapImage();
+                logo.BeginInit();
+                logo.UriSource = new Uri(@"\" + texture.Path, UriKind.Relative);
+                logo.EndInit();
+                ImageBlock.Source = logo;
+            }
             ComboBoxBlockTypes.SelectedItem = block.BlockType;
-
+            CollisionYesRadioButton.IsChecked = block.Collision;
+            DamageSlider.Value = block.Damage;
         }
 
 

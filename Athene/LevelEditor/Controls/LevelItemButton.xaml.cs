@@ -68,9 +68,10 @@ namespace LevelEditor.Controls
         /// Sets an xmlBlock to the Button
         /// </summary>
         /// <param name="texture">Texture of the Block</param>
-        /// <param name="path">Absolute ImagePath for the Button Icon</param>
         /// <param name="type">Blocktype</param>
-        public void SetXmlBlock(XmlTexture texture, BlockType type)
+        /// <param name="collision">collision</param>
+        /// <param name="damage">damage</param>
+        public void SetXmlBlock(XmlTexture texture, BlockType type, bool collision, int damage)
         {
             XmLLevelItemBase = new XmlBlock()
             {
@@ -78,7 +79,9 @@ namespace LevelEditor.Controls
                 X = X,
                 Y = Y,
                 Link = texture.Id,
-                LinkType = BlockLinkType.Image
+                LinkType = BlockLinkType.Image,
+                Damage =  damage,
+                Collision = collision
             };
             XmlTexture = texture;
             SetImage(XmlTexture.Path);
@@ -89,7 +92,9 @@ namespace LevelEditor.Controls
         /// </summary>
         /// <param name="animation">animation</param>
         /// <param name="type">Blocktype</param>
-        public void SetXmlAnimatedBlock(XmlAnimation animation, BlockType type)
+        /// <param name="collision">collision</param>
+        /// <param name="damage">damage</param>
+        public void SetXmlAnimatedBlock(XmlAnimation animation, BlockType type, bool collision, int damage)
         {
             XmLLevelItemBase = new XmlBlock()
             {
@@ -97,7 +102,9 @@ namespace LevelEditor.Controls
                 X = X,
                 Y = Y,
                 Link = animation.Id,
-                LinkType = BlockLinkType.Animation
+                LinkType = BlockLinkType.Animation,
+                Collision = collision,
+                Damage = damage
             };
             SetImage(animation.GetFirstImage().FullName, UriKind.Absolute);
         }

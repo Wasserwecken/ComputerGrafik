@@ -1,6 +1,7 @@
 ﻿using OpenTK;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Lib.LevelLoader.Geometry;
 using Lib.Logic;
 
@@ -50,7 +51,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// Initialises a forceable object
 		/// </summary>
 		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType startEnvironment, Vector2 startPosition)
-			: base(startPosition, new Vector2(0.75f, 1f))
+			: base(startPosition, new Vector2(0.75f, 0.75f))
 		{
 			Properties = properties;
 			EnergyLimit = Vector2.Zero;
@@ -243,7 +244,7 @@ namespace Lib.LevelLoader.LevelItems
             var collidingBox = collidingBlock.Box2D;
 
             CollisionType collisionType = CollisionInformation.FromBlocks(this, collidingBlock);
-         
+            
             if (collisionType == CollisionType.Bottom)
             {
                 /* Collion bottom */
@@ -255,8 +256,8 @@ namespace Lib.LevelLoader.LevelItems
             {
                 /* Collision top */
                 Console.WriteLine("top collision");
-                Position = new Vector2(Position.X, collidingBox.Y - collidingBox.SizeY);
-                Box2D = new Box2D(Position.X, collidingBox.Y, Box2D.SizeX, Box2D.SizeY);
+                Position = new Vector2(Position.X, collidingBox.Y - Box2D.SizeY);
+                Box2D = new Box2D(Position.X, collidingBox.Y - Box2D.SizeY, Box2D.SizeX, Box2D.SizeY);
                 StopBodyOnAxisY();
             }
             else if (collisionType == CollisionType.Left)
@@ -283,11 +284,22 @@ namespace Lib.LevelLoader.LevelItems
                 Box2D = new Box2D(oldPosition.X, oldPosition.Y, Box2D.SizeX, Box2D.SizeY);
                 StopBodyOnAxisX();
             }
+            else if (collisionType == CollisionType.MoreCollision)
+            {
+                /* behind right */
+                Console.WriteLine("more collision");
+                Position = oldPosition;
+                Box2D = new Box2D(oldPosition.X, oldPosition.Y, Box2D.SizeX, Box2D.SizeY);
+                StopBodyOnAxisX();
+            }
             else
             {
                 // player stands on 2 blocks...
                 //TODO: implement maybe later
             }
         }
+
+       
+
     }
 }

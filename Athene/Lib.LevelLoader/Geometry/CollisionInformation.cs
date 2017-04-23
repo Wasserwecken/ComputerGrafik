@@ -28,13 +28,13 @@ namespace Lib.LevelLoader.Geometry
             {
                 return CollisionType.Top;
             }
+            else if (block2.Position.X > block1.Position.X && block2.Position.Y == Math.Round(block1.Position.Y))
+            {
+                return CollisionType.Right;
+            }
             else if (block2.Position.X < block1.Position.X && block2.Position.Y == Math.Round(block1.Position.Y))
             {
                 return CollisionType.Left;
-            }
-            else if (block2.Position.X > block1.Position.X && block2.Position.Y == Math.Round(block1.Position.Y))
-            {
-                return  CollisionType.Right;
             }
             else if (block2.Position.X == Math.Round(block1.Position.X) && block2.Position.Y == Math.Round(block1.Position.Y))
             {
@@ -43,6 +43,7 @@ namespace Lib.LevelLoader.Geometry
             else
             {
                 return CollisionType.MoreCollision;
+             
             }
 
 

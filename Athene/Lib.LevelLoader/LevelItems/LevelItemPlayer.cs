@@ -69,8 +69,9 @@ namespace Lib.LevelLoader.LevelItems
 			var physicProps = new Dictionary<BlockType, LevelItemPhysicBodyProperties>
 			{
 				{BlockType.Solid, new LevelItemPhysicBodyProperties(1f, 30f, 0.2f)},
-				{BlockType.Liquid, new LevelItemPhysicBodyProperties(30f, 30f, -0.005f)}
-			};
+				{BlockType.Water, new LevelItemPhysicBodyProperties(30f, 30f, -0.005f)},
+                {BlockType.Lava, new LevelItemPhysicBodyProperties(50f, 50f, -0.005f)}
+            };
 			Physics = new LevelItemPhysicBody(physicProps, startEnvironment, startPosition);
 
 			//Set basic values

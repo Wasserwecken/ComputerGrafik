@@ -16,6 +16,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Border Margin="4"  Grid.Row="0" Grid.Column="0" BorderThickness="1"  BorderBrush="#000000">
@@ -25,8 +27,22 @@
         
         <TextBlock Margin="5"  FontSize="20"  Text="Blocktyp:" Grid.Row="1" Grid.Column="0"/>
         <ComboBox Margin="5"  x:Name="ComboBoxBlockTypes" Grid.Row="1" Grid.Column="1" />
+
+      
+        <TextBlock Margin="5"  FontSize="20"  Text="Kollision:" Grid.Row="2" Grid.Column="0"/>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <RadioButton GroupName="selectCollision"  Content="Ja" x:Name="CollisionYesRadioButton" />
+            <RadioButton GroupName="selectCollision" IsChecked="True" Content="Nein" x:Name="CollisionNoRadioButton" />
+        </StackPanel>
+
+        <TextBlock Margin="5"  FontSize="20"  Text="Schaden:" Grid.Row="3" Grid.Column="0"/>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Slider TickFrequency="1" IsSnapToTickEnabled="True" Width="150" x:Name="DamageSlider" Minimum="0" Maximum="100" />
+            <TextBlock Margin="10,0,0,0" Text="{Binding ElementName=DamageSlider, Path=Value}" />
+        </StackPanel>
+
         
-        <Button Margin="10" FontSize="16" x:Name="ButtonSave"  Content="Übernehmen" Grid.Row="2" Grid.Column="1" />
+        <Button Margin="10" FontSize="16" x:Name="ButtonSave"  Content="Übernehmen" Grid.Row="4" Grid.Column="1" />
         
     </Grid>
 </Window>

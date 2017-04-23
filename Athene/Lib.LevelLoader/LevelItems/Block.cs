@@ -11,6 +11,8 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         public BlockType BlockType { get; set; }
 
+
+
         /// <summary>
         /// collission of the block
         /// </summary>

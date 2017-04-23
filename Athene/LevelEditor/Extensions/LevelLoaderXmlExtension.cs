@@ -67,7 +67,7 @@ namespace LevelEditor.Extensions
                             grid.IsEnabled = false;
                             return;
                         }
-                        button.SetXmlBlock(texture, block.BlockType);
+                        button.SetXmlBlock(texture, block.BlockType, block.Collision, block.Damage);
                     }
                     else if (block.LinkType == BlockLinkType.Animation)
                     {
@@ -79,7 +79,7 @@ namespace LevelEditor.Extensions
                             grid.Children.Clear();
                             grid.IsEnabled = false;
                         }
-                        button.SetXmlAnimatedBlock(animation, block.BlockType);
+                        button.SetXmlAnimatedBlock(animation, block.BlockType, block.Collision, block.Damage);
                     }
                 }
             }
@@ -100,7 +100,6 @@ namespace LevelEditor.Extensions
                     Id = block.Link,
                     Path = texturePath
                 };
-                block.Collision = true;
                 level.Textures.Add(texture);
             }
             level.Blocks.Add(block);
