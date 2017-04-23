@@ -1,10 +1,30 @@
 <?xml version="1.0"?>
 <Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Blocks>
-    <Block X="-9" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="true" Damage="0" />
+    <Block X="0" Y="9" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="true" Damage="0" />
+    <Block X="1" Y="9" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="2" Y="9" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="3" Y="9" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="4" Y="9" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="5" Y="9" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-9" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-7" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="2" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="7" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="8" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="9" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="10" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="11" Y="6" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-9" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-7" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-4" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-3" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-2" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="-1" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="0" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="1" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="2" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="3" Y="5" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-10" Y="4" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-9" Y="4" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-8" Y="4" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
@@ -27,6 +47,16 @@
     <Block X="-4" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-3" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-2" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="3" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="4" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="5" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="6" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="7" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="8" Y="2" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="1" Y="0" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="2" Y="0" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="3" Y="0" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
+    <Block X="4" Y="0" Link="desert_pack_03" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-15" Y="-2" Link="desert_pack_05" LinkType="Image" BlockType="Solid" Collision="true" Damage="0" />
     <Block X="-14" Y="-2" Link="desert_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />
     <Block X="-13" Y="-2" Link="desert_pack_05" LinkType="Image" BlockType="Solid" Collision="false" Damage="0" />

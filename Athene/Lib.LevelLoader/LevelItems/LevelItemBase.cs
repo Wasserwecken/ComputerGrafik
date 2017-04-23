@@ -34,6 +34,6 @@ namespace Lib.LevelLoader.LevelItems
             Box2D = new Box2D(startPosition.X, startPosition.Y, boxSize.X, boxSize.Y);
 		}
 
-        public abstract void ReactToCollision(LevelItemBase collidingBlock);
+        public abstract void ReactToCollision(LevelItemBase collidingBlock, Vector2 oldPosition);
     }
 }

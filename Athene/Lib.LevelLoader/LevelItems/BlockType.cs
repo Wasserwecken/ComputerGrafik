@@ -12,7 +12,8 @@ namespace Lib.LevelLoader.LevelItems
     public enum BlockType
     {
         Solid,
-        Liquid,
+        Water,
+        Lava,
         Ladder
     };
 }

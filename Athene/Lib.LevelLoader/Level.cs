@@ -38,20 +38,29 @@ namespace Lib.LevelLoader
         /// </summary>
         public void UpdateLogic()
         {
-          
-
             foreach (var player in Players)
             {
                 player.UpdateLogic(this);
-
-
-                
             }
+            CheckCollision();
+            
+           
         }
 
         public void CheckCollision()
         {
-            
+            foreach (var player in Players)
+            {
+                var oldPositionOfPlayer = new Vector2(player.Position.X, player.Position.Y);
+
+                foreach (var block in Blocks)
+                {
+                    if (block.Collision && player.Physics.Box2D.Intersects(block.Box2D))
+                    {
+                        player.Physics.ReactToCollision(block, oldPositionOfPlayer);
+                    }
+                }
+            }
         }
 
         private void CreateTestPlayer()

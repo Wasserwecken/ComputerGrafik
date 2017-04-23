@@ -1,4 +1,5 @@
-﻿using Lib.Visuals.Graphics;
+﻿using System;
+using Lib.Visuals.Graphics;
 using OpenTK;
 
 namespace Lib.LevelLoader.LevelItems
@@ -45,6 +46,16 @@ namespace Lib.LevelLoader.LevelItems
         public void Draw()
         {
             Sprite.Draw(Position, new Vector2(1f));
+        }
+
+        /// <summary>
+        /// reacts to a collision
+        /// </summary>
+        /// <param name="collidingBlock">the colliding block</param>
+        /// <param name="oldPosition">old position</param>
+        public override void ReactToCollision(LevelItemBase collidingBlock, Vector2 oldPosition)
+        {
+            
         }
     }
 }

@@ -8,10 +8,11 @@ namespace Lib.LevelLoader.Geometry
 {
     public enum CollisionType
     {
-        NoCollision,
+        MoreCollision,
         Right,
         Left,
         Top,
-        Bottom
+        Bottom,
+        Behind
     }
 }

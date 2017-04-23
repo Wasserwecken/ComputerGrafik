@@ -233,9 +233,61 @@ namespace Lib.LevelLoader.LevelItems
 			return energy;
 		}
 
-        public override void ReactToCollision(LevelItemBase collidingBlock)
+        /// <summary>
+        /// React to a collision with a block
+        /// </summary>
+        /// <param name="collidingBlock">the colliding block</param>
+        /// <param name="oldPosition">the old position of the player</param>
+        public override void ReactToCollision(LevelItemBase collidingBlock, Vector2 oldPosition)
         {
-             
+            var collidingBox = collidingBlock.Box2D;
+
+            CollisionType collisionType = CollisionInformation.FromBlocks(this, collidingBlock);
+         
+            if (collisionType == CollisionType.Bottom)
+            {
+                /* Collion bottom */
+                Position = new Vector2(Position.X, collidingBox.MaxY);
+                Box2D = new Box2D(Position.X, collidingBox.MaxY, Box2D.SizeX, Box2D.SizeY);
+                StopBodyOnAxisY();
+            }
+            else if (collisionType == CollisionType.Top)
+            {
+                /* Collision top */
+                Console.WriteLine("top collision");
+                Position = new Vector2(Position.X, collidingBox.Y - collidingBox.SizeY);
+                Box2D = new Box2D(Position.X, collidingBox.Y, Box2D.SizeX, Box2D.SizeY);
+                StopBodyOnAxisY();
+            }
+            else if (collisionType == CollisionType.Left)
+            {
+                /* Collision left */
+                Console.WriteLine("left collision");
+                Position = new Vector2(collidingBox.MaxX, Position.Y);
+                Box2D = new Box2D(collidingBox.MaxX, Position.Y, Box2D.SizeX, Box2D.SizeY);
+                StopBodyOnAxisX();
+            }
+            else if (collisionType == CollisionType.Right)
+            {
+                /* Collision right */
+                Console.WriteLine("right collision");
+                Position = new Vector2(collidingBlock.Position.X - Box2D.SizeX, Position.Y);
+                Box2D = new Box2D(collidingBlock.Position.X - Box2D.SizeX, Position.Y, Box2D.SizeX, Box2D.SizeY);
+                StopBodyOnAxisX();
+            }
+            else if (collisionType == CollisionType.Behind)
+            {
+                /* behind right */
+                Console.WriteLine("behind collision");
+                Position = oldPosition;
+                Box2D = new Box2D(oldPosition.X, oldPosition.Y, Box2D.SizeX, Box2D.SizeY);
+                StopBodyOnAxisX();
+            }
+            else
+            {
+                // player stands on 2 blocks...
+                //TODO: implement maybe later
+            }
         }
     }
 }
