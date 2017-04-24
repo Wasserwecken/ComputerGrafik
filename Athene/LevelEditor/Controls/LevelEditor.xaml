@@ -37,40 +37,89 @@
                     <Setter Property="FontSize" Value="14" />
                 </Style>
             </Border.Resources>
-            <Grid Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="10" />
-                </Grid.ColumnDefinitions>
+            <TabControl>
+                <TabItem Header="Allgemein">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+             
+                        </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Zoom" Grid.Row="0" Padding="0,0,5,0" Grid.Column="0" />
-                <TextBlock Text="Blocktyp auswählen" Padding="0,0,5,0" Grid.Row="0" Grid.Column="2" />
-                <TextBlock Text="Kollision" Padding="0,0,5,0" Grid.Row="0" Grid.Column="4" />
-                <TextBlock Text="Schaden" Padding="0,0,5,0" Grid.Row="0" Grid.Column="6" />
+                        <TextBlock Text="Zoom" Grid.Row="0" Padding="0,0,5,0" Grid.Column="0" />
+                        <Slider Grid.Column="0" Grid.Row="1" x:Name="LevelZoomer" ToolTip="Level Zoom"  Width="200" VerticalAlignment="Center" Value="1" Minimum="0.1" Maximum="4" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Block Einstellungen">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
 
-                <Slider Grid.Column="0" Grid.Row="1" x:Name="LevelZoomer" ToolTip="Level Zoom"  Width="200" VerticalAlignment="Center" Value="1" Minimum="0.1" Maximum="4" />
-                <ComboBox Grid.Column="2" VerticalContentAlignment="Center" Grid.Row="1" x:Name="BlockTypeComboBox" />
-                <StackPanel Grid.Row="1" Grid.Column="4">
-                    <RadioButton GroupName="selectCollision" IsChecked="True" Content="Ja" x:Name="CollisionYesRadioButton" />
-                    <RadioButton GroupName="selectCollision" Content="Nein" x:Name="CollisionNoRadioButton" />
-                </StackPanel>
-                <StackPanel Grid.Row="1" Grid.Column="6">
-                    <Slider TickFrequency="1" IsSnapToTickEnabled="True" Width="150" x:Name="DamageSlider" Minimum="0" Maximum="100" />
-                    <TextBlock Text="{Binding ElementName=DamageSlider, Path=Value}" />
-                </StackPanel>
-                
-                
-            </Grid>
+                      
+                        <TextBlock Text="Blocktyp auswählen" Padding="0,0,5,0" Grid.Row="0" Grid.Column="2" />
+                        <TextBlock Text="Kollision" Padding="0,0,5,0" Grid.Row="0" Grid.Column="4" />
+                        <TextBlock Text="Schaden" Padding="0,0,5,0" Grid.Row="0" Grid.Column="6" />
+                        <CheckBox x:Name="ScrollingActiveCheckBox" Content="Scrolling aktiviert" Grid.Row="0" Grid.Column="8" Padding="0,0,5,0" />
+
+                      
+                        <ComboBox Grid.Column="2" VerticalContentAlignment="Center" Grid.Row="1" x:Name="BlockTypeComboBox" />
+                        <StackPanel Grid.Row="1" Grid.Column="4">
+                            <RadioButton GroupName="selectCollision" IsChecked="True" Content="Ja" x:Name="CollisionYesRadioButton" />
+                            <RadioButton GroupName="selectCollision" Content="Nein" x:Name="CollisionNoRadioButton" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="6">
+                            <Slider TickFrequency="1" IsSnapToTickEnabled="True" Width="150" x:Name="DamageSlider" Minimum="0" Maximum="100" />
+                            <TextBlock Text="{Binding ElementName=DamageSlider, Path=Value}" />
+                        </StackPanel>
+
+                        <Grid Grid.Row="1" Grid.Column="8" IsEnabled="{Binding ElementName=ScrollingActiveCheckBox, Path=IsChecked}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="60" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock FontSize="11" Grid.Row="0" Grid.Column="0" Text="Scroll Intervall:" />
+                            <TextBox Text="5000" Grid.Row="0" Grid.Column="1" x:Name="ScrollingIntervallTextBox" />
+
+                            <TextBlock FontSize="11" Grid.Row="1" Grid.Column="0" Text="Scroll X Richtung:" />
+                            <TextBox  Grid.Row="1" Text="1" Grid.Column="1" x:Name="ScrollingXDirectionTextBox" />
+
+                            <TextBlock FontSize="11" Grid.Row="2" Grid.Column="0" Text="Scroll Y Richtung:" />
+                            <TextBox  Grid.Row="2" Text="0" Grid.Column="1" x:Name="ScrollingYDirectionTextBox" />
+
+                        </Grid>
+
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            
            
         </Border>
     </Grid>
