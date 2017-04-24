@@ -19,6 +19,7 @@ namespace SimeraExample
 
         private SpriteStatic SpriteTest { get; set; }
         private SpriteStatic SpriteTest2 { get; set; }
+        private SpriteStatic SpriteTest3 { get; set; }
 
 
 
@@ -40,11 +41,14 @@ namespace SimeraExample
 		    Level = LevelLoader.LoadLevel(9);
 
             SpriteTest = new SpriteStatic("Pics/water_top.png");
-            SpriteTest.StartTextureScroll(new Vector2(1, 0), 2000);
+            SpriteTest.StartTextureScroll(new Vector2(1, 0), 5000);
 
             SpriteTest2 = new SpriteStatic("Pics/water_deep.png");
-            SpriteTest2.StartTextureScroll(new Vector2(1, 0), 2000);
-		}
+            SpriteTest2.StartTextureScroll(new Vector2(1, 0), 5000);
+
+            SpriteTest3 = new SpriteStatic("Pics/forest_pack_35.png");
+            SpriteTest3.StartTextureScroll(new Vector2(-1, 1), 1000);
+        }
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
@@ -69,6 +73,11 @@ namespace SimeraExample
             SpriteTest2.Draw(new Vector2(1, 1), Vector2.One);
             SpriteTest2.Draw(new Vector2(2, 1), Vector2.One);
             SpriteTest2.Draw(new Vector2(3, 1), Vector2.One);
+
+            SpriteTest3.Draw(new Vector2(-1, 1), Vector2.One);
+            SpriteTest3.Draw(new Vector2(-2, 1), Vector2.One);
+            SpriteTest3.Draw(new Vector2(-1, 0), Vector2.One);
+            SpriteTest3.Draw(new Vector2(-2, 0), Vector2.One);
         }
 	}
 }

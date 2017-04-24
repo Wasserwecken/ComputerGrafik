@@ -79,7 +79,7 @@ namespace Lib.Visuals.Graphics
         public void StartTextureScroll(Vector2 direction, float cycleDuration)
         {
             ScrollCycleDuration = cycleDuration;
-            ScrollDirection = direction.Normalized();
+            ScrollDirection = direction;
 
             ScrollTimer = new Stopwatch();
             ScrollTimer.Start();
