@@ -25,9 +25,15 @@ namespace Lib.LevelLoader.Xml
         public float Y { get; set; }
 
         /// <summary>
-        /// Texture name of the block
+        /// attached link type of the block
         /// </summary>
-        [XmlAttribute("AttachedTexture")]
-        public string AttachedTexture { get; set; }
+        [XmlAttribute("AttachedLinkType")]
+        public string AttachedLinkType { get; set; }
+
+        /// <summary>
+        /// attached link of the block
+        /// </summary>
+        [XmlAttribute("AttachedLink")]
+        public string AttachedLink { get; set; }
     }
 }

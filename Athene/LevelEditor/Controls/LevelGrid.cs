@@ -81,68 +81,21 @@ namespace LevelEditor.Controls
         {
             LevelItemButton button = sender as LevelItemButton;
             var selectedRadioButton = LevelEditor.SelectedRadioButton;
-            var selectedBlockType = (BlockType) LevelEditor.BlockTypeComboBox.SelectedItem;
-            var selectedCollision = (bool)LevelEditor.CollisionYesRadioButton.IsChecked;
-            var selectedDamage = (int)LevelEditor.DamageSlider.Value;
-            var selectedIsScrolling = (bool)LevelEditor.ScrollingActiveCheckBox.IsChecked;
-            var selectedScrollingLength = Convert.ToInt32(LevelEditor.ScrollingIntervallTextBox.Text);
-            var selectedScrollingDirectionX = (float)Convert.ToDouble(LevelEditor.ScrollingXDirectionTextBox.Text);
-            var selectedScrollingDirectionY = (float)Convert.ToDouble(LevelEditor.ScrollingYDirectionTextBox.Text);
+           
 
             if (selectedRadioButton == null || button == null) return;
 
             if (selectedRadioButton is RadioButtonSelectTexture)
             {
-                RadioButtonSelectTexture radioButtonSelectTexture = selectedRadioButton as RadioButtonSelectTexture;
-                if (LevelEditor.AppendTextureCheckBox.IsChecked == true)
-                {
-                    if(button.ItemPresenter != null)
-                    {
-                        button.AttachTexture(radioButtonSelectTexture.XmlTexture);
-                    }
-                }
-                else
-                {
-                    button.SetXmlBlock(radioButtonSelectTexture.XmlTexture, selectedBlockType, selectedCollision, selectedDamage,
-                    selectedIsScrolling, selectedScrollingLength, selectedScrollingDirectionX, selectedScrollingDirectionY);
-                }
-                
+                HandleTextureRadioButton(selectedRadioButton as RadioButtonSelectTexture, button);
             }
             if (selectedRadioButton is RadioButtonSelectAnimation)
             {
-                RadioButtonSelectAnimation radioButtonSelectAnimation = selectedRadioButton as RadioButtonSelectAnimation;
-                button.SetXmlAnimatedBlock(radioButtonSelectAnimation.XmlAnimation,
-                    selectedBlockType, selectedCollision, selectedDamage);
+                HandleAnimationRadioButton(selectedRadioButton as RadioButtonSelectAnimation, button);
             }
             if (selectedRadioButton is RadioButtonTool)
             {
-                RadioButtonTool radioButtonTool = selectedRadioButton as RadioButtonTool;
-                if (radioButtonTool.Action == TextureRadioButtonAction.Remove)
-                    button.ResetXmlItem();
-                if (radioButtonTool.Action == TextureRadioButtonAction.RemoveAttachedTexture)
-                    button.AttachTexture(null);
-                if (radioButtonTool.Action == TextureRadioButtonAction.Select)
-                {
-                    if (button.ItemPresenter is XmlBlockPresenter || button.ItemPresenter is XmlAnimatedBlockPresenter)
-                    {
-                        var win = Helper.FindWindowHelper.IsWindowOpen<Window>("ShowBlockWindow");
-
-                        XmlTexture texture = null;
-                        if (button.ItemPresenter is XmlBlockPresenter)
-                            texture = ((XmlBlockPresenter)button.ItemPresenter).XmlTexture;
-                        if (win != null)
-                        {
-                            ((ShowBlockItemWindow)win).ShowBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, texture);
-                            win.Show();
-                        }
-                        else
-                        {
-                            win = new ShowBlockItemWindow() { Name = "ShowBlockWindow" };
-                            ((ShowBlockItemWindow)win).ShowBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, texture);
-                            win.Show();
-                        }
-                    }
-                }
+                HandleRadioButtonTool(selectedRadioButton as RadioButtonTool, button);
             }
         }
 
@@ -158,8 +111,99 @@ namespace LevelEditor.Controls
                 GridButtonClicked(sender, e);
             }
         }
+        /// <summary>
+        /// handles a texture radio button
+        /// </summary>
+        /// <param name="radioButton"></param>
+        /// <param name="button"></param>
+        private void HandleTextureRadioButton(RadioButtonSelectTexture radioButton, LevelItemButton button)
+        {
+            var selectedRadioButton = LevelEditor.SelectedRadioButton;
+            var selectedBlockType = (BlockType)LevelEditor.BlockTypeComboBox.SelectedItem;
+            var selectedCollision = (bool)LevelEditor.CollisionYesRadioButton.IsChecked;
+            var selectedDamage = (int)LevelEditor.DamageSlider.Value;
+            var selectedIsScrolling = (bool)LevelEditor.ScrollingActiveCheckBox.IsChecked;
+            var selectedScrollingLength = Convert.ToInt32(LevelEditor.ScrollingIntervallTextBox.Text);
+            var selectedScrollingDirectionX = (float)Convert.ToDouble(LevelEditor.ScrollingXDirectionTextBox.Text);
+            var selectedScrollingDirectionY = (float)Convert.ToDouble(LevelEditor.ScrollingYDirectionTextBox.Text);
 
+            if (LevelEditor.AppendTextureCheckBox.IsChecked == true)
+            {
+                if (button.ItemPresenter != null)
+                {
+                    button.AttachLink(BlockLinkType.Image, radioButton.XmlTexture);
+                }
+            }
+            else
+            {
+                button.SetXmlBlock(radioButton.XmlTexture, selectedBlockType, selectedCollision, selectedDamage,
+                selectedIsScrolling, selectedScrollingLength, selectedScrollingDirectionX, selectedScrollingDirectionY);
+            }
+        }
 
-       
+        /// <summary>
+        /// handles a animation radio button
+        /// </summary>
+        /// <param name="radioButton"></param>
+        /// <param name="button"></param>
+        private void HandleAnimationRadioButton(RadioButtonSelectAnimation radioButton, LevelItemButton button)
+        {
+            var selectedRadioButton = LevelEditor.SelectedRadioButton;
+            var selectedBlockType = (BlockType)LevelEditor.BlockTypeComboBox.SelectedItem;
+            var selectedCollision = (bool)LevelEditor.CollisionYesRadioButton.IsChecked;
+            var selectedDamage = (int)LevelEditor.DamageSlider.Value;
+
+            if (LevelEditor.AppendTextureCheckBox.IsChecked == true)
+            {
+                if (button.ItemPresenter != null)
+                {
+                    button.AttachLink(BlockLinkType.Animation, radioButton.XmlAnimation);
+                }
+            }
+            else
+            {
+                button.SetXmlAnimatedBlock(radioButton.XmlAnimation,
+                selectedBlockType, selectedCollision, selectedDamage);
+            }
+
+          
+        }
+
+        /// <summary>
+        /// handles a tool radio button
+        /// </summary>
+        /// <param name="radioButton"></param>
+        /// <param name="button"></param>
+        private void HandleRadioButtonTool(RadioButtonTool radioButton, LevelItemButton button)
+        {
+
+            if (radioButton.Action == TextureRadioButtonAction.Remove)
+                button.ResetXmlItem();
+            if (radioButton.Action == TextureRadioButtonAction.RemoveAttachedTexture)
+                button.AttachLink(BlockLinkType.Image, null);
+            if (radioButton.Action == TextureRadioButtonAction.Select)
+            {
+                if (button.ItemPresenter is XmlBlockPresenter || button.ItemPresenter is XmlAnimatedBlockPresenter)
+                {
+                    var win = Helper.FindWindowHelper.IsWindowOpen<Window>("ShowBlockWindow");
+
+                    XmlTexture texture = null;
+                    if (button.ItemPresenter is XmlBlockPresenter)
+                        texture = ((XmlBlockPresenter)button.ItemPresenter).XmlTexture;
+                    if (win != null)
+                    {
+                        ((ShowBlockItemWindow)win).ShowBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, texture);
+                        win.Show();
+                    }
+                    else
+                    {
+                        win = new ShowBlockItemWindow() { Name = "ShowBlockWindow" };
+                        ((ShowBlockItemWindow)win).ShowBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, texture);
+                        win.Show();
+                    }
+                }
+            }
+        }
+
     }
 }

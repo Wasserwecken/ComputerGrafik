@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lib.LevelLoader.Xml.LinkTypes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,15 +13,9 @@ namespace Lib.LevelLoader.Xml
     /// represents a animation in animations.xml
     /// </summary>
     [Serializable()]
-    public class XmlAnimation
+    public class XmlAnimation : XmlLinkTypeBase
     {
-        /// <summary>
-        /// Id of the animation (=name)
-        /// </summary>
-        [XmlAttribute("Id")]
-        public string Id { get; set; }
-
-        /// <summary>
+         /// <summary>
         /// path to the frames of the animation
         /// </summary>
         [XmlAttribute("Path")]

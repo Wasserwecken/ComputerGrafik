@@ -74,7 +74,7 @@ namespace Lib.LevelLoader
             foreach (var xmlBlock in xmlLevel.Blocks)
             {
                 ISprite sprite = null;
-                SpriteStatic attachedSprite = null;
+                ISprite attachedSprite = null;
 
                 if (xmlBlock.LinkType == BlockLinkType.Image)
                 {
@@ -86,10 +86,26 @@ namespace Lib.LevelLoader
                     {
                         ((SpriteStatic)sprite).StartTextureScroll(new Vector2(xmlBlock.ScrollingDirectionX, xmlBlock.ScrollingDirectionY), xmlBlock.ScrollingLength);
                     }
-                    if(xmlBlock.AttachedTexture != null)
+                    if(xmlBlock.AttachedLink != null)
                     {
-                        var attachedTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.AttachedTexture);
-                        attachedSprite = new SpriteStatic(attachedTexture.Path);
+                        if(xmlBlock.AttachedLinkType == BlockLinkType.Image.ToString())
+                        {
+                            var attachedTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.AttachedLink);
+                            attachedSprite = new SpriteStatic(attachedTexture.Path);
+                        }
+                        if (xmlBlock.AttachedLinkType == BlockLinkType.Animation.ToString())
+                        {
+
+                            attachedSprite = new SpriteAnimated();
+                            var xmlAnimation = AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == xmlBlock.AttachedLink);
+                            if (xmlAnimation == null)
+                                throw new Exception("Animation not found");
+                            ((SpriteAnimated)attachedSprite).AddAnimation(xmlAnimation.Path, xmlAnimation.AnimationLength);
+                            // start animation
+                            ((SpriteAnimated)attachedSprite).StartAnimation(new DirectoryInfo(xmlAnimation.Path).Name);
+                        }
+
+
                     }
 
 
