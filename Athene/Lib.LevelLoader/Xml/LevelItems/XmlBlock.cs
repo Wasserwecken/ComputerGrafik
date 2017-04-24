@@ -33,6 +33,31 @@ namespace Lib.LevelLoader.Xml
         public BlockType BlockType { get; set; }
 
         /// <summary>
+        /// scrolling of the block
+        /// </summary>
+        [XmlAttribute("IsScrolling")]
+        public bool IsScrolling { get; set; }
+
+        /// <summary>
+        /// scrolling length of the block
+        /// </summary>
+        [XmlAttribute("ScrollingLength")]
+        public int ScrollingLength { get; set; }
+
+
+        /// <summary>
+        /// scrolling direction x of the block
+        /// </summary>
+        [XmlAttribute("ScrollingDirectionX")]
+        public float ScrollingDirectionX { get; set; }
+
+        /// <summary>
+        /// scrolling direction y of the block
+        /// </summary>
+        [XmlAttribute("ScrollingDirectionY")]
+        public float ScrollingDirectionY { get; set; }
+
+        /// <summary>
         /// collission of the block
         /// </summary>
         [XmlAttribute("Collision")]

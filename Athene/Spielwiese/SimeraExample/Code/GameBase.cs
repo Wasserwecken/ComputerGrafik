@@ -47,7 +47,7 @@ namespace SimeraExample
             SpriteTest2.StartTextureScroll(new Vector2(1, 0), 5000);
 
             SpriteTest3 = new SpriteStatic("Pics/forest_pack_35.png");
-            SpriteTest3.StartTextureScroll(new Vector2(-1, 1), 1000);
+            SpriteTest3.StartTextureScroll(new Vector2(-1, 0), 1000);
         }
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)

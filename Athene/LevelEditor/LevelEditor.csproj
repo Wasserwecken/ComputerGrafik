@@ -61,6 +61,7 @@
     <Compile Include="Controls\LevelItemButton.xaml.cs">
       <DependentUpon>LevelItemButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LevelItemPresenter\LevelItemPresenterBase.cs" />
     <Compile Include="Controls\OperateControl.xaml.cs">
       <DependentUpon>OperateControl.xaml</DependentUpon>
     </Compile>
