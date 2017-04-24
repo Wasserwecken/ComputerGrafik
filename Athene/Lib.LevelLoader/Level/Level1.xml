@@ -1,70 +1,45 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Level>
-  <Textures>
-    <Texture Id="dirtGras" Path="Pics/dirt_gras.png" />
-    <Texture Id="dirt" Path="Pics/dirt.png" />
-    <Texture Id="dirtLeft" Path="Pics/dirt_end_left.png" />
-    <Texture Id="dirtRight" Path="Pics/dirt_end_right.png" />
-    <Texture Id="trophy" Path="Pics/trophy.png" />
-    <Texture Id="tree" Path="Pics/bigtree.png" />
-  </Textures>
+<?xml version="1.0"?>
+<Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Blocks>
-
-    <Block X="2" Y="1" Texture="trophy" />
-    <Block X="0" Y="1" Texture="tree" />
-    <Block X="5" Y="1" Texture="tree" />
-    <Block X="-7" Y="-2" Texture="tree" />
-    <Block X="-4" Y="-2" Texture="tree" />
-
-    <Block X="0" Y="0" Texture="dirtGras" />
-    <Block X="1" Y="0" Texture="dirtGras" />
-    <Block X="2" Y="0" Texture="dirtGras" />
-    <Block X="3" Y="0" Texture="dirtGras" />
-    <Block X="4" Y="0" Texture="dirtGras" />
-    <Block X="-1" Y="0" Texture="dirtLeft" />
-    <Block X="5" Y="0" Texture="dirtRight" />
-
-    <Block X="0" Y="-1" Texture="dirt" />
-    <Block X="1" Y="-1" Texture="dirt" />
-    <Block X="2" Y="-1" Texture="dirt" />
-    <Block X="3" Y="-1" Texture="dirt" />
-    <Block X="4" Y="-1" Texture="dirt" />
-    <Block X="5" Y="-1" Texture="dirt" />
-    <Block X="7" Y="-1" Texture="dirt" />
-    <Block X="6" Y="-1" Texture="dirtGras" />
-    <Block X="-1" Y="-1" Texture="dirt" />
-    <Block X="-2" Y="-1" Texture="dirtLeft" />
-    <Block X="7" Y="-1" Texture="dirtRight" />
-
-    <Block X="-3" Y="-2" Texture="dirtLeft" />
-    <Block X="-2" Y="-2" Texture="dirt" />
-    <Block X="-1" Y="-2" Texture="dirt" />
-    <Block X="0" Y="-2" Texture="dirt" />
-    <Block X="1" Y="-2" Texture="dirt" />
-    <Block X="2" Y="-2" Texture="dirt" />
-    <Block X="3" Y="-2" Texture="dirt" />
-    <Block X="4" Y="-2" Texture="dirt" />
-    <Block X="5" Y="-2" Texture="dirt" />
-    <Block X="6" Y="-2" Texture="dirt" />
-    <Block X="7" Y="-2" Texture="dirt" />
-
-    
-    <Block X="-4" Y="-3" Texture="dirtGras" />
-    <Block X="-5" Y="-3" Texture="dirtGras" />
-    <Block X="-6" Y="-3" Texture="dirtGras" />
-    <Block X="-7" Y="-3" Texture="dirtGras" />
-    <Block X="-8" Y="-3" Texture="dirtGras" />
-    <Block X="-3" Y="-3" Texture="dirt" />
-    <Block X="-2" Y="-3" Texture="dirt" />
-    <Block X="-1" Y="-3" Texture="dirt" />
-    <Block X="0" Y="-3" Texture="dirt" />
-    <Block X="1" Y="-3" Texture="dirt" />
-    <Block X="2" Y="-3" Texture="dirt" />
-    <Block X="3" Y="-3" Texture="dirt" />
-    <Block X="4" Y="-3" Texture="dirt" />
-    <Block X="5" Y="-3" Texture="dirt" />
-    <Block X="6" Y="-3" Texture="dirt" />
-    <Block X="7" Y="-3" Texture="dirt" />
-    
+    <Block X="-8" Y="-2" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-2" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-6" Y="-2" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-5" Y="-2" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-4" Y="-2" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-3" Y="-2" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-2" Y="-2" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-1" Y="-2" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="0" Y="-2" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="1" Y="-2" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-2" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-3" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-6" Y="-3" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-5" Y="-3" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-4" Y="-3" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-3" Y="-3" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-2" Y="-3" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-1" Y="-3" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-4" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-6" Y="-4" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-5" Y="-4" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-4" Y="-4" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-3" Y="-4" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-2" Y="-4" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-1" Y="-4" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-6" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-5" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-3" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-2" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-5" Link="desert_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
   </Blocks>
+  <Textures>
+    <Texture Path="Images\Environment\Desert\desert_pack_35.png" Id="desert_pack_35" />
+    <Texture Path="Images\Environment\Desert\desert_pack_51.png" Id="desert_pack_51" />
+    <Texture Path="Images\Environment\Desert\desert_pack_52.png" Id="desert_pack_52" />
+  </Textures>
 </Level>

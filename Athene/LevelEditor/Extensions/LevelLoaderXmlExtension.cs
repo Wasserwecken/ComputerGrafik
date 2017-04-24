@@ -9,6 +9,7 @@ using System.IO;
 using System.Windows;
 using Lib.LevelLoader;
 using Lib.LevelLoader.LevelItems;
+using LevelEditor.Controls.LevelItemPresenter;
 
 namespace LevelEditor.Extensions
 {
@@ -28,15 +29,15 @@ namespace LevelEditor.Extensions
           
             foreach (LevelItemButton button in grid.Children)
             {
-                if (button.XmLLevelItemBase == null) continue;
+                if (button.ItemPresenter == null) continue;
 
                 /* Each button needs to be checked which type the XmLLevelItemBase is */
-                if (button.XmLLevelItemBase is XmlBlock)
+                if (button.ItemPresenter.XmLLevelItemBase is XmlBlock)
                 {
-                    if ((button.XmLLevelItemBase as XmlBlock).LinkType == BlockLinkType.Image)
-                        HandleXmlBlock(button.XmLLevelItemBase as XmlBlock, button.XmlTexture.Path, levelReturn);
-                    else if ((button.XmLLevelItemBase as XmlBlock).LinkType == BlockLinkType.Animation)
-                        HandleXmlBlock(button.XmLLevelItemBase as XmlBlock, null, levelReturn);
+                    if ((button.ItemPresenter.XmLLevelItemBase as XmlBlock).LinkType == BlockLinkType.Image)
+                        HandleXmlBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, ((XmlBlockPresenter)button.ItemPresenter).XmlTexture.Path, levelReturn);
+                    else if ((button.ItemPresenter.XmLLevelItemBase as XmlBlock).LinkType == BlockLinkType.Animation)
+                        HandleXmlBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, null, levelReturn);
                 }
                     
 
@@ -67,7 +68,7 @@ namespace LevelEditor.Extensions
                             grid.IsEnabled = false;
                             return;
                         }
-                        button.SetXmlBlock(texture, block.BlockType, block.Collision, block.Damage);
+                        button.SetXmlBlock(texture, block.BlockType, block.Collision, block.Damage, block.IsScrolling, block.ScrollingLength, block.ScrollingDirectionX, block.ScrollingDirectionY);
                     }
                     else if (block.LinkType == BlockLinkType.Animation)
                     {
