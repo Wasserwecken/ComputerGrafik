@@ -59,6 +59,7 @@ namespace LevelEditor
             {
                 var xmlLevel = LevelEditor.LevelGrid.GetXmlLevel();
                 LevelLoader.ConvertToXml(xmlLevel, saveFileDialog.FileName);
+                MessageBox.Show("Exportieren abgeschlossen", "Erfolgreich", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

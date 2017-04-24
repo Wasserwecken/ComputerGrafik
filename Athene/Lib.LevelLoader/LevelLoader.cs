@@ -81,6 +81,12 @@ namespace Lib.LevelLoader
                     if (xmlTexture == null)
                         throw new Exception("Texture not found in XML file");
                     sprite = new SpriteStatic(xmlTexture.Path);
+                    if(xmlBlock.IsScrolling)
+                    {
+                        ((SpriteStatic)sprite).StartTextureScroll(new Vector2(xmlBlock.ScrollingDirectionX, xmlBlock.ScrollingDirectionY), xmlBlock.ScrollingLength);
+                    }
+
+
                 }
                 if (xmlBlock.LinkType == BlockLinkType.Animation)
                 {

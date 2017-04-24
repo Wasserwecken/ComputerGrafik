@@ -16,7 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
 using Lib.LevelLoader.LevelItems;
-
+using LevelEditor.Controls.LevelItemPresenter;
 
 namespace LevelEditor.Controls
 {
@@ -29,12 +29,9 @@ namespace LevelEditor.Controls
         /// <summary>
         /// XmlLevelItemBase represents the current Item in the grid
         /// </summary>
-        public XmlLevelItemBase XmLLevelItemBase { get; private set; }
+        public LevelItemPresenterBase ItemPresenter { get; private set; }
 
-        /// <summary>
-        /// XmlTexture is for Blocks (Texture of Blocks)
-        /// </summary>
-        public XmlTexture XmlTexture { get; private set; }
+       
 
         /// <summary>
         /// x coordinate
@@ -71,9 +68,9 @@ namespace LevelEditor.Controls
         /// <param name="type">Blocktype</param>
         /// <param name="collision">collision</param>
         /// <param name="damage">damage</param>
-        public void SetXmlBlock(XmlTexture texture, BlockType type, bool collision, int damage)
+        public void SetXmlBlock(XmlTexture texture, BlockType type, bool collision, int damage, bool isScrolling = false, int scrollingLength = 0, float scrollingDirectionX = 0, float scrollingDirectionY = 0)
         {
-            XmLLevelItemBase = new XmlBlock()
+            var xmlBlock = new XmlBlock()
             {
                 BlockType = type,
                 X = X,
@@ -81,10 +78,18 @@ namespace LevelEditor.Controls
                 Link = texture.Id,
                 LinkType = BlockLinkType.Image,
                 Damage =  damage,
-                Collision = collision
+                Collision = collision,
+                IsScrolling = isScrolling,
+                ScrollingLength = scrollingLength,
+                ScrollingDirectionX = scrollingDirectionX,
+                ScrollingDirectionY = scrollingDirectionY
             };
-            XmlTexture = texture;
-            SetImage(XmlTexture.Path);
+            ItemPresenter = new XmlBlockPresenter()
+            {
+                XmlTexture = texture,
+                XmLLevelItemBase = xmlBlock
+            };
+            SetImage(texture.Path);
         }
 
         /// <summary>
@@ -96,7 +101,7 @@ namespace LevelEditor.Controls
         /// <param name="damage">damage</param>
         public void SetXmlAnimatedBlock(XmlAnimation animation, BlockType type, bool collision, int damage)
         {
-            XmLLevelItemBase = new XmlBlock()
+            var xmlBlock = new XmlBlock()
             {
                 BlockType = type,
                 X = X,
@@ -106,6 +111,10 @@ namespace LevelEditor.Controls
                 Collision = collision,
                 Damage = damage
             };
+            ItemPresenter = new XmlBlockPresenter()
+            {
+                XmLLevelItemBase = xmlBlock
+            };
             SetImage(animation.GetFirstImage().FullName, UriKind.Absolute);
         }
 
@@ -114,8 +123,7 @@ namespace LevelEditor.Controls
         /// </summary>
         public void ResetXmlItem()
         {
-            XmLLevelItemBase = null;
-            XmlTexture = null;
+            ItemPresenter = null;
             SetImage(null);
         }
 

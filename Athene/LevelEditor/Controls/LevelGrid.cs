@@ -11,6 +11,7 @@ using LevelEditor.Controls.RadioButtons;
 using LevelEditor.Windows;
 using Lib.LevelLoader.LevelItems;
 using Lib.LevelLoader.Xml;
+using LevelEditor.Controls.LevelItemPresenter;
 
 namespace LevelEditor.Controls
 {
@@ -83,12 +84,16 @@ namespace LevelEditor.Controls
             var selectedBlockType = (BlockType) LevelEditor.BlockTypeComboBox.SelectedItem;
             var selectedCollision = (bool)LevelEditor.CollisionYesRadioButton.IsChecked;
             var selectedDamage = (int)LevelEditor.DamageSlider.Value;
+            var selectedIsScrolling = (bool)LevelEditor.ScrollingActiveCheckBox.IsChecked;
+            var selectedScrollingLength = Convert.ToInt32(LevelEditor.ScrollingIntervallTextBox.Text);
+            var selectedScrollingDirectionX = (float)Convert.ToDouble(LevelEditor.ScrollingXDirectionTextBox.Text);
+            var selectedScrollingDirectionY = (float)Convert.ToDouble(LevelEditor.ScrollingYDirectionTextBox.Text);
 
             if (selectedRadioButton == null || button == null) return;
 
             if (selectedRadioButton is RadioButtonSelectTexture)
             {
-                button.SetXmlBlock(((RadioButtonSelectTexture)selectedRadioButton).XmlTexture, selectedBlockType, selectedCollision, selectedDamage);
+                button.SetXmlBlock(((RadioButtonSelectTexture)selectedRadioButton).XmlTexture, selectedBlockType, selectedCollision, selectedDamage, selectedIsScrolling, selectedScrollingLength, selectedScrollingDirectionX, selectedScrollingDirectionY);
             }
             if (selectedRadioButton is RadioButtonSelectAnimation)
             {
@@ -102,18 +107,22 @@ namespace LevelEditor.Controls
                     button.ResetXmlItem();
                 if (((RadioButtonTool)selectedRadioButton).Action == TextureRadioButtonAction.Select)
                 {
-                    if (button.XmLLevelItemBase is XmlBlock)
+                    if (button.ItemPresenter is XmlBlockPresenter || button.ItemPresenter is XmlAnimatedBlockPresenter)
                     {
                         var win = Helper.FindWindowHelper.IsWindowOpen<Window>("ShowBlockWindow");
+
+                        XmlTexture texture = null;
+                        if (button.ItemPresenter is XmlBlockPresenter)
+                            texture = ((XmlBlockPresenter)button.ItemPresenter).XmlTexture;
                         if (win != null)
                         {
-                            ((ShowBlockItemWindow)win).ShowBlock(button.XmLLevelItemBase as XmlBlock, button.XmlTexture);
+                            ((ShowBlockItemWindow)win).ShowBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, texture);
                             win.Show();
                         }
                         else
                         {
                             win = new ShowBlockItemWindow() { Name = "ShowBlockWindow" };
-                            ((ShowBlockItemWindow)win).ShowBlock(button.XmLLevelItemBase as XmlBlock, button.XmlTexture);
+                            ((ShowBlockItemWindow)win).ShowBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, texture);
                             win.Show();
                         }
                     }
