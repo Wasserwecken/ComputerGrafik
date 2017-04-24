@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:LevelEditor.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Button  x:Name="MainButton" Style="{DynamicResource GridButtonStyle}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-        <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Button x:Name="MainButton" Style="{DynamicResource GridButtonStyle}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+        <Border x:Name="InnerBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBlock VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="10" x:Name="TitleTextBlock" Text="Test" />
         </Border>
     </Button>

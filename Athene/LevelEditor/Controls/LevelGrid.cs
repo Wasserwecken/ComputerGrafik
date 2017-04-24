@@ -93,19 +93,35 @@ namespace LevelEditor.Controls
 
             if (selectedRadioButton is RadioButtonSelectTexture)
             {
-                button.SetXmlBlock(((RadioButtonSelectTexture)selectedRadioButton).XmlTexture, selectedBlockType, selectedCollision, selectedDamage, selectedIsScrolling, selectedScrollingLength, selectedScrollingDirectionX, selectedScrollingDirectionY);
+                RadioButtonSelectTexture radioButtonSelectTexture = selectedRadioButton as RadioButtonSelectTexture;
+                if (LevelEditor.AppendTextureCheckBox.IsChecked == true)
+                {
+                    if(button.ItemPresenter != null)
+                    {
+                        button.AttachTexture(radioButtonSelectTexture.XmlTexture);
+                    }
+                }
+                else
+                {
+                    button.SetXmlBlock(radioButtonSelectTexture.XmlTexture, selectedBlockType, selectedCollision, selectedDamage,
+                    selectedIsScrolling, selectedScrollingLength, selectedScrollingDirectionX, selectedScrollingDirectionY);
+                }
+                
             }
             if (selectedRadioButton is RadioButtonSelectAnimation)
             {
-                button.SetXmlAnimatedBlock(
-                    ((RadioButtonSelectAnimation)selectedRadioButton).XmlAnimation,
+                RadioButtonSelectAnimation radioButtonSelectAnimation = selectedRadioButton as RadioButtonSelectAnimation;
+                button.SetXmlAnimatedBlock(radioButtonSelectAnimation.XmlAnimation,
                     selectedBlockType, selectedCollision, selectedDamage);
             }
             if (selectedRadioButton is RadioButtonTool)
             {
-                if (((RadioButtonTool)selectedRadioButton).Action == TextureRadioButtonAction.Remove)
+                RadioButtonTool radioButtonTool = selectedRadioButton as RadioButtonTool;
+                if (radioButtonTool.Action == TextureRadioButtonAction.Remove)
                     button.ResetXmlItem();
-                if (((RadioButtonTool)selectedRadioButton).Action == TextureRadioButtonAction.Select)
+                if (radioButtonTool.Action == TextureRadioButtonAction.RemoveAttachedTexture)
+                    button.AttachTexture(null);
+                if (radioButtonTool.Action == TextureRadioButtonAction.Select)
                 {
                     if (button.ItemPresenter is XmlBlockPresenter || button.ItemPresenter is XmlAnimatedBlockPresenter)
                     {
@@ -142,5 +158,8 @@ namespace LevelEditor.Controls
                 GridButtonClicked(sender, e);
             }
         }
+
+
+       
     }
 }

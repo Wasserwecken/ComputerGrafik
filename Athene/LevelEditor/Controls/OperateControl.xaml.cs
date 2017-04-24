@@ -56,12 +56,17 @@ namespace LevelEditor.Controls
 
             RadioButtonTool selectButton = new RadioButtonTool("Auswählen",
                 Directory.GetCurrentDirectory() + @"/CommonImages/Cursor-96.png", TextureRadioButtonAction.Select);
-           
+
+            RadioButtonTool removeAttachedButton = new RadioButtonTool("Angehängte Textur\nentfernen",
+                Directory.GetCurrentDirectory() + @"/CommonImages/Delete-File-96.png", TextureRadioButtonAction.RemoveAttachedTexture);
+
             nullButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
             selectButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
+            removeAttachedButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
 
             folder.AddRadioButton(nullButton);
             folder.AddRadioButton(selectButton);
+            folder.AddRadioButton(removeAttachedButton);
             TextureWrapPanel.Children.Add(folder);
         }
 

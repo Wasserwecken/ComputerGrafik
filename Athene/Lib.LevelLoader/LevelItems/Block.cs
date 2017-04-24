@@ -48,6 +48,8 @@ namespace Lib.LevelLoader.LevelItems
         public void Draw()
         {
             Sprite.Draw(Position, new Vector2(1f));
+            foreach (var attachedSprite in AttachedSprites)
+                attachedSprite.Draw(Position, new Vector2(1f));
         }
 
         /// <summary>

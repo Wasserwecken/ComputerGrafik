@@ -34,10 +34,18 @@ namespace LevelEditor.Extensions
                 /* Each button needs to be checked which type the XmLLevelItemBase is */
                 if (button.ItemPresenter.XmLLevelItemBase is XmlBlock)
                 {
-                    if ((button.ItemPresenter.XmLLevelItemBase as XmlBlock).LinkType == BlockLinkType.Image)
-                        HandleXmlBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, ((XmlBlockPresenter)button.ItemPresenter).XmlTexture.Path, levelReturn);
+                    XmlBlock xmlBlock = button.ItemPresenter.XmLLevelItemBase as XmlBlock;
+                    if (xmlBlock.LinkType == BlockLinkType.Image)
+                    {
+                        XmlTexture xmlTexture = (button.ItemPresenter as XmlBlockPresenter).XmlTexture;
+                        XmlTexture xmlAtachedTexture = button.ItemPresenter.XmlAttachedTexture;
+                        HandleXmlBlock(xmlBlock, xmlTexture.Path, levelReturn, xmlAtachedTexture?.Path);
+                    }
                     else if ((button.ItemPresenter.XmLLevelItemBase as XmlBlock).LinkType == BlockLinkType.Animation)
-                        HandleXmlBlock(button.ItemPresenter.XmLLevelItemBase as XmlBlock, null, levelReturn);
+                    {
+                        HandleXmlBlock(xmlBlock, null, levelReturn, xmlBlock.AttachedTexture);
+                    }
+                        
                 }
                     
 
@@ -60,6 +68,7 @@ namespace LevelEditor.Extensions
                     if (block.LinkType == BlockLinkType.Image)
                     {
                         var texture = level.Textures.First(t => t.Id == block.Link);
+                        var attachedTexture = level.Textures.FirstOrDefault(t => t.Id == block?.AttachedTexture);
                         if (!File.Exists(texture.Path))
                         {
                             MessageBox.Show(texture.Path + " wurde nicht gefunden, Level kann nicht geladen werden",
@@ -68,7 +77,7 @@ namespace LevelEditor.Extensions
                             grid.IsEnabled = false;
                             return;
                         }
-                        button.SetXmlBlock(texture, block.BlockType, block.Collision, block.Damage, block.IsScrolling, block.ScrollingLength, block.ScrollingDirectionX, block.ScrollingDirectionY);
+                        button.SetXmlBlock(texture, block.BlockType, block.Collision, block.Damage, block.IsScrolling, block.ScrollingLength, block.ScrollingDirectionX, block.ScrollingDirectionY, attachedTexture);
                     }
                     else if (block.LinkType == BlockLinkType.Animation)
                     {
@@ -92,7 +101,7 @@ namespace LevelEditor.Extensions
         /// <param name="block">The Block</param>
         /// <param name="texturePath">The texture relative path</param>
         /// <param name="level">the level</param>
-        private static void HandleXmlBlock(XmlBlock block, string texturePath, XmlLevel level)
+        private static void HandleXmlBlock(XmlBlock block, string texturePath, XmlLevel level, string attachedTexturePath)
         {
             if (block.LinkType == BlockLinkType.Image && level.Textures.Count(t => t.Id == block.Link) == 0)
             {
@@ -102,6 +111,15 @@ namespace LevelEditor.Extensions
                     Path = texturePath
                 };
                 level.Textures.Add(texture);
+            }
+            if(block.AttachedTexture != null && level.Textures.Count(t => t.Id == block.AttachedTexture) == 0)
+            {
+                XmlTexture attachedTexture = new XmlTexture()
+                {
+                    Id = block.AttachedTexture,
+                    Path = attachedTexturePath
+                };
+                level.Textures.Add(attachedTexture);
             }
             level.Blocks.Add(block);
         }

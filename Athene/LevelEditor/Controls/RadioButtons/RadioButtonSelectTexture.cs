@@ -48,7 +48,8 @@ namespace LevelEditor.Controls.RadioButtons
         LoadTexture,
         Remove,
         Select,
-        LoadAnimation
+        LoadAnimation,
+        RemoveAttachedTexture
     }
 
    

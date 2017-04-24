@@ -74,6 +74,7 @@ namespace Lib.LevelLoader
             foreach (var xmlBlock in xmlLevel.Blocks)
             {
                 ISprite sprite = null;
+                SpriteStatic attachedSprite = null;
 
                 if (xmlBlock.LinkType == BlockLinkType.Image)
                 {
@@ -84,6 +85,11 @@ namespace Lib.LevelLoader
                     if(xmlBlock.IsScrolling)
                     {
                         ((SpriteStatic)sprite).StartTextureScroll(new Vector2(xmlBlock.ScrollingDirectionX, xmlBlock.ScrollingDirectionY), xmlBlock.ScrollingLength);
+                    }
+                    if(xmlBlock.AttachedTexture != null)
+                    {
+                        var attachedTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.AttachedTexture);
+                        attachedSprite = new SpriteStatic(attachedTexture.Path);
                     }
 
 
@@ -100,6 +106,9 @@ namespace Lib.LevelLoader
                 }
 				var startPosition = new Vector2(xmlBlock.X, xmlBlock.Y);
                 var block = new Block(startPosition, sprite, xmlBlock.BlockType, xmlBlock.Collision, xmlBlock.Damage);
+                if (attachedSprite != null)
+                    block.AttachedSprites.Add(attachedSprite);
+
                 returnLevel.Blocks.Add(block);
             }
 

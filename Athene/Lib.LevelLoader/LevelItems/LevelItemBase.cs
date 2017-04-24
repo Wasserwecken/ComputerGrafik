@@ -26,6 +26,11 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         public Box2D Box2D { get; set; }
 
+        /// <summary>
+        /// Attached Sprites
+        /// </summary>
+        public List<ISprite> AttachedSprites { get; set; }
+
 
         /// <summary>
         /// Initialises a new level item
@@ -36,6 +41,7 @@ namespace Lib.LevelLoader.LevelItems
 		{
 			Position = startPosition;
             Box2D = new Box2D(startPosition.X, startPosition.Y, boxSize.X, boxSize.Y);
+            AttachedSprites = new List<ISprite>();
 		}
 
         /// <summary>

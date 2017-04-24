@@ -55,9 +55,21 @@
 
                         <TextBlock Text="Zoom" Grid.Row="0" Padding="0,0,5,0" Grid.Column="0" />
                         <Slider Grid.Column="0" Grid.Row="1" x:Name="LevelZoomer" ToolTip="Level Zoom"  Width="200" VerticalAlignment="Center" Value="1" Minimum="0.1" Maximum="4" />
+
+                        <TextBlock Text="Textur anhängen" Grid.Row="0" Padding="0,0,5,0" Grid.Column="2" />
+                        <CheckBox Grid.Column="2" Grid.Row="1" x:Name="AppendTextureCheckBox" VerticalContentAlignment="Center" Content="Anhängen"  />
                     </Grid>
                 </TabItem>
-                <TabItem Header="Block Einstellungen">
+                <TabItem Header="Block Einstellungen" >
+                    <TabItem.Style>
+                        <Style TargetType="TabItem">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=AppendTextureCheckBox, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TabItem.Style>
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

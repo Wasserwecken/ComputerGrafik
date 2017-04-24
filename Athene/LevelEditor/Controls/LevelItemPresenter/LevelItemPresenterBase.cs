@@ -10,5 +10,10 @@ namespace LevelEditor.Controls.LevelItemPresenter
     public class LevelItemPresenterBase
     {
         public XmlLevelItemBase XmLLevelItemBase { get; set; }
+
+        /// <summary>
+        /// XmlTexture is for Blocks (Texture of Blocks)
+        /// </summary>
+        public XmlTexture XmlAttachedTexture { get; set; }
     }
 }

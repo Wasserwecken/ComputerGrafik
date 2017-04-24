@@ -68,7 +68,8 @@ namespace LevelEditor.Controls
         /// <param name="type">Blocktype</param>
         /// <param name="collision">collision</param>
         /// <param name="damage">damage</param>
-        public void SetXmlBlock(XmlTexture texture, BlockType type, bool collision, int damage, bool isScrolling = false, int scrollingLength = 0, float scrollingDirectionX = 0, float scrollingDirectionY = 0)
+        public void SetXmlBlock(XmlTexture texture, BlockType type, bool collision, int damage, bool isScrolling = false, 
+            int scrollingLength = 0, float scrollingDirectionX = 0, float scrollingDirectionY = 0, XmlTexture attachedTexture = null)
         {
             var xmlBlock = new XmlBlock()
             {
@@ -82,13 +83,16 @@ namespace LevelEditor.Controls
                 IsScrolling = isScrolling,
                 ScrollingLength = scrollingLength,
                 ScrollingDirectionX = scrollingDirectionX,
-                ScrollingDirectionY = scrollingDirectionY
+                ScrollingDirectionY = scrollingDirectionY,
+                AttachedTexture = attachedTexture?.Id
             };
             ItemPresenter = new XmlBlockPresenter()
             {
                 XmlTexture = texture,
-                XmLLevelItemBase = xmlBlock
+                XmLLevelItemBase = xmlBlock,
+                XmlAttachedTexture = attachedTexture
             };
+            AttachTexture(attachedTexture);
             SetImage(texture.Path);
         }
 
@@ -125,6 +129,7 @@ namespace LevelEditor.Controls
         {
             ItemPresenter = null;
             SetImage(null);
+            AttachTexture(null);
         }
 
         /// <summary>
@@ -150,6 +155,41 @@ namespace LevelEditor.Controls
 
         }
 
+        /// <summary>
+        /// Attaches a texture
+        /// </summary>
+        /// <param name="texture"></param>
+        public void AttachTexture(XmlTexture texture)
+        {
+            if (ItemPresenter != null && texture != null)
+            {
+                ItemPresenter.XmLLevelItemBase.AttachedTexture = texture.Id;
+                MainButton.BorderBrush = new SolidColorBrush(Colors.Red);
+                MainButton.BorderThickness = new Thickness(2);
+
+                BitmapImage logo = new BitmapImage();
+                logo.BeginInit();
+                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "/" + texture.Path, UriKind.Absolute);
+                logo.EndInit();
+
+                Image img = new Image()
+                {
+                    Source = logo,
+                    Width = 30,
+                    Height = 30
+                };
+                MainButton.Content = img;
+            }
+            if(texture == null)
+            {
+                if(ItemPresenter != null)
+                    ItemPresenter.XmLLevelItemBase.AttachedTexture = null;
+                MainButton.BorderThickness = new Thickness(0);
+                MainButton.Content = InnerBorder;
+            }
+            if(ItemPresenter != null)
+                ItemPresenter.XmlAttachedTexture = texture;
+        }
 
         /// <summary>
         /// Click Event for UserControl
