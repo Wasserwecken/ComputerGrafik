@@ -17,11 +17,12 @@ namespace SimeraExample
 		private GameWindowBase Window { get; }
 		private LevelItemPlayerActions InputActions { get; set; }
 
-		private SpriteStatic SpriteTest { get; set; }
+        private SpriteStatic SpriteTest { get; set; }
+        private SpriteStatic SpriteTest2 { get; set; }
 
-		
 
-	    private Level Level { get; set; }
+
+        private Level Level { get; set; }
 
         public GameBase()
 		{
@@ -38,12 +39,15 @@ namespace SimeraExample
 		{
 		    Level = LevelLoader.LoadLevel(9);
 
-		
+            SpriteTest = new SpriteStatic("Pics/water_top.png");
+            SpriteTest.StartTextureScroll(new Vector2(1, 0), 2000);
+
+            SpriteTest2 = new SpriteStatic("Pics/water_deep.png");
+            SpriteTest2.StartTextureScroll(new Vector2(1, 0), 2000);
 		}
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
-			//Player1.UpdateLogic();
 			Level.UpdateLogic();
 			//setting the camera
 			Window.Camera.MoveTo(Level.Players[0].ViewPoint);
@@ -52,12 +56,19 @@ namespace SimeraExample
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
-            //Console.Clear();
             Level.Draw();
-			//Player1.Draw();
-            //Console.WriteLine("Player Position: (" + Player1.Position.X + "|" + Player1.Position.Y + ")");
 
-            
+            SpriteTest.Draw(new Vector2(1, 3), Vector2.One);
+            SpriteTest.Draw(new Vector2(2, 3), Vector2.One);
+            SpriteTest.Draw(new Vector2(3, 3), Vector2.One);
+
+            SpriteTest2.Draw(new Vector2(1, 2), Vector2.One);
+            SpriteTest2.Draw(new Vector2(2, 2), Vector2.One);
+            SpriteTest2.Draw(new Vector2(3, 2), Vector2.One);
+
+            SpriteTest2.Draw(new Vector2(1, 1), Vector2.One);
+            SpriteTest2.Draw(new Vector2(2, 1), Vector2.One);
+            SpriteTest2.Draw(new Vector2(3, 1), Vector2.One);
         }
 	}
 }

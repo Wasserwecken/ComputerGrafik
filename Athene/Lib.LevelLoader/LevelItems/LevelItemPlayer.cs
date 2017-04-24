@@ -94,7 +94,9 @@ namespace Lib.LevelLoader.LevelItems
 		/// </summary>
 		public void Draw()
 		{
-			Sprite.Draw(Physics.Position, new Vector2(0.8f));
+		    Sprite.FlipTextureHorizontal = Physics.Energy.X > 0;
+
+		    Sprite.Draw(Physics.Position, new Vector2(0.8f));
 		}
 
 

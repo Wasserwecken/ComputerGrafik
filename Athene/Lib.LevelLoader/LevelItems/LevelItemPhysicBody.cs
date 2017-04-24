@@ -18,7 +18,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Current energy of the object
 		/// </summary>
-		private Vector2 Energy { get; set; }
+		public Vector2 Energy { get; private set; }
 
 		/// <summary>
 		/// Current used environment
