@@ -136,7 +136,7 @@ namespace Lib.Visuals.Graphics
 	    private void SetVertexPosition(Vector2 vertex, Vector2 position, Vector2 scale, float textureWidth, float textureHeight)
         {
             //Snap to grid size
-            if (textureWidth > textureHeight)
+            if (textureHeight > textureWidth)
                 vertex.Y *= textureHeight / textureWidth;
             else
                 vertex.X *= textureWidth / textureHeight;
