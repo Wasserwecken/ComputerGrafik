@@ -14,20 +14,7 @@ namespace Lib.LevelLoader.LevelItems
         /// <summary>
         /// Position of the item
         /// </summary>
-        public Vector2 Position
-        {
-            get { return _position; }
-            set
-            {
-                LastPosition = _position;
-                _position = value;
-            }
-        }
-
-        /// <summary>
-        /// Post Position of the object in the level
-        /// </summary>
-        public Vector2 LastPosition { get; private set; }
+        public Vector2 Position { get; set; }
 
         /// <summary>
         /// the sprite of the item
@@ -41,16 +28,11 @@ namespace Lib.LevelLoader.LevelItems
 
 
         /// <summary>
-        /// Position property var
-        /// </summary>
-        private Vector2 _position;
-
-        /// <summary>
         /// Initialises a new level item
         /// </summary>
         /// <param name="startPosition"></param>
         /// <param name="boxSize">boxSize</param>
-        public LevelItemBase(Vector2 startPosition, Vector2 boxSize)
+        protected LevelItemBase(Vector2 startPosition, Vector2 boxSize)
 		{
 			Position = startPosition;
             Box2D = new Box2D(startPosition.X, startPosition.Y, boxSize.X, boxSize.Y);

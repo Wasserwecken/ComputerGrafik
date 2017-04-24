@@ -3,12 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenTK;
 
 namespace Lib.LevelLoader.Geometry
 {
-    [Serializable]
-    public class Box2D : IEquatable<Box2D>
+    public class Box2D
     {
+        /// <summary>
+        /// Position of the box in the level
+        /// </summary>
+        public Vector2 Postion { get; set; }
+
+        /// <summary>
+        /// Dimension of the box
+        /// </summary>
+        public Vector2 Size { get; set; }
+        
+        /// <summary>
+        /// Center point of the box
+        /// </summary>
+        public Vector2 Center => new Vector2(Postion.X + (0.5f * Size.X), Postion.Y + (0.5f * Size.Y));
+
+        /// <summary>
+        /// Absolute left ending of the box
+        /// </summary>
+        public float MaximumX => Postion.X + Size.X;
+
+        /// <summary>
+        /// Absolute top ending of the box
+        /// </summary>
+        public float MaximumY => Postion.Y + Size.Y;
+
+
         /// <summary>
         /// creates an AABR, an 2D axis aligned bounding box
         /// </summary>
@@ -18,90 +44,45 @@ namespace Lib.LevelLoader.Geometry
         /// <param name="sizeY">height</param>
         public Box2D(float x, float y, float sizeX, float sizeY)
         {
-            this.X = x;
-            this.Y = y;
-            this.SizeX = sizeX;
-            this.SizeY = sizeY;
+            Postion = new Vector2(x, y);
+            Size = new Vector2(sizeX, sizeY);
         }
 
-        public Box2D(Box2D rectangle)
+
+        /// <summary>
+        /// Checks if another box intersecs a box
+        /// </summary>
+        /// <param name="otherBox"></param>
+        /// <returns></returns>
+        public bool Intersects(Box2D otherBox)
         {
-            this.X = rectangle.X;
-            this.Y = rectangle.Y;
-            this.SizeX = rectangle.SizeX;
-            this.SizeY = rectangle.SizeY;
-        }
 
-        public static readonly Box2D BOX01 = new Box2D(0, 0, 1, 1);
-        public static readonly Box2D EMPTY = new Box2D(0, 0, 0, 0);
-
-        public float SizeX { get; set; }
-
-        public float SizeY { get; set; }
-
-        public float X { get; set; }
-
-        public float Y { get; set; }
-
-        public float MaxX { get { return X + SizeX; } set { SizeX = value - X; } }
-
-        public float MaxY { get { return Y + SizeY; } set { SizeY = value - Y; } }
-
-        public float CenterX { get { return X + 0.5f * SizeX; } set { X = value - 0.5f * SizeX; } }
-
-        public float CenterY { get { return Y + 0.5f * SizeY; } set { Y = value - 0.5f * SizeY; } }
-
-        public static bool operator ==(Box2D a, Box2D b)
-        {
-            return a.Equals(b);
-        }
-
-        public static bool operator !=(Box2D a, Box2D b)
-        {
-            return !a.Equals(b);
-        }
-
-        public bool Equals(Box2D other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            return X == other.X && Y == other.Y && SizeX == other.SizeX && SizeY == other.SizeY;
-        }
-
-        public override bool Equals(object other)
-        {
-            return Equals(other as Box2D);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public bool Intersects(Box2D rectangle, bool debug = false)
-        {
-           
-            bool noXintersect = (MaxX <= rectangle.X) || (X >= rectangle.MaxX);
-            bool noYintersect = (MaxY <= rectangle.Y) || (Y >= rectangle.MaxY);
-            if (debug && !(noXintersect || noYintersect))
-            {
-
-            }
-
+            bool noXintersect = (MaximumX <= otherBox.Postion.X) || (Postion.X >= otherBox.MaximumX);
+            bool noYintersect = (MaximumY <= otherBox.Postion.Y) || (Postion.Y >= otherBox.MaximumY);
+            
             return !(noXintersect || noYintersect);
         }
 
-        public bool Inside(Box2D rectangle)
+        /// <summary>
+        /// Check if a box is inseide of another
+        /// </summary>
+        /// <param name="otherBox"></param>
+        /// <returns></returns>
+        public bool Inside(Box2D otherBox)
         {
-            if (X < rectangle.X) return false;
-            if (MaxX > rectangle.MaxX) return false;
-            if (Y < rectangle.Y) return false;
-            if (MaxY > rectangle.MaxY) return false;
-            return true;
-        }
+            if (Postion.X < otherBox.Postion.X)
+                return false;
 
-        public override string ToString()
-        {
-            return '(' + X.ToString() + ';' + Y.ToString() + ';' + SizeX.ToString() + ';' + SizeY.ToString() + ')';
+            if (MaximumX > otherBox.MaximumX)
+                return false;
+
+            if (Postion.X < otherBox.Postion.Y)
+                return false;
+
+            if (MaximumY > otherBox.MaximumY)
+                return false;
+
+            return true;
         }
     }
 }

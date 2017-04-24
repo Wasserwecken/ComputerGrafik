@@ -25,16 +25,16 @@ namespace Lib.LevelLoader.LevelItems
 		/// </summary>
 		public Enum CurrentEnvironment { get; private set; }
 
+		/// <summary>
+		/// Current used behaviour
+		/// </summary>
+		public LevelItemPhysicBodyProperties CurrentProperties { get; private set; }
+
 
 		/// <summary>
 		/// Available environments with the object behaviours
 		/// </summary>
 		private Dictionary<BlockType, LevelItemPhysicBodyProperties> Properties { get; set; }
-
-		/// <summary>
-		/// Current used behaviour
-		/// </summary>
-		private LevelItemPhysicBodyProperties CurrentProperties { get; set; }
         
 		/// <summary>
 		/// Last invoked force
@@ -89,7 +89,7 @@ namespace Lib.LevelLoader.LevelItems
 			Position = Position + new Vector2(x, y);
 
             // update the 2DBox
-            Box2D = new Box2D(Position.X, Position.Y, Box2D.SizeX, Box2D.SizeY);
+            Box2D.Postion = new Vector2(Position.X, Position.Y);
         }
 
 		/// <summary>
@@ -237,72 +237,55 @@ namespace Lib.LevelLoader.LevelItems
 			return energy;
 		}
 
-        /// <summary>
-        /// React to a collision with a block
-        /// </summary>
-        /// <param name="collidingBlock">the colliding block</param>
-        /// <param name="oldPosition">the old position of the player</param>
-        public override void ReactToCollision(LevelItemBase collidingBlock)
+	    /// <summary>
+	    /// React to a collision with a block
+	    /// </summary>
+	    /// <param name="collidingBlock">the colliding block</param>
+	    public override void ReactToCollision(LevelItemBase collidingBlock)
         {
-            var collidingBox = collidingBlock.Box2D;
+            var myBox = Box2D;
+            var otherBox = collidingBlock.Box2D;
+            float intersectSizeX = 0;
+            float intersectSizeY = 0;
 
-            CollisionType collisionType = CollisionInformation.FromBlocks(this, collidingBlock);
+            // calculate the intersect of the two boxes, for later corrections
+            // y_overlap = y12 < y21 || y11 > y22 ? 0 : Math.min(y12, y22) - Math.max(y11, y21);
+            // x_overlap = x12 < x21 || x11 > x22 ? 0 : Math.min(x12, x22) - Math.max(x11, x21),
+            // https://math.stackexchange.com/questions/99565/simplest-way-to-calculate-the-intersect-area-of-two-rectangles
+            if (!(myBox.MaximumX < otherBox.Postion.X || myBox.Postion.X > otherBox.MaximumX))
+                intersectSizeX = Math.Min(myBox.MaximumX, otherBox.MaximumX) - Math.Max(myBox.Postion.X, otherBox.Postion.X);
+
+            if (!(myBox.MaximumY < otherBox.Postion.Y || myBox.Postion.Y > otherBox.MaximumY))
+                intersectSizeY = Math.Min(myBox.MaximumY, otherBox.MaximumY) - Math.Max(myBox.Postion.Y, otherBox.Postion.Y);
+
+
+            // Check now in which direction the physic object has to be corrected. It depends on the center of the boxes.
+            // Inverting here the intersectsize to achive the side decision
+            // Creating here this vars, because there is a calculation behind the propertie "Center" to avoid multiple execution, by calling the prop
+            var ownCenter = Box2D.Center;
+            var otherCenter = collidingBlock.Box2D.Center;
+            if (ownCenter.X < otherCenter.X)
+                intersectSizeX *= -1;
+            if (ownCenter.Y < otherCenter.Y)
+                intersectSizeY *= -1;
             
-            if (collisionType == CollisionType.Bottom)
+            // Corret the position, check first if the collision has to be correct on the x or y axis
+            // ignore for this check only the gravity, because this will be very time applied.
+            // the intersect with smaller size has to be corrected
+            if (Math.Abs(intersectSizeX) > Math.Abs(intersectSizeY) - CurrentProperties.Mass)
             {
-                /* Collion bottom */
-                Position = new Vector2(Position.X, collidingBox.MaxY);
-                Box2D = new Box2D(Position.X, collidingBox.MaxY, Box2D.SizeX, Box2D.SizeY);
+                //Correct Y axis
+                Position = new Vector2(Position.X, Position.Y + intersectSizeY);
+                Box2D.Postion = new Vector2(Position.X, Position.Y + intersectSizeY);
                 StopBodyOnAxisY();
             }
-            else if (collisionType == CollisionType.Top)
-            {
-                /* Collision top */
-                Console.WriteLine("top collision");
-                Position = new Vector2(Position.X, collidingBox.Y - Box2D.SizeY);
-                Box2D = new Box2D(Position.X, collidingBox.Y - Box2D.SizeY, Box2D.SizeX, Box2D.SizeY);
-                StopBodyOnAxisY();
-            }
-            else if (collisionType == CollisionType.Left)
-            {
-                /* Collision left */
-                Console.WriteLine("left collision");
-                Position = new Vector2(collidingBox.MaxX, Position.Y);
-                Box2D = new Box2D(collidingBox.MaxX, Position.Y, Box2D.SizeX, Box2D.SizeY);
-                StopBodyOnAxisX();
-            }
-            else if (collisionType == CollisionType.Right)
-            {
-                /* Collision right */
-                Console.WriteLine("right collision");
-                Position = new Vector2(collidingBlock.Position.X - Box2D.SizeX, Position.Y);
-                Box2D = new Box2D(collidingBlock.Position.X - Box2D.SizeX, Position.Y, Box2D.SizeX, Box2D.SizeY);
-                StopBodyOnAxisX();
-            }
-            else if (collisionType == CollisionType.Behind)
-            {
-                /* behind right */
-                Console.WriteLine("behind collision");
-                Position = LastPosition;
-                Box2D = new Box2D(LastPosition.X, LastPosition.Y, Box2D.SizeX, Box2D.SizeY);
-                StopBodyOnAxisX();
-            }
-            //else if (collisionType == CollisionType.MoreCollision)
-            //{
-            //    /* behind right */
-            //    Console.WriteLine("more collision");
-            //    Position = oldPosition;
-            //    Box2D = new Box2D(oldPosition.X, oldPosition.Y, Box2D.SizeX, Box2D.SizeY);
-            //    StopBodyOnAxisX();
-            //}
             else
             {
-                // player stands on 2 blocks...
-                //TODO: implement maybe later
+                //Correct X axis
+                Position = new Vector2(Position.X + intersectSizeX, Position.Y);
+                Box2D.Postion = new Vector2(Position.X + intersectSizeX, Position.Y);
+                StopBodyOnAxisX();
             }
         }
-
-       
-
     }
 }

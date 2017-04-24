@@ -80,12 +80,10 @@ namespace Lib.LevelLoader.LevelItems
 		public void UpdateLogic(Level level)
 		{
 			ProcessInput(level);
-
-            //var oldPosition = new Vector2(Physics.Position.X, Physics.Position.Y);
-
+            
 			Physics.UpdateLogic();
-		    //CheckCollision(level, oldPosition);
-			UpdateOffsetViewPoint();
+		    
+            UpdateOffsetViewPoint();
 		}
 
 	  
@@ -115,7 +113,7 @@ namespace Lib.LevelLoader.LevelItems
 			// it will be not allowed to jump (e.g. water)
 
 		   
-            if (InputValues.Jump && PlayerIsOnSolid(level))
+            if (InputValues.Jump && Math.Abs(Physics.Energy.Y) <= 0)
 				 Physics.ApplyImpulse(new Vector2(0, 0.5f));
 		}
 
@@ -141,7 +139,7 @@ namespace Lib.LevelLoader.LevelItems
             var blockBottom = level.Blocks.FirstOrDefault(b => (b.Position.X == Math.Round(Position.X)) && (b.Position.Y < Math.Round(Physics.Position.Y)));
 	        if (blockBottom != null)
 	        {
-                return blockBottom.Box2D.MaxY == Physics.Box2D.Y;
+                return blockBottom.Box2D.MaximumY == Physics.Box2D.Postion.Y;
             }
 	        return false;
 
