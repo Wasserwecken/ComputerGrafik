@@ -141,7 +141,7 @@ namespace Lib.LevelLoader.LevelItems
             var blockBottom = level.Blocks.FirstOrDefault(b => (b.Position.X == Math.Round(Position.X)) && (b.Position.Y < Math.Round(Physics.Position.Y)));
 	        if (blockBottom != null)
 	        {
-                return blockBottom.Box2D.MaxY == Physics.Box2D.Y;
+                return blockBottom.Box2D.MaximumY == Physics.Box2D.Postion.Y;
             }
 	        return false;
 
