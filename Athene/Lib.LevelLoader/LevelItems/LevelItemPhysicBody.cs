@@ -25,16 +25,16 @@ namespace Lib.LevelLoader.LevelItems
 		/// </summary>
 		public Enum CurrentEnvironment { get; private set; }
 
+		/// <summary>
+		/// Current used behaviour
+		/// </summary>
+		public LevelItemPhysicBodyProperties CurrentProperties { get; private set; }
+
 
 		/// <summary>
 		/// Available environments with the object behaviours
 		/// </summary>
 		private Dictionary<BlockType, LevelItemPhysicBodyProperties> Properties { get; set; }
-
-		/// <summary>
-		/// Current used behaviour
-		/// </summary>
-		private LevelItemPhysicBodyProperties CurrentProperties { get; set; }
         
 		/// <summary>
 		/// Last invoked force
