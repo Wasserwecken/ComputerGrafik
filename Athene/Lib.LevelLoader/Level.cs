@@ -51,7 +51,6 @@ namespace Lib.LevelLoader
         {
             foreach (var player in Players)
             {
-                var oldPositionOfPlayer = new Vector2(player.Position.X, player.Position.Y);
                 BlockType playerEnvironment = BlockType.Solid;
                 
 

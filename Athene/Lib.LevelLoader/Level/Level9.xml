@@ -3,6 +3,9 @@
   <Blocks>
     <Block X="64" Y="15" Link="objects_39" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="67" Y="15" Link="jungle_pack_59" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="14" Link="snow_54" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="17" Y="14" Link="snow_54" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="18" Y="14" Link="snow_54" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="58" Y="14" Link="jungle_pack_65" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="60" Y="14" Link="jungle_pack_63" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="61" Y="14" Link="objects_06" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
@@ -14,6 +17,11 @@
     <Block X="67" Y="14" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="68" Y="14" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="69" Y="14" Link="jungle_pack_07" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="15" Y="13" Link="snow_54" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="13" Link="snow_75" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="13" Link="snow_75" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="18" Y="13" Link="snow_75" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="19" Y="13" Link="snow_75" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="48" Y="13" Link="jungle_pack_57" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="51" Y="13" Link="jungle_pack_63" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="52" Y="13" Link="jungle_pack_67" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
@@ -46,9 +54,12 @@
     <Block X="8" Y="12" Link="snow_97" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="10" Y="12" Link="snow_113" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="12" Y="12" Link="snow_97" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="14" Y="12" Link="snow_118" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="15" Y="12" Link="snow_97" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="14" Y="12" Link="snow_54" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="15" Y="12" Link="snow_75" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="12" Link="snow_75" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="17" Y="12" Link="ladder_top" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="18" Y="12" Link="snow_75" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="19" Y="12" Link="snow_75" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="47" Y="12" Link="jungle_pack_09" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="48" Y="12" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="49" Y="12" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -99,8 +110,10 @@
     <Block X="13" Y="11" Link="snow_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="14" Y="11" Link="snow_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="15" Y="11" Link="snow_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="16" Y="11" Link="snow_11" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="16" Y="11" Link="snow_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="17" Y="11" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="18" Y="11" Link="snow_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="19" Y="11" Link="snow_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="49" Y="11" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="50" Y="11" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="51" Y="11" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -152,7 +165,11 @@
     <Block X="12" Y="10" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="13" Y="10" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="14" Y="10" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="15" Y="10" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="16" Y="10" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="17" Y="10" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="18" Y="10" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="19" Y="10" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="51" Y="10" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="52" Y="10" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="53" Y="10" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -197,6 +214,8 @@
     <Block X="10" Y="9" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="11" Y="9" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="12" Y="9" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="9" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="14" Y="9" Link="snow_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="17" Y="9" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="38" Y="9" Link="forest_pack_03" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="39" Y="9" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -491,7 +510,7 @@
     <Block X="11" Y="-1" Link="forest_pack_97" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="13" Y="-1" Link="forest_pack_102" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="15" Y="-1" Link="forest_pack_95" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="17" Y="-1" Link="forest_pack_92" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-1" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="20" Y="-1" Link="forest_pack_102" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="22" Y="-1" Link="forest_pack_03" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="23" Y="-1" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -1964,12 +1983,14 @@
   <Textures>
     <Texture Path="Images\Objects\Items\objects_39.png" Id="objects_39" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_59.png" Id="jungle_pack_59" />
+    <Texture Path="Images\Environment\Snow\snow_54.png" Id="snow_54" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_65.png" Id="jungle_pack_65" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_63.png" Id="jungle_pack_63" />
     <Texture Path="Images\Objects\Items\objects_06.png" Id="objects_06" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_03.png" Id="jungle_pack_03" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_05.png" Id="jungle_pack_05" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_07.png" Id="jungle_pack_07" />
+    <Texture Path="Images\Environment\Snow\snow_75.png" Id="snow_75" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_57.png" Id="jungle_pack_57" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_67.png" Id="jungle_pack_67" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_64.png" Id="jungle_pack_64" />
@@ -1981,14 +2002,12 @@
     <Texture Path="Images\Environment\Snow\snow_117.png" Id="snow_117" />
     <Texture Path="Images\Environment\Snow\snow_100.png" Id="snow_100" />
     <Texture Path="Images\Environment\Snow\snow_97.png" Id="snow_97" />
-    <Texture Path="Images\Environment\Snow\snow_118.png" Id="snow_118" />
     <Texture Path="Images\Objects\Tiles\ladder_top.png" Id="ladder_top" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_09.png" Id="jungle_pack_09" />
     <Texture Path="Images\Objects\Items\objects_37.png" Id="objects_37" />
     <Texture Path="Images\Environment\Jungle\jungle_pack_68.png" Id="jungle_pack_68" />
     <Texture Path="Images\Environment\Snow\snow_09.png" Id="snow_09" />
     <Texture Path="Images\Environment\Snow\snow_05.png" Id="snow_05" />
-    <Texture Path="Images\Environment\Snow\snow_11.png" Id="snow_11" />
     <Texture Path="Images\Objects\Tiles\ladder_mid.png" Id="ladder_mid" />
     <Texture Path="Images\Environment\Snow\snow_35.png" Id="snow_35" />
     <Texture Path="Images\Environment\Forest\forest_pack_03.png" Id="forest_pack_03" />
