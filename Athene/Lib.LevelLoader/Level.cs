@@ -64,7 +64,7 @@ namespace Lib.LevelLoader
                     if (block.Collision && player.Physics.Box2D.Intersects(block.Box2D))
                     {
                         
-                        player.Physics.ReactToCollision(block, oldPositionOfPlayer);
+                        player.Physics.ReactToCollision(block);
                     }
 
                     if (block.Position.X == Math.Round(player.Position.X) &&

@@ -40,11 +40,6 @@ namespace Lib.LevelLoader.LevelItems
 		private InputLayout<LevelItemPlayerActions> InputLayout { get; set; }
 
 		/// <summary>
-		/// Current movmement speed
-		/// </summary>
-		private float MovementSpeed { get; set; }
-
-		/// <summary>
 		/// Sprite of the player
 		/// </summary>
 		private SpriteAnimated Sprite { get; }
@@ -68,14 +63,11 @@ namespace Lib.LevelLoader.LevelItems
 			//set physic behaviour
 			var physicProps = new Dictionary<BlockType, LevelItemPhysicBodyProperties>
 			{
-				{BlockType.Solid, new LevelItemPhysicBodyProperties(1f, 30f, 0.2f)},
-				{BlockType.Water, new LevelItemPhysicBodyProperties(30f, 30f, -0.005f)},
-                {BlockType.Lava, new LevelItemPhysicBodyProperties(50f, 50f, -0.005f)}
+				{BlockType.Solid, new LevelItemPhysicBodyProperties(6f, 30f, 0.1f, 0.2f)},
+				{BlockType.Water, new LevelItemPhysicBodyProperties(30f, 30f, 0.05f, -0.005f)},
+                {BlockType.Lava, new LevelItemPhysicBodyProperties(15f, 15f, 0.025f, 0f)}
             };
 			Physics = new LevelItemPhysicBody(physicProps, startEnvironment, startPosition);
-
-			//Set basic values
-			MovementSpeed = 0.1f;
 
 			//set graphics
 			Sprite = sprite;
@@ -114,8 +106,6 @@ namespace Lib.LevelLoader.LevelItems
 			// tries to move the player in a given direction.
 			// The direction values should be between -1 and 1 for x and y
 			var moveDirection = new Vector2(InputValues.MoveRight - InputValues.MoveLeft, InputValues.MoveUp - InputValues.MoveDown);
-
-			moveDirection *= MovementSpeed;
 			Physics.ApplyForce(moveDirection);
 
 

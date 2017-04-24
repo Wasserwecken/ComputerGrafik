@@ -54,8 +54,7 @@ namespace Lib.LevelLoader.LevelItems
         /// reacts to a collision
         /// </summary>
         /// <param name="collidingBlock">the colliding block</param>
-        /// <param name="oldPosition">old position</param>
-        public override void ReactToCollision(LevelItemBase collidingBlock, Vector2 oldPosition)
+        public override void ReactToCollision(LevelItemBase collidingBlock)
         {
             
         }

@@ -15,12 +15,6 @@ namespace Lib.LevelLoader.LevelItems
 		/// </summary>
 		public Vector2 EnergyLimit { get; set; }
 
-
-		/// <summary>
-		/// Available environments with the object behaviours
-		/// </summary>
-		private Dictionary<BlockType, LevelItemPhysicBodyProperties> Properties { get; set; }
-
 		/// <summary>
 		/// Current energy of the object
 		/// </summary>
@@ -29,13 +23,19 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Current used environment
 		/// </summary>
-		private Enum CurrentEnvironment { get; set; }
+		public Enum CurrentEnvironment { get; private set; }
+
+
+		/// <summary>
+		/// Available environments with the object behaviours
+		/// </summary>
+		private Dictionary<BlockType, LevelItemPhysicBodyProperties> Properties { get; set; }
 
 		/// <summary>
 		/// Current used behaviour
 		/// </summary>
 		private LevelItemPhysicBodyProperties CurrentProperties { get; set; }
-
+        
 		/// <summary>
 		/// Last invoked force
 		/// </summary>
@@ -65,6 +65,9 @@ namespace Lib.LevelLoader.LevelItems
 		/// </summary>
 		public void UpdateLogic()
 		{
+            //multiply the speed with the current force to get the fitting speed for the enivornment
+            ForceToProcess = ForceToProcess * CurrentProperties.MovementSpeed;
+
 			//converts the force to energy and adding gravity
 			//This will build up energy like "pusching" something
 			SetEnergy(new Vector2(ForceToProcess.X, ForceToProcess.Y - CurrentProperties.Mass));
@@ -239,7 +242,7 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         /// <param name="collidingBlock">the colliding block</param>
         /// <param name="oldPosition">the old position of the player</param>
-        public override void ReactToCollision(LevelItemBase collidingBlock, Vector2 oldPosition)
+        public override void ReactToCollision(LevelItemBase collidingBlock)
         {
             var collidingBox = collidingBlock.Box2D;
 
@@ -280,18 +283,18 @@ namespace Lib.LevelLoader.LevelItems
             {
                 /* behind right */
                 Console.WriteLine("behind collision");
-                Position = oldPosition;
-                Box2D = new Box2D(oldPosition.X, oldPosition.Y, Box2D.SizeX, Box2D.SizeY);
+                Position = LastPosition;
+                Box2D = new Box2D(LastPosition.X, LastPosition.Y, Box2D.SizeX, Box2D.SizeY);
                 StopBodyOnAxisX();
             }
-            else if (collisionType == CollisionType.MoreCollision)
-            {
-                /* behind right */
-                Console.WriteLine("more collision");
-                Position = oldPosition;
-                Box2D = new Box2D(oldPosition.X, oldPosition.Y, Box2D.SizeX, Box2D.SizeY);
-                StopBodyOnAxisX();
-            }
+            //else if (collisionType == CollisionType.MoreCollision)
+            //{
+            //    /* behind right */
+            //    Console.WriteLine("more collision");
+            //    Position = oldPosition;
+            //    Box2D = new Box2D(oldPosition.X, oldPosition.Y, Box2D.SizeX, Box2D.SizeY);
+            //    StopBodyOnAxisX();
+            //}
             else
             {
                 // player stands on 2 blocks...
