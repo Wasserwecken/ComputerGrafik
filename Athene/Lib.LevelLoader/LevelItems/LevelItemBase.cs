@@ -2,10 +2,12 @@
 using Lib.Visuals.Graphics;
 using OpenTK;
 using System.Collections.Generic;
+using Lib.Tools.QuadTree;
 
 namespace Lib.LevelLoader.LevelItems
 {
     public abstract class LevelItemBase
+        : IQuadTreeElement
     {
         /// <summary>
         /// Position of the item
@@ -27,6 +29,21 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         public List<ISprite> AttachedSprites { get; set; }
 
+        /// <summary>
+        /// blocktype of the block
+        /// </summary>
+        public BlockType BlockType { get; set; }
+
+        /// <summary>
+        /// collission of the block
+        /// </summary>
+        public bool Collision { get; set; }
+
+        /// <summary>
+        /// damage of the block
+        /// </summary>
+        public int Damage { get; set; }
+
 
         /// <summary>
         /// Initialises a new level item
@@ -39,6 +56,7 @@ namespace Lib.LevelLoader.LevelItems
             HitBox = new Box2D(startPosition.X, startPosition.Y, boxSize.X, boxSize.Y);
             AttachedSprites = new List<ISprite>();
 		}
+
 
         /// <summary>
         /// Handles a collision with this object with another object in the level

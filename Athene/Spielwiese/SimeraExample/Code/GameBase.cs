@@ -34,6 +34,7 @@ namespace SimeraExample
 		private void Window_Load(object sender, EventArgs e)
 		{
 		    Level = LevelLoader.LoadLevel(9);
+            Level.InitialiseQuadTree();
         }
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Lib.Tools.QuadTree
 {
+    [DebuggerDisplay("Leaf: Elements={ElementCount}")]
     internal class QuadTreeLeaf
         : QuadTreeQuadrant
     {
@@ -13,6 +15,11 @@ namespace Lib.Tools.QuadTree
         /// List of elements in a leaf
         /// </summary>
         public List<IQuadTreeElement> Elements { get; set; }
+
+        /// <summary>
+        /// Gets the sum of all elements in the quadrant
+        /// </summary>
+        public override int ElementCount => Elements.Count;
 
 
         /// <summary>

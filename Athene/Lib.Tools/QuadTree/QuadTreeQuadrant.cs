@@ -18,6 +18,11 @@ namespace Lib.Tools.QuadTree
         /// </summary>
         public int ElementLimit { get; private set; }
 
+        /// <summary>
+        /// Gets the sum of all elements in the quadrant
+        /// </summary>
+        public abstract int ElementCount { get; }
+
 
         /// <summary>
         /// Initialises the base

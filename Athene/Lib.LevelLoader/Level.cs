@@ -8,6 +8,8 @@ using Lib.LevelLoader.LevelItems;
 using Lib.Visuals.Graphics;
 using OpenTK;
 using OpenTK.Input;
+using Lib.Tools;
+using Lib.Tools.QuadTree;
 
 namespace Lib.LevelLoader
 {
@@ -23,58 +25,104 @@ namespace Lib.LevelLoader
         /// </summary>
         public List<LevelItemPlayer> Players { get; set; }
 
+
+        /// <summary>
+        /// QuadTree for all level Blocks
+        /// </summary>
+        private QuadTreeRoot BlocksQuadTree { get; set; }
+
+
         /// <summary>
         /// Initializes a empty level
         /// </summary>
-        public  Level()
+        public Level()
 		{
 			Blocks = new List<Block>();
             Players = new List<LevelItemPlayer>();
+
             CreateTestPlayer();
 		}
+
+        /// <summary>
+        /// This function should NOT be necessary
+        /// </summary>
+        public void InitialiseQuadTree()
+        {
+            var quadList = new List<IQuadTreeElement>();
+            float MinX = 0;
+            float MinY = 0;
+            float MaxX = 0;
+            float MaxY = 0;
+
+            foreach (Block levelBlock in Blocks)
+            {
+                if (levelBlock.HitBox.Postion.X < MinX)
+                    MinX = levelBlock.HitBox.Postion.X;
+
+                if (levelBlock.HitBox.MaximumX > MaxX)
+                    MaxX = levelBlock.HitBox.MaximumX;
+
+                if (levelBlock.HitBox.Postion.Y < MinY)
+                    MinY = levelBlock.HitBox.Postion.Y;
+
+                if (levelBlock.HitBox.MaximumY > MaxY)
+                    MaxY = levelBlock.HitBox.MaximumY;
+
+                quadList.Add(levelBlock);
+            }
+
+            var levelSize = new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);
+            BlocksQuadTree = new QuadTreeRoot(levelSize, 9, quadList);
+        }
 
         /// <summary>
         /// updates the level
         /// </summary>
         public void UpdateLogic()
         {
+            //Moving all the characters first
             foreach (var player in Players)
             {
                 player.UpdateLogic(this);
             }
-            CheckCollision();
-            
-           
+
+
+            //Check now for collisions which have to be handled
+            CheckCollisions();
         }
 
-        public void CheckCollision()
+        /// <summary>
+        /// Determines all elements that are intersecting and inform all this elements
+        /// </summary>
+        public void CheckCollisions()
         {
+            //Check collisions for the players
             foreach (var player in Players)
             {
-                BlockType playerEnvironment = BlockType.Solid;
-                
+                BlockType playerEnvironment = BlockType.Solid; //standard environment if there is no collision at all (player is in the air)
 
-                foreach (var block in Blocks)
+                var intersections = BlocksQuadTree.GetElementsIn(player.Physics.HitBox);
+                foreach (Block levelBlock in intersections)
                 {
-                    if (block.Position.X == 5 && block.Position.Y == -8)
-                    {
-                        
-                    }
-                    if (block.Collision && player.Physics.HitBox.IntersectsWith(block.HitBox))
-                    {
-                        
-                        player.Physics.ReactToCollision(block);
-                    }
+                    //The player has to react now to he collision
+                    player.Physics.ReactToCollision(levelBlock);
 
-                    if (block.Position.X == Math.Round(player.Position.X) &&
-                        block.Position.Y == Math.Round(player.Position.Y))
-                        playerEnvironment = block.BlockType;
-
+                    // now the block can react to collision
+                    levelBlock.ReactToCollision(player.Physics);
+                    
+                    //determining in which environment the player currently is
+                    if (levelBlock.Position.X == Math.Round(player.Position.X) &&
+                        levelBlock.Position.Y == Math.Round(player.Position.Y))
+                        playerEnvironment = levelBlock.BlockType;
                 }
+
                 player.Physics.SetEnvironment(playerEnvironment);
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void CreateTestPlayer()
         {
             LevelItemPlayer player = null;
@@ -112,6 +160,7 @@ namespace Lib.LevelLoader
             {
                 block.Draw();
             }
+
             foreach (var player in Players)
             {
                 player.Draw();

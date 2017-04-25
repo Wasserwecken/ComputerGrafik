@@ -257,32 +257,35 @@ namespace Lib.LevelLoader.LevelItems
                 intersectSizeY = Math.Min(myBox.MaximumY, otherBox.MaximumY) - Math.Max(myBox.Postion.Y, otherBox.Postion.Y);
 
 
-            // Check now in which direction the physic object has to be corrected. It depends on the center of the boxes.
-            // Inverting here the intersectsize to achive the side decision
-            // Creating here this vars, because there is a calculation behind the propertie "Center" to avoid multiple execution, by calling the prop
-            var ownCenter = HitBox.Center;
-            var otherCenter = collidingBlock.HitBox.Center;
-            if (ownCenter.X < otherCenter.X)
-                intersectSizeX *= -1;
-            if (ownCenter.Y < otherCenter.Y)
-                intersectSizeY *= -1;
+            if (collidingBlock.Collision)
+            {
+                // Check now in which direction the physic object has to be corrected. It depends on the center of the boxes.
+                // Inverting here the intersectsize to achive the side decision
+                // Creating here this vars, because there is a calculation behind the propertie "Center" to avoid multiple execution, by calling the prop
+                var ownCenter = HitBox.Center;
+                var otherCenter = collidingBlock.HitBox.Center;
+                if (ownCenter.X < otherCenter.X)
+                    intersectSizeX *= -1;
+                if (ownCenter.Y < otherCenter.Y)
+                    intersectSizeY *= -1;
             
-            // Corret the position, check first if the collision has to be correct on the x or y axis
-            // ignore for this check only the gravity, because this will be very time applied.
-            // the intersect with smaller size has to be corrected
-            if (Math.Abs(intersectSizeX) > Math.Abs(intersectSizeY) - CurrentProperties.Mass)
-            {
-                //Correct Y axis
-                Position = new Vector2(Position.X, Position.Y + intersectSizeY);
-                HitBox.Postion = new Vector2(Position.X, Position.Y + intersectSizeY);
-                StopBodyOnAxisY();
-            }
-            else
-            {
-                //Correct X axis
-                Position = new Vector2(Position.X + intersectSizeX, Position.Y);
-                HitBox.Postion = new Vector2(Position.X + intersectSizeX, Position.Y);
-                StopBodyOnAxisX();
+                // Corret the position, check first if the collision has to be correct on the x or y axis
+                // ignore for this check only the gravity, because this will be very time applied.
+                // the intersect with smaller size has to be corrected
+                if (Math.Abs(intersectSizeX) > Math.Abs(intersectSizeY) - CurrentProperties.Mass)
+                {
+                    //Correct Y axis
+                    Position = new Vector2(Position.X, Position.Y + intersectSizeY);
+                    HitBox.Postion = new Vector2(Position.X, Position.Y + intersectSizeY);
+                    StopBodyOnAxisY();
+                }
+                else
+                {
+                    //Correct X axis
+                    Position = new Vector2(Position.X + intersectSizeX, Position.Y);
+                    HitBox.Postion = new Vector2(Position.X + intersectSizeX, Position.Y);
+                    StopBodyOnAxisX();
+                }
             }
         }
     }

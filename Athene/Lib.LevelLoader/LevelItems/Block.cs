@@ -5,24 +5,7 @@ using OpenTK;
 namespace Lib.LevelLoader.LevelItems
 {
 	public class Block : LevelItemBase
-    {
-        /// <summary>
-        /// blocktype of the block
-        /// </summary>
-        public BlockType BlockType { get; set; }
-
-
-
-        /// <summary>
-        /// collission of the block
-        /// </summary>
-        public bool Collision { get; set; }
-
-        /// <summary>
-        /// damage of the block
-        /// </summary>
-        public int Damage { get; set; }
-		
+    {		
 	    /// <summary>
 	    /// Initializes a block
 	    /// </summary>
