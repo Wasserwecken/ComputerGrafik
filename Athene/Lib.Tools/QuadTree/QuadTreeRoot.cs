@@ -40,9 +40,9 @@ namespace Lib.Tools.QuadTree
         /// </summary>
         /// <param name="range"></param>
         /// <returns></returns>
-        public List<IQuadTreeElement> GetElements(Box2D range)
+        public List<IQuadTreeElement> GetElementsIn(Box2D range)
         {
-            return RootNode.GetElements(range);
+            return RootNode.GetElementsIn(range);
         }
     }
 }

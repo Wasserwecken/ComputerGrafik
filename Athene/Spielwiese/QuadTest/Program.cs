@@ -26,88 +26,112 @@ namespace QuadTest
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Rand = new Random();
-            WorldSizeX = 50000;
-            WorldSizeY = 50000;
-            TileSize = 100;
+            WorldSizeX = 1000;
+            WorldSizeY = 1000;
+            TileSize = 4;
+            int ListSize = 50000;
+            int leafLimit = 9;
+
 
             //generate elements
+            Rand = new Random();
             int runCounter = 0;
             var watch = new Stopwatch();
-            var playerRange = GetRandomBox();
-            int ListSize = 100000;
-            int ProcessCollisionTime = 1;
-
             var ElementList = new List<IQuadTreeElement>();
-            for (int i = 0; i < ListSize; i++)
-                ElementList.Add(new TestElement());
+            Box2D playerHitbox;
 
-
+            
 
             while(true)
             {
-                if (runCounter % 4 == 0)
+                if (runCounter % 4 == 0 && runCounter > 0)
                 {
                     Console.ReadKey();
                     Console.Clear();
                 }
 
                 runCounter++;
-                Console.WriteLine("\n\nNew run {0} \n=================================== \n\n", runCounter);
+                Console.WriteLine("\n\n\nNew run {0} \n===================================\n", runCounter);
 
 
                 //new values
-                playerRange = GetRandomBox();
+                playerHitbox = GetRandomBox();
                 ElementList = new List<IQuadTreeElement>();
                 for (int i = 0; i < ListSize; i++)
+                {
                     ElementList.Add(new TestElement());
+                }
 
 
-
-                Console.WriteLine("Elements : {0}", ListSize);
+                
 
                 //test checking all
-                Console.WriteLine("\n\nStandard method");
-                var resultStandard = new List<TestElement>();
-
+                var standardList = new List<TestElement>();
                 watch.Start();
-                foreach(TestElement element in ElementList)
-                {
-                    if (playerRange.IsInside(element.HitBox) || playerRange.IntersectsWith(element.HitBox))
+                    foreach(TestElement element in ElementList)
                     {
-                        resultStandard.Add(element);
-                        System.Threading.Thread.Sleep(ProcessCollisionTime);
+                    if (element.HitBox.IsInside(playerHitbox) || element.HitBox.IntersectsWith(playerHitbox))
+                            standardList.Add(element);
                     }
-                }
+                    standardList = standardList.Distinct().ToList();
                 watch.Stop();
-
-                Console.WriteLine("\t{0} Time", watch.ElapsedMilliseconds);
-                Console.WriteLine("\t{0} Intersections", resultStandard.Count);
-
-
+                var standardTime = watch.Elapsed.TotalMilliseconds * 1000;
 
 
 
                 //test with octree
-                Console.WriteLine("\n\nQuadtree method");
-
                 var resultQuad = new List<IQuadTreeElement>();
 
                 watch.Restart();
-                var tree = new QuadTreeRoot(new Box2D(0, 0, WorldSizeX, WorldSizeY), 25, ElementList);
+                    var tree = new QuadTreeRoot(new Box2D(0, 0, WorldSizeX, WorldSizeY), leafLimit, ElementList);
                 watch.Stop();
                 var createTime = watch.ElapsedMilliseconds;
 
 
+                var quadList = new List<TestElement>();
                 watch.Restart();
-                resultQuad = tree.GetElements(playerRange);
-                foreach(TestElement element in resultQuad)
-                    System.Threading.Thread.Sleep(ProcessCollisionTime);
+                    resultQuad = tree.GetElementsIn(playerHitbox);
+                    foreach (TestElement element in resultQuad)
+                        quadList.Add(element);
                 watch.Stop();
 
-                Console.WriteLine("\t{0} Time", watch.ElapsedMilliseconds);
-                Console.WriteLine("\t{0} Intersections", resultQuad.Count);
-                Console.WriteLine("\t{0} Time creating tree", createTime);
+                var quadTime = watch.Elapsed.TotalMilliseconds * 1000;
+
+
+
+
+
+                Console.WriteLine("Results (Elements {0} ):", ListSize);
+
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("\tstandard : quadtree");
+
+                if (quadTime <= standardTime)
+                    Console.ForegroundColor = ConsoleColor.Green;
+                else
+                    Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\tTime: {0} ns : {1} ns  -  {2}% diff", standardTime, quadTime, (standardTime > 0) ? 100 - (int)(quadTime * 100 / standardTime) : 0);
+
+                if (standardList.Count == quadList.Count)
+                    Console.ForegroundColor = ConsoleColor.Green;
+                else
+                    Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\tHits: {0} : {1}", standardList.Count, quadList.Count);
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("\tTime creating tree: {0} ms", createTime);
+
+
+
+                var exceptions = standardList.Except(quadList).ToList();
+                exceptions = exceptions.Distinct().ToList();
+
+                if (exceptions.Count > 0)
+                {
+                    Console.WriteLine("\nBoxes from gap (Elements {0} ):", exceptions.Count);
+                    foreach (TestElement element in exceptions)
+                        Console.WriteLine("\t" + element.ToString());
+                }
 
             }
         }
@@ -119,10 +143,10 @@ namespace QuadTest
         /// <returns></returns>
         public static Box2D GetRandomBox()
         {
-            int fieldSizeX = WorldSizeX - TileSize;
-            int fieldSizeY = WorldSizeY - TileSize;
+            int posx = WorldSizeX - TileSize;
+            int posy = WorldSizeY - TileSize;
 
-            return new Box2D(Rand.Next(0, fieldSizeX), Rand.Next(0, fieldSizeY), TileSize, TileSize);
+            return new Box2D(Rand.Next(0, posx), Rand.Next(0, posy), TileSize, TileSize);
         }
     }
 
@@ -144,6 +168,14 @@ namespace QuadTest
         public TestElement()
         {
             HitBox = Program.GetRandomBox();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public new string ToString()
+        {
+            return String.Format("X: {0}, Y: {1}", HitBox.Postion.X, HitBox.Postion.Y);
         }
     }
 }

@@ -41,6 +41,6 @@ namespace Lib.Tools.QuadTree
         /// </summary>
         /// <param name="range"></param>
         /// <returns></returns>
-        public abstract List<IQuadTreeElement> GetElements(Box2D range);
+        public abstract List<IQuadTreeElement> GetElementsIn(Box2D range);
     }
 }

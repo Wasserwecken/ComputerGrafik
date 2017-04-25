@@ -70,16 +70,16 @@ namespace Lib.Tools
         /// <returns></returns>
         public bool IsInside(Box2D otherBox)
         {
-            if (Postion.X < otherBox.Postion.X)
+            if (Postion.X <= otherBox.Postion.X)
                 return false;
 
-            if (MaximumX > otherBox.MaximumX)
+            if (MaximumX >= otherBox.MaximumX)
                 return false;
 
-            if (Postion.X < otherBox.Postion.Y)
+            if (Postion.X <= otherBox.Postion.Y)
                 return false;
 
-            if (MaximumY > otherBox.MaximumY)
+            if (MaximumY >= otherBox.MaximumY)
                 return false;
 
             return true;

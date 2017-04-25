@@ -71,17 +71,17 @@ namespace Lib.Tools.QuadTree
         /// </summary>
         /// <param name="range"></param>
         /// <returns></returns>
-        public override List<IQuadTreeElement> GetElements(Box2D range)
+        public override List<IQuadTreeElement> GetElementsIn(Box2D range)
         {
             var result = new List<IQuadTreeElement>();
 
             foreach(QuadTreeQuadrant quadrant in Quadrants)
             {
                 if (quadrant.Size.IsInside(range) || quadrant.Size.IntersectsWith(range))
-                    result.AddRange(quadrant.GetElements(range));
+                    result.AddRange(quadrant.GetElementsIn(range));
             }
 
-            return result;
+            return result.Distinct().ToList();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Lib.Tools.QuadTree
         /// </summary>
         /// <param name="range"></param>
         /// <returns></returns>
-        public override List<IQuadTreeElement> GetElements(Box2D range)
+        public override List<IQuadTreeElement> GetElementsIn(Box2D range)
         {
             var result = new List<IQuadTreeElement>();
 
