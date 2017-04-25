@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Athene", "Athene\Athene.csproj", "{D22C4E8C-4E37-4482-9153-6BB79D3D54CD}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Input", "Lib.Input\Lib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.LevelLoader", "Lib.LevelLoader\Lib.LevelLoader.csproj", "{1C4BB265-4030-4015-B781-1FA06D53B317}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Logic", "Spielwiese\Lib.Logic\Lib.Logic.csproj", "{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Tools", "Lib.Tools\Lib.Tools.csproj", "{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

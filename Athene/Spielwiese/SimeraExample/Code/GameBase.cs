@@ -1,18 +1,13 @@
-﻿using Lib.Visuals.Graphics;
-using OpenTK;
-using OpenTK.Input;
-using System;
-using Lib.Input;
-using Lib.Input.Mapping;
-using Lib.Logic;
-using System.Collections.Generic;
-using Lib.LevelLoader;
+﻿using Lib.LevelLoader;
 using Lib.LevelLoader.LevelItems;
+using Lib.Visuals.Graphics;
 using Lib.Visuals.Window;
+using OpenTK;
+using System;
 
 namespace SimeraExample
 {
-	public class GameBase
+    public class GameBase
 	{
 		private GameWindowBase Window { get; }
 		private LevelItemPlayerActions InputActions { get; set; }

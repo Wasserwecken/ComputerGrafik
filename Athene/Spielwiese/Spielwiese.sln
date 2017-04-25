@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Input", "..\Lib.Input\L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.LevelLoader", "..\Lib.LevelLoader\Lib.LevelLoader.csproj", "{1C4BB265-4030-4015-B781-1FA06D53B317}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Logic", "Lib.Logic\Lib.Logic.csproj", "{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Tools", "..\Lib.Tools\Lib.Tools.csproj", "{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,12 +1,11 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Lib.Input;
-using Lib.Logic;
+﻿using Lib.Input;
 using OpenTK.Input;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SimeraExample
 {
-	public class InputActionObject
+    public class InputActionObject
 		: IInputLayoutActions, INotifyPropertyChanged
 	{
 		private bool _jump;

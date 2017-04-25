@@ -1,13 +1,12 @@
-﻿using OpenTK;
+﻿using Lib.LevelLoader.Geometry;
+using Lib.Tools;
+using OpenTK;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Lib.LevelLoader.Geometry;
-using Lib.Logic;
 
 namespace Lib.LevelLoader.LevelItems
 {
-	public class LevelItemPhysicBody
+    public class LevelItemPhysicBody
 		: LevelItemBase
 	{
 		/// <summary>

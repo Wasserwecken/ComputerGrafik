@@ -7,8 +7,8 @@
     <ProjectGuid>{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lib.Logic</RootNamespace>
-    <AssemblyName>Lib.Logic</AssemblyName>
+    <RootNamespace>Lib.Tools</RootNamespace>
+    <AssemblyName>Lib.Tools</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

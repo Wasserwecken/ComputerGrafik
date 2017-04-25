@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lib.Logic
+namespace Lib.Tools
 {
 	/// <summary>
 	/// http://gizma.com/easing/
