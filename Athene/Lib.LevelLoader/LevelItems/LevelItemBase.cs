@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lib.LevelLoader.Geometry;
+﻿using Lib.Tools;
 using Lib.Visuals.Graphics;
 using OpenTK;
+using System.Collections.Generic;
 
 namespace Lib.LevelLoader.LevelItems
 {
@@ -24,7 +20,7 @@ namespace Lib.LevelLoader.LevelItems
         /// <summary>
         /// Hitbox of the object in the level
         /// </summary>
-        public Box2D Box2D { get; set; }
+        public Box2D HitBox { get; set; }
 
         /// <summary>
         /// Attached Sprites
@@ -40,7 +36,7 @@ namespace Lib.LevelLoader.LevelItems
         protected LevelItemBase(Vector2 startPosition, Vector2 boxSize)
 		{
 			Position = startPosition;
-            Box2D = new Box2D(startPosition.X, startPosition.Y, boxSize.X, boxSize.Y);
+            HitBox = new Box2D(startPosition.X, startPosition.Y, boxSize.X, boxSize.Y);
             AttachedSprites = new List<ISprite>();
 		}
 

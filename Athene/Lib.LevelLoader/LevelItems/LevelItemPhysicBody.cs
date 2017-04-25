@@ -1,5 +1,4 @@
-﻿using Lib.LevelLoader.Geometry;
-using Lib.Tools;
+﻿using Lib.Tools;
 using OpenTK;
 using System;
 using System.Collections.Generic;
@@ -88,7 +87,7 @@ namespace Lib.LevelLoader.LevelItems
 			Position = Position + new Vector2(x, y);
 
             // update the 2DBox
-            Box2D.Postion = new Vector2(Position.X, Position.Y);
+            HitBox.Postion = new Vector2(Position.X, Position.Y);
         }
 
 		/// <summary>
@@ -242,8 +241,8 @@ namespace Lib.LevelLoader.LevelItems
 	    /// <param name="collidingBlock">the colliding block</param>
 	    public override void ReactToCollision(LevelItemBase collidingBlock)
         {
-            var myBox = Box2D;
-            var otherBox = collidingBlock.Box2D;
+            var myBox = HitBox;
+            var otherBox = collidingBlock.HitBox;
             float intersectSizeX = 0;
             float intersectSizeY = 0;
 
@@ -261,8 +260,8 @@ namespace Lib.LevelLoader.LevelItems
             // Check now in which direction the physic object has to be corrected. It depends on the center of the boxes.
             // Inverting here the intersectsize to achive the side decision
             // Creating here this vars, because there is a calculation behind the propertie "Center" to avoid multiple execution, by calling the prop
-            var ownCenter = Box2D.Center;
-            var otherCenter = collidingBlock.Box2D.Center;
+            var ownCenter = HitBox.Center;
+            var otherCenter = collidingBlock.HitBox.Center;
             if (ownCenter.X < otherCenter.X)
                 intersectSizeX *= -1;
             if (ownCenter.Y < otherCenter.Y)
@@ -275,14 +274,14 @@ namespace Lib.LevelLoader.LevelItems
             {
                 //Correct Y axis
                 Position = new Vector2(Position.X, Position.Y + intersectSizeY);
-                Box2D.Postion = new Vector2(Position.X, Position.Y + intersectSizeY);
+                HitBox.Postion = new Vector2(Position.X, Position.Y + intersectSizeY);
                 StopBodyOnAxisY();
             }
             else
             {
                 //Correct X axis
                 Position = new Vector2(Position.X + intersectSizeX, Position.Y);
-                Box2D.Postion = new Vector2(Position.X + intersectSizeX, Position.Y);
+                HitBox.Postion = new Vector2(Position.X + intersectSizeX, Position.Y);
                 StopBodyOnAxisX();
             }
         }

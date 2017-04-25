@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
 
-namespace Lib.LevelLoader.Geometry
+namespace Lib.Tools
 {
     public class Box2D
     {
@@ -50,11 +50,11 @@ namespace Lib.LevelLoader.Geometry
 
 
         /// <summary>
-        /// Checks if another box intersecs a box
+        /// Checks if another box intersecs with this box
         /// </summary>
         /// <param name="otherBox"></param>
         /// <returns></returns>
-        public bool Intersects(Box2D otherBox)
+        public bool IntersectsWith(Box2D otherBox)
         {
 
             bool noXintersect = (MaximumX <= otherBox.Postion.X) || (Postion.X >= otherBox.MaximumX);
@@ -64,11 +64,11 @@ namespace Lib.LevelLoader.Geometry
         }
 
         /// <summary>
-        /// Check if a box is inseide of another
+        /// Check if a box is inside of this box
         /// </summary>
         /// <param name="otherBox"></param>
         /// <returns></returns>
-        public bool Inside(Box2D otherBox)
+        public bool IsInside(Box2D otherBox)
         {
             if (Postion.X < otherBox.Postion.X)
                 return false;

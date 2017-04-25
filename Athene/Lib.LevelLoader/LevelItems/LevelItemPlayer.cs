@@ -1,17 +1,14 @@
-﻿using System;
-using OpenTK;
-using Lib.Input;
+﻿using Lib.Input;
 using Lib.Input.Mapping;
+using Lib.Visuals.Graphics;
+using OpenTK;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using Lib.LevelLoader.Geometry;
-using Lib.Visuals.Graphics;
-using OpenTK.Graphics.OpenGL;
 
 namespace Lib.LevelLoader.LevelItems
 {
-	public class LevelItemPlayer
+    public class LevelItemPlayer
 	{
 		/// <summary>
 		/// Current position of the player in the level
@@ -140,7 +137,7 @@ namespace Lib.LevelLoader.LevelItems
             var blockBottom = level.Blocks.FirstOrDefault(b => (b.Position.X == Math.Round(Position.X)) && (b.Position.Y < Math.Round(Physics.Position.Y)));
 	        if (blockBottom != null)
 	        {
-                return blockBottom.Box2D.MaximumY == Physics.Box2D.Postion.Y;
+                return blockBottom.HitBox.MaximumY == Physics.HitBox.Postion.Y;
             }
 	        return false;
 

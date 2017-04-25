@@ -60,7 +60,7 @@ namespace Lib.LevelLoader
                     {
                         
                     }
-                    if (block.Collision && player.Physics.Box2D.Intersects(block.Box2D))
+                    if (block.Collision && player.Physics.HitBox.IntersectsWith(block.HitBox))
                     {
                         
                         player.Physics.ReactToCollision(block);
