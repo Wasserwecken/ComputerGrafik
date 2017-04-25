@@ -17,6 +17,7 @@ using System.Windows.Resources;
 using System.Windows.Shapes;
 using Lib.LevelLoader.LevelItems;
 using LevelEditor.Controls.LevelItemPresenter;
+using Lib.LevelLoader.Xml.LinkTypes;
 
 namespace LevelEditor.Controls
 {
@@ -69,7 +70,7 @@ namespace LevelEditor.Controls
         /// <param name="collision">collision</param>
         /// <param name="damage">damage</param>
         public void SetXmlBlock(XmlTexture texture, BlockType type, bool collision, int damage, bool isScrolling = false, 
-            int scrollingLength = 0, float scrollingDirectionX = 0, float scrollingDirectionY = 0, XmlTexture attachedTexture = null)
+            int scrollingLength = 0, float scrollingDirectionX = 0, float scrollingDirectionY = 0, XmlLinkTypeBase attachedLink = null)
         {
             var xmlBlock = new XmlBlock()
             {
@@ -84,15 +85,20 @@ namespace LevelEditor.Controls
                 ScrollingLength = scrollingLength,
                 ScrollingDirectionX = scrollingDirectionX,
                 ScrollingDirectionY = scrollingDirectionY,
-                AttachedTexture = attachedTexture?.Id
+                AttachedLink = attachedLink?.Id
             };
             ItemPresenter = new XmlBlockPresenter()
             {
                 XmlTexture = texture,
                 XmLLevelItemBase = xmlBlock,
-                XmlAttachedTexture = attachedTexture
+                XmlAttachedLink = attachedLink
             };
-            AttachTexture(attachedTexture);
+
+            if (attachedLink is XmlAnimation)
+                AttachLink(BlockLinkType.Animation, attachedLink);
+            else if (attachedLink is XmlTexture)
+                AttachLink(BlockLinkType.Image, attachedLink);
+
             SetImage(texture.Path);
         }
 
@@ -129,7 +135,7 @@ namespace LevelEditor.Controls
         {
             ItemPresenter = null;
             SetImage(null);
-            AttachTexture(null);
+            AttachLink(BlockLinkType.Image, null);
         }
 
         /// <summary>
@@ -159,17 +165,24 @@ namespace LevelEditor.Controls
         /// Attaches a texture
         /// </summary>
         /// <param name="texture"></param>
-        public void AttachTexture(XmlTexture texture)
+        public void AttachLink(BlockLinkType attachedLinkType, XmlLinkTypeBase xmlLinkType)
         {
-            if (ItemPresenter != null && texture != null)
+            if (ItemPresenter != null && xmlLinkType != null)
             {
-                ItemPresenter.XmLLevelItemBase.AttachedTexture = texture.Id;
+                ItemPresenter.XmLLevelItemBase.AttachedLink = xmlLinkType.Id;
+                ItemPresenter.XmLLevelItemBase.AttachedLinkType = attachedLinkType.ToString();
+
                 MainButton.BorderBrush = new SolidColorBrush(Colors.Red);
                 MainButton.BorderThickness = new Thickness(2);
 
                 BitmapImage logo = new BitmapImage();
                 logo.BeginInit();
-                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "/" + texture.Path, UriKind.Absolute);
+
+                if(xmlLinkType is XmlTexture)
+                    logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "/" + (xmlLinkType as XmlTexture).Path, UriKind.Absolute);
+                else if(xmlLinkType is XmlAnimation)
+                    logo.UriSource = new Uri((xmlLinkType as XmlAnimation).GetFirstImage().FullName, UriKind.Absolute);
+
                 logo.EndInit();
 
                 Image img = new Image()
@@ -180,15 +193,15 @@ namespace LevelEditor.Controls
                 };
                 MainButton.Content = img;
             }
-            if(texture == null)
+            if(xmlLinkType == null)
             {
                 if(ItemPresenter != null)
-                    ItemPresenter.XmLLevelItemBase.AttachedTexture = null;
+                    ItemPresenter.XmLLevelItemBase.AttachedLink = null;
                 MainButton.BorderThickness = new Thickness(0);
                 MainButton.Content = InnerBorder;
             }
             if(ItemPresenter != null)
-                ItemPresenter.XmlAttachedTexture = texture;
+                ItemPresenter.XmlAttachedLink = xmlLinkType;
         }
 
         /// <summary>

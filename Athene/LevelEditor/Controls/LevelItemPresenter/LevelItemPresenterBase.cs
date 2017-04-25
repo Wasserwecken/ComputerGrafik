@@ -1,4 +1,5 @@
 ﻿using Lib.LevelLoader.Xml;
+using Lib.LevelLoader.Xml.LinkTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace LevelEditor.Controls.LevelItemPresenter
         /// <summary>
         /// XmlTexture is for Blocks (Texture of Blocks)
         /// </summary>
-        public XmlTexture XmlAttachedTexture { get; set; }
+        public XmlLinkTypeBase XmlAttachedLink { get; set; }
     }
 }
