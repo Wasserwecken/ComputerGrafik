@@ -22,7 +22,7 @@ namespace SimeraExample
 
         public GameBase()
 		{
-			Window = new GameWindowBase();
+			Window = new GameWindowBase(5, 15);
 
 			Window.Load += Window_Load;
 			Window.UpdateFrame += Window_UpdateFrame;
@@ -47,7 +47,7 @@ namespace SimeraExample
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
-            Level.Draw();
+            Level.Draw(Window.Camera.FOV);
         }
 	}
 }

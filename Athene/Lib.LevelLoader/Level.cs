@@ -154,17 +154,15 @@ namespace Lib.LevelLoader
         /// <summary>
         /// Draws the level
         /// </summary>
-        public void Draw()
+        public void Draw(Box2D cameraFOV)
         {
-            foreach (var block in Blocks)
-            {
-                block.Draw();
-            }
-
+            //Using the quadtree here because, only blocks in the camera view has to be drawn
+            foreach(Block levelBlock in BlocksQuadTree.GetElementsIn(cameraFOV))
+                levelBlock.Draw();
+            
+            //Draw players
             foreach (var player in Players)
-            {
                 player.Draw();
-            }
         }
 
     }

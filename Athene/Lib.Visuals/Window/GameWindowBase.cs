@@ -19,9 +19,9 @@ namespace Lib.Visuals.Window
 		/// <summary>
 		/// Initialises the game window
 		/// </summary>
-		public GameWindowBase()
+		public GameWindowBase(int standardViewableYAxisSize, int cameraDelay)
 		{
-			Camera = new GameCamera(Vector2.Zero, 5, 15f);
+			Camera = new GameCamera(Vector2.Zero, standardViewableYAxisSize, cameraDelay);
 
 			//This will be needed to enable transparency
 			GL.Enable(EnableCap.Texture2D);

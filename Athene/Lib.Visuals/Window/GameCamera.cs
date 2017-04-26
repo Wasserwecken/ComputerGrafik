@@ -2,16 +2,12 @@
 using System.Timers;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using Lib.Tools;
 
 namespace Lib.Visuals.Window
 {
 	public class GameCamera
 	{
-		/// <summary>
-		/// Rotation of the camera, negative values gonne rotate clockwise
-		/// </summary>
-		public float Rotation { get; set; }
-
 		/// <summary>
 		/// Zoom of the camera. 1 is standard
 		/// </summary>
@@ -25,7 +21,12 @@ namespace Lib.Visuals.Window
 		/// <summary>
 		/// Sets the delay and smooth movement of the camera. 1 is direct movement. if higher, more delay
 		/// </summary>
-		public float CameraDelay { get; set; }
+		public float Delay { get; set; }
+
+        /// <summary>
+        /// Dimensions of the current cameras field of view
+        /// </summary>
+        public Box2D FOV { get; private set; }
 		
 
 		/// <summary>
@@ -44,11 +45,10 @@ namespace Lib.Visuals.Window
 		/// </summary>
 		public GameCamera(Vector2 startPosition, int axisSize, float cameraDelay)
 		{
-			Rotation = 0;
-			Zoom = 1;
+			Zoom = 1f;
 			PositionCurrent = startPosition;
 			AxisSize = axisSize;
-			CameraDelay = cameraDelay;
+			Delay = cameraDelay;
 		}
 
 		/// <summary>
@@ -68,13 +68,26 @@ namespace Lib.Visuals.Window
 
 			var transform = Matrix4.Identity;
 			transform = Matrix4.Mult(transform, Matrix4.CreateTranslation(-PositionCurrent.X / aspectRatio / AxisSize, -PositionCurrent.Y / AxisSize, 0));
-			transform = Matrix4.Mult(transform, Matrix4.CreateRotationZ(-Rotation));
 			transform = Matrix4.Mult(transform, Matrix4.CreateScale(Zoom, Zoom, 1));
 
 			GL.MatrixMode(MatrixMode.Projection);
 			GL.LoadIdentity();
 			GL.MultMatrix(ref transform);
-			GL.Ortho(-AxisSize * aspectRatio, AxisSize * aspectRatio, -AxisSize, AxisSize, -1f, 1f);
+
+            float axisSizeX = AxisSize * aspectRatio;
+            float axisSizeY = AxisSize;
+			GL.Ortho(-axisSizeX, axisSizeX, -axisSizeY, axisSizeY, -1f, 1f);
+
+
+            axisSizeX = axisSizeX / Zoom;
+            axisSizeY = axisSizeY / Zoom;
+
+            FOV = new Box2D(
+                (-axisSizeX + PositionCurrent.X),
+                (-axisSizeY + PositionCurrent.Y),
+                (axisSizeX * 2),
+                (axisSizeY * 2)
+                );
 		}
 
 		/// <summary>
@@ -86,7 +99,7 @@ namespace Lib.Visuals.Window
 				return;
 
 			var distance = PositionDestination - PositionCurrent;
-			PositionCurrent = PositionCurrent + (distance / CameraDelay);
+			PositionCurrent = PositionCurrent + (distance / Delay);
 		}
 	}
 }
