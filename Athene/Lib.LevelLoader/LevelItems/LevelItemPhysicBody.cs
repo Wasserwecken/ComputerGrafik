@@ -257,7 +257,7 @@ namespace Lib.LevelLoader.LevelItems
                 intersectSizeY = Math.Min(myBox.MaximumY, otherBox.MaximumY) - Math.Max(myBox.Postion.Y, otherBox.Postion.Y);
 
 
-            if (collidingBlock.Collision)
+            if (collidingBlock.Collision && (intersectSizeX > 0 || intersectSizeY > 0))
             {
                 // Check now in which direction the physic object has to be corrected. It depends on the center of the boxes.
                 // Inverting here the intersectsize to achive the side decision
@@ -268,11 +268,11 @@ namespace Lib.LevelLoader.LevelItems
                     intersectSizeX *= -1;
                 if (ownCenter.Y < otherCenter.Y)
                     intersectSizeY *= -1;
-            
+
                 // Corret the position, check first if the collision has to be correct on the x or y axis
                 // ignore for this check only the gravity, because this will be very time applied.
                 // the intersect with smaller size has to be corrected
-                if (Math.Abs(intersectSizeX) > Math.Abs(intersectSizeY) - CurrentProperties.Mass)
+                if (Math.Abs(intersectSizeX) > Math.Abs(intersectSizeY))
                 {
                     //Correct Y axis
                     Position = new Vector2(Position.X, Position.Y + intersectSizeY);
