@@ -45,7 +45,7 @@ namespace Lib.Visuals.Window
 		/// </summary>
 		public GameCamera(Vector2 startPosition, int axisSize, float cameraDelay)
 		{
-			Zoom = 1f;
+			Zoom = 0.5f;
 			PositionCurrent = startPosition;
 			AxisSize = axisSize;
 			Delay = cameraDelay;

@@ -70,7 +70,7 @@ namespace Lib.Input.Device
 		/// </summary>
 		private void InitialisePolling()
 		{
-			PollingTimer = new Timer(10);
+			PollingTimer = new Timer(25);
 			PollingTimer.Elapsed += CheckDevice;
 			PollingTimer.Start();
 		}
