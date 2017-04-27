@@ -108,7 +108,7 @@ namespace Lib.LevelLoader.LevelItems
             //Setting the standard environment (will stay if there is not collision)
             var playersEnvironment = BlockType.Solid;
             IsJumpAllowed = false;
-            
+
             foreach(LevelItemBase item in collidingItems)
             {
                 // check for the environment and may reset the jump

@@ -288,8 +288,8 @@ namespace Lib.LevelLoader.LevelItems
                     HitBox.Postion = new Vector2(Position.X, Position.Y + intersectSizeY);
                     StopBodyOnAxisY();
 
-                    infos.CollisionOnBottom = (intersectSizeX < 0);
-                    infos.CollisionOnTop = (intersectSizeX > 0);
+                    infos.CollisionOnBottom = (intersectSizeY > 0);
+                    infos.CollisionOnTop = (intersectSizeY < 0);
                 }
                 else
                 {
@@ -298,7 +298,7 @@ namespace Lib.LevelLoader.LevelItems
                     HitBox.Postion = new Vector2(Position.X + intersectSizeX, Position.Y);
                     StopBodyOnAxisX();
 
-                    infos.CollisionOnLeft = (intersectSizeY > 0);
+                    infos.CollisionOnLeft = (intersectSizeX > 0);
                     infos.CollisionOnRight = (intersectSizeX < 0);
                 }
             }
