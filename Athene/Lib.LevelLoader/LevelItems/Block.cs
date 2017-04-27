@@ -39,9 +39,9 @@ namespace Lib.LevelLoader.LevelItems
         /// reacts to a collision
         /// </summary>
         /// <param name="collidingBlock">the colliding block</param>
-        public override void ReactToCollision(LevelItemBase collidingBlock)
+        public override CollisionInformation HandleCollision(LevelItemBase collidingBlock)
         {
-            
+            return new CollisionInformation();
         }
     }
 }

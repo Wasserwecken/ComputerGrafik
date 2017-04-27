@@ -84,5 +84,21 @@ namespace Lib.Tools
 
             return true;
         }
+
+        /// <summary>
+        /// Checks if a point is inside of this box
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public bool Contains(Vector2 point)
+        {
+            if (point.X < Postion.X || point.X > MaximumX)
+                return false;
+
+            if (point.Y < Postion.Y || point.Y > MaximumY)
+                return false;
+
+            return true;
+        }
     }
 }

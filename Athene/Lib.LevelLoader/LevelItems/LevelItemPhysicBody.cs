@@ -19,14 +19,19 @@ namespace Lib.LevelLoader.LevelItems
 		public Vector2 Energy { get; private set; }
 
 		/// <summary>
-		/// Current used environment
-		/// </summary>
-		public Enum CurrentEnvironment { get; private set; }
-
-		/// <summary>
 		/// Current used behaviour
 		/// </summary>
 		public LevelItemPhysicBodyProperties CurrentProperties { get; private set; }
+
+		/// <summary>
+		/// Current used environment
+		/// </summary>
+		public BlockType CurrentEnvironment { get; private set; }
+
+        /// <summary>
+        /// Environment which will be set if there is no collision
+        /// </summary>
+        public BlockType DefaultEnvironment { get; set; }
 
 
 		/// <summary>
@@ -48,15 +53,17 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Initialises a forceable object
 		/// </summary>
-		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType startEnvironment, Vector2 startPosition)
+		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType defaultEnvironment, Vector2 startPosition)
 			: base(startPosition, new Vector2(0.75f, 0.75f))
 		{
 			Properties = properties;
 			EnergyLimit = Vector2.Zero;
 			Energy = Vector2.Zero;
 
-			SetEnvironment(startEnvironment);
-		}
+            DefaultEnvironment = defaultEnvironment;
+            CurrentEnvironment = defaultEnvironment;
+            CurrentProperties = Properties[defaultEnvironment];
+        }
 
 		/// <summary>
 		/// Updates all values for one step
@@ -87,7 +94,10 @@ namespace Lib.LevelLoader.LevelItems
 			Position = Position + new Vector2(x, y);
 
             // update the 2DBox
-            HitBox.Postion = new Vector2(Position.X, Position.Y);
+            HitBox.Postion = Position;
+
+            //setting the default environment
+            SetEnvironment(DefaultEnvironment);
         }
 
 		/// <summary>
@@ -96,12 +106,8 @@ namespace Lib.LevelLoader.LevelItems
 		/// <param name="environment"></param>
 		public void SetEnvironment(BlockType environment)
 		{
-			//check for the environment
-			if (!environment.Equals(CurrentEnvironment))
-			{
-				CurrentEnvironment = environment;
-				CurrentProperties = Properties[environment];
-			}
+			CurrentEnvironment = environment;
+			CurrentProperties = Properties[environment];
 		}
 
 		/// <summary>
@@ -239,12 +245,15 @@ namespace Lib.LevelLoader.LevelItems
 	    /// React to a collision with a block
 	    /// </summary>
 	    /// <param name="collidingBlock">the colliding block</param>
-	    public override void ReactToCollision(LevelItemBase collidingBlock)
+        /// <returns>Returns true if the body got hit from bottom, fals if it is another direction</returns>
+	    public override CollisionInformation HandleCollision(LevelItemBase collidingBlock)
         {
+            var infos = new CollisionInformation() { CollisionOnBottom = false, CollisionOnLeft = false, CollisionOnRight = false, CollisionOnTop = false };
             var myBox = HitBox;
             var otherBox = collidingBlock.HitBox;
             float intersectSizeX = 0;
             float intersectSizeY = 0;
+
 
             // calculate the intersect of the two boxes, for later corrections
             // y_overlap = y12 < y21 || y11 > y22 ? 0 : Math.min(y12, y22) - Math.max(y11, y21);
@@ -256,7 +265,7 @@ namespace Lib.LevelLoader.LevelItems
             if (!(myBox.MaximumY < otherBox.Postion.Y || myBox.Postion.Y > otherBox.MaximumY))
                 intersectSizeY = Math.Min(myBox.MaximumY, otherBox.MaximumY) - Math.Max(myBox.Postion.Y, otherBox.Postion.Y);
 
-
+            //Check if the collision has to be corrected
             if (collidingBlock.Collision && (intersectSizeX > 0 || intersectSizeY > 0))
             {
                 // Check now in which direction the physic object has to be corrected. It depends on the center of the boxes.
@@ -278,6 +287,9 @@ namespace Lib.LevelLoader.LevelItems
                     Position = new Vector2(Position.X, Position.Y + intersectSizeY);
                     HitBox.Postion = new Vector2(Position.X, Position.Y + intersectSizeY);
                     StopBodyOnAxisY();
+
+                    infos.CollisionOnBottom = (intersectSizeX < 0);
+                    infos.CollisionOnTop = (intersectSizeX > 0);
                 }
                 else
                 {
@@ -285,8 +297,13 @@ namespace Lib.LevelLoader.LevelItems
                     Position = new Vector2(Position.X + intersectSizeX, Position.Y);
                     HitBox.Postion = new Vector2(Position.X + intersectSizeX, Position.Y);
                     StopBodyOnAxisX();
+
+                    infos.CollisionOnLeft = (intersectSizeY > 0);
+                    infos.CollisionOnRight = (intersectSizeX < 0);
                 }
             }
+            
+            return infos;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Lib.Input;
 using Lib.Input.Mapping;
+using Lib.Tools;
 using Lib.Visuals.Graphics;
 using OpenTK;
 using System;
@@ -20,11 +21,16 @@ namespace Lib.LevelLoader.LevelItems
 		/// </summary>
 		public Vector2 ViewPoint { get; private set; }
 
+        /// <summary>
+        /// Hitbox of the player
+        /// </summary>
+        public Box2D HitBox => Physics.HitBox;
+
 
 		/// <summary>
 		/// The physical position and movement of the player
 		/// </summary>
-		public LevelItemPhysicBody Physics { get; }
+		private LevelItemPhysicBody Physics { get; }
 
 		/// <summary>
 		/// Setted values from the input
@@ -41,9 +47,17 @@ namespace Lib.LevelLoader.LevelItems
 		/// </summary>
 		private SpriteAnimated Sprite { get; }
 
+        /// <summary>
+        /// Determines if the player can execute a jump
+        /// </summary>
+        private bool IsJumpAllowed { get; set; }
+
+        /// <summary>
+        /// Determines if the player can execute a second jump
+        /// </summary>
+        private bool IsDoubleJumpAllowed { get; set; }
+
 	   
-
-
 		/// <summary>
 		/// Initialises a player
 		/// </summary>
@@ -62,7 +76,7 @@ namespace Lib.LevelLoader.LevelItems
             {
                 {BlockType.Solid, new LevelItemPhysicBodyProperties(6f, 30f, 0.1f, 0.2f)},
                 {BlockType.Ladder, new LevelItemPhysicBodyProperties(6f, 6f, 0.1f, 0f)},
-                {BlockType.Water, new LevelItemPhysicBodyProperties(30f, 30f, 0.05f, -0.005f)},
+                {BlockType.Water, new LevelItemPhysicBodyProperties(30f, 30f, 0.06f, -0.01f)},
                 {BlockType.Lava, new LevelItemPhysicBodyProperties(15f, 15f, 0.025f, 0f)}
             };
 			Physics = new LevelItemPhysicBody(physicProps, startEnvironment, startPosition);
@@ -84,11 +98,51 @@ namespace Lib.LevelLoader.LevelItems
             UpdateOffsetViewPoint();
 		}
 
-	  
-		/// <summary>
-		/// Draws the player on the screen
-		/// </summary>
-		public void Draw()
+        /// <summary>
+        /// Handles all collisions with the giving blocks
+        /// </summary>
+        /// <param name="collidingBlock">the colliding block</param>
+        /// <returns>Returns true if the body got hit from bottom, fals if it is another direction</returns>
+        public void HandleCollisions(List<LevelItemBase> collidingItems)
+        {
+            //Setting the standard environment (will stay if there is not collision)
+            var playersEnvironment = BlockType.Solid;
+            IsJumpAllowed = false;
+            
+            foreach(LevelItemBase item in collidingItems)
+            {
+                // check for the environment and may reset the jump
+                if (item.HitBox.Contains(HitBox.Center))
+                    playersEnvironment = item.BlockType;
+
+                HandleCollision(item);
+            }
+
+            //finally
+            Physics.SetEnvironment(playersEnvironment);
+        }
+
+        /// <summary>
+        /// React to a collision with a block
+        /// </summary>
+        /// <param name="collidingItem">the colliding block</param>
+        /// <returns>Returns true if the body got hit from bottom, fals if it is another direction</returns>
+        private void HandleCollision(LevelItemBase collidingItem)
+        {
+            // React to the collision with the body
+            var collisionInfo = Physics.HandleCollision(collidingItem);
+            if (collisionInfo.CollisionOnBottom)
+            {
+                //resetting the possibility to jump
+                if (Physics.CurrentEnvironment == BlockType.Solid)
+                    IsJumpAllowed = true;
+            }
+        }
+
+        /// <summary>
+        /// Draws the player on the screen
+        /// </summary>
+        public void Draw()
 		{
 		    Sprite.FlipTextureHorizontal = Physics.Energy.X > 0;
 
@@ -105,14 +159,14 @@ namespace Lib.LevelLoader.LevelItems
 			// The direction values should be between -1 and 1 for x and y
 			var moveDirection = new Vector2(InputValues.MoveRight - InputValues.MoveLeft, InputValues.MoveUp - InputValues.MoveDown);
 			Physics.ApplyForce(moveDirection);
-
-
+            
 			// tries to execute a jump of the player. In some environments or sitiations
 			// it will be not allowed to jump (e.g. water)
-
-		   
-            if (InputValues.Jump && Math.Abs(Physics.Energy.Y) <= 0)
-				 Physics.ApplyImpulse(new Vector2(0, 0.2f));
+            if (InputValues.Jump && (IsJumpAllowed || IsDoubleJumpAllowed))
+            {
+				Physics.ApplyImpulse(new Vector2(0, 0.2f));
+                IsJumpAllowed = false;
+            }
 		}
 
 		/// <summary>
@@ -126,22 +180,5 @@ namespace Lib.LevelLoader.LevelItems
 
 			ViewPoint = new Vector2(x, y);
 		}
-
-        /// <summary>
-        /// returns if the player stands on a solid block or not
-        /// </summary>
-        /// <param name="level"></param>
-        /// <returns></returns>
-        private bool PlayerIsOnSolid(Level level)
-	    {
-            var blockBottom = level.Blocks.FirstOrDefault(b => (b.Position.X == Math.Round(Position.X)) && (b.Position.Y < Math.Round(Physics.Position.Y)));
-	        if (blockBottom != null)
-	        {
-                return blockBottom.HitBox.MaximumY == Physics.HitBox.Postion.Y;
-            }
-	        return false;
-
-	    }
-
     }
 }

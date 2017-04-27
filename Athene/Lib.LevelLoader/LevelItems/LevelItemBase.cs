@@ -62,6 +62,6 @@ namespace Lib.LevelLoader.LevelItems
         /// Handles a collision with this object with another object in the level
         /// </summary>
         /// <param name="collidingBlock"></param>
-        public abstract void ReactToCollision(LevelItemBase collidingBlock);
+        public abstract CollisionInformation HandleCollision(LevelItemBase collidingBlock);
     }
 }

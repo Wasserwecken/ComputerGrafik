@@ -72,7 +72,7 @@ namespace Lib.LevelLoader
             }
 
             var levelSize = new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);
-            BlocksQuadTree = new QuadTreeRoot(levelSize, 9, quadList);
+            BlocksQuadTree = new QuadTreeRoot(levelSize, 4, quadList);
         }
 
         /// <summary>
@@ -99,26 +99,12 @@ namespace Lib.LevelLoader
             //Check collisions for the players
             foreach (var player in Players)
             {
-                BlockType playerEnvironment = BlockType.Solid; //standard environment if there is no collision at all (player is in the air)
-
-                var intersections = BlocksQuadTree.GetElementsIn(player.Physics.HitBox);
-                foreach (Block levelBlock in intersections)
-                {
-                    //The player has to react now to he collision
-                    player.Physics.ReactToCollision(levelBlock);
-
-                    // now the block can react to collision
-                    levelBlock.ReactToCollision(player.Physics);
-                    
-                    //determining in which environment the player currently is
-                    if (levelBlock.Position.X == Math.Round(player.Position.X) &&
-                        levelBlock.Position.Y == Math.Round(player.Position.Y))
-                        playerEnvironment = levelBlock.BlockType;
-                }
-
-                player.Physics.SetEnvironment(playerEnvironment);
+                var intersections = BlocksQuadTree.GetElementsIn(player.HitBox).ConvertAll(item => (LevelItemBase)item);
+                //The player has to react now to he collision
+                player.HandleCollisions(intersections);
             }
         }
+
 
         /// <summary>
         /// 
