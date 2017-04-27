@@ -5,5 +5,6 @@
     <Animation Id="water" AnimationLength="2500" Path="Animations/water" />
     <Animation Id="lava_top" AnimationLength="2500" Path="Animations/lava_top" />
     <Animation Id="lava" AnimationLength="2500" Path="Animations/lava" />
+	  <Animation Id="torch" AnimationLength="750" Path="Animations/torch" />
   </Animations>
 </AnimationList>
