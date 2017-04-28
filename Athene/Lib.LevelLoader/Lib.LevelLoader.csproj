@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationLoader.cs" />
+    <Compile Include="LevelItems\CollisionReport.cs" />
+    <Compile Include="LevelItems\CollisionReportItem.cs" />
     <Compile Include="LevelItems\LevelItemPhysicBody.cs" />
     <Compile Include="LevelItems\Block.cs" />
     <Compile Include="LevelItems\BlockLinkType.cs" />

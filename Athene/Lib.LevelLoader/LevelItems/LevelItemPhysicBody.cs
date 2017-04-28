@@ -67,7 +67,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Updates the bodys position, in order of applyed force and gravity. Also corrects analysis collisions
 		/// </summary>
-		public List<KeyValuePair<Alignment, LevelItemBase>> UpdatePhysics(List<LevelItemBase> intersections)
+		public CollisionReport UpdatePhysics(List<LevelItemBase> intersections)
 		{
             //multiply the speed with the current force to get the fitting speed for the enivornment
             ForceToProcess = ForceToProcess * CurrentProperties.MovementSpeed;
@@ -115,9 +115,9 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         /// <param name="intersections"></param>
         /// <returns></returns>
-        private List<KeyValuePair<Alignment, LevelItemBase>> HandleCollisions(List<LevelItemBase> intersections)
+        private CollisionReport HandleCollisions(List<LevelItemBase> intersections)
         {
-            var collisionReport = new List<KeyValuePair<Alignment, LevelItemBase>>();
+            var report = new CollisionReport();
 
               //Before the collision "detection" and correct we will reset the environment, because
               //if there is no collision, the player has to adapt the default environment
@@ -128,10 +128,10 @@ namespace Lib.LevelLoader.LevelItems
                 if (item.HitBox.Contains(HitBox.Center))
                     SetEnvironment(item.BlockType);
                 
-                collisionReport.Add(HandleCollision(item));
+                report.Add(HandleCollision(item));
             }
 
-            return collisionReport;
+            return report;
         }
 
         /// <summary>
@@ -227,14 +227,14 @@ namespace Lib.LevelLoader.LevelItems
 	    /// <summary>
 	    /// React to a collision with a block, may correcting it and returning the blocks alignment
 	    /// </summary>
-	    /// <param name="collidingBlock">the colliding block</param>
-	    private KeyValuePair<Alignment, LevelItemBase> HandleCollision(LevelItemBase collidingBlock)
+	    /// <param name="collidingItem">the colliding block</param>
+	    private CollisionReportItem HandleCollision(LevelItemBase collidingItem)
         {
             var myBox = HitBox;
-            var otherBox = collidingBlock.HitBox;
+            var otherBox = collidingItem.HitBox;
             float intersectSizeX = 0;
             float intersectSizeY = 0;
-            Alignment blockAlignment;
+            Alignment itemAlignment;
 
             // calculate the intersect of the two boxes, for later corrections
             // y_overlap = y12 < y21 || y11 > y22 ? 0 : Math.min(y12, y22) - Math.max(y11, y21);
@@ -251,7 +251,7 @@ namespace Lib.LevelLoader.LevelItems
             // Inverting here the intersectsize to achive the side decision
             // Creating here this vars, because there is a calculation behind the propertie "Center" to avoid multiple execution, by calling the prop
             var ownCenter = HitBox.Center;
-            var otherCenter = collidingBlock.HitBox.Center;
+            var otherCenter = collidingItem.HitBox.Center;
             if (ownCenter.X < otherCenter.X)
                 intersectSizeX *= -1;
             if (ownCenter.Y < otherCenter.Y)
@@ -263,27 +263,27 @@ namespace Lib.LevelLoader.LevelItems
             if (Math.Abs(intersectSizeX) > Math.Abs(intersectSizeY))
             {
                 //Correct Y axis
-                if (collidingBlock.Collision)
+                if (collidingItem.Collision && (Math.Abs(intersectSizeX) > 0 || Math.Abs(intersectSizeY) > 0))
                 {
                     HitBox.Position = new Vector2(HitBox.Position.X, HitBox.Position.Y + intersectSizeY);
                     StopBodyOnAxisY();
                 }
 
-                blockAlignment = (intersectSizeY >= 0) ? Alignment.Bottom : Alignment.Top;
+                itemAlignment = (intersectSizeY >= 0) ? Alignment.Bottom : Alignment.Top;
             }
             else
             {
                 //Correct X axis
-                if (collidingBlock.Collision)
+                if (collidingItem.Collision && (Math.Abs(intersectSizeX) > 0 || Math.Abs(intersectSizeY) > 0))
                 {
                     HitBox.Position = new Vector2(HitBox.Position.X + intersectSizeX, HitBox.Position.Y);
                     StopBodyOnAxisX();
                 }
 
-                blockAlignment = (intersectSizeX >= 0) ? Alignment.Left : Alignment.Right;
+                itemAlignment = (intersectSizeX >= 0) ? Alignment.Left : Alignment.Right;
             }
 
-            return new KeyValuePair<Alignment, LevelItemBase>(blockAlignment, collidingBlock);
+            return new CollisionReportItem(itemAlignment, collidingItem);
         }
 
         /// <summary>

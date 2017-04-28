@@ -39,7 +39,7 @@ namespace Lib.LevelLoader.LevelItems
 		private InputLayout<LevelItemPlayerActions> InputLayout { get; set; }
         
         /// <summary>
-        /// Determines if the player can execute a jump
+        /// Determines if the player currently is in a "jump"
         /// </summary>
         private bool IsJumpAllowed { get; set; }
         
@@ -68,8 +68,9 @@ namespace Lib.LevelLoader.LevelItems
             };
 			Physics = new LevelItemPhysicBody(physicProps, BlockType.Air, base.HitBox);
 
-			//set graphics
+			//set other
 			Sprite = sprite;
+            IsJumpAllowed = false;
 		}
 
 
@@ -80,7 +81,9 @@ namespace Lib.LevelLoader.LevelItems
 		{
 			ProcessInput();
 
-            var collisionReport = Physics.UpdatePhysics(intersections);
+            var intersectionReport = Physics.UpdatePhysics(intersections);
+
+            ProcessIntersectionReport(intersectionReport);
 
             UpdateOffsetViewPoint();
 		}
@@ -95,21 +98,64 @@ namespace Lib.LevelLoader.LevelItems
 		}
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="intersections"></param>
+        private void ProcessIntersectionReport(CollisionReport report)
+        {
+            bool isBottomWater = false;
+            bool isSolidOnSide = false;
+            bool isSolidOnBottom = false;
+
+            foreach(var item in report)
+            {
+                if (item.Item.BlockType == BlockType.Water && item.ItemAlignment == Alignment.Bottom)
+                    isBottomWater = true;
+
+                if (item.Item.BlockType == BlockType.Solid)
+                {
+                    if (item.ItemAlignment == Alignment.Left || item.ItemAlignment == Alignment.Right)
+                        isSolidOnSide = true;
+
+                    if (item.ItemAlignment == Alignment.Bottom)
+                        isSolidOnBottom = true;
+                }
+            }
+
+            if (Physics.CurrentEnvironment == BlockType.Air)
+            {
+                if(isBottomWater && isSolidOnSide)
+                   IsJumpAllowed = true;
+
+                if (isSolidOnBottom)
+                    IsJumpAllowed = true;
+            }
+        }
+
 		/// <summary>
 		/// Process the input values
 		/// </summary>
 		private void ProcessInput()
 		{
-			// tries to move the player in a given direction.
-			// The direction values should be between -1 and 1 for x and y
-			var moveDirection = new Vector2(InputValues.MoveRight - InputValues.MoveLeft, InputValues.MoveUp - InputValues.MoveDown);
-			Physics.ApplyForce(moveDirection);
+            // tries to move the player in a given direction.
+            // The direction values should be between -1 and 1 for x and y
+            var directionHorizontal = InputValues.MoveRight - InputValues.MoveLeft;
+            var directionVertical = InputValues.MoveUp - InputValues.MoveDown;
+
+            //restrict the move direction by environment (in air, the player is not allowed to manipulate its force in the y axis)
+            if (Physics.CurrentEnvironment == BlockType.Air)
+                directionVertical = 0;
             
-			// tries to execute a jump of the player. In some environments or sitiations
+			Physics.ApplyForce(new Vector2(directionHorizontal, directionVertical));
+            
+
+			// tries to execute a jump of the player. In some environments or situations
 			// it will be not allowed to jump (e.g. water)
-            if (InputValues.Jump && (IsJumpAllowed))
+            if (InputValues.Jump && IsJumpAllowed)
             {
 				Physics.ApplyImpulse(new Vector2(0, 0.2f));
+                IsJumpAllowed = false;
             }
 		}
 
