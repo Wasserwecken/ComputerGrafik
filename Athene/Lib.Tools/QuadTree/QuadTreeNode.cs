@@ -45,9 +45,9 @@ namespace Lib.Tools.QuadTree
             var quadrantSizeY = Size.Size.Y / 2;
 
             Quadrants.Add(new QuadTreeLeaf(new Box2D(Size.Center.X, Size.Center.Y, quadrantSizeX, quadrantSizeY), elementLimit));
-            Quadrants.Add(new QuadTreeLeaf(new Box2D(Size.Center.X, Size.Postion.Y, quadrantSizeX, quadrantSizeY), elementLimit));
-            Quadrants.Add(new QuadTreeLeaf(new Box2D(Size.Postion.X, Size.Postion.Y, quadrantSizeX, quadrantSizeY), elementLimit));
-            Quadrants.Add(new QuadTreeLeaf(new Box2D(Size.Postion.X, Size.Center.Y, quadrantSizeX, quadrantSizeY), elementLimit));
+            Quadrants.Add(new QuadTreeLeaf(new Box2D(Size.Center.X, Size.Position.Y, quadrantSizeX, quadrantSizeY), elementLimit));
+            Quadrants.Add(new QuadTreeLeaf(new Box2D(Size.Position.X, Size.Position.Y, quadrantSizeX, quadrantSizeY), elementLimit));
+            Quadrants.Add(new QuadTreeLeaf(new Box2D(Size.Position.X, Size.Center.Y, quadrantSizeX, quadrantSizeY), elementLimit));
 
             //inserting given elements
             foreach (IQuadTreeElement element in initialElements)

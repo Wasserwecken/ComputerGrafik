@@ -175,7 +175,7 @@ namespace QuadTest
         /// </summary>
         public new string ToString()
         {
-            return String.Format("X: {0}, Y: {1}", HitBox.Postion.X, HitBox.Postion.Y);
+            return String.Format("X: {0}, Y: {1}", HitBox.Position.X, HitBox.Position.Y);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Lib.Visuals.Graphics;
 using OpenTK;
+using System.Collections.Generic;
 
 namespace Lib.LevelLoader.LevelItems
 {
@@ -30,18 +31,9 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         public void Draw()
         {
-            Sprite.Draw(Position, new Vector2(1f));
+            Sprite.Draw(HitBox.Position, new Vector2(1f));
             foreach (var attachedSprite in AttachedSprites)
-                attachedSprite.Draw(Position, new Vector2(1f));
-        }
-
-        /// <summary>
-        /// reacts to a collision
-        /// </summary>
-        /// <param name="collidingBlock">the colliding block</param>
-        public override CollisionInformation HandleCollision(LevelItemBase collidingBlock)
-        {
-            return new CollisionInformation();
+                attachedSprite.Draw(HitBox.Position, new Vector2(1f));
         }
     }
 }

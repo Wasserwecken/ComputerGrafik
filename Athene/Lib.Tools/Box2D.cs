@@ -12,7 +12,7 @@ namespace Lib.Tools
         /// <summary>
         /// Position of the box in the level
         /// </summary>
-        public Vector2 Postion { get; set; }
+        public Vector2 Position { get; set; }
 
         /// <summary>
         /// Dimension of the box
@@ -22,17 +22,17 @@ namespace Lib.Tools
         /// <summary>
         /// Center point of the box
         /// </summary>
-        public Vector2 Center => new Vector2(Postion.X + (0.5f * Size.X), Postion.Y + (0.5f * Size.Y));
+        public Vector2 Center => new Vector2(Position.X + (0.5f * Size.X), Position.Y + (0.5f * Size.Y));
 
         /// <summary>
         /// Absolute left ending of the box
         /// </summary>
-        public float MaximumX => Postion.X + Size.X;
+        public float MaximumX => Position.X + Size.X;
 
         /// <summary>
         /// Absolute top ending of the box
         /// </summary>
-        public float MaximumY => Postion.Y + Size.Y;
+        public float MaximumY => Position.Y + Size.Y;
 
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Lib.Tools
         /// <param name="sizeY">height</param>
         public Box2D(float x, float y, float sizeX, float sizeY)
         {
-            Postion = new Vector2(x, y);
+            Position = new Vector2(x, y);
             Size = new Vector2(sizeX, sizeY);
         }
 
@@ -57,8 +57,8 @@ namespace Lib.Tools
         public bool IntersectsWith(Box2D otherBox)
         {
 
-            bool noXintersect = (MaximumX <= otherBox.Postion.X) || (Postion.X >= otherBox.MaximumX);
-            bool noYintersect = (MaximumY <= otherBox.Postion.Y) || (Postion.Y >= otherBox.MaximumY);
+            bool noXintersect = (MaximumX <= otherBox.Position.X) || (Position.X >= otherBox.MaximumX);
+            bool noYintersect = (MaximumY <= otherBox.Position.Y) || (Position.Y >= otherBox.MaximumY);
             
             return !(noXintersect || noYintersect);
         }
@@ -70,13 +70,13 @@ namespace Lib.Tools
         /// <returns></returns>
         public bool IsInside(Box2D otherBox)
         {
-            if (Postion.X < otherBox.Postion.X)
+            if (Position.X < otherBox.Position.X)
                 return false;
 
             if (MaximumX > otherBox.MaximumX)
                 return false;
 
-            if (Postion.X < otherBox.Postion.Y)
+            if (Position.X < otherBox.Position.Y)
                 return false;
 
             if (MaximumY > otherBox.MaximumY)
@@ -92,10 +92,10 @@ namespace Lib.Tools
         /// <returns></returns>
         public bool Contains(Vector2 point)
         {
-            if (point.X < Postion.X || point.X > MaximumX)
+            if (point.X < Position.X || point.X > MaximumX)
                 return false;
 
-            if (point.Y < Postion.Y || point.Y > MaximumY)
+            if (point.Y < Position.Y || point.Y > MaximumY)
                 return false;
 
             return true;

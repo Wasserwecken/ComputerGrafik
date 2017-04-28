@@ -10,11 +10,6 @@ namespace Lib.LevelLoader.LevelItems
         : IQuadTreeElement
     {
         /// <summary>
-        /// Position of the item
-        /// </summary>
-        public Vector2 Position { get; set; }
-
-        /// <summary>
         /// the sprite of the item
         /// </summary>
         public ISprite Sprite { get; set; }
@@ -52,16 +47,8 @@ namespace Lib.LevelLoader.LevelItems
         /// <param name="boxSize">boxSize</param>
         protected LevelItemBase(Vector2 startPosition, Vector2 boxSize)
 		{
-			Position = startPosition;
             HitBox = new Box2D(startPosition.X, startPosition.Y, boxSize.X, boxSize.Y);
             AttachedSprites = new List<ISprite>();
 		}
-
-
-        /// <summary>
-        /// Handles a collision with this object with another object in the level
-        /// </summary>
-        /// <param name="collidingBlock"></param>
-        public abstract CollisionInformation HandleCollision(LevelItemBase collidingBlock);
     }
 }

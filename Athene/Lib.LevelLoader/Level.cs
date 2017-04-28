@@ -56,14 +56,14 @@ namespace Lib.LevelLoader
 
             foreach (Block levelBlock in Blocks)
             {
-                if (levelBlock.HitBox.Postion.X < MinX)
-                    MinX = levelBlock.HitBox.Postion.X;
+                if (levelBlock.HitBox.Position.X < MinX)
+                    MinX = levelBlock.HitBox.Position.X;
 
                 if (levelBlock.HitBox.MaximumX > MaxX)
                     MaxX = levelBlock.HitBox.MaximumX;
 
-                if (levelBlock.HitBox.Postion.Y < MinY)
-                    MinY = levelBlock.HitBox.Postion.Y;
+                if (levelBlock.HitBox.Position.Y < MinY)
+                    MinY = levelBlock.HitBox.Position.Y;
 
                 if (levelBlock.HitBox.MaximumY > MaxY)
                     MaxY = levelBlock.HitBox.MaximumY;
@@ -115,7 +115,7 @@ namespace Lib.LevelLoader
             mapList.AddMappingKeyboard(Key.Down, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
             mapList.AddMappingKeyboard(Key.Space, inp => inp.Jump, (inval, curval) => inval);
 
-            player = new LevelItemPlayer(Vector2.Zero, BlockType.Solid, mapList, playerSprite);
+            player = new LevelItemPlayer(Vector2.Zero, mapList, playerSprite);
             Players.Add(player);
 
         }

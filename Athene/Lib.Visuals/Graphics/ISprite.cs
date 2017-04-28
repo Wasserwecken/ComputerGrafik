@@ -7,11 +7,21 @@ namespace Lib.Visuals.Graphics
 	/// </summary>
 	public interface ISprite
     {
-		/// <summary>
-		/// Draws the sprite on screen
-		/// </summary>
-		/// <param name="position"></param>
-		/// <param name="scale"></param>
+        /// <summary>
+        /// Flips the texture of the sprite on the Y axis
+        /// </summary>
+        bool FlipTextureHorizontal { get; set; }
+
+        /// <summary>
+        /// Flips the texture of the sprite on the Y axis
+        /// </summary>
+        bool FlipTextureVertical { get; set; }
+
+        /// <summary>
+        /// Draws the sprite on screen
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="scale"></param>
         void Draw(Vector2 position, Vector2 scale);
     }
 }

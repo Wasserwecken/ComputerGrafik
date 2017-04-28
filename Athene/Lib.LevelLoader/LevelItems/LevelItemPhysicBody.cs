@@ -6,12 +6,11 @@ using System.Collections.Generic;
 namespace Lib.LevelLoader.LevelItems
 {
     public class LevelItemPhysicBody
-		: LevelItemBase
 	{
-		/// <summary>
-		/// Boundaries of energy that is allowed
-		/// </summary>
-		public Vector2 EnergyLimit { get; set; }
+        /// <summary>
+        /// Hitobx of the body
+        /// </summary>
+        public Box2D HitBox { get; set; }
 
 		/// <summary>
 		/// Current energy of the object
@@ -53,22 +52,22 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Initialises a forceable object
 		/// </summary>
-		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType defaultEnvironment, Vector2 startPosition)
-			: base(startPosition, new Vector2(0.75f, 0.75f))
+		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType defaultEnvironment, Box2D initialHitBox)
 		{
 			Properties = properties;
-			EnergyLimit = Vector2.Zero;
 			Energy = Vector2.Zero;
+            HitBox = initialHitBox;
 
             DefaultEnvironment = defaultEnvironment;
             CurrentEnvironment = defaultEnvironment;
             CurrentProperties = Properties[defaultEnvironment];
         }
 
+
 		/// <summary>
-		/// Updates all values for one step
+		/// Updates the bodys position, in order of applyed force and gravity. Also corrects analysis collisions
 		/// </summary>
-		public void UpdateLogic()
+		public void UpdatePhysics(List<LevelItemBase> intersections)
 		{
             //multiply the speed with the current force to get the fitting speed for the enivornment
             ForceToProcess = ForceToProcess * CurrentProperties.MovementSpeed;
@@ -82,33 +81,13 @@ namespace Lib.LevelLoader.LevelItems
 			//energy is used as reference
 			float x = GetEasingValue(LastProcessedForce.X, Energy.X) * Energy.X;
 			float y = GetEasingValue(LastProcessedForce.Y, Energy.Y) * Energy.Y;
-
-			//Limit the energy
-			if (EnergyLimit.X > 0)
-				x = x.LimitToRange(-EnergyLimit.X, -EnergyLimit.X);
-
-			if (EnergyLimit.Y > 0)
-				y = y.LimitToRange(-EnergyLimit.Y, -EnergyLimit.Y);
-
+            
 			//Set the new position
-			Position = Position + new Vector2(x, y);
+            HitBox.Position = HitBox.Position + new Vector2(x, y);
 
-            // update the 2DBox
-            HitBox.Postion = Position;
-
-            //setting the default environment
-            SetEnvironment(DefaultEnvironment);
+            //react after force logic to collisions
+            HandleCollisions(intersections);
         }
-
-		/// <summary>
-		/// Sets the enivornment for the object
-		/// </summary>
-		/// <param name="environment"></param>
-		public void SetEnvironment(BlockType environment)
-		{
-			CurrentEnvironment = environment;
-			CurrentProperties = Properties[environment];
-		}
 
 		/// <summary>
 		/// 
@@ -130,26 +109,26 @@ namespace Lib.LevelLoader.LevelItems
 			ForceToProcess = ForceToProcess + force;
 		}
 
-        /// <summary>
-        /// Stops the body immidiatly on the x axis, by removing all energy and force
-        /// </summary>
-        public void StopBodyOnAxisX()
-        {
-            ForceToProcess = new Vector2(0, ForceToProcess.Y);
-            Energy = new Vector2(0, Energy.Y);
-            LastProcessedForce = new Vector2(0, LastProcessedForce.Y);
-        }
 
         /// <summary>
-        /// Stops the body immidiatly on the x axis, by removing all energy and force
+        /// Handles all collisions that have a physical effect on the player
         /// </summary>
-        public void StopBodyOnAxisY()
+        /// <param name="intersections"></param>
+        /// <returns></returns>
+        private void HandleCollisions(List<LevelItemBase> intersections)
         {
-            ForceToProcess = new Vector2(ForceToProcess.X, 0);
-            Energy = new Vector2(Energy.X, 0);
-            LastProcessedForce = new Vector2(LastProcessedForce.X, 0);
-        }
+            //Before the collision "detection" and correct we will reset the environment, because
+            //if there is no collision, the player has to adapt the default environment
+            SetEnvironment(DefaultEnvironment);
 
+            foreach (LevelItemBase item in intersections)
+            {
+                if (item.HitBox.Contains(HitBox.Center))
+                    SetEnvironment(item.BlockType);
+                
+                HandleCollision(item);
+            }
+        }
 
         /// <summary>
         /// Sets the new energy by a given force. Limits the maximums to the given force
@@ -240,30 +219,28 @@ namespace Lib.LevelLoader.LevelItems
 			
 			return energy;
 		}
-
+        
 	    /// <summary>
 	    /// React to a collision with a block
 	    /// </summary>
 	    /// <param name="collidingBlock">the colliding block</param>
         /// <returns>Returns true if the body got hit from bottom, fals if it is another direction</returns>
-	    public override CollisionInformation HandleCollision(LevelItemBase collidingBlock)
+	    private void HandleCollision(LevelItemBase collidingBlock)
         {
-            var infos = new CollisionInformation() { CollisionOnBottom = false, CollisionOnLeft = false, CollisionOnRight = false, CollisionOnTop = false };
             var myBox = HitBox;
             var otherBox = collidingBlock.HitBox;
             float intersectSizeX = 0;
             float intersectSizeY = 0;
 
-
             // calculate the intersect of the two boxes, for later corrections
             // y_overlap = y12 < y21 || y11 > y22 ? 0 : Math.min(y12, y22) - Math.max(y11, y21);
             // x_overlap = x12 < x21 || x11 > x22 ? 0 : Math.min(x12, x22) - Math.max(x11, x21),
             // https://math.stackexchange.com/questions/99565/simplest-way-to-calculate-the-intersect-area-of-two-rectangles
-            if (!(myBox.MaximumX < otherBox.Postion.X || myBox.Postion.X > otherBox.MaximumX))
-                intersectSizeX = Math.Min(myBox.MaximumX, otherBox.MaximumX) - Math.Max(myBox.Postion.X, otherBox.Postion.X);
+            if (!(myBox.MaximumX < otherBox.Position.X || myBox.Position.X > otherBox.MaximumX))
+                intersectSizeX = Math.Min(myBox.MaximumX, otherBox.MaximumX) - Math.Max(myBox.Position.X, otherBox.Position.X);
 
-            if (!(myBox.MaximumY < otherBox.Postion.Y || myBox.Postion.Y > otherBox.MaximumY))
-                intersectSizeY = Math.Min(myBox.MaximumY, otherBox.MaximumY) - Math.Max(myBox.Postion.Y, otherBox.Postion.Y);
+            if (!(myBox.MaximumY < otherBox.Position.Y || myBox.Position.Y > otherBox.MaximumY))
+                intersectSizeY = Math.Min(myBox.MaximumY, otherBox.MaximumY) - Math.Max(myBox.Position.Y, otherBox.Position.Y);
 
             //Check if the collision has to be corrected
             if (collidingBlock.Collision && (intersectSizeX > 0 || intersectSizeY > 0))
@@ -284,26 +261,48 @@ namespace Lib.LevelLoader.LevelItems
                 if (Math.Abs(intersectSizeX) > Math.Abs(intersectSizeY))
                 {
                     //Correct Y axis
-                    Position = new Vector2(Position.X, Position.Y + intersectSizeY);
-                    HitBox.Postion = new Vector2(Position.X, Position.Y + intersectSizeY);
+                    HitBox.Position = new Vector2(HitBox.Position.X, HitBox.Position.Y + intersectSizeY);
                     StopBodyOnAxisY();
-
-                    infos.CollisionOnBottom = (intersectSizeY > 0);
-                    infos.CollisionOnTop = (intersectSizeY < 0);
                 }
                 else
                 {
                     //Correct X axis
-                    Position = new Vector2(Position.X + intersectSizeX, Position.Y);
-                    HitBox.Postion = new Vector2(Position.X + intersectSizeX, Position.Y);
+                    HitBox.Position = new Vector2(HitBox.Position.X + intersectSizeX, HitBox.Position.Y);
                     StopBodyOnAxisX();
-
-                    infos.CollisionOnLeft = (intersectSizeX > 0);
-                    infos.CollisionOnRight = (intersectSizeX < 0);
                 }
             }
             
-            return infos;
+            //return infos;
+        }
+
+        /// <summary>
+        /// Stops the body immidiatly on the x axis, by removing all energy and force
+        /// </summary>
+        private void StopBodyOnAxisX()
+        {
+            ForceToProcess = new Vector2(0, ForceToProcess.Y);
+            Energy = new Vector2(0, Energy.Y);
+            LastProcessedForce = new Vector2(0, LastProcessedForce.Y);
+        }
+
+        /// <summary>
+        /// Stops the body immidiatly on the x axis, by removing all energy and force
+        /// </summary>
+        private void StopBodyOnAxisY()
+        {
+            ForceToProcess = new Vector2(ForceToProcess.X, 0);
+            Energy = new Vector2(Energy.X, 0);
+            LastProcessedForce = new Vector2(LastProcessedForce.X, 0);
+        }
+        
+        /// <summary>
+        /// Sets the enivornment for the object
+        /// </summary>
+        /// <param name="environment"></param>
+        private void SetEnvironment(BlockType environment)
+        {
+            CurrentEnvironment = environment;
+            CurrentProperties = Properties[environment];
         }
     }
 }
