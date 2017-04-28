@@ -83,25 +83,8 @@ namespace Lib.LevelLoader
             //Moving all the characters first
             foreach (var player in Players)
             {
-                player.UpdateLogic(this);
-            }
-
-
-            //Check now for collisions which have to be handled
-            CheckCollisions();
-        }
-
-        /// <summary>
-        /// Determines all elements that are intersecting and inform all this elements
-        /// </summary>
-        public void CheckCollisions()
-        {
-            //Check collisions for the players
-            foreach (var player in Players)
-            {
                 var intersections = BlocksQuadTree.GetElementsIn(player.HitBox).ConvertAll(item => (LevelItemBase)item);
-                //The player has to react now to he collision
-                player.HandleCollisions(intersections);
+                player.UpdateLogic(intersections);
             }
         }
 

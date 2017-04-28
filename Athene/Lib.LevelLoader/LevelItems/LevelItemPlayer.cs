@@ -89,11 +89,13 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Updates all interactions of the player for a single step
 		/// </summary>
-		public void UpdateLogic(Level level)
+		public void UpdateLogic(List<LevelItemBase> intersections)
 		{
-			ProcessInput(level);
+			ProcessInput();
             
 			Physics.UpdateLogic();
+
+            HandleCollisions(intersections);
 		    
             UpdateOffsetViewPoint();
 		}
@@ -103,7 +105,7 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         /// <param name="collidingBlock">the colliding block</param>
         /// <returns>Returns true if the body got hit from bottom, fals if it is another direction</returns>
-        public void HandleCollisions(List<LevelItemBase> collidingItems)
+        private void HandleCollisions(List<LevelItemBase> collidingItems)
         {
             //Setting the standard environment (will stay if there is not collision)
             var playersEnvironment = BlockType.Solid;
@@ -153,7 +155,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Process the input values
 		/// </summary>
-		private void ProcessInput(Level level)
+		private void ProcessInput()
 		{
 			// tries to move the player in a given direction.
 			// The direction values should be between -1 and 1 for x and y
@@ -162,7 +164,7 @@ namespace Lib.LevelLoader.LevelItems
             
 			// tries to execute a jump of the player. In some environments or sitiations
 			// it will be not allowed to jump (e.g. water)
-            if (InputValues.Jump && (IsJumpAllowed || IsDoubleJumpAllowed))
+            if (InputValues.Jump && (IsJumpAllowed))
             {
 				Physics.ApplyImpulse(new Vector2(0, 0.2f));
                 IsJumpAllowed = false;
