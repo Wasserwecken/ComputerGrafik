@@ -80,7 +80,7 @@ namespace Lib.LevelLoader.LevelItems
 		{
 			ProcessInput();
 
-            Physics.UpdatePhysics(intersections);
+            var collisionReport = Physics.UpdatePhysics(intersections);
 
             UpdateOffsetViewPoint();
 		}

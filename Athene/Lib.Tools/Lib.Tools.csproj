@@ -46,6 +46,7 @@
     <Compile Include="Box2D.cs" />
     <Compile Include="Easing.cs" />
     <Compile Include="NumberExtensions.cs" />
+    <Compile Include="Orientation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuadTree\IQuadTreeElement.cs" />
     <Compile Include="QuadTree\QuadTreeQuadrant.cs" />
