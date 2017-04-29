@@ -33,7 +33,7 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-		    Level = LevelLoader.LoadLevel(9);
+		    Level = LevelLoader.LoadLevel(11);
             Level.InitialiseQuadTree();
         }
 

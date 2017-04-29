@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Blocks>
+    <Block X="11" Y="4" Link="forest_pack_104" LinkType="Image" BlockType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="4" Link="fenceBroken" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="10" Y="3" Link="jungle_pack_19" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="11" Y="3" Link="jungle_pack_17" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="12" Y="3" Link="jungle_pack_17" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="3" AttachedLinkType="Image" AttachedLink="jungle_pack_17" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="14" Y="3" Link="jungle_pack_17" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="15" Y="3" Link="jungle_pack_40" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="17" Y="3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="2" Link="jungle_pack_59" LinkType="Image" BlockType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="2" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="1" Link="jungle_pack_07" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="1" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="0" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="0" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="0" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-1" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-1" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-2" Link="jungle_pack_59" LinkType="Image" BlockType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="2" Y="-2" Link="jungle_pack_66" LinkType="Image" BlockType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="-2" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-2" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-3" Link="jungle_pack_03" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="0" Y="-3" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="1" Y="-3" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-3" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-3" Link="jungle_pack_15" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-3" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-3" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-13" Y="-4" Link="jungle_pack_57" LinkType="Image" BlockType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-12" Y="-4" Link="jungle_pack_67" LinkType="Image" BlockType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-4" Y="-4" Link="jungle_pack_66" LinkType="Image" BlockType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-3" Y="-4" Link="forest_pack_103" LinkType="Image" BlockType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-2" Y="-4" Link="jungle_pack_03" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="0" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="1" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-4" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-4" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-13" Y="-5" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-12" Y="-5" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-11" Y="-5" Link="jungle_pack_07" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-5" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-9" Y="-5" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-8" Y="-5" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-7" Y="-5" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-6" Y="-5" Link="desert_pack_51" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-5" Y="-5" Link="jungle_pack_03" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="-5" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-3" Y="-5" Link="jungle_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-2" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="0" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="1" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-5" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-5" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="-6" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-13" Y="-6" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-12" Y="-6" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-11" Y="-6" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-6" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-9" Y="-6" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-8" Y="-6" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-7" Y="-6" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-6" Y="-6" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-5" Y="-6" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="-6" Link="jungle_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-3" Y="-6" Link="jungle_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-2" Y="-6" Link="jungle_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-1" Y="-6" Link="jungle_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="0" Y="-6" Link="jungle_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="1" Y="-6" Link="jungle_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="2" Y="-6" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-6" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-6" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="-7" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-13" Y="-7" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-12" Y="-7" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-11" Y="-7" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-7" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-9" Y="-7" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-8" Y="-7" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-7" Y="-7" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-6" Y="-7" Link="desert_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-5" Y="-7" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-7" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-7" Link="ladder_mid" LinkType="Image" BlockType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-7" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-14" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-13" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-12" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-11" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-9" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-6" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-5" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-3" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-2" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="0" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="1" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="4" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="5" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="6" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="7" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="8" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="9" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="10" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="11" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="12" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="14" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="15" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="-8" Link="jungle_pack_52" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-8" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-9" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="4" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="5" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="6" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="7" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="8" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="9" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="10" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="11" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="12" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="14" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="15" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="-9" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-9" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-10" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="4" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="5" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="6" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="7" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="8" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="9" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="10" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="11" Y="-10" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="12" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="14" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="15" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="-10" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-10" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-11" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="4" Y="-11" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="5" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="6" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="7" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="8" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="9" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="10" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="11" Y="-11" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="12" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="14" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="15" Y="-11" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="-11" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-11" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-12" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-12" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="4" Y="-12" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="5" Y="-12" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="6" Y="-12" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="7" Y="-12" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="8" Y="-12" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="9" Y="-12" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="10" Y="-12" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="11" Y="-12" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="12" Y="-12" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="-12" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="14" Y="-12" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="15" Y="-12" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="-12" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-12" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-13" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-13" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="4" Y="-13" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="5" Y="-13" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="6" Y="-13" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="7" Y="-13" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="8" Y="-13" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="9" Y="-13" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="10" Y="-13" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="11" Y="-13" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="12" Y="-13" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="-13" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="14" Y="-13" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="15" Y="-13" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="-13" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-13" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-14" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-14" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="4" Y="-14" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="5" Y="-14" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="6" Y="-14" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="7" Y="-14" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="8" Y="-14" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="9" Y="-14" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="10" Y="-14" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="11" Y="-14" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="12" Y="-14" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="13" Y="-14" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="14" Y="-14" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="15" Y="-14" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="16" Y="-14" AttachedLinkType="Image" AttachedLink="jungle_pack_63" Link="jungle_pack_54" LinkType="Image" BlockType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="17" Y="-14" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="4" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="5" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="6" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="7" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="8" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="9" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="10" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="11" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="12" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="14" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="15" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="16" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="17" Y="-15" Link="jungle_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+  </Blocks>
+  <Textures>
+    <Texture Id="forest_pack_104" Path="Images\Environment\Forest\forest_pack_104.png" />
+    <Texture Id="fenceBroken" Path="Images\Objects\Tiles\fenceBroken.png" />
+    <Texture Id="jungle_pack_35" Path="Images\Environment\Jungle\jungle_pack_35.png" />
+    <Texture Id="jungle_pack_19" Path="Images\Environment\Jungle\jungle_pack_19.png" />
+    <Texture Id="jungle_pack_17" Path="Images\Environment\Jungle\jungle_pack_17.png" />
+    <Texture Id="ladder_mid" Path="Images\Objects\Tiles\ladder_mid.png" />
+    <Texture Id="jungle_pack_17" Path="Images\Environment\Jungle\jungle_pack_17.png" />
+    <Texture Id="jungle_pack_40" Path="Images\Environment\Jungle\jungle_pack_40.png" />
+    <Texture Id="jungle_pack_59" Path="Images\Environment\Jungle\jungle_pack_59.png" />
+    <Texture Id="jungle_pack_07" Path="Images\Environment\Jungle\jungle_pack_07.png" />
+    <Texture Id="jungle_pack_66" Path="Images\Environment\Jungle\jungle_pack_66.png" />
+    <Texture Id="jungle_pack_03" Path="Images\Environment\Jungle\jungle_pack_03.png" />
+    <Texture Id="jungle_pack_05" Path="Images\Environment\Jungle\jungle_pack_05.png" />
+    <Texture Id="jungle_pack_15" Path="Images\Environment\Jungle\jungle_pack_15.png" />
+    <Texture Id="jungle_pack_57" Path="Images\Environment\Jungle\jungle_pack_57.png" />
+    <Texture Id="jungle_pack_67" Path="Images\Environment\Jungle\jungle_pack_67.png" />
+    <Texture Id="forest_pack_103" Path="Images\Environment\Forest\forest_pack_103.png" />
+    <Texture Id="desert_pack_51" Path="Images\Environment\Desert\desert_pack_51.png" />
+    <Texture Id="desert_pack_52" Path="Images\Environment\Desert\desert_pack_52.png" />
+    <Texture Id="jungle_pack_21" Path="Images\Environment\Jungle\jungle_pack_21.png" />
+    <Texture Id="jungle_pack_52" Path="Images\Environment\Jungle\jungle_pack_52.png" />
+    <Texture Id="jungle_pack_54" Path="Images\Environment\Jungle\jungle_pack_54.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+    <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
+  </Textures>
+</Level>

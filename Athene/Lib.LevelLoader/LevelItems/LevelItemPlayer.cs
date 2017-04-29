@@ -39,9 +39,14 @@ namespace Lib.LevelLoader.LevelItems
 		private InputLayout<LevelItemPlayerActions> InputLayout { get; set; }
         
         /// <summary>
-        /// Determines if the player currently is in a "jump"
+        /// Determines if the player is allowed to execute a jump
         /// </summary>
         private bool IsJumpAllowed { get; set; }
+
+        /// <summary>
+        /// Determines if the player is currently jumping
+        /// </summary>
+        private bool IsJumping { get { return Physics.Energy.Y > 0; } }
         
 	   
 		/// <summary>
@@ -93,42 +98,33 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         public void Draw()
 		{
-		    Sprite.FlipTextureHorizontal = Physics.Energy.X > 0;
-		    Sprite.Draw(Physics.HitBox.Position, new Vector2(0.8f));
+            if (Physics.Energy.X > 0)
+                Sprite.FlipTextureHorizontal = true;
+            if (Physics.Energy.X < 0)
+                Sprite.FlipTextureHorizontal = false;
+            
+            Sprite.Draw(Physics.HitBox.Position, new Vector2(0.8f));
 		}
 
 
         /// <summary>
-        /// 
+        /// Processing the collision report to analyze what the player is able / allowed to do
         /// </summary>
         /// <param name="intersections"></param>
         private void ProcessIntersectionReport(CollisionReport report)
         {
-            bool isBottomWater = false;
-            bool isSolidOnSide = false;
-            bool isSolidOnBottom = false;
-
-            foreach(var item in report)
-            {
-                if (item.Item.BlockType == BlockType.Water && item.ItemAlignment == Alignment.Bottom)
-                    isBottomWater = true;
-
-                if (item.Item.BlockType == BlockType.Solid)
-                {
-                    if (item.ItemAlignment == Alignment.Left || item.ItemAlignment == Alignment.Right)
-                        isSolidOnSide = true;
-
-                    if (item.ItemAlignment == Alignment.Bottom)
-                        isSolidOnBottom = true;
-                }
-            }
+            report.Analyse();
 
             if (Physics.CurrentEnvironment == BlockType.Air)
             {
-                if(isBottomWater && isSolidOnSide)
+                IsJumpAllowed = false;
+
+                //This will allow the player to jump out of water
+                if(report.IsBottomWater && report.IsSolidOnSide)
                    IsJumpAllowed = true;
 
-                if (isSolidOnBottom)
+                //defining the normal jump
+                if (report.IsSolidOnBottom)
                     IsJumpAllowed = true;
             }
         }
@@ -152,7 +148,7 @@ namespace Lib.LevelLoader.LevelItems
 
 			// tries to execute a jump of the player. In some environments or situations
 			// it will be not allowed to jump (e.g. water)
-            if (InputValues.Jump && IsJumpAllowed)
+            if (InputValues.Jump && IsJumpAllowed && !IsJumping)
             {
 				Physics.ApplyImpulse(new Vector2(0, 0.2f));
                 IsJumpAllowed = false;

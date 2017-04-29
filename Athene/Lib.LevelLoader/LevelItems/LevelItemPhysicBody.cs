@@ -252,35 +252,38 @@ namespace Lib.LevelLoader.LevelItems
             // Creating here this vars, because there is a calculation behind the propertie "Center" to avoid multiple execution, by calling the prop
             var ownCenter = HitBox.Center;
             var otherCenter = collidingItem.HitBox.Center;
+            var correctionX = intersectSizeX;
+            var correctionY = intersectSizeY;
             if (ownCenter.X < otherCenter.X)
-                intersectSizeX *= -1;
+                correctionX *= -1;
             if (ownCenter.Y < otherCenter.Y)
-                intersectSizeY *= -1;
+                correctionY *= -1;
+
 
             // Corret the position, check first if the collision has to be correct on the x or y axis
             // ignore for this check only the gravity, because this will be very time applied.
             // the intersect with smaller size has to be corrected
-            if (Math.Abs(intersectSizeX) > Math.Abs(intersectSizeY))
+            if (intersectSizeX > intersectSizeY)
             {
                 //Correct Y axis
-                if (collidingItem.Collision && (Math.Abs(intersectSizeX) > 0 || Math.Abs(intersectSizeY) > 0))
+                if (collidingItem.Collision && (intersectSizeY > 0))
                 {
-                    HitBox.Position = new Vector2(HitBox.Position.X, HitBox.Position.Y + intersectSizeY);
+                    HitBox.Position = new Vector2(HitBox.Position.X, HitBox.Position.Y + correctionY);
                     StopBodyOnAxisY();
                 }
 
-                itemAlignment = (intersectSizeY >= 0) ? Alignment.Bottom : Alignment.Top;
+                itemAlignment = (correctionY >= 0) ? Alignment.Bottom : Alignment.Top;
             }
             else
             {
                 //Correct X axis
-                if (collidingItem.Collision && (Math.Abs(intersectSizeX) > 0 || Math.Abs(intersectSizeY) > 0))
+                if (collidingItem.Collision && (intersectSizeX > 0))
                 {
-                    HitBox.Position = new Vector2(HitBox.Position.X + intersectSizeX, HitBox.Position.Y);
+                    HitBox.Position = new Vector2(HitBox.Position.X + correctionX, HitBox.Position.Y);
                     StopBodyOnAxisX();
                 }
 
-                itemAlignment = (intersectSizeX >= 0) ? Alignment.Left : Alignment.Right;
+                itemAlignment = (correctionX >= 0) ? Alignment.Left : Alignment.Right;
             }
 
             return new CollisionReportItem(itemAlignment, collidingItem);

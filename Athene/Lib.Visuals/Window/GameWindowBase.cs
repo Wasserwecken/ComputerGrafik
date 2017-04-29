@@ -21,6 +21,7 @@ namespace Lib.Visuals.Window
 		/// </summary>
 		public GameWindowBase(int standardViewableYAxisSize, int cameraDelay)
 		{
+            WindowState = WindowState.Fullscreen;
 			Camera = new GameCamera(Vector2.Zero, standardViewableYAxisSize, cameraDelay);
 
 			//This will be needed to enable transparency

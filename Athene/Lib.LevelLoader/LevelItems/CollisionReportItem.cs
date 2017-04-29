@@ -19,6 +19,12 @@ namespace Lib.LevelLoader.LevelItems
         /// </summary>
         public LevelItemBase Item { get; set; }
 
+
+        /// <summary>
+        /// Initialises the object with values
+        /// </summary>
+        /// <param name="itemAlignment"></param>
+        /// <param name="item"></param>
         public CollisionReportItem(Alignment itemAlignment, LevelItemBase item)
         {
             ItemAlignment = itemAlignment;
