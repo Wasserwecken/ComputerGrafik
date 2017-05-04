@@ -58,6 +58,7 @@
     <Compile Include="LevelItems\PlayerBlockEnvironmentSet.cs" />
     <Compile Include="LevelLoader.cs" />
     <Compile Include="LevelItems\LevelItemPhysicBodyProperties.cs" />
+    <Compile Include="LevelItems\CollisionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Xml\LinkTypes\XmlAnimation.cs" />
     <Compile Include="Xml\LinkTypes\XmlLinkTypeBase.cs" />

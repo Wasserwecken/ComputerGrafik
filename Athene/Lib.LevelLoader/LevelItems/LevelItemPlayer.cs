@@ -86,12 +86,28 @@ namespace Lib.LevelLoader.LevelItems
 		{
 			ProcessInput();
 
-            var intersectionReport = Physics.UpdatePhysics(intersections);
+            //Set the environment, because if there is no collision, the player has to adapt the default environment
+            Physics.SetEnvironment(Physics.DefaultEnvironment);
+            foreach (LevelItemBase item in intersections)
+            {
+                if (item.HitBox.Contains(HitBox.Center))
+                    Physics.SetEnvironment(item.BlockType);
+            }
 
-            ProcessIntersectionReport(intersectionReport);
-
+            //Physics
+            Physics.UpdatePhysics();
+            
+            //Collisions
+            if (intersections.Count > 0)
+            {
+                var report = CollisionManager.HandleCollisions(Physics.HitBox, intersections, () => Physics.StopBodyOnAxisX(), () => Physics.StopBodyOnAxisY());
+                ProcessIntersectionReport(report);
+            }
+            
+            //View things
             UpdateOffsetViewPoint();
 		}
+        
 
         /// <summary>
         /// Draws the player on the screen
@@ -113,8 +129,6 @@ namespace Lib.LevelLoader.LevelItems
         /// <param name="intersections"></param>
         private void ProcessIntersectionReport(CollisionReport report)
         {
-            report.Analyse();
-
             if (Physics.CurrentEnvironment == BlockType.Air)
             {
                 IsJumpAllowed = false;

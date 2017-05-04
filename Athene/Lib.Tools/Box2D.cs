@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using OpenTK;
 
 namespace Lib.Tools
 {
+    [DebuggerDisplay("{Position}, {Size}")]
     public class Box2D
     {
         /// <summary>
@@ -61,6 +63,29 @@ namespace Lib.Tools
             bool noYintersect = (MaximumY <= otherBox.Position.Y) || (Position.Y >= otherBox.MaximumY);
             
             return !(noXintersect || noYintersect);
+        }
+
+        /// <summary>
+        /// Gets the intersect size of 2 boxes
+        /// </summary>
+        /// <param name="otherBox"></param>
+        /// <returns></returns>
+        public Vector2 GetIntersectSize(Box2D otherBox)
+        {
+            float intersectSizeX = 0;
+            float intersectSizeY = 0;
+
+            // calculate the intersect of the two boxes, for later corrections
+            // y_overlap = y12 < y21 || y11 > y22 ? 0 : Math.min(y12, y22) - Math.max(y11, y21);
+            // x_overlap = x12 < x21 || x11 > x22 ? 0 : Math.min(x12, x22) - Math.max(x11, x21),
+            // https://math.stackexchange.com/questions/99565/simplest-way-to-calculate-the-intersect-area-of-two-rectangles
+            if (!(MaximumX < otherBox.Position.X || Position.X > otherBox.MaximumX))
+                intersectSizeX = Math.Min(MaximumX, otherBox.MaximumX) - Math.Max(Position.X, otherBox.Position.X);
+
+            if (!(MaximumY < otherBox.Position.Y || Position.Y > otherBox.MaximumY))
+                intersectSizeY = Math.Min(MaximumY, otherBox.MaximumY) - Math.Max(Position.Y, otherBox.Position.Y);
+
+            return new Vector2(intersectSizeX, intersectSizeY);
         }
 
         /// <summary>
