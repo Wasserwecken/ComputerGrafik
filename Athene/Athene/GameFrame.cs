@@ -20,7 +20,7 @@ namespace Athene
 		/// </summary>
 		public GameFrame()
 		{
-			Window = new GameWindowBase();
+			Window = new GameWindowBase(5, 15);
 
 			Window.Load += Window_Load;
 			Window.RenderFrame += Window_RenderFrame;
