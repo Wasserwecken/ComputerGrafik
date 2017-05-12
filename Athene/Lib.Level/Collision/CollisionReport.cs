@@ -37,26 +37,26 @@ namespace Lib.Level.Collision
             IsSolidOnSide = false;
             IsSolidOnBottom = false;
         }
-
+        
 
         /// <summary>
-        /// Analyses the report and sets the property values
+        /// Adding a new item to the report
         /// </summary>
-        public void Analyse()
+        /// <param name="item"></param>
+        public new void Add(CollisionReportItem item)
         {
-            foreach(var item in this)
+            base.Add(item);
+
+            if (item.Item.BlockType == BlockType.Water && item.ItemAlignment == Alignment.Bottom)
+                IsBottomWater = true;
+
+            if (item.Item.BlockType == BlockType.Solid)
             {
-                if (item.Item.BlockType == BlockType.Water && item.ItemAlignment == Alignment.Bottom)
-                    IsBottomWater = true;
+                if (item.ItemAlignment == Alignment.Left || item.ItemAlignment == Alignment.Right)
+                    IsSolidOnSide = true;
 
-                if (item.Item.BlockType == BlockType.Solid)
-                {
-                    if (item.ItemAlignment == Alignment.Left || item.ItemAlignment == Alignment.Right)
-                        IsSolidOnSide = true;
-
-                    if (item.ItemAlignment == Alignment.Bottom)
-                        IsSolidOnBottom = true;
-                }
+                if (item.ItemAlignment == Alignment.Bottom)
+                    IsSolidOnBottom = true;
             }
         }
     }

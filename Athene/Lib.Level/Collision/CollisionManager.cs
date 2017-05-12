@@ -22,10 +22,7 @@ namespace Lib.Level.Collision
             foreach (var item in intersections)
                 HandleCollision(sourceBox, item, onCorrectionX, onCorrectionY);
 
-            var report = CreateCollisionReport(sourceBox, intersections);
-            report.Analyse();
-
-            return report;
+            return CreateCollisionReport(sourceBox, intersections);
         }
 
         /// <summary>

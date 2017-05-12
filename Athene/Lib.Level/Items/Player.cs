@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Lib.Level.Items
 {
-    public class LevelItemPlayer
+    public class Player
         : LevelItemBase
 	{
 		/// <summary>
@@ -33,12 +33,12 @@ namespace Lib.Level.Items
 		/// <summary>
 		/// Setted values from the input
 		/// </summary>
-		private LevelItemPlayerActions InputValues { get; }
+		private PlayerActions InputValues { get; }
 
 		/// <summary>
 		/// Input layout for the player
 		/// </summary>
-		private InputLayout<LevelItemPlayerActions> InputLayout { get; set; }
+		private InputLayout<PlayerActions> InputLayout { get; set; }
         
         /// <summary>
         /// Determines if the player is allowed to execute a jump
@@ -54,15 +54,15 @@ namespace Lib.Level.Items
 		/// <summary>
 		/// Initialises a player
 		/// </summary>
-		public LevelItemPlayer(
+		public Player(
 			Vector2 startPosition,
-			InputMapList<LevelItemPlayerActions> inputMapping,
+			InputMapList<PlayerActions> inputMapping,
 			SpriteAnimated sprite)
             : base(startPosition, new Vector2(0.75f, 0.75f))
 		{
 			//Bind the input
-			InputValues = new LevelItemPlayerActions();
-			InputLayout = new InputLayout<LevelItemPlayerActions>(InputValues, inputMapping);
+			InputValues = new PlayerActions();
+			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
 
 			//set physic behaviour
 			var physicProps = new Dictionary<BlockType, PhysicBodyProperties>
@@ -84,10 +84,24 @@ namespace Lib.Level.Items
 		/// <summary>
 		/// Updates all interactions of the player for a single step
 		/// </summary>
-		public void UpdateLogic(List<LevelItemBase> intersections)
+		public void UpdateLogic()
 		{
 			ProcessInput();
 
+            //Physics
+            Physics.UpdatePhysics();
+            
+            //View things
+            UpdateOffsetViewPoint();
+		}
+
+
+        /// <summary>
+        /// reacts to intersections
+        /// </summary>
+        /// <param name="intersections"></param>
+        public void HandleIntersections(List<LevelItemBase> intersections)
+        {
             //Set the environment, because if there is no collision, the player has to adapt the default environment
             Physics.SetEnvironment(Physics.DefaultEnvironment);
             foreach (LevelItemBase item in intersections)
@@ -96,19 +110,10 @@ namespace Lib.Level.Items
                     Physics.SetEnvironment(item.BlockType);
             }
 
-            //Physics
-            Physics.UpdatePhysics();
-            
             //Collisions
-            if (intersections.Count > 0)
-            {
-                var report = CollisionManager.HandleCollisions(Physics.HitBox, intersections, () => Physics.StopBodyOnAxisX(), () => Physics.StopBodyOnAxisY());
-                ProcessIntersectionReport(report);
-            }
-            
-            //View things
-            UpdateOffsetViewPoint();
-		}
+            var report = CollisionManager.HandleCollisions(Physics.HitBox, intersections, () => Physics.StopBodyOnAxisX(), () => Physics.StopBodyOnAxisY());
+            ProcessIntersectionReport(report);
+        }
         
 
         /// <summary>

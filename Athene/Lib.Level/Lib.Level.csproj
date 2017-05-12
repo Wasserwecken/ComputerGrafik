@@ -48,8 +48,8 @@
     <Compile Include="Collision\CollisionManager.cs" />
     <Compile Include="Collision\CollisionReport.cs" />
     <Compile Include="Collision\CollisionReportItem.cs" />
-    <Compile Include="Items\LevelItemPlayer.cs" />
-    <Compile Include="Items\LevelItemPlayerActions.cs" />
+    <Compile Include="Items\Player.cs" />
+    <Compile Include="Items\PlayerActions.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Physics\PhysicBody.cs" />
     <Compile Include="Physics\PhysicBodyProperties.cs" />

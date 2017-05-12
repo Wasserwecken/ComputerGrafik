@@ -8,7 +8,7 @@ using OpenTK.Input;
 
 namespace Lib.Level.Items
 {
-	public class LevelItemPlayerActions
+	public class PlayerActions
 		: IInputLayoutActions
 	{
 		/// <summary>
