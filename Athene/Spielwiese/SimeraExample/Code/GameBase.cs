@@ -1,5 +1,7 @@
-﻿using Lib.LevelLoader;
+﻿using Lib.Level;
+using Lib.LevelLoader;
 using Lib.LevelLoader.LevelItems;
+using Lib.LevelLoader.Xml;
 using Lib.Visuals.Graphics;
 using Lib.Visuals.Window;
 using OpenTK;
@@ -10,7 +12,6 @@ namespace SimeraExample
     public class GameBase
 	{
 		private GameWindowBase Window { get; }
-		private LevelItemPlayerActions InputActions { get; set; }
 
         private SpriteStatic SpriteTest { get; set; }
         private SpriteStatic SpriteTest2 { get; set; }
@@ -33,8 +34,9 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-		    Level = LevelLoader.LoadLevel(11);
-            Level.InitialiseQuadTree();
+            int level = 11;
+            XmlLevel levelData = LevelLoader.LoadFromXml(@"Level\Level" + level + ".xml");
+            Level = new Level(levelData);
         }
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)

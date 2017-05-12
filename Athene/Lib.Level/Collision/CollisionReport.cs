@@ -1,11 +1,12 @@
-﻿using Lib.Tools;
+﻿using Lib.LevelLoader.LevelItems;
+using Lib.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.LevelLoader.LevelItems
+namespace Lib.Level.Collision
 {
 
     public class CollisionReport

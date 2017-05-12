@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Lib.Input;
 using OpenTK.Input;
 
-namespace Lib.LevelLoader.LevelItems
+namespace Lib.Level.Items
 {
 	public class LevelItemPlayerActions
 		: IInputLayoutActions

@@ -1,8 +1,8 @@
 ﻿using OpenTK;
 
-namespace Lib.LevelLoader.LevelItems
+namespace Lib.Level.Physics
 {
-	public class LevelItemPhysicBodyProperties
+	public class PhysicBodyProperties
 	{
 		/// <summary>
 		/// Interia of the object. 1 is for instant movment, as higher the value more "sliding"
@@ -26,7 +26,7 @@ namespace Lib.LevelLoader.LevelItems
 	    /// <param name="momentumVertical"></param>
 	    /// <param name="movementSpeed"></param>
 	    /// <param name="mass"></param>
-	    public LevelItemPhysicBodyProperties(float momentumHorizontal, float momentumVertical, float movementSpeed, float mass)
+	    public PhysicBodyProperties(float momentumHorizontal, float momentumVertical, float movementSpeed, float mass)
 		{
 			Momentum = new Vector2(momentumHorizontal, momentumVertical);
 			Mass = mass;

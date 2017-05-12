@@ -1,13 +1,15 @@
 ﻿using Lib.Input;
 using Lib.Input.Mapping;
+using Lib.Level.Base;
+using Lib.Level.Collision;
+using Lib.Level.Physics;
+using Lib.LevelLoader.LevelItems;
 using Lib.Tools;
 using Lib.Visuals.Graphics;
 using OpenTK;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace Lib.LevelLoader.LevelItems
+namespace Lib.Level.Items
 {
     public class LevelItemPlayer
         : LevelItemBase
@@ -26,7 +28,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// The physical position and movement of the player
 		/// </summary>
-		private LevelItemPhysicBody Physics { get; }
+		private PhysicBody Physics { get; }
 
 		/// <summary>
 		/// Setted values from the input
@@ -63,15 +65,15 @@ namespace Lib.LevelLoader.LevelItems
 			InputLayout = new InputLayout<LevelItemPlayerActions>(InputValues, inputMapping);
 
 			//set physic behaviour
-			var physicProps = new Dictionary<BlockType, LevelItemPhysicBodyProperties>
+			var physicProps = new Dictionary<BlockType, PhysicBodyProperties>
             {
-                {BlockType.Air, new LevelItemPhysicBodyProperties(6f, 30f, 0.1f, 0.2f)},
-                {BlockType.Solid, new LevelItemPhysicBodyProperties(6f, 30f, 0.1f, 0.2f)},
-                {BlockType.Ladder, new LevelItemPhysicBodyProperties(6f, 6f, 0.1f, 0f)},
-                {BlockType.Water, new LevelItemPhysicBodyProperties(30f, 30f, 0.06f, -0.01f)},
-                {BlockType.Lava, new LevelItemPhysicBodyProperties(15f, 15f, 0.025f, 0f)}
+                {BlockType.Air, new PhysicBodyProperties(6f, 30f, 0.1f, 0.2f)},
+                {BlockType.Solid, new PhysicBodyProperties(6f, 30f, 0.1f, 0.2f)},
+                {BlockType.Ladder, new PhysicBodyProperties(6f, 6f, 0.1f, 0f)},
+                {BlockType.Water, new PhysicBodyProperties(30f, 30f, 0.06f, -0.01f)},
+                {BlockType.Lava, new PhysicBodyProperties(15f, 15f, 0.025f, 0f)}
             };
-			Physics = new LevelItemPhysicBody(physicProps, BlockType.Air, base.HitBox);
+			Physics = new PhysicBody(physicProps, BlockType.Air, base.HitBox);
 
 			//set other
 			Sprite = sprite;

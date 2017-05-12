@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.LevelLoader.LevelItems
+namespace Lib.LevelObjects
 {
-    class Enemy
+    public enum BlockLinkType
     {
-        
+        Image,
+        Animation
     }
 }

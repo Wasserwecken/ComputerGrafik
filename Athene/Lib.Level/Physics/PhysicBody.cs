@@ -1,11 +1,12 @@
-﻿using Lib.Tools;
+﻿using Lib.LevelLoader.LevelItems;
+using Lib.Tools;
 using OpenTK;
 using System;
 using System.Collections.Generic;
 
-namespace Lib.LevelLoader.LevelItems
+namespace Lib.Level.Physics
 {
-    public class LevelItemPhysicBody
+    public class PhysicBody
 	{
         /// <summary>
         /// Hitobx of the body
@@ -20,7 +21,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Current used behaviour
 		/// </summary>
-		public LevelItemPhysicBodyProperties CurrentProperties { get; private set; }
+		public PhysicBodyProperties CurrentProperties { get; private set; }
 
 		/// <summary>
 		/// Current used environment
@@ -36,7 +37,7 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Available environments with the object behaviours
 		/// </summary>
-		private Dictionary<BlockType, LevelItemPhysicBodyProperties> Properties { get; set; }
+		private Dictionary<BlockType, PhysicBodyProperties> Properties { get; set; }
         
 		/// <summary>
 		/// Last invoked force
@@ -52,11 +53,11 @@ namespace Lib.LevelLoader.LevelItems
 		/// <summary>
 		/// Initialises a forceable object
 		/// </summary>
-		public LevelItemPhysicBody(Dictionary<BlockType, LevelItemPhysicBodyProperties> properties, BlockType defaultEnvironment, Box2D initialHitBox)
+		public PhysicBody(Dictionary<BlockType, PhysicBodyProperties> properties, BlockType defaultEnvironment, Box2D hitBox)
 		{
 			Properties = properties;
 			Energy = Vector2.Zero;
-            HitBox = initialHitBox;
+            HitBox = hitBox;
 
             DefaultEnvironment = defaultEnvironment;
             CurrentEnvironment = defaultEnvironment;

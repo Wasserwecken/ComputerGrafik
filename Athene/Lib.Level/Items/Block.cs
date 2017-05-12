@@ -2,10 +2,13 @@
 using Lib.Visuals.Graphics;
 using OpenTK;
 using System.Collections.Generic;
+using Lib.Level.Base;
+using Lib.LevelLoader.LevelItems;
 
-namespace Lib.LevelLoader.LevelItems
+namespace Lib.Level.Items
 {
-	public class Block : LevelItemBase
+	public class Block
+        : LevelItemBase
     {		
 	    /// <summary>
 	    /// Initializes a block

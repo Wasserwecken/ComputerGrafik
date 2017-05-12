@@ -26,8 +26,9 @@ namespace Lib.Visuals.Graphics
 			if (!File.Exists(path))
 				throw new FileNotFoundException(path);
 
-			//Check for a cached texture, the path is used as unique identifer
-			if (_cachedTextures.TryGetValue(path, out Texture textureRequest))
+            //Check for a cached texture, the path is used as unique identifer
+            Texture textureRequest;
+            if (_cachedTextures.TryGetValue(path, out textureRequest))
 				return textureRequest;
 
 			//start loading the texture from file

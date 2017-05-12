@@ -236,6 +236,10 @@
       <Project>{2236f1bc-aac7-4fac-9e18-a622fd148f82}</Project>
       <Name>Lib.Input</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Lib.Level\Lib.Level.csproj">
+      <Project>{B4E7DA84-3BF5-4729-860B-9AE7074AA8F4}</Project>
+      <Name>Lib.Level</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Lib.Tools\Lib.Tools.csproj">
       <Project>{4E6F3535-2AC8-4B8D-850E-F9536EF50A25}</Project>
       <Name>Lib.Tools</Name>
