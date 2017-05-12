@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Window\GameCamera.cs" />
     <Compile Include="Graphics\SpriteAnimated.cs" />
     <Compile Include="Graphics\SpriteAnimationData.cs" />
     <Compile Include="Graphics\ISprite.cs" />
@@ -53,6 +52,7 @@
     <Compile Include="Graphics\Texture.cs" />
     <Compile Include="Graphics\TextureManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Window\GameCamera.cs" />
     <Compile Include="Window\GameWindowBase.cs" />
   </ItemGroup>
   <ItemGroup>

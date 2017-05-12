@@ -36,6 +36,7 @@ namespace Lib.Level.Items
 		/// </summary>
 		public bool Jump { get; set; }
 
+
 		/// <summary>
 		/// Instance of the last device that was used
 		/// </summary>

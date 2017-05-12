@@ -30,24 +30,37 @@ namespace Lib.Level
         /// </summary>
         public List<Player> Players { get; set; }
 
+        /// <summary>
+        /// Poiint which should be the focus for the camera
+        /// </summary>
+        public Vector2 PlayersCenter { get; private set; }
+
+        /// <summary>
+        /// A box based on all active player positions
+        /// </summary>
+        public Box2D PlayersSpace { get; set; }
+
 
         /// <summary>
         /// QuadTree for all level Blocks
         /// </summary>
         private QuadTreeRoot BlocksQuadTree { get; set; }
-
+        
 
         /// <summary>
         /// Initializes a empty level
         /// </summary>
         public Level(XmlLevel xmlLevel)
 		{
-			Blocks = new List<Block>();
             Players = new List<Player>();
+            Players.Add(PlayerFactory.CreatePlayer(0, Vector2.Zero));
+            Players.Add(PlayerFactory.CreatePlayer(1, Vector2.One));
+
+            Blocks = new List<Block>();
+
 
             LoadLevelFromXmlLevel(xmlLevel);
             InitialiseQuadTree();
-            CreateTestPlayer();
 		}
 
 
@@ -65,6 +78,49 @@ namespace Lib.Level
                 if (intersections.Count > 0)
                     player.HandleIntersections(intersections);
             }
+
+            //Camera settings
+            CalculateCameraInformations();
+        }
+        
+        /// <summary>
+        /// Draws the level
+        /// </summary>
+        public void Draw(Box2D cameraFOV)
+        {
+            //Using the quadtree here because, only blocks in the camera view has to be drawn
+            foreach (Block levelBlock in BlocksQuadTree.GetElementsIn(cameraFOV))
+                levelBlock.Draw();
+
+            //Draw players
+            foreach (var player in Players)
+                player.Draw();
+        }
+
+
+        /// <summary>
+        /// Calculates the information which is needed for the camera
+        /// Like zoom level and position
+        /// </summary>
+        private void CalculateCameraInformations()
+        {
+            Vector2 playersCenter = Vector2.Zero;
+            float minPlayerXPos = 0;
+            float minPlayerYPos = 0;
+            float maxPlayerXPos = 0;
+            float maxPlayerYPos = 0;
+
+            foreach (var player in Players)
+            {
+                playersCenter += player.HitBox.Position;
+                minPlayerXPos = Math.Min(minPlayerXPos, player.ViewPoint.X);
+                minPlayerYPos = Math.Min(minPlayerYPos, player.ViewPoint.Y);
+                maxPlayerXPos = Math.Max(maxPlayerXPos, player.ViewPoint.X);
+                maxPlayerYPos = Math.Max(maxPlayerYPos, player.ViewPoint.Y);
+            }
+
+            PlayersSpace = new Box2D(minPlayerXPos, minPlayerYPos, maxPlayerXPos - minPlayerXPos, maxPlayerYPos - minPlayerXPos);
+            PlayersCenter = playersCenter / Players.Count;
         }
 
 
@@ -177,52 +233,5 @@ namespace Lib.Level
             var levelSize = new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);
             BlocksQuadTree = new QuadTreeRoot(levelSize, 4, quadList);
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void CreateTestPlayer()
-        {
-            Player player = null;
-
-            SpriteAnimated playerSprite = new SpriteAnimated();
-            playerSprite.AddAnimation("Pics/Worm/walk", 1000);
-            playerSprite.AddAnimation("Pics/Worm/idle", 1000);
-            playerSprite.StartAnimation("walk");
-
-            var mapList = new InputMapList<PlayerActions>();
-
-            mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveLeft, (inval, curval) => inval.Length > 0.01 && inval.X > 0 ? -inval.X : 0);
-            mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveRight, (inval, curval) => inval.Length > 0.01 && inval.X < 0 ? inval.X : 0);
-            mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveUp, (inval, curval) => inval.Length > 0.01 && inval.Y > 0 ? inval.Y : 0);
-            mapList.AddMappingGamePad(0, pad => pad.ThumbSticks.Left, inp => inp.MoveDown, (inval, curval) => inval.Length > 0.01 && inval.Y < 0 ? -inval.Y : 0);
-            mapList.AddMappingGamePad(0, pad => pad.Buttons.A, inp => inp.Jump, (inval, curval) => inval == ButtonState.Pressed);
-
-            mapList.AddMappingKeyboard(Key.Left, inp => inp.MoveLeft, (inval, curval) => inval ? +1 : 0);
-            mapList.AddMappingKeyboard(Key.Right, inp => inp.MoveRight, (inval, curval) => inval ? +1 : 0);
-            mapList.AddMappingKeyboard(Key.Up, inp => inp.MoveUp, (inval, curval) => inval ? +1 : 0);
-            mapList.AddMappingKeyboard(Key.Down, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
-            mapList.AddMappingKeyboard(Key.Space, inp => inp.Jump, (inval, curval) => inval);
-
-            player = new Player(Vector2.Zero, mapList, playerSprite);
-            Players.Add(player);
-
-        }
-
-        /// <summary>
-        /// Draws the level
-        /// </summary>
-        public void Draw(Box2D cameraFOV)
-        {
-            //Using the quadtree here because, only blocks in the camera view has to be drawn
-            foreach(Block levelBlock in BlocksQuadTree.GetElementsIn(cameraFOV))
-                levelBlock.Draw();
-            
-            //Draw players
-            foreach (var player in Players)
-                player.Draw();
-        }
-
     }
 }

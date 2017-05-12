@@ -43,7 +43,7 @@ namespace SimeraExample
 		{
 			Level.UpdateLogic();
 			//setting the camera
-			Window.Camera.MoveTo(Level.Players[0].ViewPoint);
+			Window.Camera.MoveTo(Level.PlayersCenter);
 		}
 		
 

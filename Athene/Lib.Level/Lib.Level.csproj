@@ -50,6 +50,7 @@
     <Compile Include="Collision\CollisionReportItem.cs" />
     <Compile Include="Items\Player.cs" />
     <Compile Include="Items\PlayerActions.cs" />
+    <Compile Include="Items\PlayerFactory.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Physics\PhysicBody.cs" />
     <Compile Include="Physics\PhysicBodyProperties.cs" />

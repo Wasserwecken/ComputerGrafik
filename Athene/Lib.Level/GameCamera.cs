@@ -4,10 +4,15 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using Lib.Tools;
 
-namespace Lib.Visuals.Window
+namespace Lib.Level
 {
 	public class GameCamera
 	{
+		/// <summary>
+		/// Zoom of the camera. 1 is standard
+		/// </summary>
+		public float Zoom { get; set; }
+
 		/// <summary>
 		/// Size of the axis to the heigt and bottom of the window
 		/// </summary>
@@ -40,6 +45,7 @@ namespace Lib.Visuals.Window
 		/// </summary>
 		public GameCamera(Vector2 startPosition, int axisSize, float cameraDelay)
 		{
+			Zoom = 1f;
 			PositionCurrent = startPosition;
 			AxisSize = axisSize;
 			Delay = cameraDelay;
@@ -62,6 +68,7 @@ namespace Lib.Visuals.Window
 
 			var transform = Matrix4.Identity;
 			transform = Matrix4.Mult(transform, Matrix4.CreateTranslation(-PositionCurrent.X / aspectRatio / AxisSize, -PositionCurrent.Y / AxisSize, 0));
+			transform = Matrix4.Mult(transform, Matrix4.CreateScale(Zoom, Zoom, 1));
 
 			GL.MatrixMode(MatrixMode.Projection);
 			GL.LoadIdentity();
@@ -70,7 +77,11 @@ namespace Lib.Visuals.Window
             float axisSizeX = AxisSize * aspectRatio;
             float axisSizeY = AxisSize;
 			GL.Ortho(-axisSizeX, axisSizeX, -axisSizeY, axisSizeY, -1f, 1f);
-            
+
+
+            axisSizeX = axisSizeX / Zoom;
+            axisSizeY = axisSizeY / Zoom;
+
             FOV = new Box2D(
                 (-axisSizeX + PositionCurrent.X),
                 (-axisSizeY + PositionCurrent.Y),

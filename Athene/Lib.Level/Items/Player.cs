@@ -122,9 +122,9 @@ namespace Lib.Level.Items
         public void Draw()
 		{
             if (Physics.Energy.X > 0)
-                Sprite.FlipTextureHorizontal = true;
-            if (Physics.Energy.X < 0)
                 Sprite.FlipTextureHorizontal = false;
+            if (Physics.Energy.X < 0)
+                Sprite.FlipTextureHorizontal = true;
             
             Sprite.Draw(Physics.HitBox.Position, new Vector2(0.8f));
 		}
