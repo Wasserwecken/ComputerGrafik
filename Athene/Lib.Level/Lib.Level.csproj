@@ -52,8 +52,9 @@
     <Compile Include="Items\PlayerActions.cs" />
     <Compile Include="Items\PlayerFactory.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="Physics\EnergyObject.cs" />
+    <Compile Include="Physics\EnergyObjectProperties.cs" />
     <Compile Include="Physics\PhysicBody.cs" />
-    <Compile Include="Physics\PhysicBodyProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
