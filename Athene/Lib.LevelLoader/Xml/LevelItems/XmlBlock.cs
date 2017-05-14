@@ -17,6 +17,12 @@ namespace Lib.LevelLoader.Xml
         /// <summary>
         /// Texture name of the block
         /// </summary>
+        [XmlAttribute("Id")]
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Texture name of the block
+        /// </summary>
         [XmlAttribute("Link")]
         public string Link { get; set; }
 

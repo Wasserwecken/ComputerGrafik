@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MahApps.Metro.IconPacks, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.IconPacks.1.9.0\lib\net45\MahApps.Metro.IconPacks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -55,8 +58,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\LevelEditor.xaml.cs">
-      <DependentUpon>LevelEditor.xaml</DependentUpon>
+    <Compile Include="Controls\Edit\EditBlockControl.xaml.cs">
+      <DependentUpon>EditBlockControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LevelEditorControl.xaml.cs">
+      <DependentUpon>LevelEditorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\LevelItemButton.xaml.cs">
       <DependentUpon>LevelItemButton.xaml</DependentUpon>
@@ -64,17 +70,28 @@
     <Compile Include="Controls\LevelItemPresenter\LevelItemPresenterBase.cs" />
     <Compile Include="Controls\LevelItemPresenter\XmlAnimatedBlockPresenter.cs" />
     <Compile Include="Controls\LevelItemPresenter\XmlBlockPresenter.cs" />
+    <Compile Include="Controls\LevelItemPresenter\XmlCollectablePresenter.cs" />
     <Compile Include="Controls\OperateControl.xaml.cs">
       <DependentUpon>OperateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RadioButtons\RadioButtonBase.cs" />
+    <Compile Include="Controls\RadioButtons\RadioButtonSelectCollectable.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonTool.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectAnimation.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectTexture.cs" />
+    <Compile Include="Controls\Tabs\BlockSettingsControl.xaml.cs">
+      <DependentUpon>BlockSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Tabs\CheckpointSettingsControl.xaml.cs">
+      <DependentUpon>CheckpointSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Tabs\LevelSettingsControl.xaml.cs">
+      <DependentUpon>LevelSettingsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TextureFolderControl.xaml.cs">
       <DependentUpon>TextureFolderControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\LevelLoaderXmlExtension.cs" />
+    <Compile Include="Extensions\LevelEditorXmlExtension.cs" />
     <Compile Include="Helper\FindWindowHelper.cs" />
     <Compile Include="Controls\LevelGrid.cs" />
     <Compile Include="Windows\AddLevelWindow.xaml.cs">
@@ -86,7 +103,11 @@
     <Compile Include="Windows\ShowBlockItemWindow.xaml.cs">
       <DependentUpon>ShowBlockItemWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\LevelEditor.xaml">
+    <Page Include="Controls\Edit\EditBlockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LevelEditorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,7 +119,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Tabs\BlockSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Tabs\CheckpointSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Tabs\LevelSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TextureFolderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,6 +194,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -175,6 +213,9 @@
     <Content Include="CommonImages\Delete-96.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="CommonImages\Home-96.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lib.LevelLoader\Lib.LevelLoader.csproj">
@@ -183,6 +224,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controls\Input\" />
     <Folder Include="Manager\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,10 +11,10 @@ namespace Lib.LevelLoader.LevelItems
     /// </summary>
     public enum BlockType
     {
-        Air,
         Solid,
         Water,
         Lava,
-        Ladder
+        Ladder,
+        Air
     };
 }

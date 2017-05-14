@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CollectableList>
+  <Items>
+    <Collectable Id="crystal_yellow" ItemType="CrystalYellow" Path="Images\Environment\Jungle\jungle_pack_68.png" />
+    <Collectable Id="crystal_blue" ItemType="CrystalBlue" Path="Images\Environment\Jungle\jungle_pack_64.png" />
+    <Collectable Id="crystal_red" ItemType="CrystalRed" Path="Images\Environment\Jungle\jungle_pack_67.png" />
+  </Items>
+</CollectableList>

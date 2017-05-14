@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Button x:Name="MainButton" Style="{DynamicResource GridButtonStyle}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
         <Border x:Name="InnerBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBlock VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="10" x:Name="TitleTextBlock" Text="Test" />
+            <TextBlock VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="10" x:Name="TitleTextBlock" />
         </Border>
     </Button>
     

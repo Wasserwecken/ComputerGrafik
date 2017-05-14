@@ -20,13 +20,13 @@ using Lib.LevelLoader;
 namespace LevelEditor.Controls
 {
     /// <summary>
-    /// OperateControl represents the Items on the left side, contains also many RadioButtons for the LevelEditor
+    /// OperateControl represents the Items on the left side, contains also many RadioButtons for the LevelEditorControl
     /// </summary>
     public partial class OperateControl : UserControl
     {
-        private LevelEditor _parentLevelEditor;
+        private LevelEditorControl _parentLevelEditor;
 
-        public OperateControl(LevelEditor parentLevelEditor)
+        public OperateControl(LevelEditorControl parentLevelEditor)
         {
             InitializeComponent();
 
@@ -51,23 +51,43 @@ namespace LevelEditor.Controls
         {
             TextureFolderControl folder = new TextureFolderControl("Werkzeuge");
 
-            RadioButtonTool nullButton = new RadioButtonTool("Bild entfernen",
+            RadioButtonTool nullButton = new RadioButtonTool("Block entfernen",
                 Directory.GetCurrentDirectory() + @"/CommonImages/Delete-96.png", TextureRadioButtonAction.Remove);
 
-            RadioButtonTool selectButton = new RadioButtonTool("Auswählen",
+            RadioButtonTool selectButton = new RadioButtonTool("Block auswählen",
                 Directory.GetCurrentDirectory() + @"/CommonImages/Cursor-96.png", TextureRadioButtonAction.Select);
 
             RadioButtonTool removeAttachedButton = new RadioButtonTool("Angehängte Textur\nentfernen",
                 Directory.GetCurrentDirectory() + @"/CommonImages/Delete-File-96.png", TextureRadioButtonAction.RemoveAttachedTexture);
 
+            RadioButtonTool addCheckpointButton = new RadioButtonTool("Checkpoint\nhinzufügen",
+               Directory.GetCurrentDirectory() + @"/CommonImages/Home-96.png", TextureRadioButtonAction.AddCheckpoint);
+
             nullButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
             selectButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
             removeAttachedButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
+            addCheckpointButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
 
             folder.AddRadioButton(nullButton);
             folder.AddRadioButton(selectButton);
             folder.AddRadioButton(removeAttachedButton);
+            folder.AddRadioButton(addCheckpointButton);
             TextureWrapPanel.Children.Add(folder);
+        }
+
+        public void InitCollectableItems()
+        {
+            var itemList = CollectableLoader.GetCollectables();
+            var folder = new TextureFolderControl("Collectable");
+
+            foreach (var xmlCollectable in itemList.Items)
+            {
+                RadioButtonSelectCollectable radioButton = new RadioButtonSelectCollectable(xmlCollectable);
+                radioButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
+                folder.AddRadioButton(radioButton);
+            }
+            TextureWrapPanel.Children.Add(folder);
+
         }
 
         public void InitAnimatedBlocks()

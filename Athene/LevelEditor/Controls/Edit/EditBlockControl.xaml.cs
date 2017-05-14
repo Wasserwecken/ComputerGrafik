@@ -11,21 +11,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Lib.LevelLoader;
 using Lib.LevelLoader.LevelItems;
 using Lib.LevelLoader.Xml;
 
-namespace LevelEditor.Windows
+namespace LevelEditor.Controls.Edit
 {
     /// <summary>
-    /// Interaktionslogik für ShowBlockItemWindow.xaml
+    /// Interaktionslogik für EditBlockControl.xaml
     /// </summary>
-    public partial class ShowBlockItemWindow : Window
+    public partial class EditBlockControl : UserControl
     {
         private XmlTexture _currentXmlTexture;
         public XmlBlock CurrentXmlBlock { get; set; }
 
-        public ShowBlockItemWindow()
+        public EditBlockControl()
         {
             InitializeComponent();
 
@@ -43,9 +45,9 @@ namespace LevelEditor.Windows
             BlockType newBlockType = (BlockType)ComboBoxBlockTypes.SelectedItem;
             var selectedCollision = CollisionYesRadioButton.IsChecked != null && (bool)CollisionYesRadioButton.IsChecked;
             var selectedDamage = (int)DamageSlider.Value;
-            var selectedIsScrolling = ScrollingActiveCheckBox.IsChecked != null && (bool) ScrollingActiveCheckBox.IsChecked;
-            var selectedScrollingIntervall = (int) Convert.ToInt32(ScrollingIntervallTextBox.Text);
-            var selectedScrollingXDirection = (float) Convert.ToDouble(ScrollingXDirectionTextBox.Text);
+            var selectedIsScrolling = ScrollingActiveCheckBox.IsChecked != null && (bool)ScrollingActiveCheckBox.IsChecked;
+            var selectedScrollingIntervall = (int)Convert.ToInt32(ScrollingIntervallTextBox.Text);
+            var selectedScrollingXDirection = (float)Convert.ToDouble(ScrollingXDirectionTextBox.Text);
             var selectedScrollingYDirection = (float)Convert.ToDouble(ScrollingYDirectionTextBox.Text);
 
             CurrentXmlBlock.BlockType = newBlockType;
@@ -74,10 +76,31 @@ namespace LevelEditor.Windows
             {
                 BitmapImage logo = new BitmapImage();
                 logo.BeginInit();
-                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + @"\" +  texture.Path, UriKind.Absolute);
+                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + @"\" + texture.Path, UriKind.Absolute);
                 logo.EndInit();
                 ImageBlock.Source = logo;
+
+                TextBlockLinkType.Text = "Textur";
+                TextBlockLinkName.Text = texture.Id;
             }
+            else if (block.LinkType == BlockLinkType.Animation)
+            {
+                var animation = AnimationLoader.GetBlockAnimations().Animations.FirstOrDefault(a => a.Id == block.Link);
+                if (animation != null)
+                {
+                    BitmapImage logo = new BitmapImage();
+                    logo.BeginInit();
+                    logo.UriSource = new Uri(animation.GetFirstImage().FullName, UriKind.Absolute);
+                    logo.EndInit();
+                    ImageBlock.Source = logo;
+
+                    TextBlockLinkType.Text = "Animation";
+                    TextBlockLinkName.Text = animation.Id;
+                }
+            }
+
+
+
             ComboBoxBlockTypes.SelectedItem = block.BlockType;
             CollisionYesRadioButton.IsChecked = block.Collision;
             DamageSlider.Value = block.Damage;
@@ -87,6 +110,13 @@ namespace LevelEditor.Windows
             ScrollingYDirectionTextBox.Text = block.ScrollingDirectionY.ToString();
         }
 
-
+        private void CloseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Parent != null && Parent is ContentControl)
+            {
+                ContentControl parent = Parent as ContentControl;
+                parent.Content = null;
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LevelEditor.Windows"
         mc:Ignorable="d"
-        Title="Block anzeigen" Height="300" Width="300">
+        Title="Block anzeigen" Height="340" Width="400">
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -18,9 +18,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Border Margin="4"  Grid.Row="0" Grid.Column="0" BorderThickness="1"  BorderBrush="#000000">
+        <Border Margin="4"  Grid.Row="0" Grid.Column="0" BorderThickness="0"  BorderBrush="#000000">
             <Image MaxWidth="100" MaxHeight="100"  MinHeight="50" MinWidth="50" x:Name="ImageBlock"  />
         </Border>
         <TextBlock x:Name="TextBlockCoordinates" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="20" Grid.Column="1" Text="(0|0)" />
@@ -41,8 +42,33 @@
             <TextBlock Margin="10,0,0,0" Text="{Binding ElementName=DamageSlider, Path=Value}" />
         </StackPanel>
 
-        
-        <Button Margin="10" FontSize="16" x:Name="ButtonSave"  Content="Übernehmen" Grid.Row="4" Grid.Column="1" />
+        <CheckBox x:Name="ScrollingActiveCheckBox" Content="Scrolling aktiviert" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" FontSize="20" />
+        <Grid Grid.Row="4" Grid.Column="1" IsEnabled="{Binding ElementName=ScrollingActiveCheckBox, Path=IsChecked}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock FontSize="11" Grid.Row="0" Grid.Column="0" Text="Scroll Intervall:" />
+            <TextBox Text="5000" Grid.Row="0" Grid.Column="1" x:Name="ScrollingIntervallTextBox" />
+
+            <TextBlock FontSize="11" Grid.Row="1" Grid.Column="0" Text="Scroll X Richtung:" />
+            <TextBox  Grid.Row="1" Text="1" Grid.Column="1" x:Name="ScrollingXDirectionTextBox" />
+
+            <TextBlock FontSize="11" Grid.Row="2" Grid.Column="0" Text="Scroll Y Richtung:" />
+            <TextBox  Grid.Row="2" Text="0" Grid.Column="1" x:Name="ScrollingYDirectionTextBox" />
+
+        </Grid>
+
+
+
+
+        <Button Margin="10" FontSize="16" x:Name="ButtonSave"  Content="Übernehmen" Grid.Row="5" Grid.Column="1" />
         
     </Grid>
 </Window>

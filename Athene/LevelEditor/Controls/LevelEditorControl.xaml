@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="LevelEditor.Controls.LevelEditorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LevelEditor.Controls"
+             xmlns:tabs="clr-namespace:LevelEditor.Controls.Tabs"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="1300">
+   
+    <Grid HorizontalAlignment="Stretch">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="340"  />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <!--<ColumnDefinition Width="*" />-->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ContentControl  Grid.Column="0" Grid.RowSpan="2" Grid.Row="0" x:Name="ContentControlOperate" />
+
+        <GridSplitter ResizeDirection="Columns" Grid.Column="1" Grid.RowSpan="2" Background="Black" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Row="0" />
+
+        <Border Grid.Column="2" Grid.Row="1" BorderThickness="0,0,1,0" BorderBrush="Black">
+            <ScrollViewer x:Name="LevelGridScrollViewer"  VerticalAlignment="Top" HorizontalAlignment="Left"  HorizontalScrollBarVisibility="Visible" >
+                <ScrollViewer.LayoutTransform>
+                    <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=LevelZoomer,Path=Value}"  ScaleY="{Binding ElementName=LevelZoomer,Path=Value}" />
+                </ScrollViewer.LayoutTransform>
+            </ScrollViewer>
+        </Border>
+        
+        <Border Grid.Column="2" Grid.Row="0" Background="#CCCCCC" BorderThickness="0,0,0,1" BorderBrush="Black">
+            <Border.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontFamily" Value="Segoe UI Light" />
+                    <Setter Property="FontSize" Value="14" />
+                </Style>
+            </Border.Resources>
+            <TabControl BorderThickness="0,0,1,0" BorderBrush="Black">
+                <TabItem Header="Allgemein">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+             
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Zoom" Grid.Row="0" Padding="0,0,5,0" Grid.Column="0" />
+                        <Slider Grid.Column="0" Grid.Row="1" x:Name="LevelZoomer" ToolTip="Level Zoom"  Width="200" VerticalAlignment="Center" Value="1" Minimum="0.1" Maximum="4" />
+
+                        <TextBlock Text="Textur anhängen" Grid.Row="0" Padding="0,0,5,0" Grid.Column="2" />
+                        <CheckBox Grid.Column="2" Grid.Row="1" x:Name="AppendTextureCheckBox" VerticalContentAlignment="Center" Content="Anhängen"  />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Block Einstellungen" >
+                    <TabItem.Style>
+                        <Style TargetType="TabItem">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=AppendTextureCheckBox, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TabItem.Style>
+                    <tabs:BlockSettingsControl x:Name="SettingsBlockControl" />
+                </TabItem>
+                <TabItem Header="Level Einstellungen">
+                    <tabs:LevelSettingsControl x:Name="SettingsLevelControl" />
+                </TabItem>
+                <TabItem Header="Checkpoints">
+                    <tabs:CheckpointSettingsControl x:Name="SettingsCheckpointControl" />
+                </TabItem>
+            </TabControl>
+            
+           
+        </Border>
+        
+        <ContentControl x:Name="ContentControlInfo" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" />
+    </Grid>
+
+</UserControl>

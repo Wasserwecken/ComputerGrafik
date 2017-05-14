@@ -17,6 +17,7 @@ using System.Windows.Resources;
 using System.Windows.Shapes;
 using Lib.LevelLoader.LevelItems;
 using LevelEditor.Controls.LevelItemPresenter;
+using Lib.LevelLoader.Xml.LevelItems;
 using Lib.LevelLoader.Xml.LinkTypes;
 
 namespace LevelEditor.Controls
@@ -57,7 +58,7 @@ namespace LevelEditor.Controls
 
             X = x;
             Y = y;
-            TitleTextBlock.Text = X + " : " + Y;
+            ToolTip = X + " : " + Y;
             MainButton.Click += (s,e) => 
                 OnClick(e);
         }
@@ -72,6 +73,8 @@ namespace LevelEditor.Controls
         public void SetXmlBlock(XmlTexture texture, BlockType type, bool collision, int damage, bool isScrolling = false, 
             int scrollingLength = 0, float scrollingDirectionX = 0, float scrollingDirectionY = 0, XmlLinkTypeBase attachedLink = null)
         {
+            ResetTextBlock();
+
             var xmlBlock = new XmlBlock()
             {
                 BlockType = type,
@@ -102,6 +105,32 @@ namespace LevelEditor.Controls
             SetImage(texture.Path);
         }
 
+        public void SetXmlCollectable(XmlCollectableItem collectable, XmlLinkTypeBase attachedLink = null)
+        {
+            XmlCollectable xmlCollectable = new XmlCollectable()
+            {
+                Link = collectable.Id,
+                X = X,
+                Y = Y
+            };
+
+            TitleTextBlock.Text = "C";
+            TitleTextBlock.Foreground = Brushes.Orange;
+            TitleTextBlock.FontWeight = FontWeights.Bold;
+
+            ItemPresenter = new XmlCollectablePresenter()
+            {
+                XmLLevelItemBase = xmlCollectable
+            };
+
+            if (attachedLink is XmlAnimation)
+                AttachLink(BlockLinkType.Animation, attachedLink);
+            else if (attachedLink is XmlTexture)
+                AttachLink(BlockLinkType.Image, attachedLink);
+
+            SetImage(collectable.Path);
+        }
+
         /// <summary>
         ///  Sets an XmlAnimatedBlock to the Button
         /// </summary>
@@ -111,6 +140,8 @@ namespace LevelEditor.Controls
         /// <param name="damage">damage</param>
         public void SetXmlAnimatedBlock(XmlAnimation animation, BlockType type, bool collision, int damage)
         {
+            ResetTextBlock();
+
             var xmlBlock = new XmlBlock()
             {
                 BlockType = type,
@@ -134,6 +165,7 @@ namespace LevelEditor.Controls
         public void ResetXmlItem()
         {
             ItemPresenter = null;
+            ResetTextBlock();
             SetImage(null);
             AttachLink(BlockLinkType.Image, null);
         }
@@ -143,7 +175,7 @@ namespace LevelEditor.Controls
         /// </summary>
         /// <param name="path">Path to image</param>
         /// <param name="uriKind">Path kind</param>
-        private void SetImage(string path, UriKind uriKind = UriKind.Relative)
+        private void SetImage(string path, UriKind uriKind = UriKind.Relative, int borderSize = 0)
         {
             if (path != null)
             {
@@ -158,6 +190,8 @@ namespace LevelEditor.Controls
             {
                 MainButton.Background = null;
             }
+
+            InnerBorder.BorderThickness = new Thickness(borderSize);
 
         }
 
@@ -217,7 +251,12 @@ namespace LevelEditor.Controls
             }
         }
 
-        
+        private void ResetTextBlock()
+        {
+            TitleTextBlock.Text = String.Empty;
+            TitleTextBlock.Foreground = Brushes.Black;
+            TitleTextBlock.FontWeight = FontWeights.Normal;
+        }
       
 
     }

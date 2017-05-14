@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Style/ExpandInpandButtonStyle.xaml" />
                 <ResourceDictionary Source="Style/SelectTextureRadioButtonStyle.xaml" />
                 <ResourceDictionary Source="Style/GridButtonStyle.xaml" />
+                <ResourceDictionary Source="Style/ButtonStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

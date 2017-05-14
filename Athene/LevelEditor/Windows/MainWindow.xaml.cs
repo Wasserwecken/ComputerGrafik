@@ -36,7 +36,7 @@ namespace LevelEditor
         }
 
       
-        public Controls.LevelEditor LevelEditor { get; set; }
+        public Controls.LevelEditorControl LevelEditor { get; set; }
 
         /// <summary>
         /// Export a level
@@ -57,7 +57,7 @@ namespace LevelEditor
             saveFileDialog.Filter = "XML-Files (.xml)|*.xml"; 
             if (saveFileDialog.ShowDialog() == true)
             {
-                var xmlLevel = LevelEditor.LevelGrid.GetXmlLevel();
+                var xmlLevel = LevelEditor.GetXmlLevel();
                 LevelLoader.ConvertToXml(xmlLevel, saveFileDialog.FileName);
                 MessageBox.Show("Exportieren abgeschlossen", "Erfolgreich", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -77,7 +77,7 @@ namespace LevelEditor
             };
             if (addWindow.ShowDialog() == true)
             {
-                LevelEditor = new Controls.LevelEditor();
+                LevelEditor = new Controls.LevelEditorControl();
                 LevelEditor.InitNewGrid(addWindow.XStart, addWindow.XEnd, addWindow.YStart, addWindow.YEnd);
                 GridContentControl.Content = LevelEditor;
             }
@@ -99,10 +99,11 @@ namespace LevelEditor
                 window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 if (window.ShowDialog() == true)
                 {
-                    LevelEditor = new Controls.LevelEditor();
-                    LevelEditor.InitNewGrid(window.MinX, window.MaxX, window.MinY, window.MaxY);
+                    LevelEditor = new LevelEditorControl();
+                    LevelEditor.InitNewGrid(window.Level.MinX, window.Level.MaxX, window.Level.MinY, window.Level.MaxY);
+                    LevelEditor.InitXmlLevel(window.Level);
                     GridContentControl.Content = LevelEditor;
-                    LevelEditor.LevelGrid.InitXmlLevel(window.Level);
+                   
                 }
             }
         }

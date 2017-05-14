@@ -49,7 +49,8 @@ namespace LevelEditor.Controls.RadioButtons
         Remove,
         Select,
         LoadAnimation,
-        RemoveAttachedTexture
+        RemoveAttachedTexture,
+        AddCheckpoint
     }
 
    

@@ -30,19 +30,10 @@ namespace LevelEditor.Windows
 
             var level = LevelLoader.LoadFromXml(fileName);
 
-
-            float maxX, minX, maxY, minY;
-
-            maxX = level.Blocks.Max(block => block.X);
-            minX = level.Blocks.Min(block => block.X);
-            maxY = level.Blocks.Max(block => block.Y);
-            minY = level.Blocks.Min(block => block.Y);
-
-          
-            InputXStart.Text = minX.ToString();
-            InputYStart.Text = minY.ToString();
-            InputXEnd.Text = maxX.ToString();
-            InputYEnd.Text = maxY.ToString();
+            InputXStart.Text = level.MinX.ToString();
+            InputYStart.Text = level.MinY.ToString();
+            InputXEnd.Text = level.MaxX.ToString();
+            InputYEnd.Text = level.MaxY.ToString();
             Level = level;
 
             TextBlockFoundBlocks.Text = "Es wurden " + level.Blocks.Count + " Blöcke gefunden";
@@ -59,10 +50,10 @@ namespace LevelEditor.Windows
                 !String.IsNullOrWhiteSpace(InputXStart.Text) && !String.IsNullOrWhiteSpace(InputXEnd.Text) &&
                 !String.IsNullOrWhiteSpace(InputYStart.Text) && !String.IsNullOrWhiteSpace(InputYEnd.Text))
             {
-                MinX = xStart;
-                MinY = yStart;
-                MaxX = xEnd;
-                MaxY = yEnd;
+                Level.MinX = xStart;
+                Level.MinY = yStart;
+                Level.MaxX = xEnd;
+                Level.MaxY = yEnd;
                 DialogResult = true;
                 Close();
             }
@@ -73,10 +64,6 @@ namespace LevelEditor.Windows
         }
 
         public XmlLevel Level { get; set; }
-        public int MaxX { get; set; }
-        public int MaxY { get; set; }
-        public int MinX { get; set; }
-        public int MinY { get; set; }
 
     }
 }
