@@ -176,7 +176,13 @@ namespace Lib.Level.Items
 			// it will be not allowed to jump (e.g. water)
             if (InputValues.Jump && IsJumpAllowed && !IsJumping)
             {
-				Physics.ApplyImpulse(new Vector2(0, 0.2f));
+				Physics.ApplyImpulse(new Vector2(0, 0.3f));
+                IsJumpAllowed = false;
+            }
+
+            if (InputValues.Helping && IsJumpAllowed && !IsJumping)
+            {
+                Physics.ApplyImpulse(new Vector2(0.5f, 0.4f));
                 IsJumpAllowed = false;
             }
 		}

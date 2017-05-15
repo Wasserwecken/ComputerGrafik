@@ -30,9 +30,9 @@ namespace Lib.Level.Items
 
             //Optic
             SpriteAnimated playerSprite = new SpriteAnimated();
-            playerSprite.AddAnimation(String.Format("Animations/player/{0}/walk",playerId), 1000);
-            playerSprite.AddAnimation(String.Format("Animations/player/{0}/idle", playerId), 1000);
-            playerSprite.StartAnimation("idle");
+            playerSprite.AddAnimation(String.Format("Animations/player/{0}/walk",playerId), 600);
+            playerSprite.AddAnimation(String.Format("Animations/player/{0}/swim", playerId), 1000);
+            playerSprite.StartAnimation("walk");
 
             //create instance
             return new Player(startPosition, mapList, playerSprite);
