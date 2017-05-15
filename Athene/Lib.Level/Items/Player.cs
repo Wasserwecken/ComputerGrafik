@@ -7,6 +7,7 @@ using Lib.LevelLoader.LevelItems;
 using Lib.Tools;
 using Lib.Visuals.Graphics;
 using OpenTK;
+using System;
 using System.Collections.Generic;
 
 namespace Lib.Level.Items
@@ -80,6 +81,7 @@ namespace Lib.Level.Items
 
 			//set other
 			Sprite = sprite;
+            Collision = true;
             IsJumpAllowed = false;
 		}
 

@@ -74,9 +74,16 @@ namespace Lib.Level
             {
                 player.UpdateLogic();
 
-                var intersections = BlocksQuadTree.GetElementsIn(player.HitBox).ConvertAll(item => (LevelItemBase)item);
-                if (intersections.Count > 0)
-                    player.HandleIntersections(intersections);
+                var intersections = new List<LevelItemBase>();
+                intersections.AddRange(BlocksQuadTree.GetElementsIn(player.HitBox).ConvertAll(item => (LevelItemBase)item));
+
+                foreach (var otherPlayer in Players)
+                {
+                    if (!player.Equals(otherPlayer) && player.HitBox.IntersectsWith(otherPlayer.HitBox))
+                        intersections.Add(otherPlayer);
+                }
+
+                player.HandleIntersections(intersections);
             }
 
             //Camera settings

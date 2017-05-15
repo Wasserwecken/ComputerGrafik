@@ -23,7 +23,7 @@ namespace SimeraExample
 
         public GameBase()
 		{
-			Window = new GameWindowBase(5, 15);
+			Window = new GameWindowBase(3, 15);
 
 			Window.Load += Window_Load;
 			Window.UpdateFrame += Window_UpdateFrame;
@@ -42,8 +42,12 @@ namespace SimeraExample
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
 			Level.UpdateLogic();
-			//setting the camera
-			Window.Camera.MoveTo(Level.PlayersCenter);
+            //setting the camera
+            
+            float biggerDistance = Math.Max(Level.PlayersSpace.Size.X, Level.PlayersSpace.Size.Y);
+
+            Window.Camera.AxisSize = (biggerDistance + 2f) / 2;
+            Window.Camera.MoveTo(Level.PlayersCenter);
 		}
 		
 

@@ -25,6 +25,7 @@ namespace Lib.Level.Items
             mapList.AddMappingGamePad(playerId, pad => pad.ThumbSticks.Left, inp => inp.MoveRight, (inval, curval) => inval.Length > 0.01 && inval.X < 0 ? inval.X : 0);
             mapList.AddMappingGamePad(playerId, pad => pad.ThumbSticks.Left, inp => inp.MoveUp, (inval, curval) => inval.Length > 0.01 && inval.Y > 0 ? inval.Y : 0);
             mapList.AddMappingGamePad(playerId, pad => pad.ThumbSticks.Left, inp => inp.MoveDown, (inval, curval) => inval.Length > 0.01 && inval.Y < 0 ? -inval.Y : 0);
+            mapList.AddMappingGamePad(playerId, pad => pad.Triggers.Right, inp => inp.Helping, (inval, curval) => inval > 0.5f ? true : false);
             mapList.AddMappingGamePad(playerId, pad => pad.Buttons.A, inp => inp.Jump, (inval, curval) => inval == ButtonState.Pressed);
 
             //Optic
@@ -55,6 +56,7 @@ namespace Lib.Level.Items
                     mapList.AddMappingKeyboard(Key.Up, inp => inp.MoveUp, (inval, curval) => inval ? +1 : 0);
                     mapList.AddMappingKeyboard(Key.Down, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
                     mapList.AddMappingKeyboard(Key.ControlRight, inp => inp.Jump, (inval, curval) => inval);
+                    mapList.AddMappingKeyboard(Key.Number0, inp => inp.Helping, (inval, curval) => inval);
                     break;
 
                 case 1:
@@ -63,6 +65,7 @@ namespace Lib.Level.Items
                     mapList.AddMappingKeyboard(Key.W, inp => inp.MoveUp, (inval, curval) => inval ? +1 : 0);
                     mapList.AddMappingKeyboard(Key.S, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
                     mapList.AddMappingKeyboard(Key.Space, inp => inp.Jump, (inval, curval) => inval);
+                    mapList.AddMappingKeyboard(Key.ControlLeft, inp => inp.Helping, (inval, curval) => inval);
                     break;
 
                 case 2:

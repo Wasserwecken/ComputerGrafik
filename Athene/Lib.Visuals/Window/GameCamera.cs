@@ -7,16 +7,21 @@ using Lib.Tools;
 namespace Lib.Visuals.Window
 {
 	public class GameCamera
-	{
-		/// <summary>
-		/// Size of the axis to the heigt and bottom of the window
-		/// </summary>
-		public int AxisSize { get; set; }
+    {
+        /// <summary>
+        /// Size of the axis to the heigt and bottom of the window
+        /// </summary>
+        public float MinAxisSize { get; set; }
 
-		/// <summary>
-		/// Sets the delay and smooth movement of the camera. 1 is direct movement. if higher, more delay
-		/// </summary>
-		public float Delay { get; set; }
+        /// <summary>
+        /// Size of the axis to the heigt and bottom of the window
+        /// </summary>
+        public float AxisSize { get; set; }
+
+        /// <summary>
+        /// Sets the delay and smooth movement of the camera. 1 is direct movement. if higher, more delay
+        /// </summary>
+        public float Delay { get; set; }
 
         /// <summary>
         /// Dimensions of the current cameras field of view
@@ -38,10 +43,11 @@ namespace Lib.Visuals.Window
 		/// <summary>
 		/// Initialises the view
 		/// </summary>
-		public GameCamera(Vector2 startPosition, int axisSize, float cameraDelay)
+		public GameCamera(Vector2 startPosition, float minAxisSize, float cameraDelay)
 		{
 			PositionCurrent = startPosition;
-			AxisSize = axisSize;
+			MinAxisSize = minAxisSize;
+            AxisSize = minAxisSize;
 			Delay = cameraDelay;
 		}
 
@@ -90,5 +96,10 @@ namespace Lib.Visuals.Window
 			var distance = PositionDestination - PositionCurrent;
 			PositionCurrent = PositionCurrent + (distance / Delay);
 		}
+
+        private float CalculateDelayedValue()
+        {
+            return 0;
+        }
 	}
 }
