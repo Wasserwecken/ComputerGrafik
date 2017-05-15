@@ -143,6 +143,7 @@ namespace Lib.Level.Items
         {
             if (Physics.CurrentEnvironment == BlockType.Air)
             {
+                ((SpriteAnimated)Sprite).StartAnimation("walk");
                 IsJumpAllowed = false;
 
                 //This will allow the player to jump out of water
@@ -153,12 +154,14 @@ namespace Lib.Level.Items
                 if (report.IsSolidOnBottom)
                     IsJumpAllowed = true;
             }
+            if (Physics.CurrentEnvironment == BlockType.Water)
+                ((SpriteAnimated)Sprite).StartAnimation("swim");
         }
 
-		/// <summary>
-		/// Process the input values
-		/// </summary>
-		private void ProcessInput()
+        /// <summary>
+        /// Process the input values
+        /// </summary>
+        private void ProcessInput()
 		{
             // tries to move the player in a given direction.
             // The direction values should be between -1 and 1 for x and y

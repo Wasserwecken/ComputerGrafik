@@ -49,8 +49,18 @@ namespace Lib.Visuals.Graphics
 		/// <param name="animationName"></param>
 		public void StartAnimation(string animationName)
 		{
-			ActiveAnimation = Animations.FirstOrDefault(f => f.Name == animationName);
-			TimeSource.Restart();
+            if (ActiveAnimation != null && ActiveAnimation.Name == animationName)
+                return;
+
+            foreach(var animation in Animations)
+            {
+                if (animation.Name == animationName)
+                {
+			        ActiveAnimation = animation;
+			        TimeSource.Restart();
+                }
+            }
+
 		}
 
 		/// <summary>
