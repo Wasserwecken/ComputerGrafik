@@ -49,6 +49,7 @@
     <Compile Include="Collision\CollisionReport.cs" />
     <Compile Include="Collision\CollisionReportItem.cs" />
     <Compile Include="Items\Checkpoint.cs" />
+    <Compile Include="Items\Collectable.cs" />
     <Compile Include="Items\Player.cs" />
     <Compile Include="Items\PlayerActions.cs" />
     <Compile Include="Items\PlayerFactory.cs" />
