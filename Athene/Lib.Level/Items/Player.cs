@@ -7,6 +7,7 @@ using Lib.LevelLoader.LevelItems;
 using Lib.Tools;
 using Lib.Visuals.Graphics;
 using OpenTK;
+using System;
 using System.Collections.Generic;
 
 namespace Lib.Level.Items
@@ -14,11 +15,6 @@ namespace Lib.Level.Items
     public class Player
         : LevelItemBase
 	{
-		/// <summary>
-		/// Current position of the player in the level
-		/// </summary>
-		public new Box2D HitBox => Physics.HitBox;
-
 		/// <summary>
 		/// Sets the values for the offset where the camera should point on
 		/// </summary>
@@ -64,19 +60,28 @@ namespace Lib.Level.Items
 			InputValues = new PlayerActions();
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
 
-			//set physic behaviour
-			var physicProps = new Dictionary<BlockType, PhysicBodyProperties>
+            //set physic behaviour
+            var impulseProps = new Dictionary<BlockType, EnergyObjectProperties>
             {
-                {BlockType.Air, new PhysicBodyProperties(6f, 30f, 0.1f, 0.2f)},
-                {BlockType.Solid, new PhysicBodyProperties(6f, 30f, 0.1f, 0.2f)},
-                {BlockType.Ladder, new PhysicBodyProperties(6f, 6f, 0.1f, 0f)},
-                {BlockType.Water, new PhysicBodyProperties(30f, 30f, 0.06f, -0.01f)},
-                {BlockType.Lava, new PhysicBodyProperties(15f, 15f, 0.025f, 0f)}
+                {BlockType.Air, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
+                {BlockType.Solid, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
+                {BlockType.Ladder, new EnergyObjectProperties(10f, 10f, 0.1f, 0f)},
+                {BlockType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, 0f)},
+                {BlockType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
             };
-			Physics = new PhysicBody(physicProps, BlockType.Air, base.HitBox);
+            var forceProps = new Dictionary<BlockType, EnergyObjectProperties>
+            {
+                {BlockType.Air, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
+                {BlockType.Solid, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
+                {BlockType.Ladder, new EnergyObjectProperties(6f, 6f, 0.1f, 0f)},
+                {BlockType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, -0.01f)},
+                {BlockType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
+            };
+			Physics = new PhysicBody(impulseProps, forceProps);
 
 			//set other
 			Sprite = sprite;
+            Collision = true;
             IsJumpAllowed = false;
 		}
 
@@ -89,7 +94,7 @@ namespace Lib.Level.Items
 			ProcessInput();
 
             //Physics
-            Physics.UpdatePhysics();
+            HitBox.Position = Physics.ProcessInput(HitBox.Position);
             
             //View things
             UpdateOffsetViewPoint();
@@ -103,7 +108,7 @@ namespace Lib.Level.Items
         public void HandleIntersections(List<LevelItemBase> intersections)
         {
             //Set the environment, because if there is no collision, the player has to adapt the default environment
-            Physics.SetEnvironment(Physics.DefaultEnvironment);
+            Physics.SetEnvironment(BlockType.Air);
             foreach (LevelItemBase item in intersections)
             {
                 if (item.HitBox.Contains(HitBox.Center))
@@ -111,7 +116,7 @@ namespace Lib.Level.Items
             }
 
             //Collisions
-            var report = CollisionManager.HandleCollisions(Physics.HitBox, intersections, () => Physics.StopBodyOnAxisX(), () => Physics.StopBodyOnAxisY());
+            var report = CollisionManager.HandleCollisions(HitBox, intersections, () => Physics.StopBodyOnAxisX(), () => Physics.StopBodyOnAxisY());
             ProcessIntersectionReport(report);
         }
         
@@ -126,7 +131,7 @@ namespace Lib.Level.Items
             if (Physics.Energy.X < 0)
                 Sprite.FlipTextureHorizontal = true;
             
-            Sprite.Draw(Physics.HitBox.Position, new Vector2(0.8f));
+            Sprite.Draw(HitBox.Position, new Vector2(0.8f));
 		}
 
 
@@ -171,7 +176,13 @@ namespace Lib.Level.Items
 			// it will be not allowed to jump (e.g. water)
             if (InputValues.Jump && IsJumpAllowed && !IsJumping)
             {
-				Physics.ApplyImpulse(new Vector2(0, 0.2f));
+				Physics.ApplyImpulse(new Vector2(0, 0.3f));
+                IsJumpAllowed = false;
+            }
+
+            if (InputValues.Helping && IsJumpAllowed && !IsJumping)
+            {
+                Physics.ApplyImpulse(new Vector2(0.5f, 0.4f));
                 IsJumpAllowed = false;
             }
 		}
@@ -182,8 +193,8 @@ namespace Lib.Level.Items
 		private void UpdateOffsetViewPoint()
 		{
 			float offsetValue = 2f;
-			var x = Physics.HitBox.Position.X + offsetValue;
-			var y = Physics.HitBox.Position.Y + offsetValue;
+			var x = HitBox.Position.X + offsetValue;
+			var y = HitBox.Position.Y + offsetValue;
 
 			ViewPoint = new Vector2(x, y);
 		}

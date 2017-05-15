@@ -36,6 +36,11 @@ namespace Lib.Level.Items
 		/// </summary>
 		public bool Jump { get; set; }
 
+        /// <summary>
+        /// Tries to help another player
+        /// </summary>
+        public bool Helping { get; set; }
+
 
 		/// <summary>
 		/// Instance of the last device that was used

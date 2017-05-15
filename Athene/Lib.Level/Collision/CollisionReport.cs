@@ -1,4 +1,5 @@
-﻿using Lib.LevelLoader.LevelItems;
+﻿using Lib.Level.Items;
+using Lib.LevelLoader.LevelItems;
 using Lib.Tools;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Lib.Level.Collision
         /// 
         /// </summary>
         public bool IsBottomWater { get; private set; }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -47,8 +48,15 @@ namespace Lib.Level.Collision
         {
             base.Add(item);
 
-            if (item.Item.BlockType == BlockType.Water && item.ItemAlignment == Alignment.Bottom)
-                IsBottomWater = true;
+            if (item.ItemAlignment == Alignment.Bottom)
+            {
+                if (item.Item.BlockType == BlockType.Water)
+                    IsBottomWater = true;
+
+                if (item.Item is Player)
+                    IsSolidOnBottom = true;
+            }
+
 
             if (item.Item.BlockType == BlockType.Solid)
             {

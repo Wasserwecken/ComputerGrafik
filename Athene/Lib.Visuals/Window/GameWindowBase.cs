@@ -5,16 +5,21 @@ using System.Drawing;
 
 namespace Lib.Visuals.Window
 {
-	/// <summary>
-	/// Extended game window
-	/// </summary>
-	public class GameWindowBase
-		: GameWindow
-	{
-		/// <summary>
-		/// Camera for the scenery
-		/// </summary>
-		public GameCamera Camera { get; set; }
+    /// <summary>
+    /// Extended game window
+    /// </summary>
+    public class GameWindowBase
+        : GameWindow
+    {
+        /// <summary>
+        /// Camera for the scenery
+        /// </summary>
+        public GameCamera Camera { get; set; }
+
+        /// <summary>
+        /// Aspect ratio of the window
+        /// </summary>
+        public float AspectRatio { get; set; }
 
 		/// <summary>
 		/// Initialises the game window
@@ -23,6 +28,7 @@ namespace Lib.Visuals.Window
 		{
             WindowState = WindowState.Fullscreen;
 			Camera = new GameCamera(Vector2.Zero, standardViewableYAxisSize, cameraDelay);
+            AspectRatio = 0;
 
 			//This will be needed to enable transparency
 			GL.Enable(EnableCap.Texture2D);
@@ -36,7 +42,8 @@ namespace Lib.Visuals.Window
 		/// <param name="e"></param>
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
-			Camera.ApplyTransform((float)Width / Height);
+            AspectRatio = (float)Width / Height;
+            Camera.ApplyTransform(AspectRatio);
 
 			GL.Clear(ClearBufferMask.ColorBufferBit);
 			GL.ClearColor(Color.Black);

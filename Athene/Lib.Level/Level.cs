@@ -41,9 +41,9 @@ namespace Lib.Level
         public Vector2 PlayersCenter { get; private set; }
 
         /// <summary>
-        /// A box based on all active player positions
+        /// 
         /// </summary>
-        public Box2D PlayersSpace { get; set; }
+        public Vector2 MaxPlayersDistance { get; set; }
 
         /// <summary>
         /// QuadTree for all level Blocks
@@ -88,9 +88,16 @@ namespace Lib.Level
             {
                 player.UpdateLogic();
 
-                var intersections = BlocksQuadTree.GetElementsIn(player.HitBox).ConvertAll(item => (LevelItemBase)item);
-                if (intersections.Count > 0)
-                    player.HandleIntersections(intersections);
+                var intersections = new List<LevelItemBase>();
+                intersections.AddRange(BlocksQuadTree.GetElementsIn(player.HitBox).ConvertAll(item => (LevelItemBase)item));
+
+                foreach (var otherPlayer in Players)
+                {
+                    if (!player.Equals(otherPlayer) && player.HitBox.IntersectsWith(otherPlayer.HitBox))
+                        intersections.Add(otherPlayer);
+                }
+
+                player.HandleIntersections(intersections);
             }
 
             //Camera settings
@@ -123,23 +130,24 @@ namespace Lib.Level
         /// </summary>
         private void CalculateCameraInformations()
         {
-            Vector2 playersCenter = Vector2.Zero;
-            float minPlayerXPos = 0;
-            float minPlayerYPos = 0;
-            float maxPlayerXPos = 0;
-            float maxPlayerYPos = 0;
+            Vector2 playersPositionSum = Players[0].HitBox.Position;
+            float minPlayerXPos = Players[0].ViewPoint.X;
+            float minPlayerYPos = Players[0].ViewPoint.Y;
+            float maxPlayerXPos = Players[0].ViewPoint.X;
+            float maxPlayerYPos = Players[0].ViewPoint.Y;
 
-            foreach (var player in Players)
+            for (int index = 1; index < Players.Count; index ++)
             {
-                playersCenter += player.HitBox.Position;
-                minPlayerXPos = Math.Min(minPlayerXPos, player.ViewPoint.X);
-                minPlayerYPos = Math.Min(minPlayerYPos, player.ViewPoint.Y);
-                maxPlayerXPos = Math.Max(maxPlayerXPos, player.ViewPoint.X);
-                maxPlayerYPos = Math.Max(maxPlayerYPos, player.ViewPoint.Y);
+                playersPositionSum = playersPositionSum + Players[index].HitBox.Position;
+                minPlayerXPos = Math.Min(minPlayerXPos, Players[index].ViewPoint.X);
+                minPlayerYPos = Math.Min(minPlayerYPos, Players[index].ViewPoint.Y);
+                maxPlayerXPos = Math.Max(maxPlayerXPos, Players[index].ViewPoint.X);
+                maxPlayerYPos = Math.Max(maxPlayerYPos, Players[index].ViewPoint.Y);
             }
 
-            PlayersSpace = new Box2D(minPlayerXPos, minPlayerYPos, maxPlayerXPos - minPlayerXPos, maxPlayerYPos - minPlayerXPos);
-            PlayersCenter = playersCenter / Players.Count;
+
+            MaxPlayersDistance = new Vector2(maxPlayerXPos - minPlayerXPos, maxPlayerYPos - minPlayerYPos);
+            PlayersCenter = playersPositionSum / Players.Count;
         }
 
 

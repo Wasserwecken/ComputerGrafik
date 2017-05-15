@@ -23,7 +23,7 @@ namespace SimeraExample
 
         public GameBase()
 		{
-			Window = new GameWindowBase(5, 15);
+			Window = new GameWindowBase(4, 15);
 
 			Window.Load += Window_Load;
 			Window.UpdateFrame += Window_UpdateFrame;
@@ -34,16 +34,31 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-            int level = 44;
+            int level = 9;
             XmlLevel levelData = LevelLoader.LoadFromXml(@"Level\Level" + level + ".xml");
             Level = new Level(levelData);
         }
 
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
+            //calculate all logic within the lever (players / enemies / etc)
 			Level.UpdateLogic();
-			//setting the camera
-			Window.Camera.MoveTo(Level.PlayersCenter);
+
+            
+
+            float axisSize = 0f;
+            float playersViewRange = 8f;
+
+            if (Window.AspectRatio > 0)
+            {
+                float distanceX = (Level.MaxPlayersDistance.X + playersViewRange) / Window.AspectRatio;
+                float distanceY = (Level.MaxPlayersDistance.Y + playersViewRange);
+
+                axisSize = Math.Max(distanceX, distanceY);
+            }
+
+            axisSize /= 2; //divided because there are 2 axes in one direction
+            Window.Camera.SetValues(Level.PlayersCenter, axisSize);
 		}
 		
 
