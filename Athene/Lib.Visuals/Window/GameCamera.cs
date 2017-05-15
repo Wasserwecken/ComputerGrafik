@@ -9,30 +9,30 @@ namespace Lib.Visuals.Window
 	public class GameCamera
     {
         /// <summary>
-        /// Size of the axis to the heigt and bottom of the window
-        /// </summary>
-        public float MinAxisSize { get; set; }
-
-        /// <summary>
-        /// Size of the axis to the heigt and bottom of the window
-        /// </summary>
-        public float AxisSize { get; set; }
-
-        /// <summary>
         /// Sets the delay and smooth movement of the camera. 1 is direct movement. if higher, more delay
         /// </summary>
         public float Delay { get; set; }
-
+        
         /// <summary>
         /// Dimensions of the current cameras field of view
         /// </summary>
         public Box2D FOV { get; private set; }
-		
 
-		/// <summary>
-		/// Destination of the movement requirement
-		/// </summary>
-		private Vector2 PositionDestination { get; set; }
+        /// <summary>
+        /// Size of the axis to the heigt and bottom of the window
+        /// </summary>
+        public float AxisSizeCurrent { get; private set; }
+
+
+        /// <summary>
+        /// Size of the axis to the heigt and bottom of the window
+        /// </summary>
+        private float AxisSizeDestination { get; set; }
+
+        /// <summary>
+        /// Destination of the movement requirement
+        /// </summary>
+        private Vector2 PositionDestination { get; set; }
 		
 		/// <summary>
 		/// Current position of the camera
@@ -43,20 +43,20 @@ namespace Lib.Visuals.Window
 		/// <summary>
 		/// Initialises the view
 		/// </summary>
-		public GameCamera(Vector2 startPosition, float minAxisSize, float cameraDelay)
+		public GameCamera(Vector2 startPosition, float axisSize, float cameraDelay)
 		{
 			PositionCurrent = startPosition;
-			MinAxisSize = minAxisSize;
-            AxisSize = minAxisSize;
+            AxisSizeCurrent = axisSize;
 			Delay = cameraDelay;
 		}
 
 		/// <summary>
 		/// Moves the camera to the given position
 		/// </summary>
-		public void MoveTo(Vector2 newPosition)
+		public void SetValues(Vector2 position, float axisSize)
 		{
-			PositionDestination = newPosition;
+			PositionDestination = position;
+            AxisSizeDestination = axisSize;
 		}
 
 		/// <summary>
@@ -64,17 +64,18 @@ namespace Lib.Visuals.Window
 		/// </summary>
 		public void ApplyTransform(float aspectRatio)
 		{
-			CalculateCurrentPosition();
+            PositionCurrent = CalculateDelayedValue(PositionCurrent, PositionDestination, Delay);
+            AxisSizeCurrent = CalculateDelayedValue(AxisSizeCurrent, AxisSizeDestination, Delay);
 
 			var transform = Matrix4.Identity;
-			transform = Matrix4.Mult(transform, Matrix4.CreateTranslation(-PositionCurrent.X / aspectRatio / AxisSize, -PositionCurrent.Y / AxisSize, 0));
+			transform = Matrix4.Mult(transform, Matrix4.CreateTranslation(-PositionCurrent.X / aspectRatio / AxisSizeCurrent, -PositionCurrent.Y / AxisSizeCurrent, 0));
 
-			GL.MatrixMode(MatrixMode.Projection);
+            GL.MatrixMode(MatrixMode.Projection);
 			GL.LoadIdentity();
 			GL.MultMatrix(ref transform);
 
-            float axisSizeX = AxisSize * aspectRatio;
-            float axisSizeY = AxisSize;
+            float axisSizeX = AxisSizeCurrent * aspectRatio;
+            float axisSizeY = AxisSizeCurrent;
 			GL.Ortho(-axisSizeX, axisSizeX, -axisSizeY, axisSizeY, -1f, 1f);
             
             FOV = new Box2D(
@@ -85,21 +86,37 @@ namespace Lib.Visuals.Window
                 );
 		}
 
-		/// <summary>
-		/// Calculates the current camera position, based of the movement animation
-		/// </summary>
-		private void CalculateCurrentPosition()
-		{
-			if (PositionCurrent == PositionDestination)
-				return;
 
-			var distance = PositionDestination - PositionCurrent;
-			PositionCurrent = PositionCurrent + (distance / Delay);
-		}
-
-        private float CalculateDelayedValue()
+        /// <summary>
+        /// Calculates a new value with will trie to approach to the given destination like convergence
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="destination"></param>
+        /// <param name="delay"></param>
+        /// <returns></returns>
+        private Vector2 CalculateDelayedValue(Vector2 current, Vector2 destination, float delay)
         {
-            return 0;
+            if (current == destination)
+                return destination;
+
+            var distance = destination - current;
+            return current + (distance / delay);
+        }
+
+        /// <summary>
+        /// Calculates a new value with will trie to approach to the given destination like convergence
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="destination"></param>
+        /// <param name="delay"></param>
+        /// <returns></returns>
+        private float CalculateDelayedValue(float current, float destination, float delay)
+        {
+            if (current == destination)
+                return destination;
+
+            var distance = destination - current;
+            return current + (distance / delay);
         }
 	}
 }
