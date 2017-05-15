@@ -36,6 +36,11 @@ namespace Lib.Level
         public List<Checkpoint> Checkpoints { get; set; }
 
         /// <summary>
+        /// list of all collectables
+        /// </summary>
+        public List<Collectable> Collectables { get; set; }
+
+        /// <summary>
         /// Poiint which should be the focus for the camera
         /// </summary>
         public Vector2 PlayersCenter { get; private set; }
@@ -53,7 +58,7 @@ namespace Lib.Level
         /// <summary>
         /// Startposition of players
         /// </summary>
-        private Vector2 Startposition { get; set; }
+        private Vector2 SpawnPosition { get; set; }
         
 
         /// <summary>
@@ -64,15 +69,12 @@ namespace Lib.Level
             Players = new List<Player>();
             Blocks = new List<Block>();
             Checkpoints = new List<Checkpoint>();
+            Collectables = new List<Collectable>();
 
             LoadLevelFromXmlLevel(xmlLevel);
-
             
-            Players.Add(PlayerFactory.CreatePlayer(0, Startposition));
-            Players.Add(PlayerFactory.CreatePlayer(1, Startposition));
-
-           
-
+            Players.Add(PlayerFactory.CreatePlayer(0, SpawnPosition));
+            Players.Add(PlayerFactory.CreatePlayer(1, SpawnPosition));
            
             InitialiseQuadTree();
 		}
@@ -97,6 +99,20 @@ namespace Lib.Level
                         intersections.Add(otherPlayer);
                 }
 
+                foreach (var checkpoint in Checkpoints)
+                {
+                    if (player.HitBox.IntersectsWith(checkpoint.HitBox))
+                        Console.WriteLine("Player " + Players.IndexOf(player) + " is on Checkpoint");
+                }
+
+                foreach (var collectable in Collectables)
+                {
+                    if (player.HitBox.IntersectsWith(collectable.HitBox))
+                        Console.WriteLine("Player " + Players.IndexOf(player) + " can pick up a item");
+                }
+
+
+
                 player.HandleIntersections(intersections);
             }
 
@@ -120,6 +136,12 @@ namespace Lib.Level
             foreach (var checkpoint in Checkpoints)
             {
                 checkpoint.Draw();
+            }
+
+
+            foreach (var collectable in Collectables)
+            {
+                collectable.Draw();
             }
         }
 
@@ -166,7 +188,7 @@ namespace Lib.Level
             // spriteAnimated is the sprite, string is the animation name
             var animatedSpriteList = new Dictionary<SpriteAnimated, string>();
 
-            Startposition = new Vector2(xmlLevel.SpawnX, xmlLevel.SpawnY);
+            SpawnPosition = new Vector2(xmlLevel.SpawnX, xmlLevel.SpawnY);
 
             foreach (var xmlBlock in xmlLevel.Blocks)
             {
@@ -233,6 +255,20 @@ namespace Lib.Level
             {
                 Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y));
                 Checkpoints.Add(checkPoint);
+            }
+
+            foreach (var xmlLevelCollectable in xmlLevel.Collectables)
+            {
+                var xmlCollectable =
+                    CollectableLoader.GetCollectables().Items.FirstOrDefault(c => c.Id == xmlLevelCollectable.Link);
+
+                if(xmlCollectable == null)
+                    throw  new Exception("Collectable not found");
+
+                SpriteStatic sprite = new SpriteStatic(xmlCollectable.Path);
+
+                Collectable collectable = new Collectable(sprite, new Vector2(xmlLevelCollectable.X, xmlLevelCollectable.Y));
+                Collectables.Add(collectable);
             }
         }
 

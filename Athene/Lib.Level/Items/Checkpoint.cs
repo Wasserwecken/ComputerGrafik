@@ -19,7 +19,7 @@ namespace Lib.Level.Items
         }
 
         /// <summary>
-        /// Draws the player on the screen
+        /// Draws the checkpoint on the screen
         /// </summary>
         public void Draw()
         {

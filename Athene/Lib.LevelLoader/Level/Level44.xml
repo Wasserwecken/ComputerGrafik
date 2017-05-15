@@ -28,6 +28,22 @@
     <Block X="13" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="14" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="15" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="16" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="17" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="18" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="19" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="20" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="21" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="22" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="23" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="24" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="25" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="26" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="27" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="28" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="29" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="30" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="31" Y="-1" Id="0" Link="desert_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="-11" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="-10" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="-9" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -103,11 +119,17 @@
   </Blocks>
   <Textures>
     <Texture Id="forest_pack_05" Path="Images\Environment\Forest\forest_pack_05.png" />
+    <Texture Id="desert_pack_05" Path="Images\Environment\Desert\desert_pack_05.png" />
     <Texture Id="forest_pack_35" Path="Images\Environment\Forest\forest_pack_35.png" />
     <Texture Id="forest_pack_21" Path="Images\Environment\Forest\forest_pack_21.png" />
   </Textures>
   <Enemies />
-  <Collectables />
+  <Collectables>
+    <Collectable X="10" Y="0" Link="crystal_blue" />
+    <Collectable X="21" Y="0" Link="crystal_red" />
+    <Collectable X="27" Y="0" Link="crystal_yellow" />
+    <Collectable X="28" Y="0" Link="crystal_red" />
+  </Collectables>
   <Checkpoints>
     <Checkpoint X="-10" Y="0" />
     <Checkpoint X="-1" Y="0" />

@@ -9,16 +9,16 @@ using OpenTK;
 
 namespace Lib.Level.Items
 {
-    class Collectable : LevelItemBase
+    public class Collectable : LevelItemBase
     {
-        public Collectable(Vector2 startPosition)
+        public Collectable(ISprite sprite, Vector2 startPosition)
             : base(startPosition, new Vector2(0.75f, 0.75f))
         {
-            Sprite = new SpriteStatic("Images/Objects/Items/objects_06.png");
+            Sprite = sprite;
         }
 
         /// <summary>
-        /// Draws the player on the screen
+        /// Draws the collectable on the screen
         /// </summary>
         public void Draw()
         {
