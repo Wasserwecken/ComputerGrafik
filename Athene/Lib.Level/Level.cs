@@ -31,6 +31,11 @@ namespace Lib.Level
         public List<Player> Players { get; set; }
 
         /// <summary>
+        /// list of all checkpoints
+        /// </summary>
+        public List<Checkpoint> Checkpoints { get; set; }
+
+        /// <summary>
         /// Poiint which should be the focus for the camera
         /// </summary>
         public Vector2 PlayersCenter { get; private set; }
@@ -40,11 +45,15 @@ namespace Lib.Level
         /// </summary>
         public Box2D PlayersSpace { get; set; }
 
-
         /// <summary>
         /// QuadTree for all level Blocks
         /// </summary>
         private QuadTreeRoot BlocksQuadTree { get; set; }
+
+        /// <summary>
+        /// Startposition of players
+        /// </summary>
+        private Vector2 Startposition { get; set; }
         
 
         /// <summary>
@@ -53,13 +62,18 @@ namespace Lib.Level
         public Level(XmlLevel xmlLevel)
 		{
             Players = new List<Player>();
-            Players.Add(PlayerFactory.CreatePlayer(0, Vector2.Zero));
-            Players.Add(PlayerFactory.CreatePlayer(1, Vector2.One));
-
             Blocks = new List<Block>();
-
+            Checkpoints = new List<Checkpoint>();
 
             LoadLevelFromXmlLevel(xmlLevel);
+
+            
+            Players.Add(PlayerFactory.CreatePlayer(0, Startposition));
+            Players.Add(PlayerFactory.CreatePlayer(1, Startposition));
+
+           
+
+           
             InitialiseQuadTree();
 		}
 
@@ -95,6 +109,11 @@ namespace Lib.Level
             //Draw players
             foreach (var player in Players)
                 player.Draw();
+
+            foreach (var checkpoint in Checkpoints)
+            {
+                checkpoint.Draw();
+            }
         }
 
 
@@ -138,6 +157,8 @@ namespace Lib.Level
             // all animated sprites are later started from the list
             // spriteAnimated is the sprite, string is the animation name
             var animatedSpriteList = new Dictionary<SpriteAnimated, string>();
+
+            Startposition = new Vector2(xmlLevel.SpawnX, xmlLevel.SpawnY);
 
             foreach (var xmlBlock in xmlLevel.Blocks)
             {
@@ -194,10 +215,16 @@ namespace Lib.Level
                 Blocks.Add(block);
             }
 
-            // start animations
+            // start animations of all animated blocks in the level
             foreach (var anSprite in animatedSpriteList)
             {
                 anSprite.Key.StartAnimation(anSprite.Value);
+            }
+
+            foreach (var xmlLevelCheckpoint in xmlLevel.Checkpoints)
+            {
+                Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y));
+                Checkpoints.Add(checkPoint);
             }
         }
 

@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" MaxX="45" MaxY="5" MinX="-15" MinY="-5" SpawnX="-6" SpawnY="1">
+  <Blocks>
+    <Block X="-11" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-9" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-6" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-5" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-3" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-2" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="0" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="1" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="4" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="5" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="6" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="7" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="8" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="9" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="10" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="11" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="12" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="14" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="15" Y="-1" Id="0" Link="forest_pack_05" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-11" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-9" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-6" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-5" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-3" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-2" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="0" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="1" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="4" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="5" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="6" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="7" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="8" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="9" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="10" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="11" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="12" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="14" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="15" Y="-2" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-11" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-9" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-6" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-5" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-3" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-2" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="0" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="1" Y="-3" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="2" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="3" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="4" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="5" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="6" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="7" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="8" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="9" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="10" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="11" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="12" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="13" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="14" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="15" Y="-3" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-11" Y="-4" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-4" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-9" Y="-4" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-4" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-4" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-6" Y="-4" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-5" Y="-4" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="-4" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-3" Y="-4" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-2" Y="-4" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-4" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="1" Y="-4" Id="0" Link="forest_pack_21" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-11" Y="-5" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-5" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-9" Y="-5" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-5" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-5" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-6" Y="-5" Id="0" Link="forest_pack_35" LinkType="Image" BlockType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+  </Blocks>
+  <Textures>
+    <Texture Id="forest_pack_05" Path="Images\Environment\Forest\forest_pack_05.png" />
+    <Texture Id="forest_pack_35" Path="Images\Environment\Forest\forest_pack_35.png" />
+    <Texture Id="forest_pack_21" Path="Images\Environment\Forest\forest_pack_21.png" />
+  </Textures>
+  <Enemies />
+  <Collectables />
+  <Checkpoints>
+    <Checkpoint X="-10" Y="0" />
+    <Checkpoint X="-1" Y="0" />
+    <Checkpoint X="7" Y="0" />
+    <Checkpoint X="14" Y="0" />
+  </Checkpoints>
+</Level>
