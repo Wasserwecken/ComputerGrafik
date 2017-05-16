@@ -110,7 +110,7 @@ namespace Lib.Level
 
                 foreach (var collectable in Collectables)
                 {
-                    if (player.HitBox.IntersectsWith(collectable.HitBox))
+                    if (player.HitBox.IntersectsWith(collectable.HitBox) && collectable.IsActive)
                     {
                         player.PickUp(collectable);
                     }
