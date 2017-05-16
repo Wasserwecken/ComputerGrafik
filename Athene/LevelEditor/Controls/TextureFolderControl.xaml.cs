@@ -24,7 +24,8 @@ namespace LevelEditor.Controls
         /// Folder for operate control
         /// </summary>
         /// <param name="title">Name of folder</param>
-        public TextureFolderControl(string title)
+        /// <param name="attachable"></param>
+        public TextureFolderControl(string title, bool attachable = false)
         {
             InitializeComponent();
             Title = title;
@@ -43,7 +44,15 @@ namespace LevelEditor.Controls
                     ExpandInpandButton.Content = "Ausklappen";
                 }
             };
+
+            Attachable = attachable;
         }
+
+        /// <summary>
+        /// if true, then the items of the folder can
+        /// be attached (Image and Texture)
+        /// </summary>
+        public bool Attachable { get; set; }
 
         /// <summary>
         /// Title

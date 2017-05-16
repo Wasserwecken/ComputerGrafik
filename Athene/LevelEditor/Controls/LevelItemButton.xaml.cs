@@ -105,6 +105,29 @@ namespace LevelEditor.Controls
             SetImage(texture.Path);
         }
 
+        public void SetXmlCheckpoint(XmlAnimation animation)
+        {
+            ResetTextBlock();
+
+            TitleTextBlock.Text = "Chek.";
+            TitleTextBlock.Foreground = Brushes.Green;
+            TitleTextBlock.FontWeight = FontWeights.Bold;
+
+            XmlCheckpoint xmlCheckpoint = new XmlCheckpoint()
+            {
+                Link = animation.Id,
+                X = X,
+                Y = Y
+            };
+
+            ItemPresenter = new XmlCheckpointPresenter()
+            {
+                XmLLevelItemBase = xmlCheckpoint
+            };
+
+            SetImage(animation.GetFirstImage().FullName, UriKind.Absolute);
+        }
+
         public void SetXmlCollectable(XmlCollectableItem collectable, XmlLinkTypeBase attachedLink = null)
         {
             XmlCollectable xmlCollectable = new XmlCollectable()
@@ -114,7 +137,7 @@ namespace LevelEditor.Controls
                 Y = Y
             };
 
-            TitleTextBlock.Text = "C";
+            TitleTextBlock.Text = "Coll.";
             TitleTextBlock.Foreground = Brushes.Orange;
             TitleTextBlock.FontWeight = FontWeights.Bold;
 

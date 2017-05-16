@@ -9,12 +9,15 @@ using OpenTK;
 
 namespace Lib.Level.Items
 {
-    public class Collectable : LevelItemBase
+    public class Collectable : LevelItemBase, IInventoryItem
     {
+        public bool IsActive { get; set; }
+
         public Collectable(ISprite sprite, Vector2 startPosition)
             : base(startPosition, new Vector2(0.75f, 0.75f))
         {
             Sprite = sprite;
+            IsActive = true;
         }
 
         /// <summary>
@@ -22,8 +25,11 @@ namespace Lib.Level.Items
         /// </summary>
         public void Draw()
         {
-
-            Sprite.Draw(HitBox.Position, new Vector2(0.8f));
+            if(IsActive)
+                Sprite.Draw(HitBox.Position, new Vector2(0.8f));
         }
+
+        
+        
     }
 }

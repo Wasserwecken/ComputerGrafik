@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CheckpointList>
+  <Checkpoints>
+    <Animation Id="checkpoint_robot_blue" AnimationLength="500" Path="Animations/checkpoint_robot_blue" />
+    <Animation Id="checkpoint_robot_green" AnimationLength="500" Path="Animations/checkpoint_robot_green" />
+    <Animation Id="checkpoint_robot_red" AnimationLength="500" Path="Animations/checkpoint_robot_red" />
+    <Animation Id="checkpoint_robot_yellow" AnimationLength="500" Path="Animations/checkpoint_robot_yellow" />
+  </Checkpoints>
+</CheckpointList>

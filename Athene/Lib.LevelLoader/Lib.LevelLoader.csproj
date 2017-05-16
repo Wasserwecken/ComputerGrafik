@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationLoader.cs" />
+    <Compile Include="CheckpointLoader.cs" />
     <Compile Include="CollectableLoader.cs" />
     <Compile Include="LevelItems\BlockLinkType.cs" />
     <Compile Include="LevelItems\BlockType.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Xml\Root\XmlAnimationList.cs" />
     <Compile Include="Xml\LevelItems\XmlBlock.cs" />
     <Compile Include="Xml\LevelItems\XmlEnemy.cs" />
+    <Compile Include="Xml\Root\XmlCheckpointList.cs" />
     <Compile Include="Xml\Root\XmlCollectableList.cs" />
     <Compile Include="Xml\Root\XmlLevel.cs" />
     <Compile Include="Xml\LevelItems\XmlLevelItemBase.cs" />
@@ -71,9 +73,37 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Animations\Checkpoints.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Animations\BlockAnimations.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_blue\AA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_blue\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_green\AA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_green\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_red\AA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_red\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_yellow\AA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_yellow\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Animations\lava\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

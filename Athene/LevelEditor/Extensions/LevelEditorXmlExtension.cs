@@ -77,6 +77,11 @@ namespace LevelEditor.Extensions
                     XmlCollectable xnlCollectable = button.ItemPresenter.XmLLevelItemBase as XmlCollectable;
                     HandleXmlCollectable(xnlCollectable, levelReturn);
                 }
+                else if (button.ItemPresenter.XmLLevelItemBase is XmlCheckpoint)
+                {
+                    XmlCheckpoint xmlCheckpoint = button.ItemPresenter.XmLLevelItemBase as XmlCheckpoint;
+                    HandleXmlCheckpoint(xmlCheckpoint, levelReturn);
+                }
 
 
 
@@ -185,6 +190,27 @@ namespace LevelEditor.Extensions
                 }
 
 
+                var checkpoint = level.Checkpoints.FirstOrDefault(c => c.X == button.X && c.Y == button.Y);
+                if (checkpoint != null)
+                {
+                    var checkpointAnimation = CheckpointLoader.GetCheckpoints().CheckpointAnimations.FirstOrDefault(a => a.Id == checkpoint.Link);
+                    XmlLinkTypeBase attachedLink = null;
+
+                    if (checkpoint.AttachedLink != null)
+                    {
+                        if (checkpoint.AttachedLinkType == BlockLinkType.Image.ToString())
+                        {
+                            attachedLink = level.Textures.FirstOrDefault(t => t.Id == block?.AttachedLink);
+                        }
+                        if (checkpoint.AttachedLinkType == BlockLinkType.Animation.ToString())
+                        {
+                            attachedLink = AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == block.AttachedLink);
+                        }
+                    }
+                    button.SetXmlCheckpoint(checkpointAnimation);
+                }
+
+
             }
         }
 
@@ -227,6 +253,11 @@ namespace LevelEditor.Extensions
             level.Blocks.Add(block);
         }
 
+        
+        private static void HandleXmlCheckpoint(XmlCheckpoint checkpoint, XmlLevel level)
+        {
+            level.Checkpoints.Add(checkpoint);
+        }
 
     }
 }

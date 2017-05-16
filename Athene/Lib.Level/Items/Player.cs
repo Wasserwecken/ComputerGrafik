@@ -20,6 +20,10 @@ namespace Lib.Level.Items
 		/// </summary>
 		public Vector2 ViewPoint { get; private set; }
         
+        /// <summary>
+        /// List of inventory items
+        /// </summary>
+        public List<IInventoryItem> Inventory { get; set; }
 
 		/// <summary>
 		/// The physical position and movement of the player
@@ -59,6 +63,8 @@ namespace Lib.Level.Items
 			//Bind the input
 			InputValues = new PlayerActions();
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
+            
+            Inventory = new List<IInventoryItem>();
 
             //set physic behaviour
             var impulseProps = new Dictionary<BlockType, EnergyObjectProperties>
@@ -99,6 +105,16 @@ namespace Lib.Level.Items
             //View things
             UpdateOffsetViewPoint();
 		}
+
+        /// <summary>
+        /// Adds a item to the inventory
+        /// </summary>
+        /// <param name="item"></param>
+	    public void PickUp(Collectable item)
+	    {
+	        Inventory.Add(item);
+	        item.IsActive = false;
+	    }
 
 
         /// <summary>

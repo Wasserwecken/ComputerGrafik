@@ -15,6 +15,7 @@ using Lib.Level.Base;
 using Lib.LevelLoader.Xml;
 using System.IO;
 using Lib.LevelLoader;
+using Lib.LevelLoader.Xml;
 
 namespace Lib.Level
 {
@@ -102,13 +103,17 @@ namespace Lib.Level
                 foreach (var checkpoint in Checkpoints)
                 {
                     if (player.HitBox.IntersectsWith(checkpoint.HitBox))
-                        Console.WriteLine("Player " + Players.IndexOf(player) + " is on Checkpoint");
+                    {
+                        ///TODO: add checkpoint interactions
+                    }
                 }
 
                 foreach (var collectable in Collectables)
                 {
                     if (player.HitBox.IntersectsWith(collectable.HitBox))
-                        Console.WriteLine("Player " + Players.IndexOf(player) + " can pick up a item");
+                    {
+                        player.PickUp(collectable);
+                    }
                 }
 
 
@@ -129,14 +134,16 @@ namespace Lib.Level
             foreach (Block levelBlock in BlocksQuadTree.GetElementsIn(cameraFOV))
                 levelBlock.Draw();
 
-            //Draw players
-            foreach (var player in Players)
-                player.Draw();
-
             foreach (var checkpoint in Checkpoints)
             {
                 checkpoint.Draw();
             }
+
+            //Draw players
+            foreach (var player in Players)
+                player.Draw();
+
+           
 
 
             foreach (var collectable in Collectables)
@@ -253,7 +260,20 @@ namespace Lib.Level
 
             foreach (var xmlLevelCheckpoint in xmlLevel.Checkpoints)
             {
-                Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y));
+                var xmlCheckpointAnimation =
+                    CheckpointLoader.GetCheckpoints()
+                        .CheckpointAnimations.FirstOrDefault(c => c.Id == xmlLevelCheckpoint.Link);
+
+                if (xmlCheckpointAnimation == null)
+                    throw new Exception("Checkpoint Animation in xml Datei nicht gefunden");
+
+                SpriteAnimated sprite = new SpriteAnimated();
+                sprite.AddAnimation(xmlCheckpointAnimation.Path, xmlCheckpointAnimation.AnimationLength);
+                sprite.StartAnimation(xmlCheckpointAnimation.Id);
+
+                Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y), 
+                    new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY),
+                    sprite);
                 Checkpoints.Add(checkPoint);
             }
 

@@ -131,9 +131,9 @@
     <Collectable X="28" Y="0" Link="crystal_red" />
   </Collectables>
   <Checkpoints>
-    <Checkpoint X="-10" Y="0" />
-    <Checkpoint X="-1" Y="0" />
-    <Checkpoint X="7" Y="0" />
-    <Checkpoint X="14" Y="0" />
+    <Checkpoint X="0" Y="3" DestinationX="0" DestinationY="0" Link="checkpoint_robot_blue" />
+    <Checkpoint X="-10" Y="0" DestinationX="0" DestinationY="0" Link="checkpoint_robot_green" />
+    <Checkpoint X="-6" Y="0" DestinationX="0" DestinationY="0" Link="checkpoint_robot_yellow" />
+    <Checkpoint X="0" Y="0" DestinationX="0" DestinationY="0" Link="checkpoint_robot_red" />
   </Checkpoints>
 </Level>

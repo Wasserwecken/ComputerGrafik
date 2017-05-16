@@ -12,18 +12,23 @@ namespace Lib.Level.Items
 {
     public class Checkpoint : LevelItemBase
     {
-        public Checkpoint(Vector2 startPosition)
+        public Checkpoint(Vector2 startPosition, Vector2 destinationPosition, ISprite sprite)
             : base(startPosition, new Vector2(0.75f, 0.75f))
         {
-            Sprite = new SpriteStatic("Images/Objects/Items/objects_06.png");
+            DestinationPosition = destinationPosition;
+            Sprite = sprite;
         }
+
+        /// <summary>
+        /// Destination of the checkpoint
+        /// </summary>
+        public Vector2 DestinationPosition { get; set; }
 
         /// <summary>
         /// Draws the checkpoint on the screen
         /// </summary>
         public void Draw()
         {
-           
             Sprite.Draw(HitBox.Position, new Vector2(0.8f));
         }
     }

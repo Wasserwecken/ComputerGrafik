@@ -61,6 +61,9 @@
     <Compile Include="Controls\Edit\EditBlockControl.xaml.cs">
       <DependentUpon>EditBlockControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Edit\EditCheckpointControl.xaml.cs">
+      <DependentUpon>EditCheckpointControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LevelEditorControl.xaml.cs">
       <DependentUpon>LevelEditorControl.xaml</DependentUpon>
     </Compile>
@@ -70,11 +73,13 @@
     <Compile Include="Controls\LevelItemPresenter\LevelItemPresenterBase.cs" />
     <Compile Include="Controls\LevelItemPresenter\XmlAnimatedBlockPresenter.cs" />
     <Compile Include="Controls\LevelItemPresenter\XmlBlockPresenter.cs" />
+    <Compile Include="Controls\LevelItemPresenter\XmlCheckpointPresenter.cs" />
     <Compile Include="Controls\LevelItemPresenter\XmlCollectablePresenter.cs" />
     <Compile Include="Controls\OperateControl.xaml.cs">
       <DependentUpon>OperateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RadioButtons\RadioButtonBase.cs" />
+    <Compile Include="Controls\RadioButtons\RadioButtonSelectCheckpoint.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectCollectable.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonTool.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectAnimation.cs" />
@@ -91,6 +96,7 @@
     <Compile Include="Controls\TextureFolderControl.xaml.cs">
       <DependentUpon>TextureFolderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Editor\EditorMode.cs" />
     <Compile Include="Extensions\LevelEditorXmlExtension.cs" />
     <Compile Include="Helper\FindWindowHelper.cs" />
     <Compile Include="Controls\LevelGrid.cs" />
@@ -104,6 +110,10 @@
       <DependentUpon>ShowBlockItemWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\Edit\EditBlockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Edit\EditCheckpointControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

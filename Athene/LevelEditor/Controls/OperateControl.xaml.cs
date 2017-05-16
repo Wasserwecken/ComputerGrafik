@@ -60,19 +60,32 @@ namespace LevelEditor.Controls
             RadioButtonTool removeAttachedButton = new RadioButtonTool("Angehängte Textur\nentfernen",
                 Directory.GetCurrentDirectory() + @"/CommonImages/Delete-File-96.png", TextureRadioButtonAction.RemoveAttachedTexture);
 
-            RadioButtonTool addCheckpointButton = new RadioButtonTool("Checkpoint\nhinzufügen",
-               Directory.GetCurrentDirectory() + @"/CommonImages/Home-96.png", TextureRadioButtonAction.AddCheckpoint);
 
             nullButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
             selectButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
             removeAttachedButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
-            addCheckpointButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
+           
 
             folder.AddRadioButton(nullButton);
             folder.AddRadioButton(selectButton);
             folder.AddRadioButton(removeAttachedButton);
-            folder.AddRadioButton(addCheckpointButton);
             TextureWrapPanel.Children.Add(folder);
+        }
+
+        public void InitCheckpoints()
+        {
+            var checkPoints = CheckpointLoader.GetCheckpoints().CheckpointAnimations;
+            var folder = new TextureFolderControl("Checkpoints");
+
+            foreach (var xmlCheckpoint in checkPoints)
+            {
+                RadioButtonSelectCheckpoint radioButton = new RadioButtonSelectCheckpoint(xmlCheckpoint);
+                radioButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
+                folder.AddRadioButton(radioButton);
+            }
+            TextureWrapPanel.Children.Add(folder);
+
+
         }
 
         public void InitCollectableItems()
@@ -93,7 +106,7 @@ namespace LevelEditor.Controls
         public void InitAnimatedBlocks()
         {
             var animationList = AnimationLoader.GetBlockAnimations();
-            var folder = new TextureFolderControl("Animierte Blöcke");
+            var folder = new TextureFolderControl("Animierte Blöcke", true);
 
             foreach (var xmlAnimatedBlock in animationList.Animations)
             {
@@ -116,7 +129,7 @@ namespace LevelEditor.Controls
             {
                 var dir = new DirectoryInfo(sDir);
                 var files = dir.GetFiles();
-                var texFolderControl = new TextureFolderControl(dir.Name);
+                var texFolderControl = new TextureFolderControl(dir.Name, true);
                 foreach (var fileInfo in files)
                 {
                     /* Only png files */

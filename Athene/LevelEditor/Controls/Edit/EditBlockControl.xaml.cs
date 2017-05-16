@@ -26,6 +26,7 @@ namespace LevelEditor.Controls.Edit
     {
         private XmlTexture _currentXmlTexture;
         public XmlBlock CurrentXmlBlock { get; set; }
+        private LevelItemButton CurrentButton { get; set; }
 
         public EditBlockControl()
         {
@@ -33,6 +34,10 @@ namespace LevelEditor.Controls.Edit
 
             ComboBoxBlockTypes.ItemsSource = Enum.GetValues(typeof(BlockType));
             ButtonSave.Click += ButtonSave_Click;
+            ButtonDeleteAttachedLink.Click += (s, e) =>
+            {
+                CurrentButton.AttachLink(BlockLinkType.Image, null);
+            };
         }
 
         /// <summary>
@@ -64,10 +69,12 @@ namespace LevelEditor.Controls.Edit
         /// </summary>
         /// <param name="block"></param>
         /// <param name="texture"></param>
-        public void ShowBlock(XmlBlock block, XmlTexture texture)
+        /// <param name="senderButton"></param>
+        public void ShowBlock(XmlBlock block, XmlTexture texture, LevelItemButton senderButton)
         {
             CurrentXmlBlock = block;
             _currentXmlTexture = texture;
+            CurrentButton = senderButton;
 
             TextBlockCoordinates.Text = "(" + block.X + "|" + block.Y + ")";
 
