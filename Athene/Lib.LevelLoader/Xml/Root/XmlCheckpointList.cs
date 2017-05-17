@@ -19,7 +19,7 @@ namespace Lib.LevelLoader.Xml.Root
         /// animations
         /// </summary>
         [XmlArray("Checkpoints")]
-        [XmlArrayItem("Animation", typeof(XmlAnimation))]
-        public List<XmlAnimation> CheckpointAnimations { get; set; }
+        [XmlArrayItem("Checkpoint", typeof(XmlCheckpointItem))]
+        public List<XmlCheckpointItem> Checkpoints { get; set; }
     }
 }

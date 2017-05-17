@@ -105,7 +105,11 @@ namespace LevelEditor.Controls
             SetImage(texture.Path);
         }
 
-        public void SetXmlCheckpoint(XmlAnimation animation)
+        /// <summary>
+        /// sets the block to a checkpoint
+        /// </summary>
+        /// <param name="checkpointItem"></param>
+        public void SetXmlCheckpoint(XmlCheckpointItem checkpointItem)
         {
             ResetTextBlock();
 
@@ -115,7 +119,7 @@ namespace LevelEditor.Controls
 
             XmlCheckpoint xmlCheckpoint = new XmlCheckpoint()
             {
-                Link = animation.Id,
+                Link = checkpointItem.Id,
                 X = X,
                 Y = Y
             };
@@ -125,7 +129,7 @@ namespace LevelEditor.Controls
                 XmLLevelItemBase = xmlCheckpoint
             };
 
-            SetImage(animation.GetFirstImage().FullName, UriKind.Absolute);
+            SetImage(checkpointItem.GetFirstImage().FullName, UriKind.Absolute);
         }
 
         public void SetXmlCollectable(XmlCollectableItem collectable, XmlLinkTypeBase attachedLink = null)

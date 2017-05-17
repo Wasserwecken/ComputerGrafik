@@ -193,7 +193,7 @@ namespace LevelEditor.Extensions
                 var checkpoint = level.Checkpoints.FirstOrDefault(c => c.X == button.X && c.Y == button.Y);
                 if (checkpoint != null)
                 {
-                    var checkpointAnimation = CheckpointLoader.GetCheckpoints().CheckpointAnimations.FirstOrDefault(a => a.Id == checkpoint.Link);
+                    var xmlCheckpointItem = CheckpointLoader.GetCheckpoints().Checkpoints.FirstOrDefault(a => a.Id == checkpoint.Link);
                     XmlLinkTypeBase attachedLink = null;
 
                     if (checkpoint.AttachedLink != null)
@@ -207,7 +207,7 @@ namespace LevelEditor.Extensions
                             attachedLink = AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == block.AttachedLink);
                         }
                     }
-                    button.SetXmlCheckpoint(checkpointAnimation);
+                    button.SetXmlCheckpoint(xmlCheckpointItem);
                 }
 
 

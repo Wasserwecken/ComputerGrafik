@@ -53,8 +53,9 @@
     <Compile Include="Xml\LevelItems\XmlCheckpoint.cs" />
     <Compile Include="Xml\LevelItems\XmlCollectable.cs" />
     <Compile Include="Xml\LinkTypes\XmlAnimation.cs" />
+    <Compile Include="Xml\LinkTypes\XmlCheckpointItem.cs" />
     <Compile Include="Xml\LinkTypes\XmlCollectableItem.cs" />
-    <Compile Include="Xml\LinkTypes\XmlCollectableItemType.cs" />
+    <Compile Include="LevelItems\CollectableItemType.cs" />
     <Compile Include="Xml\LinkTypes\XmlLinkTypeBase.cs" />
     <Compile Include="Xml\Root\XmlAnimationList.cs" />
     <Compile Include="Xml\LevelItems\XmlBlock.cs" />
