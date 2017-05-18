@@ -38,23 +38,13 @@ namespace Lib.Level.Items
         /// <summary>
         /// Status of the player
         /// </summary>
-        private MoveableObjectStatus Status { get; set; }
+        private PlayerStatus Status { get; set; }
 
         /// <summary>
         /// Input layout for the player
         /// </summary>
         private InputLayout<PlayerActions> InputLayout { get; set; }
         
-        /// <summary>
-        /// Determines if the player is allowed to execute a jump
-        /// </summary>
-        private bool IsJumpAllowed { get; set; }
-
-        /// <summary>
-        /// Determines if the player is currently jumping
-        /// </summary>
-        private bool IsJumping { get { return Physics.Energy.Y > 0; } }
-
         /// <summary>
         /// Range where interactions can be requested by other items
         /// </summary>
@@ -72,7 +62,7 @@ namespace Lib.Level.Items
                 Dictionary<BlockType, EnergyObjectProperties> forceProperties)
             : base(startPosition, new Vector2(0.75f, 0.75f))
 		{
-            Status = new MoveableObjectStatus();
+            Status = new PlayerStatus();
 			InputValues = new PlayerActions();
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
             Inventory = new List<IInventoryItem>();
@@ -80,7 +70,6 @@ namespace Lib.Level.Items
             
 			Sprite = sprite;
             HasCollisionCorrection = true;
-            IsJumpAllowed = false;
 		}
 
         
@@ -100,6 +89,8 @@ namespace Lib.Level.Items
         /// </summary>
         public void Draw()
 		{
+            SetAnimation();
+
             float offsetValue = 2f;
             var x = HitBox.Position.X + offsetValue;
             var y = HitBox.Position.Y + offsetValue;
@@ -134,16 +125,16 @@ namespace Lib.Level.Items
 
             // tries to execute a jump of the player. In some environments or situations
             // it will be not allowed to jump (e.g. water)
-            if (InputValues.Jump && IsJumpAllowed && !IsJumping)
+            if (InputValues.Jump && Status.IsJumpAllowed && !Status.IsJumping)
             {
                 Physics.ApplyImpulse(new Vector2(0, 0.3f));
-                IsJumpAllowed = false;
+                Status.IsJumpAllowed = false;
             }
 
-            if (InputValues.Helping && IsJumpAllowed && !IsJumping)
+            if (InputValues.Helping && Status.IsJumpAllowed && !Status.IsJumping)
             {
                 Physics.ApplyImpulse(new Vector2(0.5f, 0.4f));
-                IsJumpAllowed = false;
+                Status.IsJumpAllowed = false;
             }
 
             //Apply now the added energy
@@ -163,17 +154,6 @@ namespace Lib.Level.Items
         /// <param name="intersectingItems"></param>
         public void HandleCollisions(List<IIntersectable> intersectingItems)
         {
-            //Set the environment, because if there is no collision, the player has to adapt the default environment
-            Physics.SetEnvironment(BlockType.Air);
-            foreach (IIntersectable item in intersectingItems)
-            {
-                if (item is Block && item.HitBox.Contains(HitBox.Center))
-                {
-                    Physics.SetEnvironment(((Block)item).BlockType);
-                }
-            }
-
-            //Collisions
             var report = CollisionManager.HandleCollisions(HitBox, intersectingItems);
 
             if (report.CorrectedHorizontal)
@@ -181,21 +161,74 @@ namespace Lib.Level.Items
             if (report.CorrectedVertical)
                 Physics.StopBodyOnAxisY();
 
-            if (Physics.CurrentEnvironment == BlockType.Air)
+            SetEnvironment(intersectingItems);
+            SetPlayerStatus(report);
+        }
+
+
+        /// <summary>
+        /// Evaluates the collision report and sets values for the player
+        /// </summary>
+        /// <param name="intersectingItems"></param>
+        private void SetPlayerStatus(CollisionReport report)
+        {
+            if (Physics.Energy.Y < 0)
             {
-                ((SpriteAnimated)Sprite).StartAnimation("walk");
-                IsJumpAllowed = false;
-
-                //This will allow the player to jump out of water
-                if (report.IsBottomWater && report.IsSolidOnSide)
-                    IsJumpAllowed = true;
-
-                //defining the normal jump
-                if (report.IsSolidOnBottom)
-                    IsJumpAllowed = true;
+                Status.IsFalling = true;
+                Status.IsJumpAllowed = false;
+                Status.IsGrounded = false;
             }
-            if (Physics.CurrentEnvironment == BlockType.Water)
-                ((SpriteAnimated)Sprite).StartAnimation("swim");
+            else if (Physics.Energy.Y > 0)
+            {
+                Status.IsFalling = false;
+                Status.IsJumping = true;
+                Status.IsGrounded = false;
+            }
+            else
+            {
+                Status.IsFalling = false;
+                Status.IsJumping = false;
+                Status.IsGrounded = true;
+            }
+            
+
+            Status.IsIdle = (Math.Abs(Physics.Energy.X) <= 0 && Math.Abs(Physics.Energy.Y) <= 0);                
+
+
+            if (Status.Environment == BlockType.Air)
+                Status.IsJumpAllowed = (report.IsBottomWater && report.IsSolidOnSide) || Status.IsGrounded;
+        }
+        
+        /// <summary>
+        /// Sets the current animation for the player that should be played
+        /// </summary>
+        private void SetAnimation()
+        {
+            var playerSprite = (SpriteAnimated)Sprite;
+
+            if (Status.Environment == BlockType.Water)
+                playerSprite.StartAnimation("swim");
+
+            if (Status.Environment == BlockType.Air)
+                playerSprite.StartAnimation("walk");
+        }
+
+        /// <summary>
+        /// Sets the environment for the physics body, based on all intersections
+        /// </summary>
+        /// <param name="intersectingItems"></param>
+        private void SetEnvironment(List<IIntersectable> intersectingItems)
+        {
+            //Set the environment, because if there is no collision, the player has to adapt the default environment
+            var playerEnvironment = BlockType.Air;
+            foreach (IIntersectable item in intersectingItems)
+            {
+                if (item is Block && item.HitBox.Contains(HitBox.Center))
+                    playerEnvironment = ((Block)item).BlockType;
+            }
+
+            Status.Environment = playerEnvironment;
+            Physics.SetEnvironment(playerEnvironment);
         }
     }
 }

@@ -115,9 +115,7 @@ namespace Lib.Level.Collision
                 {
                     if (levelItem.BlockType == BlockType.Water)
                         report.IsBottomWater = true;
-
-                    if (reportItem.Item is Player)
-                        report.IsSolidOnBottom = true;
+                    
                 }
 
 
@@ -125,13 +123,6 @@ namespace Lib.Level.Collision
                 {
                     if (levelItem.BlockType == BlockType.Solid)
                         report.IsSolidOnSide = true;
-                }
-
-
-                if (reportItem.ItemAlignment == Alignment.Bottom)
-                {
-                    if (levelItem.BlockType == BlockType.Solid)
-                        report.IsSolidOnBottom = true;
                 }
             }
         }

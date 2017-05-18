@@ -58,7 +58,7 @@
     <Compile Include="Items\Player.cs" />
     <Compile Include="Items\PlayerActions.cs" />
     <Compile Include="Items\PlayerFactory.cs" />
-    <Compile Include="Items\MoveableObjectStatus.cs" />
+    <Compile Include="Items\PlayerStatus.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Physics\EnergyObject.cs" />
     <Compile Include="Physics\EnergyObjectProperties.cs" />

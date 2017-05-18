@@ -50,7 +50,7 @@ namespace Lib.Level.Physics
 		public void ApplyImpulse(Vector2 impuls)
 		{
 			//An implus does not build up energy, its directly added
-			ImpulseObject.CurrentEnergy += impuls;
+			ImpulseObject.Energy += impuls;
             ImpulseObject.SetLastInput(impuls);
 		}
 
@@ -70,8 +70,8 @@ namespace Lib.Level.Physics
         {
             ForceObject.ProcessEnergyInput();
             ImpulseObject.ProcessEnergyInput();
-            
-            Energy = ImpulseObject.CurrentEnergy + ForceObject.CurrentEnergy;
+
+            SetEnergy();
             return Energy;
         }
 
@@ -82,6 +82,7 @@ namespace Lib.Level.Physics
         {
             ImpulseObject.StopOnAxisX();
             ForceObject.StopOnAxisX();
+            SetEnergy();
         }
 
         /// <summary>
@@ -91,6 +92,7 @@ namespace Lib.Level.Physics
         {
             ImpulseObject.StopOnAxisY();
             ForceObject.StopOnAxisY();
+            SetEnergy();
         }
 
         /// <summary>
@@ -103,6 +105,15 @@ namespace Lib.Level.Physics
 
             ImpulseObject.SetEnvironment(environment);
             ForceObject.SetEnvironment(environment);
+        }
+
+
+        /// <summary>
+        /// Calculates the energy of the body from both objects
+        /// </summary>
+        private void SetEnergy()
+        {
+            Energy = ImpulseObject.Energy + ForceObject.Energy;
         }
     }
 }

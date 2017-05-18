@@ -14,7 +14,7 @@ namespace Lib.Level.Physics
         /// <summary>
         /// Current energy of the object
         /// </summary>
-        public Vector2 CurrentEnergy { get; set; }
+        public Vector2 Energy { get; set; }
 
         /// <summary>
         /// Current used behaviour
@@ -49,7 +49,7 @@ namespace Lib.Level.Physics
         public EnergyObject(Dictionary<BlockType, EnergyObjectProperties> properties)
         {
             Properties = properties;
-            CurrentEnergy = Vector2.Zero;
+            Energy = Vector2.Zero;
 
             SetEnvironment(Properties.First().Key);
         }
@@ -70,7 +70,7 @@ namespace Lib.Level.Physics
         /// </summary>
         public void StopOnAxisX()
         {
-            CurrentEnergy = new Vector2(0, CurrentEnergy.Y);
+            Energy = new Vector2(0, Energy.Y);
             LastInput = new Vector2(0, LastInput.Y);
         }
 
@@ -79,7 +79,7 @@ namespace Lib.Level.Physics
         /// </summary>
         public void StopOnAxisY()
         {
-            CurrentEnergy = new Vector2(CurrentEnergy.X, 0);
+            Energy = new Vector2(Energy.X, 0);
             LastInput = new Vector2(LastInput.X, 0);
         }
 
@@ -106,17 +106,17 @@ namespace Lib.Level.Physics
             SetLastInput(Input);
 
             //Calc energy, also resets the last processed force if there is no input anymore and all energy has been build down
-            float newEnergyX = GetNewEnergyValue(CurrentEnergy.X, Input.X, LastInput.X, CurrentProperties.Momentum.X);
+            float newEnergyX = GetNewEnergyValue(Energy.X, Input.X, LastInput.X, CurrentProperties.Momentum.X);
             if (Math.Abs(newEnergyX) <= 0)
                 LastInput = new Vector2(0, LastInput.Y);
 
-            float newEnergyY = GetNewEnergyValue(CurrentEnergy.Y, Input.Y, LastInput.Y, CurrentProperties.Momentum.Y);
+            float newEnergyY = GetNewEnergyValue(Energy.Y, Input.Y, LastInput.Y, CurrentProperties.Momentum.Y);
             if (Math.Abs(newEnergyY) <= 0)
                 LastInput = new Vector2(LastInput.X, 0);
 
             //Adding the energy level to the position to get the new calculated position
             Input = Vector2.Zero;
-            CurrentEnergy = new Vector2(newEnergyX, newEnergyY);
+            Energy = new Vector2(newEnergyX, newEnergyY);
         }
 
                 /// <summary>

@@ -35,11 +35,6 @@ namespace Lib.Level.Collision
         /// </summary>
         public bool IsSolidOnSide { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool IsSolidOnBottom { get; set; }
-
 
         /// <summary>
         /// Initialises the report with standard values
@@ -48,7 +43,8 @@ namespace Lib.Level.Collision
         {
             IsBottomWater = false;
             IsSolidOnSide = false;
-            IsSolidOnBottom = false;
+            CorrectedHorizontal = false;
+            CorrectedVertical = false;
         }
     }
 }
