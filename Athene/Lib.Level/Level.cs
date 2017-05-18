@@ -123,8 +123,10 @@ namespace Lib.Level
         {
             List<IIntersectable> intersectingItems = null;
 
+
             if (item is IMoveable)
                 ((IMoveable)item).Move();
+
 
             if (item is IIntersectable)
             {
@@ -133,6 +135,7 @@ namespace Lib.Level
 
                 ((IIntersectable)item).HandleCollisions(intersectingItems);
             }
+
 
             if (item is IInteractable)
             {
@@ -195,8 +198,7 @@ namespace Lib.Level
                 maxPlayerXPos = Math.Max(maxPlayerXPos, ActivePlayers[index].ViewPoint.X);
                 maxPlayerYPos = Math.Max(maxPlayerYPos, ActivePlayers[index].ViewPoint.Y);
             }
-
-
+            
             MaxPlayersDistance = new Vector2(maxPlayerXPos - minPlayerXPos, maxPlayerYPos - minPlayerYPos);
             PlayersCenter = playersPositionSum / ActivePlayers.Count;
         }

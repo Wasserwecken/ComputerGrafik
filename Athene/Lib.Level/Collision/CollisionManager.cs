@@ -1,4 +1,6 @@
 ﻿using Lib.Level.Base;
+using Lib.Level.Items;
+using Lib.LevelLoader.LevelItems;
 using Lib.Tools;
 using OpenTK;
 using System;
@@ -17,23 +19,29 @@ namespace Lib.Level.Collision
         /// <param name="sourceBox"></param>
         /// <param name="intersections"></param>
         /// <returns></returns>
-        public static CollisionReport HandleCollisions(Box2D sourceBox, List<IIntersectable> intersections, Action onCorrectionX, Action onCorrectionY)
+        public static CollisionReport HandleCollisions(Box2D sourceBox, List<IIntersectable> intersections)
         {
-            foreach (var item in intersections)
-                HandleCollision(sourceBox, item, onCorrectionX, onCorrectionY);
+            var report = new CollisionReport();
 
-            return CreateCollisionReport(sourceBox, intersections);
+            foreach (var item in intersections)
+                report.Add(HandleCollision(sourceBox, item));
+
+            EvaluateReport(sourceBox, report);
+
+            return report;
         }
 
         /// <summary>
 	    /// React to a collision with a block, may correcting it and returning the blocks alignment
 	    /// </summary>
 	    /// <param name="collidingItem">the colliding block</param>
-	    private static void HandleCollision(Box2D sourceBox, IIntersectable collidingItem, Action onCorrectionX, Action onCorrectionY)
+	    private static CollisionReportItem HandleCollision(Box2D sourceBox, IIntersectable collidingItem)
         {
             var intersectSize = sourceBox.GetIntersectSize(collidingItem.HitBox);
             float intersectSizeX = intersectSize.X;
             float intersectSizeY = intersectSize.Y;
+            bool correctedVertical = false;
+            bool correctedHorizontal = false;
 
             // Check now in which direction the physic object has to be corrected. It depends on the center of the boxes.
             // Inverting here the intersectsize to achive the side decision
@@ -59,7 +67,7 @@ namespace Lib.Level.Collision
                     if (intersectSizeY > 0)
                     {
                         sourceBox.Position = new Vector2(sourceBox.Position.X, sourceBox.Position.Y + correctionY);
-                        onCorrectionY();
+                        correctedVertical = true;
                     }
                 }
                 else
@@ -68,10 +76,12 @@ namespace Lib.Level.Collision
                     if (intersectSizeX > 0)
                     {
                         sourceBox.Position = new Vector2(sourceBox.Position.X + correctionX, sourceBox.Position.Y);
-                        onCorrectionX();
+                        correctedHorizontal = true;
                     }
                 }
             }
+
+            return new CollisionReportItem(collidingItem, correctedVertical, correctedHorizontal);
         }
 
         /// <summary>
@@ -79,32 +89,75 @@ namespace Lib.Level.Collision
         /// </summary>
         /// <param name="intersections"></param>
         /// <returns></returns>
-        private static CollisionReport CreateCollisionReport(Box2D sourceBox, List<IIntersectable> intersections)
+        private static void EvaluateReport(Box2D sourceBox, CollisionReport report)
         {
-            CollisionReport report = new CollisionReport();
-
             var sourceCenter = sourceBox.Center;
-            foreach (var item in intersections)
-            {
-                var itemCenter = item.HitBox.Center;
 
-                if (Math.Abs(sourceCenter.X - itemCenter.X) > Math.Abs(sourceCenter.Y - itemCenter.Y))
+            foreach (var reportItem in report)
+            {
+                EvaluateAlignment(sourceCenter, reportItem);
+                EvaluateSurroundings(report, reportItem);
+
+                report.CorrectedVertical = report.CorrectedVertical || reportItem.CausedVerticalCorrection;
+                report.CorrectedHorizontal = report.CorrectedHorizontal || reportItem.CausedHorizontalCorrection;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reportItem"></param>
+        private static void EvaluateSurroundings(CollisionReport report, CollisionReportItem reportItem)
+        {
+            if (reportItem.Item is LevelItemBase levelItem)
+            {
+                if (reportItem.ItemAlignment == Alignment.Bottom)
                 {
-                    if (itemCenter.X > sourceCenter.X)
-                        report.Add(new CollisionReportItem(Alignment.Left, item));
-                    else
-                        report.Add(new CollisionReportItem(Alignment.Right, item));
+                    if (levelItem.BlockType == BlockType.Water)
+                        report.IsBottomWater = true;
+
+                    if (reportItem.Item is Player)
+                        report.IsSolidOnBottom = true;
                 }
-                else
+
+
+                if (reportItem.ItemAlignment == Alignment.Left || reportItem.ItemAlignment == Alignment.Right)
                 {
-                    if (itemCenter.Y > sourceCenter.Y)
-                        report.Add(new CollisionReportItem(Alignment.Top, item));
-                    else
-                        report.Add(new CollisionReportItem(Alignment.Bottom, item));
+                    if (levelItem.BlockType == BlockType.Solid)
+                        report.IsSolidOnSide = true;
+                }
+
+
+                if (reportItem.ItemAlignment == Alignment.Bottom)
+                {
+                    if (levelItem.BlockType == BlockType.Solid)
+                        report.IsSolidOnBottom = true;
                 }
             }
+        }
 
-            return report;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        private static void EvaluateAlignment(Vector2 sourceCenter, CollisionReportItem reportItem)
+        {
+            var itemCenter = reportItem.Item.HitBox.Center;
+
+            if (Math.Abs(sourceCenter.X - itemCenter.X) > Math.Abs(sourceCenter.Y - itemCenter.Y))
+            {
+                if (itemCenter.X > sourceCenter.X)
+                    reportItem.ItemAlignment = Alignment.Left;
+                else
+                    reportItem.ItemAlignment = Alignment.Right;
+            }
+            else
+            {
+                if (itemCenter.Y > sourceCenter.Y)
+                    reportItem.ItemAlignment = Alignment.Top;
+                else
+                    reportItem.ItemAlignment = Alignment.Bottom;
+            }
         }
     }
 }

@@ -66,13 +66,13 @@ namespace Lib.Level.Physics
 		/// <summary>
 		/// Updates the bodys position, in order of applyed force and gravity. Also corrects analysis collisions
 		/// </summary>
-		public Vector2 ProcessInput(Vector2 position)
+		public Vector2 Process(Vector2 position)
         {
             ForceObject.ProcessEnergyInput();
             ImpulseObject.ProcessEnergyInput();
             
             Energy = ImpulseObject.CurrentEnergy + ForceObject.CurrentEnergy;
-            return position + Energy;
+            return Energy;
         }
 
        /// <summary>

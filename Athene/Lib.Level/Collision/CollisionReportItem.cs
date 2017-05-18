@@ -11,6 +11,16 @@ namespace Lib.Level.Collision
     public class CollisionReportItem
     {
         /// <summary>
+        /// Checks if the item has been corrected
+        /// </summary>
+        public bool CausedVerticalCorrection { get; set; }
+
+        /// <summary>
+        /// Checks if the item has been corrected
+        /// </summary>
+        public bool CausedHorizontalCorrection { get; set; }
+
+        /// <summary>
         /// Alignment of the object to the checked object
         /// </summary>
         public Alignment ItemAlignment { get; set; }
@@ -26,10 +36,11 @@ namespace Lib.Level.Collision
         /// </summary>
         /// <param name="itemAlignment"></param>
         /// <param name="item"></param>
-        public CollisionReportItem(Alignment itemAlignment, IIntersectable item)
+        public CollisionReportItem(IIntersectable item, bool correctedVertical, bool correctedHorizontal)
         {
-            ItemAlignment = itemAlignment;
             Item = item;
+            CausedHorizontalCorrection = correctedHorizontal;
+            CausedVerticalCorrection = correctedVertical;
         }
     }
 }

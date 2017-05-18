@@ -35,10 +35,15 @@ namespace Lib.Level.Items
 		/// </summary>
 		private PlayerActions InputValues { get; }
 
-		/// <summary>
-		/// Input layout for the player
-		/// </summary>
-		private InputLayout<PlayerActions> InputLayout { get; set; }
+        /// <summary>
+        /// Status of the player
+        /// </summary>
+        private MoveableObjectStatus Status { get; set; }
+
+        /// <summary>
+        /// Input layout for the player
+        /// </summary>
+        private InputLayout<PlayerActions> InputLayout { get; set; }
         
         /// <summary>
         /// Determines if the player is allowed to execute a jump
@@ -67,6 +72,7 @@ namespace Lib.Level.Items
                 Dictionary<BlockType, EnergyObjectProperties> forceProperties)
             : base(startPosition, new Vector2(0.75f, 0.75f))
 		{
+            Status = new MoveableObjectStatus();
 			InputValues = new PlayerActions();
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
             Inventory = new List<IInventoryItem>();
@@ -109,30 +115,6 @@ namespace Lib.Level.Items
             Sprite.Draw(HitBox.Position, new Vector2(0.8f));
 		}
 
-
-        /// <summary>
-        /// Processing the collision report to analyze what the player is able / allowed to do
-        /// </summary>
-        /// <param name="intersections"></param>
-        private void ProcessIntersectionReport(CollisionReport report)
-        {
-            if (Physics.CurrentEnvironment == BlockType.Air)
-            {
-                ((SpriteAnimated)Sprite).StartAnimation("walk");
-                IsJumpAllowed = false;
-
-                //This will allow the player to jump out of water
-                if(report.IsBottomWater && report.IsSolidOnSide)
-                   IsJumpAllowed = true;
-
-                //defining the normal jump
-                if (report.IsSolidOnBottom)
-                    IsJumpAllowed = true;
-            }
-            if (Physics.CurrentEnvironment == BlockType.Water)
-                ((SpriteAnimated)Sprite).StartAnimation("swim");
-        }
-
         /// <summary>
         /// Executes the momvement logic of the player
         /// </summary>
@@ -165,7 +147,8 @@ namespace Lib.Level.Items
             }
 
             //Apply now the added energy
-            HitBox.Position = Physics.ProcessInput(HitBox.Position);
+            Status.MoveDirection = Physics.Process(HitBox.Position);
+            HitBox.Position += Status.MoveDirection;
         }
 
         /// <summary>
@@ -186,13 +169,33 @@ namespace Lib.Level.Items
             {
                 if (item is Block && item.HitBox.Contains(HitBox.Center))
                 {
-                   Physics.SetEnvironment(((Block)item).BlockType);
+                    Physics.SetEnvironment(((Block)item).BlockType);
                 }
             }
 
             //Collisions
-            var report = CollisionManager.HandleCollisions(HitBox, intersectingItems, () => Physics.StopBodyOnAxisX(), () => Physics.StopBodyOnAxisY());
-            ProcessIntersectionReport(report);
+            var report = CollisionManager.HandleCollisions(HitBox, intersectingItems);
+
+            if (report.CorrectedHorizontal)
+                Physics.StopBodyOnAxisX();
+            if (report.CorrectedVertical)
+                Physics.StopBodyOnAxisY();
+
+            if (Physics.CurrentEnvironment == BlockType.Air)
+            {
+                ((SpriteAnimated)Sprite).StartAnimation("walk");
+                IsJumpAllowed = false;
+
+                //This will allow the player to jump out of water
+                if (report.IsBottomWater && report.IsSolidOnSide)
+                    IsJumpAllowed = true;
+
+                //defining the normal jump
+                if (report.IsSolidOnBottom)
+                    IsJumpAllowed = true;
+            }
+            if (Physics.CurrentEnvironment == BlockType.Water)
+                ((SpriteAnimated)Sprite).StartAnimation("swim");
         }
     }
 }
