@@ -18,7 +18,7 @@ namespace Lib.Level.Collision
         /// <summary>
         /// Item that is colliding with the checked object
         /// </summary>
-        public LevelItemBase Item { get; set; }
+        public IIntersectable Item { get; set; }
 
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Lib.Level.Collision
         /// </summary>
         /// <param name="itemAlignment"></param>
         /// <param name="item"></param>
-        public CollisionReportItem(Alignment itemAlignment, LevelItemBase item)
+        public CollisionReportItem(Alignment itemAlignment, IIntersectable item)
         {
             ItemAlignment = itemAlignment;
             Item = item;

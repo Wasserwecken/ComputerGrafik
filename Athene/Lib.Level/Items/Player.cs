@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace Lib.Level.Items
 {
     public class Player
-        : LevelItemBase
+        : LevelItemBase, IDrawable, IMoveable, IInteractable, IIntersectable
 	{
 		/// <summary>
 		/// Sets the values for the offset where the camera should point on
@@ -49,63 +49,35 @@ namespace Lib.Level.Items
         /// Determines if the player is currently jumping
         /// </summary>
         private bool IsJumping { get { return Physics.Energy.Y > 0; } }
-        
-	   
-		/// <summary>
-		/// Initialises a player
-		/// </summary>
-		public Player(
-			Vector2 startPosition,
-			InputMapList<PlayerActions> inputMapping,
-			SpriteAnimated sprite)
+
+        /// <summary>
+        /// Range where interactions can be requested by other items
+        /// </summary>
+        public float InteractionRadius { get; set; }
+
+
+        /// <summary>
+        /// Initialises a player
+        /// </summary>
+        public Player(
+			    Vector2 startPosition,
+			    InputMapList<PlayerActions> inputMapping,
+			    SpriteAnimated sprite,
+                Dictionary<BlockType, EnergyObjectProperties> impulseProperties,
+                Dictionary<BlockType, EnergyObjectProperties> forceProperties)
             : base(startPosition, new Vector2(0.75f, 0.75f))
 		{
-			//Bind the input
 			InputValues = new PlayerActions();
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
-            
             Inventory = new List<IInventoryItem>();
-
-            //set physic behaviour
-            var impulseProps = new Dictionary<BlockType, EnergyObjectProperties>
-            {
-                {BlockType.Air, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
-                {BlockType.Solid, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
-                {BlockType.Ladder, new EnergyObjectProperties(10f, 10f, 0.1f, 0f)},
-                {BlockType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, 0f)},
-                {BlockType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
-            };
-            var forceProps = new Dictionary<BlockType, EnergyObjectProperties>
-            {
-                {BlockType.Air, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
-                {BlockType.Solid, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
-                {BlockType.Ladder, new EnergyObjectProperties(6f, 6f, 0.1f, 0f)},
-                {BlockType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, -0.01f)},
-                {BlockType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
-            };
-			Physics = new PhysicBody(impulseProps, forceProps);
-
-			//set other
+			Physics = new PhysicBody(impulseProperties, forceProperties);
+            
 			Sprite = sprite;
-            Collision = true;
+            HasCollisionCorrection = true;
             IsJumpAllowed = false;
 		}
 
-
-		/// <summary>
-		/// Updates all interactions of the player for a single step
-		/// </summary>
-		public void UpdateLogic()
-		{
-			ProcessInput();
-
-            //Physics
-            HitBox.Position = Physics.ProcessInput(HitBox.Position);
-            
-            //View things
-            UpdateOffsetViewPoint();
-		}
-
+        
         /// <summary>
         /// Adds a item to the inventory
         /// </summary>
@@ -115,26 +87,6 @@ namespace Lib.Level.Items
 	        Inventory.Add(item);
 	        item.IsActive = false;
 	    }
-
-
-        /// <summary>
-        /// reacts to intersections
-        /// </summary>
-        /// <param name="intersections"></param>
-        public void HandleIntersections(List<LevelItemBase> intersections)
-        {
-            //Set the environment, because if there is no collision, the player has to adapt the default environment
-            Physics.SetEnvironment(BlockType.Air);
-            foreach (LevelItemBase item in intersections)
-            {
-                if (item.HitBox.Contains(HitBox.Center))
-                    Physics.SetEnvironment(item.BlockType);
-            }
-
-            //Collisions
-            var report = CollisionManager.HandleCollisions(HitBox, intersections, () => Physics.StopBodyOnAxisX(), () => Physics.StopBodyOnAxisY());
-            ProcessIntersectionReport(report);
-        }
         
 
         /// <summary>
@@ -142,6 +94,13 @@ namespace Lib.Level.Items
         /// </summary>
         public void Draw()
 		{
+            float offsetValue = 2f;
+            var x = HitBox.Position.X + offsetValue;
+            var y = HitBox.Position.Y + offsetValue;
+
+            ViewPoint = new Vector2(x, y);
+
+
             if (Physics.Energy.X > 0)
                 Sprite.FlipTextureHorizontal = false;
             if (Physics.Energy.X < 0)
@@ -175,10 +134,10 @@ namespace Lib.Level.Items
         }
 
         /// <summary>
-        /// Process the input values
+        /// Executes the momvement logic of the player
         /// </summary>
-        private void ProcessInput()
-		{
+        public void Move()
+        {
             // tries to move the player in a given direction.
             // The direction values should be between -1 and 1 for x and y
             var directionHorizontal = InputValues.MoveRight - InputValues.MoveLeft;
@@ -187,15 +146,15 @@ namespace Lib.Level.Items
             //restrict the move direction by environment (in air, the player is not allowed to manipulate its force in the y axis)
             if (Physics.CurrentEnvironment == BlockType.Air)
                 directionVertical = 0;
-            
-			Physics.ApplyForce(new Vector2(directionHorizontal, directionVertical));
-            
 
-			// tries to execute a jump of the player. In some environments or situations
-			// it will be not allowed to jump (e.g. water)
+            Physics.ApplyForce(new Vector2(directionHorizontal, directionVertical));
+
+
+            // tries to execute a jump of the player. In some environments or situations
+            // it will be not allowed to jump (e.g. water)
             if (InputValues.Jump && IsJumpAllowed && !IsJumping)
             {
-				Physics.ApplyImpulse(new Vector2(0, 0.3f));
+                Physics.ApplyImpulse(new Vector2(0, 0.3f));
                 IsJumpAllowed = false;
             }
 
@@ -204,18 +163,36 @@ namespace Lib.Level.Items
                 Physics.ApplyImpulse(new Vector2(0.5f, 0.4f));
                 IsJumpAllowed = false;
             }
-		}
 
-		/// <summary>
-		/// Calcs the view point for the camera
-		/// </summary>
-		private void UpdateOffsetViewPoint()
-		{
-			float offsetValue = 2f;
-			var x = HitBox.Position.X + offsetValue;
-			var y = HitBox.Position.Y + offsetValue;
+            //Apply now the added energy
+            HitBox.Position = Physics.ProcessInput(HitBox.Position);
+        }
 
-			ViewPoint = new Vector2(x, y);
-		}
+        /// <summary>
+        /// Execute interactions with other items
+        /// </summary>
+        /// <param name="interactableItem"></param>
+        public void HandleInteractions(List<IInteractable> interactableItem) { }
+
+        /// <summary>
+        /// Reacts to intersections with other items
+        /// </summary>
+        /// <param name="intersectingItems"></param>
+        public void HandleCollisions(List<IIntersectable> intersectingItems)
+        {
+            //Set the environment, because if there is no collision, the player has to adapt the default environment
+            Physics.SetEnvironment(BlockType.Air);
+            foreach (IIntersectable item in intersectingItems)
+            {
+                if (item is Block && item.HitBox.Contains(HitBox.Center))
+                {
+                   Physics.SetEnvironment(((Block)item).BlockType);
+                }
+            }
+
+            //Collisions
+            var report = CollisionManager.HandleCollisions(HitBox, intersectingItems, () => Physics.StopBodyOnAxisX(), () => Physics.StopBodyOnAxisY());
+            ProcessIntersectionReport(report);
+        }
     }
 }

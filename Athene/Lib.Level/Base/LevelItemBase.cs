@@ -33,7 +33,7 @@ namespace Lib.Level.Base
         /// <summary>
         /// collission of the block
         /// </summary>
-        public bool Collision { get; set; }
+        public bool HasCollisionCorrection { get; set; }
 
         /// <summary>
         /// damage of the block

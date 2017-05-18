@@ -1,4 +1,6 @@
 ﻿using Lib.Input.Mapping;
+using Lib.Level.Physics;
+using Lib.LevelLoader.LevelItems;
 using Lib.Visuals.Graphics;
 using OpenTK;
 using OpenTK.Input;
@@ -34,8 +36,26 @@ namespace Lib.Level.Items
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/swim", playerId), 1000);
             playerSprite.StartAnimation("walk");
 
+            //Physics
+            var impulseProps = new Dictionary<BlockType, EnergyObjectProperties>
+            {
+                {BlockType.Air, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
+                {BlockType.Solid, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
+                {BlockType.Ladder, new EnergyObjectProperties(10f, 10f, 0.1f, 0f)},
+                {BlockType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, 0f)},
+                {BlockType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
+            };
+            var forceProps = new Dictionary<BlockType, EnergyObjectProperties>
+            {
+                {BlockType.Air, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
+                {BlockType.Solid, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
+                {BlockType.Ladder, new EnergyObjectProperties(6f, 6f, 0.1f, 0f)},
+                {BlockType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, -0.01f)},
+                {BlockType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
+            };
+
             //create instance
-            return new Player(startPosition, mapList, playerSprite);
+            return new Player(startPosition, mapList, playerSprite, impulseProps, forceProps);
         }
 
 

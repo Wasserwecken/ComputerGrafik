@@ -8,7 +8,7 @@ using Lib.LevelLoader.LevelItems;
 namespace Lib.Level.Items
 {
 	public class Block
-        : LevelItemBase
+        : LevelItemBase, IDrawable, IIntersectable
     {		
 	    /// <summary>
 	    /// Initializes a block
@@ -21,16 +21,16 @@ namespace Lib.Level.Items
 	    /// <param name="collision"></param>
 	    /// <param name="damage"></param>
 	    public Block(Vector2 startPosition, ISprite sprite, BlockType blockType, bool collision, int damage)
-			: base(startPosition, new Vector2(1,1))
+			: base(startPosition, new Vector2(1f, 1f))
         {
             Sprite = sprite;
             BlockType = blockType;
-            Collision = collision;
+            HasCollisionCorrection = collision;
             Damage = damage;
         }
 
         /// <summary>
-        /// Draws the block to it's coordinates
+        /// Draws the block accroding to it's coordinates
         /// </summary>
         public void Draw()
         {
@@ -38,5 +38,11 @@ namespace Lib.Level.Items
             foreach (var attachedSprite in AttachedSprites)
                 attachedSprite.Draw(HitBox.Position, new Vector2(1f));
         }
+
+        /// <summary>
+        /// A block will not react to a collision
+        /// </summary>
+        /// <param name="intersectingItems"></param>
+        public void HandleCollisions(List<IIntersectable> intersectingItems) { }
     }
 }

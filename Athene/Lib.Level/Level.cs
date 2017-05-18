@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lib.Input.Mapping;
 using Lib.LevelLoader.LevelItems;
 using Lib.Visuals.Graphics;
 using OpenTK;
-using OpenTK.Input;
 using Lib.Tools;
 using Lib.Tools.QuadTree;
 using Lib.Level.Items;
@@ -15,32 +11,11 @@ using Lib.Level.Base;
 using Lib.LevelLoader.Xml;
 using System.IO;
 using Lib.LevelLoader;
-using Lib.LevelLoader.Xml;
 
 namespace Lib.Level
 {
     public class Level
     {
-        /// <summary>
-        /// List of all blocks drawn in the level, like walkable, water, lava, trees..
-        /// </summary>
-        public List<Block> Blocks { get; set; }
-
-        /// <summary>
-        /// List of all players in the level
-        /// </summary>
-        public List<Player> Players { get; set; }
-
-        /// <summary>
-        /// list of all checkpoints
-        /// </summary>
-        public List<Checkpoint> Checkpoints { get; set; }
-
-        /// <summary>
-        /// list of all collectables
-        /// </summary>
-        public List<Collectable> Collectables { get; set; }
-
         /// <summary>
         /// Poiint which should be the focus for the camera
         /// </summary>
@@ -51,11 +26,27 @@ namespace Lib.Level
         /// </summary>
         public Vector2 MaxPlayersDistance { get; set; }
 
-        /// <summary>
-        /// QuadTree for all level Blocks
-        /// </summary>
-        private QuadTreeRoot BlocksQuadTree { get; set; }
 
+        /// <summary>
+        /// Blocks which can change their status / appereance / position
+        /// </summary>
+        private List<LevelItemBase> DynamicObjects { get; set; }
+
+        /// <summary>
+        /// Static objects which are loaded
+        /// </summary>
+        private List<LevelItemBase> StaticObjects { get; set; }
+
+        /// <summary>
+        /// Players which are participating in the level
+        /// </summary>
+        private List<Player> ActivePlayers { get; set; }
+
+        /// <summary>
+        /// QuadTree for static ojects
+        /// </summary>
+        private QuadTreeRoot StaticObjectsQuadTree { get; set; }
+        
         /// <summary>
         /// Startposition of players
         /// </summary>
@@ -67,16 +58,21 @@ namespace Lib.Level
         /// </summary>
         public Level(XmlLevel xmlLevel)
 		{
-            Players = new List<Player>();
-            Blocks = new List<Block>();
-            Checkpoints = new List<Checkpoint>();
-            Collectables = new List<Collectable>();
+            DynamicObjects = new List<LevelItemBase>();
+            StaticObjects = new List<LevelItemBase>();
+            ActivePlayers = new List<Player>();
+
 
             LoadLevelFromXmlLevel(xmlLevel);
-            
-            Players.Add(PlayerFactory.CreatePlayer(0, SpawnPosition));
-            Players.Add(PlayerFactory.CreatePlayer(1, SpawnPosition));
-           
+
+            var player1 = PlayerFactory.CreatePlayer(0, SpawnPosition);
+            var player2 = PlayerFactory.CreatePlayer(1, SpawnPosition + new Vector2(1,1));
+
+            DynamicObjects.Add(player1);
+            DynamicObjects.Add(player2);
+            ActivePlayers.Add(player1);
+            ActivePlayers.Add(player2);
+
             InitialiseQuadTree();
 		}
 
@@ -86,42 +82,16 @@ namespace Lib.Level
         /// </summary>
         public void UpdateLogic()
         {
-            //Moving all the characters first
-            foreach (var player in Players)
+            foreach(var item in StaticObjects)
             {
-                player.UpdateLogic();
-
-                var intersections = new List<LevelItemBase>();
-                intersections.AddRange(BlocksQuadTree.GetElementsIn(player.HitBox).ConvertAll(item => (LevelItemBase)item));
-
-                foreach (var otherPlayer in Players)
-                {
-                    if (!player.Equals(otherPlayer) && player.HitBox.IntersectsWith(otherPlayer.HitBox))
-                        intersections.Add(otherPlayer);
-                }
-
-                foreach (var checkpoint in Checkpoints)
-                {
-                    if (player.HitBox.IntersectsWith(checkpoint.HitBox))
-                    {
-                        ///TODO: add checkpoint interactions
-                    }
-                }
-
-                foreach (var collectable in Collectables)
-                {
-                    if (player.HitBox.IntersectsWith(collectable.HitBox) && collectable.IsActive)
-                    {
-                        player.PickUp(collectable);
-                    }
-                }
-
-
-
-                player.HandleIntersections(intersections);
+                UpdateLevelItem(item);
             }
 
-            //Camera settings
+            foreach(var item in DynamicObjects)
+            {
+                UpdateLevelItem(item);
+            }
+
             CalculateCameraInformations();
         }
         
@@ -131,25 +101,77 @@ namespace Lib.Level
         public void Draw(Box2D cameraFOV)
         {
             //Using the quadtree here because, only blocks in the camera view has to be drawn
-            foreach (Block levelBlock in BlocksQuadTree.GetElementsIn(cameraFOV))
-                levelBlock.Draw();
-
-            foreach (var checkpoint in Checkpoints)
+            foreach (LevelItemBase item in StaticObjectsQuadTree.GetElementsIn(cameraFOV))
             {
-                checkpoint.Draw();
+                if (item is IDrawable)
+                    ((IDrawable)item).Draw();
             }
 
-            //Draw players
-            foreach (var player in Players)
-                player.Draw();
-
-           
-
-
-            foreach (var collectable in Collectables)
+            foreach (LevelItemBase item in DynamicObjects)
             {
-                collectable.Draw();
+                if (item is IDrawable)
+                    ((IDrawable)item).Draw();
             }
+        }
+
+
+        /// <summary>
+        /// Updates a level item based on his type
+        /// </summary>
+        /// <param name="item"></param>
+        private void UpdateLevelItem(LevelItemBase item)
+        {
+            List<IIntersectable> intersectingItems = null;
+
+            if (item is IMoveable)
+                ((IMoveable)item).Move();
+
+            if (item is IIntersectable)
+            {
+                if (intersectingItems == null)
+                    intersectingItems = GetIntersectingItems(((IIntersectable)item));
+
+                ((IIntersectable)item).HandleCollisions(intersectingItems);
+            }
+
+            if (item is IInteractable)
+            {
+                List<IInteractable> interactableItems = new List<IInteractable>();
+
+                if (intersectingItems == null)
+                    intersectingItems = GetIntersectingItems(((IIntersectable)item));
+
+                foreach(var intersecItem in intersectingItems)
+                {
+                    if (intersecItem is IInteractable)
+                        interactableItems.Add((IInteractable)intersecItem);
+                }
+                
+                ((IInteractable)item).HandleInteractions(interactableItems);
+            }
+        }
+
+
+        /// <summary>
+        /// Gets a list with all interesecting items in the level
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private List<IIntersectable> GetIntersectingItems(IIntersectable item)
+        {
+            List<IIntersectable> intersections = new List<IIntersectable>();
+
+            //Static things
+            intersections.AddRange(StaticObjectsQuadTree.GetElementsIn(item.HitBox).ConvertAll(f => (IIntersectable)f ));
+
+            //dynamic things
+            foreach(var dynamicItem in DynamicObjects)
+            {
+                if (dynamicItem is IIntersectable && !dynamicItem.Equals(item) && dynamicItem.HitBox.IntersectsWith(item.HitBox))
+                    intersections.Add(((IIntersectable)dynamicItem));
+            }
+
+            return intersections;
         }
 
 
@@ -159,24 +181,24 @@ namespace Lib.Level
         /// </summary>
         private void CalculateCameraInformations()
         {
-            Vector2 playersPositionSum = Players[0].HitBox.Position;
-            float minPlayerXPos = Players[0].ViewPoint.X;
-            float minPlayerYPos = Players[0].ViewPoint.Y;
-            float maxPlayerXPos = Players[0].ViewPoint.X;
-            float maxPlayerYPos = Players[0].ViewPoint.Y;
+            Vector2 playersPositionSum = ActivePlayers[0].HitBox.Position;
+            float minPlayerXPos = ActivePlayers[0].ViewPoint.X;
+            float minPlayerYPos = ActivePlayers[0].ViewPoint.Y;
+            float maxPlayerXPos = ActivePlayers[0].ViewPoint.X;
+            float maxPlayerYPos = ActivePlayers[0].ViewPoint.Y;
 
-            for (int index = 1; index < Players.Count; index ++)
+            for (int index = 1; index < ActivePlayers.Count; index ++)
             {
-                playersPositionSum = playersPositionSum + Players[index].HitBox.Position;
-                minPlayerXPos = Math.Min(minPlayerXPos, Players[index].ViewPoint.X);
-                minPlayerYPos = Math.Min(minPlayerYPos, Players[index].ViewPoint.Y);
-                maxPlayerXPos = Math.Max(maxPlayerXPos, Players[index].ViewPoint.X);
-                maxPlayerYPos = Math.Max(maxPlayerYPos, Players[index].ViewPoint.Y);
+                playersPositionSum = playersPositionSum + ActivePlayers[index].HitBox.Position;
+                minPlayerXPos = Math.Min(minPlayerXPos, ActivePlayers[index].ViewPoint.X);
+                minPlayerYPos = Math.Min(minPlayerYPos, ActivePlayers[index].ViewPoint.Y);
+                maxPlayerXPos = Math.Max(maxPlayerXPos, ActivePlayers[index].ViewPoint.X);
+                maxPlayerYPos = Math.Max(maxPlayerYPos, ActivePlayers[index].ViewPoint.Y);
             }
 
 
             MaxPlayersDistance = new Vector2(maxPlayerXPos - minPlayerXPos, maxPlayerYPos - minPlayerYPos);
-            PlayersCenter = playersPositionSum / Players.Count;
+            PlayersCenter = playersPositionSum / ActivePlayers.Count;
         }
 
 
@@ -249,7 +271,7 @@ namespace Lib.Level
                 if (attachedSprite != null)
                     block.AttachedSprites.Add(attachedSprite);
 
-                Blocks.Add(block);
+                StaticObjects.Add(block);
             }
 
             // start animations of all animated blocks in the level
@@ -274,7 +296,7 @@ namespace Lib.Level
                 Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y), 
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY),
                     sprite);
-                Checkpoints.Add(checkPoint);
+                StaticObjects.Add(checkPoint);
             }
 
             foreach (var xmlLevelCollectable in xmlLevel.Collectables)
@@ -288,7 +310,7 @@ namespace Lib.Level
                 SpriteStatic sprite = new SpriteStatic(xmlCollectable.Path);
 
                 Collectable collectable = new Collectable(sprite, new Vector2(xmlLevelCollectable.X, xmlLevelCollectable.Y));
-                Collectables.Add(collectable);
+                StaticObjects.Add(collectable);
             }
         }
 
@@ -304,7 +326,7 @@ namespace Lib.Level
             float MaxX = 0;
             float MaxY = 0;
 
-            foreach (Block levelBlock in Blocks)
+            foreach (LevelItemBase levelBlock in StaticObjects)
             {
                 if (levelBlock.HitBox.Position.X < MinX)
                     MinX = levelBlock.HitBox.Position.X;
@@ -322,7 +344,7 @@ namespace Lib.Level
             }
 
             var levelSize = new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);
-            BlocksQuadTree = new QuadTreeRoot(levelSize, 4, quadList);
+            StaticObjectsQuadTree = new QuadTreeRoot(levelSize, 4, quadList);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Lib.Level.Collision
         /// <param name="sourceBox"></param>
         /// <param name="intersections"></param>
         /// <returns></returns>
-        public static CollisionReport HandleCollisions(Box2D sourceBox, List<LevelItemBase> intersections, Action onCorrectionX, Action onCorrectionY)
+        public static CollisionReport HandleCollisions(Box2D sourceBox, List<IIntersectable> intersections, Action onCorrectionX, Action onCorrectionY)
         {
             foreach (var item in intersections)
                 HandleCollision(sourceBox, item, onCorrectionX, onCorrectionY);
@@ -29,7 +29,7 @@ namespace Lib.Level.Collision
 	    /// React to a collision with a block, may correcting it and returning the blocks alignment
 	    /// </summary>
 	    /// <param name="collidingItem">the colliding block</param>
-	    private static void HandleCollision(Box2D sourceBox, LevelItemBase collidingItem, Action onCorrectionX, Action onCorrectionY)
+	    private static void HandleCollision(Box2D sourceBox, IIntersectable collidingItem, Action onCorrectionX, Action onCorrectionY)
         {
             var intersectSize = sourceBox.GetIntersectSize(collidingItem.HitBox);
             float intersectSizeX = intersectSize.X;
@@ -51,7 +51,7 @@ namespace Lib.Level.Collision
             // Corret the position, check first if the collision has to be correct on the x or y axis
             // ignore for this check only the gravity, because this will be very time applied.
             // the intersect with smaller size has to be corrected
-            if (collidingItem.Collision && (intersectSizeY > 0 || intersectSizeX > 0))
+            if (collidingItem.HasCollisionCorrection && (intersectSizeY > 0 || intersectSizeX > 0))
             {
                 if (intersectSizeX > intersectSizeY)
                 {
@@ -79,7 +79,7 @@ namespace Lib.Level.Collision
         /// </summary>
         /// <param name="intersections"></param>
         /// <returns></returns>
-        private static CollisionReport CreateCollisionReport(Box2D sourceBox, List<LevelItemBase> intersections)
+        private static CollisionReport CreateCollisionReport(Box2D sourceBox, List<IIntersectable> intersections)
         {
             CollisionReport report = new CollisionReport();
 
