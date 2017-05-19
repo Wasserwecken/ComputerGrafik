@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Lib.Level.Base;
+using Lib.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.Tools.QuadTree
+namespace Lib.Level.QuadTree
 {
     public class QuadTreeRoot
     {
@@ -20,7 +22,7 @@ namespace Lib.Tools.QuadTree
         /// <param name="dimension"></param>
         /// <param name="elementLimit"></param>
         /// <param name="initialElements"></param>
-        public QuadTreeRoot(Box2D size, int elementLimit, List<IQuadTreeElement> initialElements)
+        public QuadTreeRoot(Box2D size, int elementLimit, List<IIntersectable> initialElements)
         {
             RootNode = new QuadTreeNode(size, elementLimit, initialElements);
         }
@@ -30,7 +32,7 @@ namespace Lib.Tools.QuadTree
         /// Inserts a element into the node
         /// </summary>
         /// <param name="newElement"></param>
-        public void InsertElement(IQuadTreeElement newElement)
+        public void InsertElement(IIntersectable newElement)
         {
             RootNode.InsertElement(newElement);
         }
@@ -40,7 +42,7 @@ namespace Lib.Tools.QuadTree
         /// </summary>
         /// <param name="range"></param>
         /// <returns></returns>
-        public List<IQuadTreeElement> GetElementsIn(Box2D range)
+        public List<IIntersectable> GetElementsIn(Box2D range)
         {
             return RootNode.GetElementsIn(range);
         }

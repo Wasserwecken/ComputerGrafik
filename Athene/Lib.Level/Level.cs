@@ -5,12 +5,12 @@ using Lib.LevelLoader.LevelItems;
 using Lib.Visuals.Graphics;
 using OpenTK;
 using Lib.Tools;
-using Lib.Tools.QuadTree;
 using Lib.Level.Items;
 using Lib.Level.Base;
 using Lib.LevelLoader.Xml;
 using System.IO;
 using Lib.LevelLoader;
+using Lib.Level.QuadTree;
 
 namespace Lib.Level
 {
@@ -82,15 +82,8 @@ namespace Lib.Level
         /// </summary>
         public void UpdateLogic()
         {
-            foreach(var item in StaticObjects)
-            {
-                UpdateLevelItem(item);
-            }
-
             foreach(var item in DynamicObjects)
-            {
                 UpdateLevelItem(item);
-            }
 
             CalculateCameraInformations();
         }
@@ -121,36 +114,23 @@ namespace Lib.Level
         /// <param name="item"></param>
         private void UpdateLevelItem(LevelItemBase item)
         {
-            List<IIntersectable> intersectingItems = null;
-
-
             if (item is IMoveable)
                 ((IMoveable)item).Move();
 
 
             if (item is IIntersectable)
             {
-                if (intersectingItems == null)
-                    intersectingItems = GetIntersectingItems(((IIntersectable)item));
-
+                List<IIntersectable> intersectingItems = GetIntersectingItems(((IIntersectable)item).HitBox);
+                intersectingItems.Remove((IIntersectable)item);
                 ((IIntersectable)item).HandleCollisions(intersectingItems);
             }
 
 
             if (item is IInteractable)
             {
-                List<IInteractable> interactableItems = new List<IInteractable>();
-
-                if (intersectingItems == null)
-                    intersectingItems = GetIntersectingItems(((IIntersectable)item));
-
-                foreach(var intersecItem in intersectingItems)
-                {
-                    if (intersecItem is IInteractable)
-                        interactableItems.Add((IInteractable)intersecItem);
-                }
-                
-                ((IInteractable)item).HandleInteractions(interactableItems);
+                List<IIntersectable> intersectingItems = GetIntersectingItems(((IInteractable)item).InteractionBox);
+                intersectingItems.Remove((IIntersectable)item);
+                ((IInteractable)item).HandleInteractions(intersectingItems);
             }
         }
 
@@ -160,17 +140,17 @@ namespace Lib.Level
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        private List<IIntersectable> GetIntersectingItems(IIntersectable item)
+        private List<IIntersectable> GetIntersectingItems(Box2D range)
         {
-            List<IIntersectable> intersections = new List<IIntersectable>();
+            var intersections = new List<IIntersectable>();
 
             //Static things
-            intersections.AddRange(StaticObjectsQuadTree.GetElementsIn(item.HitBox).ConvertAll(f => (IIntersectable)f ));
+            intersections.AddRange(StaticObjectsQuadTree.GetElementsIn(range));
 
             //dynamic things
             foreach(var dynamicItem in DynamicObjects)
             {
-                if (dynamicItem is IIntersectable && !dynamicItem.Equals(item) && dynamicItem.HitBox.IntersectsWith(item.HitBox))
+                if (dynamicItem is IIntersectable && dynamicItem.HitBox.IntersectsWith(range))
                     intersections.Add(((IIntersectable)dynamicItem));
             }
 
@@ -298,7 +278,7 @@ namespace Lib.Level
                 Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y), 
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY),
                     sprite);
-                StaticObjects.Add(checkPoint);
+                DynamicObjects.Add(checkPoint);
             }
 
             foreach (var xmlLevelCollectable in xmlLevel.Collectables)
@@ -312,7 +292,7 @@ namespace Lib.Level
                 SpriteStatic sprite = new SpriteStatic(xmlCollectable.Path);
 
                 Collectable collectable = new Collectable(sprite, new Vector2(xmlLevelCollectable.X, xmlLevelCollectable.Y));
-                StaticObjects.Add(collectable);
+                DynamicObjects.Add(collectable);
             }
         }
 
@@ -322,7 +302,7 @@ namespace Lib.Level
         /// </summary>
         private void InitialiseQuadTree()
         {
-            var quadList = new List<IQuadTreeElement>();
+            var quadList = new List<IIntersectable>();
             float MinX = 0;
             float MinY = 0;
             float MaxX = 0;
@@ -330,19 +310,22 @@ namespace Lib.Level
 
             foreach (LevelItemBase levelBlock in StaticObjects)
             {
-                if (levelBlock.HitBox.Position.X < MinX)
-                    MinX = levelBlock.HitBox.Position.X;
+                if (levelBlock is IIntersectable)
+                {
+                    if (levelBlock.HitBox.Position.X < MinX)
+                        MinX = levelBlock.HitBox.Position.X;
 
-                if (levelBlock.HitBox.MaximumX > MaxX)
-                    MaxX = levelBlock.HitBox.MaximumX;
+                    if (levelBlock.HitBox.MaximumX > MaxX)
+                        MaxX = levelBlock.HitBox.MaximumX;
 
-                if (levelBlock.HitBox.Position.Y < MinY)
-                    MinY = levelBlock.HitBox.Position.Y;
+                    if (levelBlock.HitBox.Position.Y < MinY)
+                        MinY = levelBlock.HitBox.Position.Y;
 
-                if (levelBlock.HitBox.MaximumY > MaxY)
-                    MaxY = levelBlock.HitBox.MaximumY;
+                    if (levelBlock.HitBox.MaximumY > MaxY)
+                        MaxY = levelBlock.HitBox.MaximumY;
 
-                quadList.Add(levelBlock);
+                    quadList.Add((IIntersectable)levelBlock);
+                }
             }
 
             var levelSize = new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);

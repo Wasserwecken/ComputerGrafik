@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Lib.Level.Base;
+using Lib.Tools;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.Tools.QuadTree
+namespace Lib.Level.QuadTree
 {
     [DebuggerDisplay("Leaf: Elements={ElementCount}")]
     internal class QuadTreeLeaf
@@ -14,7 +16,7 @@ namespace Lib.Tools.QuadTree
         /// <summary>
         /// List of elements in a leaf
         /// </summary>
-        public List<IQuadTreeElement> Elements { get; set; }
+        public List<IIntersectable> Elements { get; set; }
 
         /// <summary>
         /// Gets the sum of all elements in the quadrant
@@ -28,17 +30,17 @@ namespace Lib.Tools.QuadTree
         public QuadTreeLeaf(Box2D size, int elementLimit)
             : base(size, elementLimit)
         {
-            Elements = new List<IQuadTreeElement>();
+            Elements = new List<IIntersectable>();
         }
 
         /// <summary>
         /// Initialises a tree leaf
         /// </summary>
         /// <param name="initialElements"></param>
-        public QuadTreeLeaf(Box2D size, int elementLimit, List<IQuadTreeElement> initialElements)
+        public QuadTreeLeaf(Box2D size, int elementLimit, List<IIntersectable> initialElements)
             : this(size, elementLimit)
         {
-            foreach (IQuadTreeElement element in initialElements)
+            foreach (IIntersectable element in initialElements)
                 InsertElement(element);
         }
 
@@ -47,7 +49,7 @@ namespace Lib.Tools.QuadTree
         /// Inserts a new element into the node, splits the node if there are 
         /// </summary>
         /// <param name="newElement"></param>
-        public override bool InsertElement(IQuadTreeElement newElement)
+        public override bool InsertElement(IIntersectable newElement)
         {
             if (Elements.Count >= ElementLimit)
                 return false;
@@ -61,11 +63,11 @@ namespace Lib.Tools.QuadTree
         /// </summary>
         /// <param name="range"></param>
         /// <returns></returns>
-        public override List<IQuadTreeElement> GetElementsIn(Box2D range)
+        public override List<IIntersectable> GetElementsIn(Box2D range)
         {
-            var result = new List<IQuadTreeElement>();
+            var result = new List<IIntersectable>();
 
-            foreach (IQuadTreeElement element in Elements)
+            foreach (IIntersectable element in Elements)
             {
                 if (element.HitBox.IsInside(range) || element.HitBox.IntersectsWith(range))
                     result.Add(element);

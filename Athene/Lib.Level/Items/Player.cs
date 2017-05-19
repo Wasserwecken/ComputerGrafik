@@ -48,7 +48,7 @@ namespace Lib.Level.Items
         /// <summary>
         /// Range where interactions can be requested by other items
         /// </summary>
-        public float InteractionRadius { get; set; }
+        public Box2D InteractionBox { get; set; }
 
 
         /// <summary>
@@ -70,19 +70,10 @@ namespace Lib.Level.Items
             
 			Sprite = sprite;
             HasCollisionCorrection = true;
-		}
+            InteractionBox = HitBox;
 
-        
-        /// <summary>
-        /// Adds a item to the inventory
-        /// </summary>
-        /// <param name="item"></param>
-	    public void PickUp(Collectable item)
-	    {
-	        Inventory.Add(item);
-	        item.IsActive = false;
-	    }
-        
+        }
+                
 
         /// <summary>
         /// Draws the player on the screen
@@ -146,7 +137,17 @@ namespace Lib.Level.Items
         /// Execute interactions with other items
         /// </summary>
         /// <param name="interactableItem"></param>
-        public void HandleInteractions(List<IInteractable> interactableItem) { }
+        public void HandleInteractions(List<IIntersectable> intersectionItems)
+        {
+            foreach(var item in intersectionItems)
+            {
+                if (item is Collectable && ((Collectable)item).IsActive)
+                {
+                    Inventory.Add((Collectable)item);
+                    ((Collectable)item).IsActive = false;
+                }
+            }
+        }
 
         /// <summary>
         /// Reacts to intersections with other items

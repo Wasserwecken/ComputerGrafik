@@ -1,6 +1,5 @@
 ﻿using Lib.Level.Base;
 using Lib.Tools;
-using Lib.Tools.QuadTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +9,12 @@ using System.Threading.Tasks;
 namespace Lib.Level.Base
 {
     public interface IIntersectable
-        : IQuadTreeElement
     {
+        /// <summary>
+        /// Hitbox for the intersection
+        /// </summary>
+        Box2D HitBox { get; set; }
+
         /// <summary>
         /// Defines if the intersection has to be corrected or not
         /// </summary>

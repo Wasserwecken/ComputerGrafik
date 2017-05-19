@@ -2,13 +2,11 @@
 using Lib.Visuals.Graphics;
 using OpenTK;
 using System.Collections.Generic;
-using Lib.Tools.QuadTree;
 using Lib.LevelLoader.LevelItems;
 
 namespace Lib.Level.Base
 {
     public abstract class LevelItemBase
-        : IQuadTreeElement
     {
         /// <summary>
         /// the sprite of the item

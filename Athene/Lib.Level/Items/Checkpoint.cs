@@ -11,7 +11,7 @@ using OpenTK;
 
 namespace Lib.Level.Items
 {
-    public class Checkpoint : LevelItemBase, IDrawable, IInteractable, IIntersectable
+    public class Checkpoint : LevelItemBase, IDrawable, IIntersectable
     {
 
         /// <summary>
@@ -19,13 +19,6 @@ namespace Lib.Level.Items
         /// </summary>
         public Vector2 DestinationPosition { get; set; }
 
-        /// <summary>
-        /// Range where the checkpoint will be react
-        /// </summary>
-        public float InteractionRadius { get; set; }
-
-
-        
         
         /// <summary>
         /// Initialises a checkpoint
@@ -37,7 +30,6 @@ namespace Lib.Level.Items
             : base(startPosition, new Vector2(0.75f, 0.75f))
         {
             DestinationPosition = destinationPosition;
-            InteractionRadius = 1f;
             Sprite = sprite;
         }
 
@@ -49,13 +41,6 @@ namespace Lib.Level.Items
         {
             Sprite.Draw(HitBox.Position, new Vector2(0.8f));
         }
-
-
-        /// <summary>
-        /// Interacts with incoming items
-        /// </summary>
-        /// <param name="interactableItem"></param>
-        public void HandleInteractions(List<IInteractable> interactableItem) { }
 
         /// <summary>
         /// Reacts to intersections with items

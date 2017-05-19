@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Lib.Level.Base;
+using Lib.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.Tools.QuadTree
+namespace Lib.Level.QuadTree
 {
     internal abstract class QuadTreeQuadrant
     {
@@ -39,13 +41,13 @@ namespace Lib.Tools.QuadTree
         /// Inserts a new element into the node, splits the node if there are 
         /// </summary>
         /// <param name=""></param>
-        public abstract bool InsertElement(IQuadTreeElement newElement);
+        public abstract bool InsertElement(IIntersectable newElement);
 
         /// <summary>
         /// Returns all intersecting or including elements in the given range
         /// </summary>
         /// <param name="range"></param>
         /// <returns></returns>
-        public abstract List<IQuadTreeElement> GetElementsIn(Box2D range);
+        public abstract List<IIntersectable> GetElementsIn(Box2D range);
     }
 }

@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Lib.Level.Base;
+using Lib.Tools;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.Tools.QuadTree
+namespace Lib.Level.QuadTree
 {
     [DebuggerDisplay("Node: Elements={ElementCount}")]
     internal class QuadTreeNode
@@ -36,7 +38,7 @@ namespace Lib.Tools.QuadTree
         /// <summary>
         /// Initialises a node
         /// </summary>
-        public QuadTreeNode(Box2D size, int elementLimit, List<IQuadTreeElement> initialElements)
+        public QuadTreeNode(Box2D size, int elementLimit, List<IIntersectable> initialElements)
             : base(size, elementLimit)
         {
             //Initialising the new four quadrants
@@ -50,7 +52,7 @@ namespace Lib.Tools.QuadTree
             Quadrants.Add(new QuadTreeLeaf(new Box2D(Size.Position.X, Size.Center.Y, quadrantSizeX, quadrantSizeY), elementLimit));
 
             //inserting given elements
-            foreach (IQuadTreeElement element in initialElements)
+            foreach (IIntersectable element in initialElements)
                 InsertElement(element);
         }
 
@@ -59,7 +61,7 @@ namespace Lib.Tools.QuadTree
         /// Inserts a element into the node
         /// </summary>
         /// <param name="newElement"></param>
-        public override bool InsertElement(IQuadTreeElement newElement)
+        public override bool InsertElement(IIntersectable newElement)
         {
             for (int index = 0; index < Quadrants.Count; index ++)
             {
@@ -89,9 +91,9 @@ namespace Lib.Tools.QuadTree
         /// </summary>
         /// <param name="range"></param>
         /// <returns></returns>
-        public override List<IQuadTreeElement> GetElementsIn(Box2D range)
+        public override List<IIntersectable> GetElementsIn(Box2D range)
         {
-            var result = new List<IQuadTreeElement>();
+            var result = new List<IIntersectable>();
 
             foreach(QuadTreeQuadrant quadrant in Quadrants)
             {

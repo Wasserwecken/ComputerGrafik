@@ -48,11 +48,6 @@
     <Compile Include="NumberExtensions.cs" />
     <Compile Include="Orientation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuadTree\IQuadTreeElement.cs" />
-    <Compile Include="QuadTree\QuadTreeQuadrant.cs" />
-    <Compile Include="QuadTree\QuadTreeLeaf.cs" />
-    <Compile Include="QuadTree\QuadTreeNode.cs" />
-    <Compile Include="QuadTree\QuadTreeRoot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OpenTK.dll.config" />
