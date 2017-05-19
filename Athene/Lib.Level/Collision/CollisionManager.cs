@@ -113,15 +113,14 @@ namespace Lib.Level.Collision
             {
                 if (reportItem.ItemAlignment == Alignment.Bottom)
                 {
-                    if (blockItem.BlockType == EnvironmentType.Water)
+                    if (blockItem.Environment == EnvironmentType.Water)
                         report.IsBottomWater = true;
-                    
                 }
 
 
                 if (reportItem.ItemAlignment == Alignment.Left || reportItem.ItemAlignment == Alignment.Right)
                 {
-                    if (blockItem.BlockType == EnvironmentType.Solid)
+                    if (blockItem.Environment == EnvironmentType.Solid)
                         report.IsSolidOnSide = true;
                 }
             }

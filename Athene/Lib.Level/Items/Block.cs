@@ -13,7 +13,7 @@ namespace Lib.Level.Items
         /// <summary>
         /// blocktype of the block
         /// </summary>
-        public EnvironmentType BlockType { get; set; }
+        public EnvironmentType Environment { get; set; }
 
 
         /// <summary>
@@ -23,14 +23,14 @@ namespace Lib.Level.Items
         /// <param name="y">y coordinate</param>
         /// <param name="startPosition"></param>
         /// <param name="sprite">sprite</param>
-        /// <param name="blockType">blocktype</param>
+        /// <param name="environment">blocktype</param>
         /// <param name="collision"></param>
         /// <param name="damage"></param>
-        public Block(Vector2 startPosition, ISprite sprite, EnvironmentType blockType, bool collision, int damage)
+        public Block(Vector2 startPosition, ISprite sprite, EnvironmentType environment, bool collision, int damage)
 			: base(startPosition, new Vector2(1f, 1f))
         {
             Sprite = sprite;
-            BlockType = blockType;
+            Environment = environment;
             HasCollisionCorrection = collision;
             Damage = damage;
         }

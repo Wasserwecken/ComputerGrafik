@@ -225,7 +225,7 @@ namespace Lib.Level.Items
             foreach (IIntersectable item in intersectingItems)
             {
                 if (item is Block && item.HitBox.Contains(HitBox.Center))
-                    playerEnvironment = ((Block)item).BlockType;
+                    playerEnvironment = ((Block)item).Environment;
             }
 
             Status.Environment = playerEnvironment;
