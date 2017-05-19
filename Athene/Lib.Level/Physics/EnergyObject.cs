@@ -24,13 +24,13 @@ namespace Lib.Level.Physics
         /// <summary>
         /// Current used environment
         /// </summary>
-        public BlockType CurrentEnvironment { get; private set; }
+        public EnvironmentType CurrentEnvironment { get; private set; }
 
 
         /// <summary>
         /// Available environments with the object behaviours
         /// </summary>
-        private Dictionary<BlockType, EnergyObjectProperties> Properties { get; set; }
+        private Dictionary<EnvironmentType, EnergyObjectProperties> Properties { get; set; }
 
         /// <summary>
         /// Input which will be processed
@@ -46,7 +46,7 @@ namespace Lib.Level.Physics
         /// <summary>
         /// Initialises the energy object
         /// </summary>
-        public EnergyObject(Dictionary<BlockType, EnergyObjectProperties> properties)
+        public EnergyObject(Dictionary<EnvironmentType, EnergyObjectProperties> properties)
         {
             Properties = properties;
             Energy = Vector2.Zero;
@@ -59,7 +59,7 @@ namespace Lib.Level.Physics
         /// Changes the properties which the energy object has to use to calculate their values
         /// </summary>
         /// <param name="type"></param>
-        public void SetEnvironment(BlockType environment)
+        public void SetEnvironment(EnvironmentType environment)
         {
             CurrentEnvironment = environment;
             CurrentProperties = Properties[environment];

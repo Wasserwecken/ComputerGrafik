@@ -9,18 +9,24 @@ namespace Lib.Level.Items
 {
 	public class Block
         : LevelItemBase, IDrawable, IIntersectable
-    {		
-	    /// <summary>
-	    /// Initializes a block
-	    /// </summary>
-	    /// <param name="x">x coordinate</param>
-	    /// <param name="y">y coordinate</param>
-	    /// <param name="startPosition"></param>
-	    /// <param name="sprite">sprite</param>
-	    /// <param name="blockType">blocktype</param>
-	    /// <param name="collision"></param>
-	    /// <param name="damage"></param>
-	    public Block(Vector2 startPosition, ISprite sprite, BlockType blockType, bool collision, int damage)
+    {
+        /// <summary>
+        /// blocktype of the block
+        /// </summary>
+        public EnvironmentType BlockType { get; set; }
+
+
+        /// <summary>
+        /// Initializes a block
+        /// </summary>
+        /// <param name="x">x coordinate</param>
+        /// <param name="y">y coordinate</param>
+        /// <param name="startPosition"></param>
+        /// <param name="sprite">sprite</param>
+        /// <param name="blockType">blocktype</param>
+        /// <param name="collision"></param>
+        /// <param name="damage"></param>
+        public Block(Vector2 startPosition, ISprite sprite, EnvironmentType blockType, bool collision, int damage)
 			: base(startPosition, new Vector2(1f, 1f))
         {
             Sprite = sprite;

@@ -17,7 +17,7 @@ namespace Lib.Level.Physics
         /// <summary>
         /// Current used environment
         /// </summary>
-        public BlockType CurrentEnvironment { get; private set; }
+        public EnvironmentType CurrentEnvironment { get; private set; }
 
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Lib.Level.Physics
         /// <summary>
         /// Initialises a forceable object
         /// </summary>
-        public PhysicBody(Dictionary<BlockType, EnergyObjectProperties> impulseProperties, Dictionary<BlockType, EnergyObjectProperties> forceProperties)
+        public PhysicBody(Dictionary<EnvironmentType, EnergyObjectProperties> impulseProperties, Dictionary<EnvironmentType, EnergyObjectProperties> forceProperties)
 		{
             ImpulseObject = new EnergyObject(impulseProperties);
             ForceObject = new EnergyObject(forceProperties);
@@ -99,7 +99,7 @@ namespace Lib.Level.Physics
         /// Sets the enivornment for the object
         /// </summary>
         /// <param name="environment"></param>
-        public void SetEnvironment(BlockType environment)
+        public void SetEnvironment(EnvironmentType environment)
         {
             CurrentEnvironment = environment;
 

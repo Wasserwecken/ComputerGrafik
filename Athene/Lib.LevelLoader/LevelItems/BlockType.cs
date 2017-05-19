@@ -9,7 +9,7 @@ namespace Lib.LevelLoader.LevelItems
     /// <summary>
     /// block type
     /// </summary>
-    public enum BlockType
+    public enum EnvironmentType
     {
         Solid,
         Water,

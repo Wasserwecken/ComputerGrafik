@@ -36,7 +36,7 @@ namespace Lib.LevelLoader.Xml
         /// blocktype of the block
         /// </summary>
         [XmlAttribute("BlockType")]
-        public BlockType BlockType { get; set; }
+        public EnvironmentType BlockType { get; set; }
 
         /// <summary>
         /// scrolling of the block

@@ -43,6 +43,6 @@ namespace Lib.Level.Items
         /// <summary>
         /// Environment wher the object is with in
         /// </summary>
-        public BlockType Environment { get; set; }
+        public EnvironmentType Environment { get; set; }
     }
 }
