@@ -15,6 +15,10 @@ namespace Lib.Level.Items
         /// </summary>
         public EnvironmentType Environment { get; set; }
 
+        /// <summary>
+        /// collission of the block
+        /// </summary>
+        public bool HasCollisionCorrection { get; set; }
 
         /// <summary>
         /// Initializes a block

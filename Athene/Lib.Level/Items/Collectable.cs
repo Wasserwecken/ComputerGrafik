@@ -23,6 +23,11 @@ namespace Lib.Level.Items
         /// </summary>
         public CollectableItemType Type { get; set; }
 
+        /// <summary>
+        /// collission of the block
+        /// </summary>
+        public bool HasCollisionCorrection { get; set; }
+
 
         /// <summary>
         /// Initialises a clollectable

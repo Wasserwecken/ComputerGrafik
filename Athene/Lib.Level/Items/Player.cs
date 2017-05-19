@@ -25,10 +25,16 @@ namespace Lib.Level.Items
         /// </summary>
         public List<IInventoryItem> Inventory { get; set; }
 
-		/// <summary>
-		/// The physical position and movement of the player
-		/// </summary>
-		private PhysicBody Physics { get; }
+        /// <summary>
+        /// collission of the block
+        /// </summary>
+        public bool HasCollisionCorrection { get; set; }
+
+
+        /// <summary>
+        /// The physical position and movement of the player
+        /// </summary>
+        private PhysicBody Physics { get; }
 
 		/// <summary>
 		/// Setted values from the input

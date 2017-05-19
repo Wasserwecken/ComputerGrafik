@@ -19,7 +19,11 @@ namespace Lib.Level.Items
         /// </summary>
         public Vector2 DestinationPosition { get; set; }
 
-        
+        /// <summary>
+        /// collission of the block
+        /// </summary>
+        public bool HasCollisionCorrection { get; set; }
+
         /// <summary>
         /// Initialises a checkpoint
         /// </summary>
