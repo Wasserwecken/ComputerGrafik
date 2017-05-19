@@ -84,7 +84,6 @@ namespace LevelEditor.Controls
         }
 
 
-        
 
         /// <summary>
         /// If mouse is hold while going over buttons, they are saved like you click on them

@@ -266,7 +266,7 @@ namespace Lib.Level
             {
                 var xmlCheckpointAnimation =
                     CheckpointLoader.GetCheckpoints()
-                        .CheckpointAnimations.FirstOrDefault(c => c.Id == xmlLevelCheckpoint.Link);
+                        .Checkpoints.FirstOrDefault(c => c.Id == xmlLevelCheckpoint.Link);
 
                 if (xmlCheckpointAnimation == null)
                     throw new Exception("Checkpoint Animation in xml Datei nicht gefunden");
@@ -291,7 +291,7 @@ namespace Lib.Level
 
                 SpriteStatic sprite = new SpriteStatic(xmlCollectable.Path);
 
-                Collectable collectable = new Collectable(sprite, new Vector2(xmlLevelCollectable.X, xmlLevelCollectable.Y));
+                Collectable collectable = new Collectable(sprite, new Vector2(xmlLevelCollectable.X, xmlLevelCollectable.Y), xmlCollectable.ItemType);
                 DynamicObjects.Add(collectable);
             }
         }

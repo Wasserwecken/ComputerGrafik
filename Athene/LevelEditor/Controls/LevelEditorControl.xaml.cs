@@ -267,7 +267,7 @@ namespace LevelEditor.Controls
 
         private void HandleCheckpointRadioButton(RadioButtonSelectCheckpoint radioButton, LevelItemButton button)
         {
-                button.SetXmlCheckpoint(radioButton.XmlAnimation);
+                button.SetXmlCheckpoint(radioButton.XmlCheckpointItem);
         }
 
         #endregion

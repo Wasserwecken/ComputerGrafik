@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Lib.LevelLoader.LevelItems;
 
 namespace Lib.LevelLoader.Xml.LinkTypes
 {
@@ -24,6 +25,6 @@ namespace Lib.LevelLoader.Xml.LinkTypes
         /// ItemType of the item
         /// </summary>
         [XmlAttribute("ItemType")]
-        public XMlCollectableItemType ItemType { get; set; }
+        public CollectableItemType ItemType { get; set; }
     }
 }

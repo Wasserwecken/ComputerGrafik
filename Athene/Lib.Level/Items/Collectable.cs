@@ -17,17 +17,23 @@ namespace Lib.Level.Items
         /// </summary>
         public bool IsActive { get; set; }
 
+        /// <summary>
+        /// type of the collectable
+        /// </summary>
+        public CollectableItemType Type { get; set; }
+
 
         /// <summary>
         /// Initialises a clollectable
         /// </summary>
         /// <param name="sprite"></param>
         /// <param name="startPosition"></param>
-        public Collectable(ISprite sprite, Vector2 startPosition)
+        public Collectable(ISprite sprite, Vector2 startPosition, CollectableItemType type)
             : base(startPosition, new Vector2(0.75f, 0.75f))
         {
             Sprite = sprite;
             IsActive = true;
+            Type = type;
         }
 
 

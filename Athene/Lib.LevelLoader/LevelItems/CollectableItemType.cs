@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.LevelLoader.Xml.LinkTypes
+namespace Lib.LevelLoader.LevelItems
 {
-    public enum XMlCollectableItemType
+    public enum CollectableItemType
     {
         CrystalRed,
         CrystalBlue,

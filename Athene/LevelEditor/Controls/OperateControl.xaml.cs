@@ -54,7 +54,7 @@ namespace LevelEditor.Controls
             RadioButtonTool nullButton = new RadioButtonTool("Block entfernen",
                 Directory.GetCurrentDirectory() + @"/CommonImages/Delete-96.png", TextureRadioButtonAction.Remove);
 
-            RadioButtonTool selectButton = new RadioButtonTool("Block auswählen",
+            RadioButtonTool selectButton = new RadioButtonTool("Auswählen",
                 Directory.GetCurrentDirectory() + @"/CommonImages/Cursor-96.png", TextureRadioButtonAction.Select);
 
             RadioButtonTool removeAttachedButton = new RadioButtonTool("Angehängte Textur\nentfernen",
@@ -74,12 +74,12 @@ namespace LevelEditor.Controls
 
         public void InitCheckpoints()
         {
-            var checkPoints = CheckpointLoader.GetCheckpoints().CheckpointAnimations;
+            var checkPoints = CheckpointLoader.GetCheckpoints().Checkpoints;
             var folder = new TextureFolderControl("Checkpoints");
 
-            foreach (var xmlCheckpoint in checkPoints)
+            foreach (var xmlCheckpointItem in checkPoints)
             {
-                RadioButtonSelectCheckpoint radioButton = new RadioButtonSelectCheckpoint(xmlCheckpoint);
+                RadioButtonSelectCheckpoint radioButton = new RadioButtonSelectCheckpoint(xmlCheckpointItem);
                 radioButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
                 folder.AddRadioButton(radioButton);
             }

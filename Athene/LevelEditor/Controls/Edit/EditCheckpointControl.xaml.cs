@@ -17,6 +17,7 @@ using Lib.LevelLoader;
 using Lib.LevelLoader.LevelItems;
 using Lib.LevelLoader.Xml;
 using Lib.LevelLoader.Xml.LevelItems;
+using Lib.LevelLoader.Xml.LinkTypes;
 
 namespace LevelEditor.Controls.Edit
 {
@@ -28,7 +29,7 @@ namespace LevelEditor.Controls.Edit
         /// <summary>
         /// the current selected animation
         /// </summary>
-        public XmlAnimation CurrrentXmlAnimation { get; set; }
+        public XmlCheckpointItem CurrrentXmlCheckpointItem { get; set; }
 
         /// <summary>
         /// the current XmlCheckpoint
@@ -110,28 +111,27 @@ namespace LevelEditor.Controls.Edit
             CurrentXmlCheckpoint = checkpoint;
 
 
-            XmlAnimation xmlAnimation =
-                CheckpointLoader.GetCheckpoints().CheckpointAnimations.FirstOrDefault(c => c.Id == checkpoint.Link);
+            XmlCheckpointItem xmlCheckpointItem =
+                CheckpointLoader.GetCheckpoints().Checkpoints.FirstOrDefault(c => c.Id == checkpoint.Link);
 
-            if(xmlAnimation == null)
+            if(xmlCheckpointItem == null)
                 throw new Exception("xmlAnimation not found in the checkpoint list");
 
-            CurrrentXmlAnimation = xmlAnimation;
+            CurrrentXmlCheckpointItem = xmlCheckpointItem;
             CurrentButton = senderButton;
 
             TextBlockCoordinates.Text = "(" + checkpoint.X + "|" + checkpoint.Y + ")";
 
-            if (xmlAnimation != null)
-            {
-                BitmapImage logo = new BitmapImage();
-                logo.BeginInit();
-                logo.UriSource = new Uri(xmlAnimation.GetFirstImage().FullName, UriKind.Absolute);
-                logo.EndInit();
-                ImageBlock.Source = logo;
+        
+            BitmapImage logo = new BitmapImage();
+            logo.BeginInit();
+            logo.UriSource = new Uri(xmlCheckpointItem.GetFirstImage().FullName, UriKind.Absolute);
+            logo.EndInit();
+            ImageBlock.Source = logo;
 
-                TextBlockLinkType.Text = "Animation";
-                TextBlockLinkName.Text = xmlAnimation.Id;
-            }
+            TextBlockLinkType.Text = "Animation";
+            TextBlockLinkName.Text = xmlCheckpointItem.Id;
+            
 
             InputEditStartX.Text = checkpoint.X.ToString();
             InputEditStartY.Text = checkpoint.Y.ToString();

@@ -11,17 +11,17 @@ namespace LevelEditor.Controls.RadioButtons
 {
     class RadioButtonSelectCheckpoint : RadioButtonBase
     {
-        public XmlAnimation XmlAnimation { get; set; }
+        public XmlCheckpointItem XmlCheckpointItem { get; set; }
 
-        public RadioButtonSelectCheckpoint(XmlAnimation XmlAnimation)
+        public RadioButtonSelectCheckpoint(XmlCheckpointItem xmlCheckpointItem)
         {
-            this.XmlAnimation = XmlAnimation;
+            this.XmlCheckpointItem = xmlCheckpointItem;
 
 
-            TexturePath = XmlAnimation.GetFirstImage().FullName;
+            TexturePath = xmlCheckpointItem.GetFirstImage().FullName;
 
-            Content = XmlAnimation.Id;
-            ToolTip = XmlAnimation.Id;
+            Content = xmlCheckpointItem.Id;
+            ToolTip = xmlCheckpointItem.Id;
         }
     }
 }
