@@ -294,6 +294,11 @@ namespace Lib.Level
                 Collectable collectable = new Collectable(sprite, new Vector2(xmlLevelCollectable.X, xmlLevelCollectable.Y), xmlCollectable.ItemType);
                 DynamicObjects.Add(collectable);
             }
+
+            foreach (var xmlBackground in xmlLevel.Backgrounds)
+            {
+                
+            }
         }
 
 

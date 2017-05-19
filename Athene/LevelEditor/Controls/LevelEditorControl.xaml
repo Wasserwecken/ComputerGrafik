@@ -83,8 +83,8 @@
                 <TabItem Header="Level Einstellungen">
                     <tabs:LevelSettingsControl x:Name="SettingsLevelControl" />
                 </TabItem>
-                <TabItem Header="Checkpoints">
-                    <tabs:CheckpointSettingsControl x:Name="SettingsCheckpointControl" />
+                <TabItem Header="Hintergrund">
+                    <tabs:BackgroundSettingsControl x:Name="SettingsBackgroundControl" />
                 </TabItem>
             </TabControl>
             

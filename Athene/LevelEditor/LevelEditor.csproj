@@ -84,11 +84,11 @@
     <Compile Include="Controls\RadioButtons\RadioButtonTool.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectAnimation.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectTexture.cs" />
+    <Compile Include="Controls\Tabs\BackgroundSettingsControl.xaml.cs">
+      <DependentUpon>BackgroundSettingsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Tabs\BlockSettingsControl.xaml.cs">
       <DependentUpon>BlockSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Tabs\CheckpointSettingsControl.xaml.cs">
-      <DependentUpon>CheckpointSettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Tabs\LevelSettingsControl.xaml.cs">
       <DependentUpon>LevelSettingsControl.xaml</DependentUpon>
@@ -129,11 +129,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Tabs\BlockSettingsControl.xaml">
+    <Page Include="Controls\Tabs\BackgroundSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Tabs\CheckpointSettingsControl.xaml">
+    <Page Include="Controls\Tabs\BlockSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

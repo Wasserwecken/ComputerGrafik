@@ -32,6 +32,10 @@ namespace Lib.LevelLoader.Xml
         [XmlArrayItem("Checkpoint", typeof(XmlCheckpoint))]
         public List<XmlCheckpoint> Checkpoints { get; set; }
 
+        [XmlArray("Backgrounds")]
+        [XmlArrayItem("Background", typeof(XmlBackgroundItem))]
+        public List<XmlBackgroundItem> Backgrounds { get; set; }
+
         [XmlAttribute("MaxX")]
         public int MaxX { get; set; }
 

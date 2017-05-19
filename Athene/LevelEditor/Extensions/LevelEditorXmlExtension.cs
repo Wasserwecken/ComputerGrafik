@@ -38,13 +38,11 @@ namespace LevelEditor.Extensions
                 MaxX = grid.MaxX,
                 MaxY = grid.MaxY,
                 SpawnX = levelEditor.SettingsLevelControl.SpawnX,
-                SpawnY = levelEditor.SettingsLevelControl.SpawnY
+                SpawnY = levelEditor.SettingsLevelControl.SpawnY,
+                Backgrounds = levelEditor.SettingsBackgroundControl.BackgroundItems
             };
 
-            foreach (var checkpoint in levelEditor.SettingsCheckpointControl.Checkpoints)
-            {
-                levelReturn.Checkpoints.Add(checkpoint);
-            }
+           
 
 
             foreach (LevelItemButton button in grid.Children)
@@ -101,11 +99,8 @@ namespace LevelEditor.Extensions
             {
                 levelEditor.SettingsLevelControl.InputStartpositionX.Text = level.SpawnX.ToString();
                 levelEditor.SettingsLevelControl.InputStartpositionY.Text = level.SpawnY.ToString();
+                levelEditor.SettingsBackgroundControl.BackgroundItems = level.Backgrounds;
 
-                foreach (var levelCheckpoint in level.Checkpoints)
-                {
-                    levelEditor.SettingsCheckpointControl.Checkpoints.Add(levelCheckpoint);
-                }
             }
 
 
