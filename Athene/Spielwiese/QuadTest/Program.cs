@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lib.Tools;
-using Lib.Tools.QuadTree;
 using System.Diagnostics;
 
 namespace QuadTest

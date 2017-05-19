@@ -7,6 +7,7 @@ using Lib.Level.Base;
 using Lib.Tools;
 using Lib.Visuals.Graphics;
 using OpenTK;
+using Lib.LevelLoader.LevelItems;
 
 namespace Lib.Level.Items
 {
