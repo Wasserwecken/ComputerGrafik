@@ -35,7 +35,7 @@ namespace Lib.Level
         /// <summary>
         /// Static objects which are loaded
         /// </summary>
-        private List<LevelItemBase> StaticObjects { get; set; }
+        private List<LevelItemBase> EnvironmentObjects { get; set; }
 
         /// <summary>
         /// Players which are participating in the level
@@ -45,7 +45,7 @@ namespace Lib.Level
         /// <summary>
         /// QuadTree for static ojects
         /// </summary>
-        private QuadTreeRoot StaticObjectsQuadTree { get; set; }
+        private QuadTreeRoot EnvironmentQuadTree { get; set; }
         
         /// <summary>
         /// Startposition of players
@@ -59,7 +59,7 @@ namespace Lib.Level
         public Level(XmlLevel xmlLevel)
 		{
             DynamicObjects = new List<LevelItemBase>();
-            StaticObjects = new List<LevelItemBase>();
+            EnvironmentObjects = new List<LevelItemBase>();
             ActivePlayers = new List<Player>();
 
 
@@ -82,8 +82,27 @@ namespace Lib.Level
         /// </summary>
         public void UpdateLogic()
         {
-            foreach(var item in DynamicObjects)
-                UpdateLevelItem(item);
+            foreach (var item in DynamicObjects)
+            {
+                if (item is IMoveable moveItem)
+                    moveItem.Move();
+
+
+                if (item is IIntersectable intersecItem)
+                {
+                    List<IIntersectable> intersectingItems = GetIntersectingItems(intersecItem.HitBox);
+                    intersectingItems.Remove(intersecItem);
+                    intersecItem.HandleCollisions(intersectingItems);
+                }
+
+
+                if (item is IInteractable interactItem)
+                {
+                    List<IIntersectable> intersectingItems = GetIntersectingItems(interactItem.InteractionBox);
+                    intersectingItems.Remove((IIntersectable)item);
+                    interactItem.HandleInteractions(intersectingItems);
+                }
+            }
 
             CalculateCameraInformations();
         }
@@ -94,7 +113,7 @@ namespace Lib.Level
         public void Draw(Box2D cameraFOV)
         {
             //Using the quadtree here because, only blocks in the camera view has to be drawn
-            foreach (LevelItemBase item in StaticObjectsQuadTree.GetElementsIn(cameraFOV))
+            foreach (LevelItemBase item in EnvironmentQuadTree.GetElementsIn(cameraFOV))
             {
                 if (item is IDrawable)
                     ((IDrawable)item).Draw();
@@ -109,33 +128,6 @@ namespace Lib.Level
 
 
         /// <summary>
-        /// Updates a level item based on his type
-        /// </summary>
-        /// <param name="item"></param>
-        private void UpdateLevelItem(LevelItemBase item)
-        {
-            if (item is IMoveable)
-                ((IMoveable)item).Move();
-
-
-            if (item is IIntersectable)
-            {
-                List<IIntersectable> intersectingItems = GetIntersectingItems(((IIntersectable)item).HitBox);
-                intersectingItems.Remove((IIntersectable)item);
-                ((IIntersectable)item).HandleCollisions(intersectingItems);
-            }
-
-
-            if (item is IInteractable)
-            {
-                List<IIntersectable> intersectingItems = GetIntersectingItems(((IInteractable)item).InteractionBox);
-                intersectingItems.Remove((IIntersectable)item);
-                ((IInteractable)item).HandleInteractions(intersectingItems);
-            }
-        }
-
-
-        /// <summary>
         /// Gets a list with all interesecting items in the level
         /// </summary>
         /// <param name="item"></param>
@@ -145,7 +137,7 @@ namespace Lib.Level
             var intersections = new List<IIntersectable>();
 
             //Static things
-            intersections.AddRange(StaticObjectsQuadTree.GetElementsIn(range));
+            intersections.AddRange(EnvironmentQuadTree.GetElementsIn(range));
 
             //dynamic things
             foreach(var dynamicItem in DynamicObjects)
@@ -253,7 +245,7 @@ namespace Lib.Level
                 if (attachedSprite != null)
                     block.AttachedSprites.Add(attachedSprite);
 
-                StaticObjects.Add(block);
+                EnvironmentObjects.Add(block);
             }
 
             // start animations of all animated blocks in the level
@@ -313,7 +305,7 @@ namespace Lib.Level
             float MaxX = 0;
             float MaxY = 0;
 
-            foreach (LevelItemBase levelBlock in StaticObjects)
+            foreach (LevelItemBase levelBlock in EnvironmentObjects)
             {
                 if (levelBlock is IIntersectable)
                 {
@@ -334,7 +326,7 @@ namespace Lib.Level
             }
 
             var levelSize = new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);
-            StaticObjectsQuadTree = new QuadTreeRoot(levelSize, 4, quadList);
+            EnvironmentQuadTree = new QuadTreeRoot(levelSize, 4, quadList);
         }
     }
 }
