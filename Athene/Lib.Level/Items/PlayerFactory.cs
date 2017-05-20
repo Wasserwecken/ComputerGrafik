@@ -37,21 +37,21 @@ namespace Lib.Level.Items
             playerSprite.StartAnimation("walk");
 
             //Physics
-            var impulseProps = new Dictionary<BlockType, EnergyObjectProperties>
+            var impulseProps = new Dictionary<EnvironmentType, EnergyObjectProperties>
             {
-                {BlockType.Air, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
-                {BlockType.Solid, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
-                {BlockType.Ladder, new EnergyObjectProperties(10f, 10f, 0.1f, 0f)},
-                {BlockType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, 0f)},
-                {BlockType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
+                {EnvironmentType.Air, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
+                {EnvironmentType.Solid, new EnergyObjectProperties(30f, 30f, 0.1f, 0f)},
+                {EnvironmentType.Ladder, new EnergyObjectProperties(10f, 10f, 0.1f, 0f)},
+                {EnvironmentType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, 0f)},
+                {EnvironmentType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
             };
-            var forceProps = new Dictionary<BlockType, EnergyObjectProperties>
+            var forceProps = new Dictionary<EnvironmentType, EnergyObjectProperties>
             {
-                {BlockType.Air, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
-                {BlockType.Solid, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
-                {BlockType.Ladder, new EnergyObjectProperties(6f, 6f, 0.1f, 0f)},
-                {BlockType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, -0.01f)},
-                {BlockType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
+                {EnvironmentType.Air, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
+                {EnvironmentType.Solid, new EnergyObjectProperties(6f, 30f, 0.1f, 0.2f)},
+                {EnvironmentType.Ladder, new EnergyObjectProperties(6f, 6f, 0.1f, 0f)},
+                {EnvironmentType.Water, new EnergyObjectProperties(30f, 30f, 0.06f, -0.01f)},
+                {EnvironmentType.Lava, new EnergyObjectProperties(15f, 15f, 0.025f, 0f)}
             };
 
             //create instance

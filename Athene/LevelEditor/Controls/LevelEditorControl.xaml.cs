@@ -20,6 +20,7 @@ using LevelEditor.Windows;
 using Lib.LevelLoader.LevelItems;
 using Lib.LevelLoader.Xml;
 using Lib.LevelLoader.Xml.LevelItems;
+using Lib.LevelLoader.Xml.LinkTypes;
 
 
 namespace LevelEditor.Controls
@@ -79,7 +80,7 @@ namespace LevelEditor.Controls
             OperateControl.InitDirectory(Directory.GetCurrentDirectory() + Properties.Settings.Default.ImageBaseFolder);
             /* Init the block types */
 
-            SettingsBlockControl.BlockTypeComboBox.ItemsSource = Enum.GetValues(typeof(BlockType));
+            SettingsBlockControl.BlockTypeComboBox.ItemsSource = Enum.GetValues(typeof(EnvironmentType));
             SettingsBlockControl.BlockTypeComboBox.SelectedIndex = 0;
 
             RadioButtonEditorMode.IsChecked = true;
@@ -162,7 +163,7 @@ namespace LevelEditor.Controls
         private void HandleAnimationRadioButton(RadioButtonSelectAnimation radioButton, LevelItemButton button)
         {
 
-            var selectedBlockType = (BlockType) SettingsBlockControl.BlockTypeComboBox.SelectedItem;
+            var selectedBlockType = (EnvironmentType) SettingsBlockControl.BlockTypeComboBox.SelectedItem;
             var selectedCollision = (bool) SettingsBlockControl.CollisionYesRadioButton.IsChecked;
             var selectedDamage = (int)SettingsBlockControl.DamageSlider.Value;
 
@@ -243,7 +244,7 @@ namespace LevelEditor.Controls
         private void HandleTextureRadioButton(RadioButtonSelectTexture radioButton, LevelItemButton button)
         {
             var selectedRadioButton = SelectedRadioButton;
-            var selectedBlockType = (BlockType)SettingsBlockControl.BlockTypeComboBox.SelectedItem;
+            var selectedBlockType = (EnvironmentType)SettingsBlockControl.BlockTypeComboBox.SelectedItem;
             var selectedCollision = SettingsBlockControl.CollisionYesRadioButton.IsChecked != null && (bool)SettingsBlockControl.CollisionYesRadioButton.IsChecked;
             var selectedDamage = (int)SettingsBlockControl.DamageSlider.Value;
             var selectedIsScrolling = SettingsBlockControl.ScrollingActiveCheckBox.IsChecked != null && (bool)SettingsBlockControl.ScrollingActiveCheckBox.IsChecked;

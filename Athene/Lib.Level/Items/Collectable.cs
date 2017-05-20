@@ -23,6 +23,10 @@ namespace Lib.Level.Items
         /// </summary>
         public CollectableItemType Type { get; set; }
 
+        /// <summary>
+        /// the Id of the Type
+        /// </summary>
+        public string TypeId => Type.ToString();
 
         /// <summary>
         /// Initialises a clollectable

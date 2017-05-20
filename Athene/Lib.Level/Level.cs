@@ -249,7 +249,7 @@ namespace Lib.Level
 
                 }
                 var startPosition = new Vector2(xmlBlock.X, xmlBlock.Y);
-                var block = new Block(startPosition, sprite, xmlBlock.BlockType, xmlBlock.Collision, xmlBlock.Damage);
+                var block = new Block(startPosition, sprite, xmlBlock.EnvironmentType, xmlBlock.Collision, xmlBlock.Damage);
                 if (attachedSprite != null)
                     block.AttachedSprites.Add(attachedSprite);
 
@@ -273,12 +273,23 @@ namespace Lib.Level
 
                 SpriteAnimated sprite = new SpriteAnimated();
                 sprite.AddAnimation(xmlCheckpointAnimation.Path, xmlCheckpointAnimation.AnimationLength);
-                sprite.StartAnimation(xmlCheckpointAnimation.Id);
+                sprite.StartAnimation(new FileInfo(xmlCheckpointAnimation.Path).Name);
+                // TODO: alles in einen Sprite
+                SpriteAnimated spriteActivated = new SpriteAnimated();
+                spriteActivated.AddAnimation(xmlCheckpointAnimation.ActivationPath, xmlCheckpointAnimation.ActivationAnimationLength);
+                spriteActivated.StartAnimation(new FileInfo(xmlCheckpointAnimation.ActivationPath).Name);
+
+                ISprite teleporterSprite = new SpriteStatic(@"Images\Objects\Tiles\window.png");
+                Teleporter teleporter = new Teleporter(new Vector2(xmlLevelCheckpoint.X + 1, xmlLevelCheckpoint.Y), new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY), new Vector2(0.8f), teleporterSprite);
 
                 Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y), 
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY),
-                    sprite);
+                    sprite,
+                    spriteActivated,
+                    (CollectableItemType) Enum.Parse(typeof(CollectableItemType), xmlCheckpointAnimation.CollectableItemType),
+                    teleporter);
                 DynamicObjects.Add(checkPoint);
+                DynamicObjects.Add(teleporter);
             }
 
             foreach (var xmlLevelCollectable in xmlLevel.Collectables)

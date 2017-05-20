@@ -59,6 +59,7 @@
     <Compile Include="Items\PlayerActions.cs" />
     <Compile Include="Items\PlayerFactory.cs" />
     <Compile Include="Items\PlayerStatus.cs" />
+    <Compile Include="Items\Teleporter.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Physics\EnergyObject.cs" />
     <Compile Include="Physics\EnergyObjectProperties.cs" />

@@ -33,10 +33,10 @@ namespace Lib.LevelLoader.Xml
         public BlockLinkType LinkType { get; set; }
 
         /// <summary>
-        /// blocktype of the block
+        /// EnvironmentType of the block
         /// </summary>
-        [XmlAttribute("BlockType")]
-        public BlockType BlockType { get; set; }
+        [XmlAttribute("EnvironmentType")]
+        public EnvironmentType EnvironmentType { get; set; }
 
         /// <summary>
         /// scrolling of the block

@@ -109,19 +109,16 @@ namespace Lib.Level.Collision
         /// <param name="reportItem"></param>
         private static void EvaluateSurroundings(CollisionReport report, CollisionReportItem reportItem)
         {
-            if (reportItem.Item is LevelItemBase levelItem)
+            if (reportItem.Item is Block levelItemBlock)
             {
                 if (reportItem.ItemAlignment == Alignment.Bottom)
                 {
-                    if (levelItem.BlockType == BlockType.Water)
+                    if (levelItemBlock.Environment == EnvironmentType.Water)
                         report.IsBottomWater = true;
-                    
                 }
-
-
                 if (reportItem.ItemAlignment == Alignment.Left || reportItem.ItemAlignment == Alignment.Right)
                 {
-                    if (levelItem.BlockType == BlockType.Solid)
+                    if (levelItemBlock.Environment == EnvironmentType.Solid)
                         report.IsSolidOnSide = true;
                 }
             }

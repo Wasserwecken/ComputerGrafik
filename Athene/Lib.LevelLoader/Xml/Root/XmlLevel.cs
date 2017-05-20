@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Lib.LevelLoader.Xml.LevelItems;
+using Lib.LevelLoader.Xml.LinkTypes;
 
 namespace Lib.LevelLoader.Xml
 {

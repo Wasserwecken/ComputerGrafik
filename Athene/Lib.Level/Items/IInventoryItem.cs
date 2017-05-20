@@ -8,5 +8,6 @@ namespace Lib.Level.Items
 {
     public interface IInventoryItem
     {
+        string TypeId { get; }
     }
 }

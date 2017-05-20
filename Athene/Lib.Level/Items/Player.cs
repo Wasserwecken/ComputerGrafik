@@ -9,6 +9,7 @@ using Lib.Visuals.Graphics;
 using OpenTK;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Lib.Level.Items
 {
@@ -58,8 +59,8 @@ namespace Lib.Level.Items
 			    Vector2 startPosition,
 			    InputMapList<PlayerActions> inputMapping,
 			    SpriteAnimated sprite,
-                Dictionary<BlockType, EnergyObjectProperties> impulseProperties,
-                Dictionary<BlockType, EnergyObjectProperties> forceProperties)
+                Dictionary<EnvironmentType, EnergyObjectProperties> impulseProperties,
+                Dictionary<EnvironmentType, EnergyObjectProperties> forceProperties)
             : base(startPosition, new Vector2(0.75f, 0.75f))
 		{
             Status = new PlayerStatus();
@@ -108,7 +109,7 @@ namespace Lib.Level.Items
             var directionVertical = InputValues.MoveUp - InputValues.MoveDown;
 
             //restrict the move direction by environment (in air, the player is not allowed to manipulate its force in the y axis)
-            if (Physics.CurrentEnvironment == BlockType.Air)
+            if (Physics.CurrentEnvironment == EnvironmentType.Air)
                 directionVertical = 0;
 
             Physics.ApplyForce(new Vector2(directionHorizontal, directionVertical));
@@ -162,6 +163,27 @@ namespace Lib.Level.Items
             if (report.CorrectedVertical)
                 Physics.StopBodyOnAxisY();
 
+            foreach (var item in intersectingItems)
+            {
+                /* look for checkpoints to activate */
+                if (item is Checkpoint checkpoint && !((Checkpoint)item).IsActivated)
+                {
+                    var result = Inventory.FirstOrDefault(i => i.TypeId == checkpoint.ActivationItemType.ToString());
+                    if (result != null)
+                    {
+                        checkpoint.Activate();
+                        Inventory.Remove(result);
+                    }
+                }
+
+                /* check teleporter */
+                if (item is Teleporter teleporter && ((Teleporter)item).IsActivated)
+                {
+                    teleporter.Teleport(this);
+                 
+                }
+            }
+
             SetEnvironment(intersectingItems);
             SetPlayerStatus(report);
         }
@@ -196,7 +218,7 @@ namespace Lib.Level.Items
             Status.IsIdle = (Math.Abs(Physics.Energy.X) <= 0 && Math.Abs(Physics.Energy.Y) <= 0);                
 
 
-            if (Status.Environment == BlockType.Air)
+            if (Status.Environment == EnvironmentType.Air)
                 Status.IsJumpAllowed = (report.IsBottomWater && report.IsSolidOnSide) || Status.IsGrounded;
         }
         
@@ -207,10 +229,10 @@ namespace Lib.Level.Items
         {
             var playerSprite = (SpriteAnimated)Sprite;
 
-            if (Status.Environment == BlockType.Water)
+            if (Status.Environment == EnvironmentType.Water)
                 playerSprite.StartAnimation("swim");
 
-            if (Status.Environment == BlockType.Air)
+            if (Status.Environment == EnvironmentType.Air)
                 playerSprite.StartAnimation("walk");
         }
 
@@ -221,11 +243,11 @@ namespace Lib.Level.Items
         private void SetEnvironment(List<IIntersectable> intersectingItems)
         {
             //Set the environment, because if there is no collision, the player has to adapt the default environment
-            var playerEnvironment = BlockType.Air;
+            var playerEnvironment = EnvironmentType.Air;
             foreach (IIntersectable item in intersectingItems)
             {
                 if (item is Block && item.HitBox.Contains(HitBox.Center))
-                    playerEnvironment = ((Block)item).BlockType;
+                    playerEnvironment = ((Block)item).Environment;
             }
 
             Status.Environment = playerEnvironment;

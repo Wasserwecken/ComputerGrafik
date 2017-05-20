@@ -139,7 +139,7 @@ namespace LevelEditor.Extensions
                             grid.IsEnabled = false;
                             return;
                         }
-                        button.SetXmlBlock(texture, block.BlockType, block.Collision, block.Damage, block.IsScrolling, block.ScrollingLength, block.ScrollingDirectionX, block.ScrollingDirectionY, attachedLink);
+                        button.SetXmlBlock(texture, block.EnvironmentType, block.Collision, block.Damage, block.IsScrolling, block.ScrollingLength, block.ScrollingDirectionX, block.ScrollingDirectionY, attachedLink);
                     }
                     else if (block.LinkType == BlockLinkType.Animation)
                     {
@@ -151,7 +151,7 @@ namespace LevelEditor.Extensions
                             grid.Children.Clear();
                             grid.IsEnabled = false;
                         }
-                        button.SetXmlAnimatedBlock(animation, block.BlockType, block.Collision, block.Damage);
+                        button.SetXmlAnimatedBlock(animation, block.EnvironmentType, block.Collision, block.Damage);
                     }
                 }
 
@@ -202,7 +202,7 @@ namespace LevelEditor.Extensions
                             attachedLink = AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == block.AttachedLink);
                         }
                     }
-                    button.SetXmlCheckpoint(xmlCheckpointItem);
+                    button.SetXmlCheckpoint(xmlCheckpointItem, checkpoint.DestinationX, checkpoint.DestinationY);
                 }
 
 
