@@ -55,12 +55,14 @@
     <Compile Include="Items\Checkpoint.cs" />
     <Compile Include="Items\Collectable.cs" />
     <Compile Include="Items\IInventoryItem.cs" />
+    <Compile Include="Items\Inventory.cs" />
     <Compile Include="Items\ParalaxBackground.cs" />
     <Compile Include="Items\ParalaxBackgroundItem.cs" />
     <Compile Include="Items\Player.cs" />
     <Compile Include="Items\PlayerActions.cs" />
     <Compile Include="Items\PlayerFactory.cs" />
     <Compile Include="Items\PlayerStatus.cs" />
+    <Compile Include="Items\Teleporter.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Physics\EnergyObject.cs" />
     <Compile Include="Physics\EnergyObjectProperties.cs" />

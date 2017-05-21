@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Lib.LevelLoader.Xml;
+using Lib.LevelLoader.Xml.LinkTypes;
 
 namespace LevelEditor.Controls.RadioButtons
 {

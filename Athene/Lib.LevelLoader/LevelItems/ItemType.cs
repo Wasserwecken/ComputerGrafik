@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Lib.LevelLoader.LevelItems
 {
-    public enum CollectableItemType
+    public enum ItemType
     {
         CrystalRed,
         CrystalBlue,
         CrystalYellow,
+        CrystalGreen,
         Medikit
     }
 }

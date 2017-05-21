@@ -25,6 +25,6 @@ namespace Lib.LevelLoader.Xml.LinkTypes
         /// ItemType of the item
         /// </summary>
         [XmlAttribute("ItemType")]
-        public CollectableItemType ItemType { get; set; }
+        public ItemType ItemType { get; set; }
     }
 }

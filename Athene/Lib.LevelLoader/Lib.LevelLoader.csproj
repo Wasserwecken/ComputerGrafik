@@ -48,7 +48,7 @@
     <Compile Include="CheckpointLoader.cs" />
     <Compile Include="CollectableLoader.cs" />
     <Compile Include="LevelItems\BlockLinkType.cs" />
-    <Compile Include="LevelItems\BlockType.cs" />
+    <Compile Include="LevelItems\EnvironmentType.cs" />
     <Compile Include="LevelLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Xml\LevelItems\XmlBackgroundItem.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="Xml\LinkTypes\XmlAnimation.cs" />
     <Compile Include="Xml\LinkTypes\XmlCheckpointItem.cs" />
     <Compile Include="Xml\LinkTypes\XmlCollectableItem.cs" />
-    <Compile Include="LevelItems\CollectableItemType.cs" />
+    <Compile Include="LevelItems\ItemType.cs" />
     <Compile Include="Xml\LinkTypes\XmlLinkTypeBase.cs" />
     <Compile Include="Xml\Root\XmlAnimationList.cs" />
     <Compile Include="Xml\LevelItems\XmlBlock.cs" />
@@ -84,28 +84,52 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Animations\checkpoint_robot_blue\AA.png">
+    <Content Include="Animations\checkpoint_robot_blue_activate\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_blue\AB.png">
+    <Content Include="Animations\checkpoint_robot_blue_activate\AB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_green\AA.png">
+    <Content Include="Animations\checkpoint_robot_blue_damage\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_green\AB.png">
+    <Content Include="Animations\checkpoint_robot_blue_damage\AB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_red\AA.png">
+    <Content Include="Animations\checkpoint_robot_green_damage\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_red\AB.png">
+    <Content Include="Animations\checkpoint_robot_green_damage\AB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_yellow\AA.png">
+    <Content Include="Animations\checkpoint_robot_green_activate\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_yellow\AB.png">
+    <Content Include="Animations\checkpoint_robot_green_activate\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_red_activate\AA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_red_activate\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_red_damage\AA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_red_damage\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_yellow_activate\AA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_yellow_activate\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_yellow_damage\AA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\checkpoint_robot_yellow_damage\AB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Animations\lava\AA.png">
@@ -1292,6 +1316,9 @@
     <Content Include="Images\Environment\Common\5cbd7e3460cf6e9dd808b9872dd9d23d_dirt20clipart-dirt-clipart_2400-876.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Environment\Common\portal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Environment\Desert\bg_desert.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2165,6 +2192,9 @@
     <Content Include="Images\Objects\Tiles\castleRight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Objects\Tiles\clock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Objects\Tiles\dirt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2576,6 +2606,9 @@
     </Content>
     <Content Include="Level\level11.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Level\Level33.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Level\Level44.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

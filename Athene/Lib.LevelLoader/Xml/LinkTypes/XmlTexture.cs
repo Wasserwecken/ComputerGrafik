@@ -1,12 +1,7 @@
-﻿using Lib.LevelLoader.Xml.LinkTypes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Xml.Serialization;
 
-namespace Lib.LevelLoader.Xml
+namespace Lib.LevelLoader.Xml.LinkTypes
 {
     /// <summary>
     /// represents a texture in the level.xml

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Lib.LevelLoader.LevelItems;
 using Lib.LevelLoader.Xml;
+using Lib.LevelLoader.Xml.LinkTypes;
 
 namespace LevelEditor.Windows
 {
@@ -40,7 +41,7 @@ namespace LevelEditor.Windows
         /// <param name="e"></param>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            EnvironmentType newBlockType = (EnvironmentType)ComboBoxBlockTypes.SelectedItem;
+            EnvironmentType newEnvironmentType = (EnvironmentType)ComboBoxBlockTypes.SelectedItem;
             var selectedCollision = CollisionYesRadioButton.IsChecked != null && (bool)CollisionYesRadioButton.IsChecked;
             var selectedDamage = (int)DamageSlider.Value;
             var selectedIsScrolling = ScrollingActiveCheckBox.IsChecked != null && (bool) ScrollingActiveCheckBox.IsChecked;
@@ -48,7 +49,7 @@ namespace LevelEditor.Windows
             var selectedScrollingXDirection = (float) Convert.ToDouble(ScrollingXDirectionTextBox.Text);
             var selectedScrollingYDirection = (float)Convert.ToDouble(ScrollingYDirectionTextBox.Text);
 
-            CurrentXmlBlock.BlockType = newBlockType;
+            CurrentXmlBlock.EnvironmentType = newEnvironmentType;
             CurrentXmlBlock.Damage = selectedDamage;
             CurrentXmlBlock.Collision = selectedCollision;
             CurrentXmlBlock.IsScrolling = selectedIsScrolling;
@@ -78,7 +79,7 @@ namespace LevelEditor.Windows
                 logo.EndInit();
                 ImageBlock.Source = logo;
             }
-            ComboBoxBlockTypes.SelectedItem = block.BlockType;
+            ComboBoxBlockTypes.SelectedItem = block.EnvironmentType;
             CollisionYesRadioButton.IsChecked = block.Collision;
             DamageSlider.Value = block.Damage;
             ScrollingActiveCheckBox.IsChecked = block.IsScrolling;

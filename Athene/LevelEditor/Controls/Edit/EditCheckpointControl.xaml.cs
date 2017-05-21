@@ -141,8 +141,8 @@ namespace LevelEditor.Controls.Edit
 
         private void Input_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            //Regex regex = new Regex("^-?[^0-9]+");
+            //e.Handled = regex.IsMatch(e.Text);
         }
 
     }

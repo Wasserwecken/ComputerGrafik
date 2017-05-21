@@ -116,8 +116,6 @@ namespace Lib.Level.Collision
                     if (blockItem.Environment == EnvironmentType.Water)
                         report.IsBottomWater = true;
                 }
-
-
                 if (reportItem.ItemAlignment == Alignment.Left || reportItem.ItemAlignment == Alignment.Right)
                 {
                     if (blockItem.Environment == EnvironmentType.Solid)

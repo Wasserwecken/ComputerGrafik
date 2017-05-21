@@ -67,17 +67,17 @@ namespace LevelEditor.Controls
         /// Sets an xmlBlock to the Button
         /// </summary>
         /// <param name="texture">Texture of the Block</param>
-        /// <param name="type">Blocktype</param>
+        /// <param name="environmentType">Blocktype</param>
         /// <param name="collision">collision</param>
         /// <param name="damage">damage</param>
-        public void SetXmlBlock(XmlTexture texture, EnvironmentType type, bool collision, int damage, bool isScrolling = false, 
+        public void SetXmlBlock(XmlTexture texture, BlockType type, bool collision, int damage, bool isScrolling = false, 
             int scrollingLength = 0, float scrollingDirectionX = 0, float scrollingDirectionY = 0, XmlLinkTypeBase attachedLink = null)
         {
             ResetTextBlock();
 
             var xmlBlock = new XmlBlock()
             {
-                BlockType = type,
+                EnvironmentType = environmentType,
                 X = X,
                 Y = Y,
                 Link = texture.Id,
@@ -109,7 +109,9 @@ namespace LevelEditor.Controls
         /// sets the block to a checkpoint
         /// </summary>
         /// <param name="checkpointItem"></param>
-        public void SetXmlCheckpoint(XmlCheckpointItem checkpointItem)
+        /// <param name="destinationX"></param>
+        /// <param name="destinationY"></param>
+        public void SetXmlCheckpoint(XmlCheckpointItem checkpointItem, float destinationX = 0, float destinationY = 0)
         {
             ResetTextBlock();
 
@@ -121,7 +123,9 @@ namespace LevelEditor.Controls
             {
                 Link = checkpointItem.Id,
                 X = X,
-                Y = Y
+                Y = Y,
+                DestinationX = destinationX,
+                DestinationY = destinationY
             };
 
             ItemPresenter = new XmlCheckpointPresenter()
@@ -165,13 +169,13 @@ namespace LevelEditor.Controls
         /// <param name="type">Blocktype</param>
         /// <param name="collision">collision</param>
         /// <param name="damage">damage</param>
-        public void SetXmlAnimatedBlock(XmlAnimation animation, EnvironmentType type, bool collision, int damage)
+        public void SetXmlAnimatedBlock(XmlAnimation animation, EnvironmentType environmentType, bool collision, int damage)
         {
             ResetTextBlock();
 
             var xmlBlock = new XmlBlock()
             {
-                BlockType = type,
+                EnvironmentType = environmentType,
                 X = X,
                 Y = Y,
                 Link = animation.Id,

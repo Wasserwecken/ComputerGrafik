@@ -40,6 +40,11 @@ namespace Lib.LevelLoader.Xml.LinkTypes
         [XmlAttribute("ActivationAnimationLength")]
         public int ActivationAnimationLength { get; set; }
 
+        /// <summary>
+        /// ActivationItemId of the checkpoint
+        /// </summary>
+        [XmlAttribute("CollectableItemType")]
+        public string CollectableItemType { get; set; }
 
         /// <summary>
         /// returns the first file of the animation folder

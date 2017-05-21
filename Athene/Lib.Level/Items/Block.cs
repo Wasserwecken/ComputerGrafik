@@ -10,15 +10,11 @@ namespace Lib.Level.Items
 	public class Block
         : LevelItemBase, IDrawable, IIntersectable
     {
-        /// <summary>
-        /// blocktype of the block
-        /// </summary>
-        public EnvironmentType Environment { get; set; }
 
         /// <summary>
-        /// collission of the block
+        /// Environment type of the block
         /// </summary>
-        public bool HasCollisionCorrection { get; set; }
+        public EnvironmentType Environment { get; set; }
 
         /// <summary>
         /// Initializes a block
@@ -27,14 +23,14 @@ namespace Lib.Level.Items
         /// <param name="y">y coordinate</param>
         /// <param name="startPosition"></param>
         /// <param name="sprite">sprite</param>
-        /// <param name="environment">blocktype</param>
+        /// <param name="environmentType">environment type</param>
         /// <param name="collision"></param>
         /// <param name="damage"></param>
-        public Block(Vector2 startPosition, ISprite sprite, EnvironmentType environment, bool collision, int damage)
+        public Block(Vector2 startPosition, ISprite sprite, EnvironmentType environmentType, bool collision, int damage)
 			: base(startPosition, new Vector2(1f, 1f))
         {
             Sprite = sprite;
-            Environment = environment;
+            Environment = environmentType;
             HasCollisionCorrection = collision;
             Damage = damage;
         }

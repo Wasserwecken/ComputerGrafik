@@ -20,6 +20,7 @@ using LevelEditor.Windows;
 using Lib.LevelLoader.LevelItems;
 using Lib.LevelLoader.Xml;
 using Lib.LevelLoader.Xml.LevelItems;
+using Lib.LevelLoader.Xml.LinkTypes;
 
 
 namespace LevelEditor.Controls

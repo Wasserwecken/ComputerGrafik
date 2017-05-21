@@ -24,6 +24,11 @@ namespace Lib.Level.Base
         public List<ISprite> AttachedSprites { get; set; }
         
         /// <summary>
+        /// collission of the block
+        /// </summary>
+        public bool HasCollisionCorrection { get; set; }
+
+        /// <summary>
         /// damage of the block
         /// </summary>
         public int Damage { get; set; }
