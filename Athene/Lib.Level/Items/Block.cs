@@ -10,6 +10,10 @@ namespace Lib.Level.Items
 	public class Block
         : LevelItemBase, IDrawable, IIntersectable
     {
+        /// <summary>
+        /// collission of the block
+        /// </summary>
+        public bool HasCollisionCorrection { get; set; }
 
         /// <summary>
         /// Environment type of the block

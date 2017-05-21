@@ -277,11 +277,11 @@ namespace Lib.Level
                 sprite.AddAnimation(xmlCheckpointAnimation.Path, xmlCheckpointAnimation.AnimationLength);
                 sprite.StartAnimation(new FileInfo(xmlCheckpointAnimation.Path).Name);
                 // TODO: alles in einen Sprite
-                SpriteAnimated spriteActivated = new SpriteAnimated();
+                SpriteAnimated spriteActivated = new SpriteAnimated(Vector2.One);
                 spriteActivated.AddAnimation(xmlCheckpointAnimation.ActivationPath, xmlCheckpointAnimation.ActivationAnimationLength);
                 spriteActivated.StartAnimation(new FileInfo(xmlCheckpointAnimation.ActivationPath).Name);
 
-                ISprite teleporterSprite = new SpriteStatic(@"Images\Environment\Common\portal.png");
+                ISprite teleporterSprite = new SpriteStatic(Vector2.One, @"Images\Environment\Common\portal.png");
                 Teleporter teleporter = new Teleporter(new Vector2(xmlLevelCheckpoint.X + 1, xmlLevelCheckpoint.Y), 
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY), 
                     new Vector2(0.8f), 

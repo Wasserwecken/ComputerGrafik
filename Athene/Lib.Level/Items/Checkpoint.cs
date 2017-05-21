@@ -14,6 +14,10 @@ namespace Lib.Level.Items
 {
     public class Checkpoint : LevelItemBase, IDrawable, IIntersectable
     {
+        /// <summary>
+        /// collission of the block
+        /// </summary>
+        public bool HasCollisionCorrection { get; set; }
 
         /// <summary>
         /// Destination of the checkpoint

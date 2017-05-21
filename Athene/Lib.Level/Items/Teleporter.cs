@@ -12,6 +12,11 @@ namespace Lib.Level.Items
     public class Teleporter : LevelItemBase, IDrawable, IIntersectable
     {
         /// <summary>
+        /// collission of the block
+        /// </summary>
+        public bool HasCollisionCorrection { get; set; }
+
+        /// <summary>
         /// Destination Position of the Teleporter
         /// </summary>
         public Vector2 DestinationPosition { get; set; }
