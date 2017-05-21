@@ -29,7 +29,7 @@ namespace LevelEditor.Windows
         {
             InitializeComponent();
 
-            ComboBoxBlockTypes.ItemsSource = Enum.GetValues(typeof(BlockType));
+            ComboBoxBlockTypes.ItemsSource = Enum.GetValues(typeof(EnvironmentType));
             ButtonSave.Click += ButtonSave_Click;
         }
 
@@ -40,7 +40,7 @@ namespace LevelEditor.Windows
         /// <param name="e"></param>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            BlockType newBlockType = (BlockType)ComboBoxBlockTypes.SelectedItem;
+            EnvironmentType newBlockType = (EnvironmentType)ComboBoxBlockTypes.SelectedItem;
             var selectedCollision = CollisionYesRadioButton.IsChecked != null && (bool)CollisionYesRadioButton.IsChecked;
             var selectedDamage = (int)DamageSlider.Value;
             var selectedIsScrolling = ScrollingActiveCheckBox.IsChecked != null && (bool) ScrollingActiveCheckBox.IsChecked;

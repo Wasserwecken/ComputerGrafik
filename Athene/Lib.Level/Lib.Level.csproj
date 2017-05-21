@@ -55,7 +55,8 @@
     <Compile Include="Items\Checkpoint.cs" />
     <Compile Include="Items\Collectable.cs" />
     <Compile Include="Items\IInventoryItem.cs" />
-    <Compile Include="Items\LevelBackground.cs" />
+    <Compile Include="Items\ParalaxBackground.cs" />
+    <Compile Include="Items\ParalaxBackgroundItem.cs" />
     <Compile Include="Items\Player.cs" />
     <Compile Include="Items\PlayerActions.cs" />
     <Compile Include="Items\PlayerFactory.cs" />

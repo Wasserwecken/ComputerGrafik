@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using OpenTK.Graphics.OpenGL;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Lib.Visuals.Graphics
@@ -36,7 +37,7 @@ namespace Lib.Visuals.Graphics
 		public SpriteAnimationData(string path, int playbackTime)
 		{
 			Name = new DirectoryInfo(path).Name;
-			AnimationTextures = TextureManager.GetTextures(path);
+			AnimationTextures = TextureManager.GetTextures(path, TextureWrapMode.Repeat, TextureWrapMode.Repeat);
 			PlaybackTime = playbackTime;
 			TimePerFrame = PlaybackTime / AnimationTextures.Count;
 		}

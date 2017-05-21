@@ -29,7 +29,8 @@ namespace Lib.Visuals.Graphics
 		/// <summary>
 		/// Initialises a animated sprite
 		/// </summary>
-		public SpriteAnimated()
+		public SpriteAnimated(Vector2 size)
+            : base(size)
 		{
 			TimeSource = new Stopwatch();
 			Animations = new List<SpriteAnimationData>();

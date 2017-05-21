@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using Lib.Tools;
+using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System.Diagnostics;
 
@@ -18,7 +19,17 @@ namespace Lib.Visuals.Graphics
 		/// Flips the texture of the sprite on the Y axis
 		/// </summary>
 		public bool FlipTextureVertical { get; set; }
+        
 
+        /// <summary>
+        /// Coordinates where the texture is placed on the square
+        /// </summary>
+        private Vector2[] TextureCoordinates { get; set; }
+
+        /// <summary>
+        /// Basic coordinates which defines the size of the sprite
+        /// </summary>
+        private Vector2[] BaseVertecieCoordinates { get; set; }
 
         /// <summary>
         /// Watch to stop the tamive for a scroll animation
@@ -39,37 +50,62 @@ namespace Lib.Visuals.Graphics
 		/// <summary>
 		/// Initialises a sprite
 		/// </summary>
-		public SpriteBase()
+		public SpriteBase(Vector2 size)
 		{
 			FlipTextureHorizontal = false;
 			FlipTextureVertical = true;
+            SetTextureCoordinates(0, 0, 1, 1);
+            SetSize(size);
 		}
+        
 
-		/// <summary>
-		/// Draws the sprite on the screen
-		/// </summary>
-		public void Draw(Vector2 position, Vector2 scale, Texture spriteTexture)
-		{
-			spriteTexture.Enable();
-			GL.Begin(PrimitiveType.Quads);
+        /// <summary>
+        /// Sets specific coordinates of the texture
+        /// </summary>
+        /// <param name="textureCoordinates"></param>
+        public void SetTextureCoordinates(float x, float y, float width, float height)
+        {
+            TextureCoordinates = new[]
+            {
+                new Vector2(x, y),
+                new Vector2(x, y + height),
+                new Vector2(x + width, y + height),
+                new Vector2(x + width, y)
+            };
+        }
 
-			var vertices = new[]
-			{
-				new Vector2(0, 0),
-				new Vector2(0, 1),
-				new Vector2(1, 1),
-				new Vector2(1, 0),
-			};
+        /// <summary>
+        /// Sets a new size for the sprite
+        /// </summary>
+        /// <param name=""></param>
+        public void SetSize(Vector2 size)
+        {
+            BaseVertecieCoordinates = new[]
+            {
+                new Vector2(0, 0),
+                new Vector2(0, size.Y),
+                new Vector2(size.X, size.Y),
+                new Vector2(size.X, 0)
+            };
+        }
+        
+        /// <summary>
+        /// Draws the sprite on the screen
+        /// </summary>
+        public void Draw(Vector2 position, Vector2 scale, Texture spriteTexture)
+        {
+            spriteTexture.Enable();
+            GL.Begin(PrimitiveType.Quads);
 
-			for (int index = 0; index < 4; index++)
-			{
-                SetTextureCoordinate(vertices[index]);
-                SetVertexPosition(vertices[index], position, scale, spriteTexture.Width, spriteTexture.Height);
-			}
+            for (int index = 0; index < 4; index++)
+            {
+                SetTextureCoordinate(TextureCoordinates[index]);
+                SetVertexPosition(BaseVertecieCoordinates[index], position, scale);
+            }
 
-			GL.End();
-			spriteTexture.Disable();
-		}
+            GL.End();
+            spriteTexture.Disable();
+        }
 
         /// <summary>
         /// Starts endless scrolling the texture in a given direction and speed
@@ -133,14 +169,8 @@ namespace Lib.Visuals.Graphics
 	    /// <param name="scale"></param>
 	    /// <param name="textureWidth"></param>
 	    /// <param name="textureHeight"></param>
-	    private void SetVertexPosition(Vector2 vertex, Vector2 position, Vector2 scale, float textureWidth, float textureHeight)
+	    private void SetVertexPosition(Vector2 vertex, Vector2 position, Vector2 scale)
         {
-            //Snap to grid size
-            if (textureHeight > textureWidth)
-                vertex.Y *= textureHeight / textureWidth;
-            else
-                vertex.X *= textureWidth / textureHeight;
-
             vertex *= scale;
             vertex += position;
 

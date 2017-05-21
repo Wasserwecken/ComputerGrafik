@@ -34,7 +34,7 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-            int level = 44;
+            int level = 9;
             XmlLevel levelData = LevelLoader.LoadFromXml(@"Level\Level" + level + ".xml");
             Level = new Level(levelData);
         }
@@ -47,7 +47,7 @@ namespace SimeraExample
             
 
             float axisSize = 0f;
-            float playersViewRange = 8f;
+            float playersViewRange = 10f;
 
             if (Window.AspectRatio > 0)
             {

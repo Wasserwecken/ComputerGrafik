@@ -1,4 +1,5 @@
 ﻿using OpenTK;
+using OpenTK.Graphics.OpenGL;
 
 namespace Lib.Visuals.Graphics
 {
@@ -13,20 +14,31 @@ namespace Lib.Visuals.Graphics
 		/// </summary>
 		public Texture SpriteTexture { get; set; }
 
+
         /// <summary>
         /// Initialises a sprite
         /// </summary>
-        public SpriteStatic(string path)
-		{
-			SpriteTexture = TextureManager.GetTexture(path);
-		}
+        public SpriteStatic(Vector2 size, string path)
+            : this(size, path, TextureWrapMode.Repeat, TextureWrapMode.Repeat) { }
 
-		/// <summary>
-		/// Draws the sprite on the screen
-		/// </summary>
-		/// <param name="position"></param>
-		/// <param name="scale"></param>
-		public void Draw(Vector2 position, Vector2 scale)
+        /// <summary>
+        /// Initialises a sprite
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="horizontal"></param>
+        /// <param name="vertical"></param>
+        public SpriteStatic(Vector2 size, string path, TextureWrapMode horizontal, TextureWrapMode vertical)
+            : base(size)
+        {
+            SpriteTexture = TextureManager.GetTexture(path, horizontal, vertical);
+        }
+
+        /// <summary>
+        /// Draws the sprite on the screen
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="scale"></param>
+        public void Draw(Vector2 position, Vector2 scale)
 		{
 			base.Draw(position, scale, SpriteTexture);
 		}

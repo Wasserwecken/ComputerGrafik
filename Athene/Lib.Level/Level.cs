@@ -26,6 +26,11 @@ namespace Lib.Level
         /// </summary>
         public Vector2 MaxPlayersDistance { get; set; }
 
+        /// <summary>
+        /// Boundaries of the level
+        /// </summary>
+        public Box2D LevelSize { get; set; }
+
 
         /// <summary>
         /// Blocks which can change their status / appereance / position
@@ -41,6 +46,11 @@ namespace Lib.Level
         /// Players which are participating in the level
         /// </summary>
         private List<Player> ActivePlayers { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private ParalaxBackground Background { get; set; }
 
         /// <summary>
         /// QuadTree for static ojects
@@ -72,8 +82,6 @@ namespace Lib.Level
             DynamicObjects.Add(player2);
             ActivePlayers.Add(player1);
             ActivePlayers.Add(player2);
-
-            InitialiseQuadTree();
 		}
 
 
@@ -112,6 +120,8 @@ namespace Lib.Level
         /// </summary>
         public void Draw(Box2D cameraFOV)
         {
+            Background.Draw(PlayersCenter);
+
             //Using the quadtree here because, only blocks in the camera view has to be drawn
             foreach (LevelItemBase item in EnvironmentQuadTree.GetElementsIn(cameraFOV))
             {
@@ -203,7 +213,7 @@ namespace Lib.Level
                     var xmlTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.Link);
                     if (xmlTexture == null)
                         throw new Exception("Texture not found in XML file");
-                    sprite = new SpriteStatic(xmlTexture.Path);
+                    sprite = new SpriteStatic(Vector2.One, xmlTexture.Path);
                     if (xmlBlock.IsScrolling)
                     {
                         ((SpriteStatic)sprite).StartTextureScroll(new Vector2(xmlBlock.ScrollingDirectionX, xmlBlock.ScrollingDirectionY), xmlBlock.ScrollingLength);
@@ -213,12 +223,12 @@ namespace Lib.Level
                         if (xmlBlock.AttachedLinkType == BlockLinkType.Image.ToString())
                         {
                             var attachedTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.AttachedLink);
-                            attachedSprite = new SpriteStatic(attachedTexture.Path);
+                            attachedSprite = new SpriteStatic(Vector2.One, attachedTexture.Path);
                         }
                         if (xmlBlock.AttachedLinkType == BlockLinkType.Animation.ToString())
                         {
 
-                            attachedSprite = new SpriteAnimated();
+                            attachedSprite = new SpriteAnimated(Vector2.One);
                             var xmlAnimation = AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == xmlBlock.AttachedLink);
                             if (xmlAnimation == null)
                                 throw new Exception("Animation not found");
@@ -232,7 +242,7 @@ namespace Lib.Level
                 }
                 if (xmlBlock.LinkType == BlockLinkType.Animation)
                 {
-                    sprite = new SpriteAnimated();
+                    sprite = new SpriteAnimated(Vector2.One);
                     var xmlAnimation = AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == xmlBlock.Link);
                     if (xmlAnimation == null)
                         throw new Exception("Animation not found");
@@ -263,7 +273,7 @@ namespace Lib.Level
                 if (xmlCheckpointAnimation == null)
                     throw new Exception("Checkpoint Animation in xml Datei nicht gefunden");
 
-                SpriteAnimated sprite = new SpriteAnimated();
+                SpriteAnimated sprite = new SpriteAnimated(Vector2.One);
                 sprite.AddAnimation(xmlCheckpointAnimation.Path, xmlCheckpointAnimation.AnimationLength);
                 sprite.StartAnimation(xmlCheckpointAnimation.Id);
 
@@ -281,16 +291,14 @@ namespace Lib.Level
                 if(xmlCollectable == null)
                     throw  new Exception("Collectable not found");
 
-                SpriteStatic sprite = new SpriteStatic(xmlCollectable.Path);
+                SpriteStatic sprite = new SpriteStatic(Vector2.One, xmlCollectable.Path);
 
                 Collectable collectable = new Collectable(sprite, new Vector2(xmlLevelCollectable.X, xmlLevelCollectable.Y), xmlCollectable.ItemType);
                 DynamicObjects.Add(collectable);
             }
-
-            foreach (var xmlBackground in xmlLevel.Backgrounds)
-            {
-                
-            }
+            
+            InitialiseQuadTree();
+            Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, -.2f, xmlLevel.Backgrounds);
         }
 
 
@@ -325,8 +333,8 @@ namespace Lib.Level
                 }
             }
 
-            var levelSize = new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);
-            EnvironmentQuadTree = new QuadTreeRoot(levelSize, 4, quadList);
+            LevelSize = new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);
+            EnvironmentQuadTree = new QuadTreeRoot(LevelSize, 4, quadList);
         }
     }
 }

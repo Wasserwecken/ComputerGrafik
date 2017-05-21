@@ -31,7 +31,7 @@ namespace Lib.Level.Items
             mapList.AddMappingGamePad(playerId, pad => pad.Buttons.A, inp => inp.Jump, (inval, curval) => inval == ButtonState.Pressed);
 
             //Optic
-            SpriteAnimated playerSprite = new SpriteAnimated();
+            SpriteAnimated playerSprite = new SpriteAnimated(Vector2.One);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/walk",playerId), 600);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/swim", playerId), 1000);
             playerSprite.StartAnimation("walk");

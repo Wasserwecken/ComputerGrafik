@@ -133,4 +133,13 @@
     <Texture Id="ladder_mid" Path="Images\Objects\Tiles\ladder_mid.png" />
     <Texture Id="forest_pack_52" Path="Images\Environment\Forest\forest_pack_52.png" />
   </Textures>
+  <Backgrounds>
+    <Background Index="0" Path="Images/Backgrounds/bg_jungle_1.png" />
+    <Background Index="1" Path="Images/Backgrounds/bg_jungle_2.png" />
+    <Background Index="2" Path="Images/Backgrounds/bg_jungle_3.png" />
+    <Background Index="3" Path="Images/Backgrounds/bg_jungle_4.png" />
+    <Background Index="4" Path="Images/Backgrounds/bg_jungle_5.png" />
+    <Background Index="5" Path="Images/Backgrounds/bg_jungle_6.png" />
+    <Background Index="6" Path="Images/Backgrounds/bg_jungle_7.png" />
+  </Backgrounds>
 </Level>

@@ -21,24 +21,23 @@ namespace Lib.Visuals.Graphics
 		/// </summary>
 		/// <param name="path">Path to the texture</param>
 		/// <returns></returns>
-        public static Texture GetTexture(string path)
+        public static Texture GetTexture(string path, TextureWrapMode horizontal, TextureWrapMode vertical)
 		{
 			if (!File.Exists(path))
 				throw new FileNotFoundException(path);
 
             //Check for a cached texture, the path is used as unique identifer
-            Texture textureRequest;
-            if (_cachedTextures.TryGetValue(path, out textureRequest))
-				return textureRequest;
+            if (_cachedTextures.TryGetValue(path, out Texture textureRequest))
+                return textureRequest;
 
-			//start loading the texture from file
-			var textureFile = new Bitmap(path);
+            //start loading the texture from file
+            var textureFile = new Bitmap(path);
 
 			var textureDimensions = new Rectangle(0, 0, textureFile.Width, textureFile.Height);
 			var textureData = textureFile.LockBits(textureDimensions, ImageLockMode.ReadOnly, textureFile.PixelFormat);
 
 			//Create a open gl texture
-			textureRequest = CreateGLTexture(textureData);
+			textureRequest = CreateGLTexture(textureData, horizontal, vertical);
 
 			//clean up
 			textureFile.UnlockBits(textureData);
@@ -53,12 +52,12 @@ namespace Lib.Visuals.Graphics
 		/// </summary>
 		/// <param name="path"></param>
 		/// <returns></returns>
-	    public static List<Texture> GetTextures(string path)
+	    public static List<Texture> GetTextures(string path, TextureWrapMode horizontal, TextureWrapMode vertical)
 	    {
             var textureList = new List<Texture>();
 
 			foreach(var file in Directory.GetFiles(path, "*.png", SearchOption.TopDirectoryOnly).OrderBy(f => f))
-				textureList.Add(GetTexture(file));
+				textureList.Add(GetTexture(file, horizontal, vertical));
 
 			return textureList;
         }
@@ -68,7 +67,7 @@ namespace Lib.Visuals.Graphics
 		/// </summary>
 		/// <param name="data"></param>
 		/// <returns></returns>
-		private static Texture CreateGLTexture(BitmapData data)
+		private static Texture CreateGLTexture(BitmapData data, TextureWrapMode horizontal, TextureWrapMode vertical)
 		{
 			var newTexture = new Texture(GL.GenTexture());
 			newTexture.Enable();
@@ -87,11 +86,11 @@ namespace Lib.Visuals.Graphics
 				data.Scan0);
 
 
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (float)TextureWrapMode.Repeat);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (float)TextureWrapMode.Repeat);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (float)horizontal);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (float)vertical);
 
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (float)TextureMinFilter.Nearest);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (float)TextureMagFilter.Nearest);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (float)TextureMinFilter.Linear);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (float)TextureMagFilter.Linear);
 
             newTexture.Disable();
 
