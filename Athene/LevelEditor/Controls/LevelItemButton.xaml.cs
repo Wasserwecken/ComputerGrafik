@@ -70,7 +70,7 @@ namespace LevelEditor.Controls
         /// <param name="environmentType">Blocktype</param>
         /// <param name="collision">collision</param>
         /// <param name="damage">damage</param>
-        public void SetXmlBlock(XmlTexture texture, BlockType type, bool collision, int damage, bool isScrolling = false, 
+        public void SetXmlBlock(XmlTexture texture, EnvironmentType environmentType, bool collision, int damage, bool isScrolling = false, 
             int scrollingLength = 0, float scrollingDirectionX = 0, float scrollingDirectionY = 0, XmlLinkTypeBase attachedLink = null)
         {
             ResetTextBlock();

@@ -320,7 +320,7 @@ namespace Lib.Level
             }
             
             InitialiseQuadTree();
-            Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, -.2f, xmlLevel.Backgrounds);
+            Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, -.06f, xmlLevel.Backgrounds);
         }
 
 
