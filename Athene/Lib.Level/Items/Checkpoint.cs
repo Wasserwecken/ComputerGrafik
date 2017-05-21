@@ -24,7 +24,7 @@ namespace Lib.Level.Items
         /// ActivationItemType of the block
         /// (string, for example: crystal_red)
         /// </summary>
-        public CollectableItemType ActivationItemType { get; set; }
+        public ItemType ActivationItemType { get; set; }
 
         /// <summary>
         /// returns if the Checkpoint is activated
@@ -36,7 +36,15 @@ namespace Lib.Level.Items
         /// </summary>
         public ISprite SpriteActivated { get; set; }
 
+        /// <summary>
+        /// the teleporter to the destination
+        /// </summary>
         public Teleporter Teleporter { get; set; }
+
+        /// <summary>
+        /// the back teleporter
+        /// </summary>
+        public Teleporter BackTeleporter { get; set; }
 
         /// <summary>
         /// Initialises a checkpoint
@@ -47,7 +55,8 @@ namespace Lib.Level.Items
         /// <param name="activationItemType"></param>
         /// <param name="activatedSprite"></param>
         /// <param name="teleporter"></param>
-        public Checkpoint(Vector2 startPosition, Vector2 destinationPosition, ISprite damageSprite, ISprite activatedSprite, CollectableItemType activationItemType, Teleporter teleporter)
+        /// <param name="backTeleporter"></param>
+        public Checkpoint(Vector2 startPosition, Vector2 destinationPosition, ISprite damageSprite, ISprite activatedSprite, ItemType activationItemType, Teleporter teleporter, Teleporter backTeleporter)
             : base(startPosition, new Vector2(0.75f, 0.75f))
         {
             DestinationPosition = destinationPosition;
@@ -55,7 +64,7 @@ namespace Lib.Level.Items
             ActivationItemType = activationItemType;
             SpriteActivated = activatedSprite;
             Teleporter = teleporter;
-
+            BackTeleporter = backTeleporter;
         }
 
         /// <summary>
@@ -65,6 +74,7 @@ namespace Lib.Level.Items
         {
             IsActivated = true;
             Teleporter.IsActivated = true;
+            BackTeleporter.IsActivated = true;
         }
 
         /// <summary>

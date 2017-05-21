@@ -221,7 +221,7 @@ namespace Lib.Level
                         if (xmlBlock.AttachedLinkType == BlockLinkType.Image.ToString())
                         {
                             var attachedTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.AttachedLink);
-                            attachedSprite = new SpriteStatic(attachedTexture.Path);
+                            attachedSprite = new SpriteStatic(attachedTexture?.Path);
                         }
                         if (xmlBlock.AttachedLinkType == BlockLinkType.Animation.ToString())
                         {
@@ -279,17 +279,28 @@ namespace Lib.Level
                 spriteActivated.AddAnimation(xmlCheckpointAnimation.ActivationPath, xmlCheckpointAnimation.ActivationAnimationLength);
                 spriteActivated.StartAnimation(new FileInfo(xmlCheckpointAnimation.ActivationPath).Name);
 
-                ISprite teleporterSprite = new SpriteStatic(@"Images\Objects\Tiles\window.png");
-                Teleporter teleporter = new Teleporter(new Vector2(xmlLevelCheckpoint.X + 1, xmlLevelCheckpoint.Y), new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY), new Vector2(0.8f), teleporterSprite);
+                ISprite teleporterSprite = new SpriteStatic(@"Images\Environment\Common\portal.png");
+                Teleporter teleporter = new Teleporter(new Vector2(xmlLevelCheckpoint.X + 1, xmlLevelCheckpoint.Y), 
+                    new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY), 
+                    new Vector2(0.8f), 
+                    teleporterSprite);
+
+             
+                Teleporter backTeleporter = new Teleporter(new Vector2(xmlLevelCheckpoint.DestinationX - 1, xmlLevelCheckpoint.DestinationY),
+                    new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y),
+                    new Vector2(0.8f),
+                    teleporterSprite);
 
                 Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y), 
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY),
                     sprite,
                     spriteActivated,
-                    (CollectableItemType) Enum.Parse(typeof(CollectableItemType), xmlCheckpointAnimation.CollectableItemType),
-                    teleporter);
+                    (ItemType) Enum.Parse(typeof(ItemType), xmlCheckpointAnimation.CollectableItemType),
+                    teleporter,
+                    backTeleporter);
                 DynamicObjects.Add(checkPoint);
                 DynamicObjects.Add(teleporter);
+                DynamicObjects.Add(backTeleporter);
             }
 
             foreach (var xmlLevelCollectable in xmlLevel.Collectables)

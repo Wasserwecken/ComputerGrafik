@@ -24,7 +24,7 @@ namespace Lib.Level.Items
         /// <summary>
         /// List of inventory items
         /// </summary>
-        public List<IInventoryItem> Inventory { get; set; }
+        public Inventory Inventory { get; set; }
 
 		/// <summary>
 		/// The physical position and movement of the player
@@ -66,8 +66,8 @@ namespace Lib.Level.Items
             Status = new PlayerStatus();
 			InputValues = new PlayerActions();
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
-            Inventory = new List<IInventoryItem>();
-			Physics = new PhysicBody(impulseProperties, forceProperties);
+            Inventory = new Inventory();
+            Physics = new PhysicBody(impulseProperties, forceProperties);
             
 			Sprite = sprite;
             HasCollisionCorrection = true;
@@ -88,7 +88,7 @@ namespace Lib.Level.Items
             var y = HitBox.Position.Y + offsetValue;
 
             ViewPoint = new Vector2(x, y);
-
+            Inventory.Draw();
 
             if (Physics.Energy.X > 0)
                 Sprite.FlipTextureHorizontal = false;
@@ -142,10 +142,10 @@ namespace Lib.Level.Items
         {
             foreach(var item in intersectionItems)
             {
-                if (item is Collectable && ((Collectable)item).IsActive)
+                if (item is Collectable collectable && collectable.IsActive)
                 {
-                    Inventory.Add((Collectable)item);
-                    ((Collectable)item).IsActive = false;
+                    Inventory.AddItem(collectable);
+                    collectable.IsActive = false;
                 }
             }
         }
@@ -166,13 +166,13 @@ namespace Lib.Level.Items
             foreach (var item in intersectingItems)
             {
                 /* look for checkpoints to activate */
-                if (item is Checkpoint checkpoint && !((Checkpoint)item).IsActivated)
+                if (item is Checkpoint checkpoint && !checkpoint.IsActivated)
                 {
-                    var result = Inventory.FirstOrDefault(i => i.TypeId == checkpoint.ActivationItemType.ToString());
-                    if (result != null)
+                    var getItem = Inventory.GetFirstItemofType(checkpoint.ActivationItemType);
+                    if (getItem != null)
                     {
                         checkpoint.Activate();
-                        Inventory.Remove(result);
+                        Inventory.RemoveItem(getItem);
                     }
                 }
 
@@ -189,11 +189,11 @@ namespace Lib.Level.Items
         }
 
 
-        /// <summary>
-        /// Evaluates the collision report and sets values for the player
-        /// </summary>
-        /// <param name="intersectingItems"></param>
-        private void SetPlayerStatus(CollisionReport report)
+	    /// <summary>
+	    /// Evaluates the collision report and sets values for the player
+	    /// </summary>
+	    /// <param name="report"></param>
+	    private void SetPlayerStatus(CollisionReport report)
         {
             if (Physics.Energy.Y < 0)
             {

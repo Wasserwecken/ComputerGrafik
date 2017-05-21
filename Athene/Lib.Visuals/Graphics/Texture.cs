@@ -36,7 +36,7 @@ namespace Lib.Visuals.Graphics
 		public void Enable()
 		{
 			GL.BindTexture(TextureTarget.Texture2D, Id);
-		}
+        }
 
 		/// <summary>
 		/// Deactivates the texture for rendering

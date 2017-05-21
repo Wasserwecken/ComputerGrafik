@@ -21,24 +21,20 @@ namespace Lib.Level.Items
         /// <summary>
         /// type of the collectable
         /// </summary>
-        public CollectableItemType Type { get; set; }
-
-        /// <summary>
-        /// the Id of the Type
-        /// </summary>
-        public string TypeId => Type.ToString();
+        public ItemType ItemType { get; set; }
 
         /// <summary>
         /// Initialises a clollectable
         /// </summary>
         /// <param name="sprite"></param>
         /// <param name="startPosition"></param>
-        public Collectable(ISprite sprite, Vector2 startPosition, CollectableItemType type)
+        /// <param name="type"></param>
+        public Collectable(ISprite sprite, Vector2 startPosition, ItemType type)
             : base(startPosition, new Vector2(0.75f, 0.75f))
         {
             Sprite = sprite;
             IsActive = true;
-            Type = type;
+            ItemType = type;
         }
 
 

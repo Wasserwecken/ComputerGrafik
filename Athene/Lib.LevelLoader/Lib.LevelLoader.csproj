@@ -57,7 +57,7 @@
     <Compile Include="Xml\LinkTypes\XmlAnimation.cs" />
     <Compile Include="Xml\LinkTypes\XmlCheckpointItem.cs" />
     <Compile Include="Xml\LinkTypes\XmlCollectableItem.cs" />
-    <Compile Include="LevelItems\CollectableItemType.cs" />
+    <Compile Include="LevelItems\ItemType.cs" />
     <Compile Include="Xml\LinkTypes\XmlLinkTypeBase.cs" />
     <Compile Include="Xml\Root\XmlAnimationList.cs" />
     <Compile Include="Xml\LevelItems\XmlBlock.cs" />
@@ -1316,6 +1316,9 @@
     <Content Include="Images\Environment\Common\5cbd7e3460cf6e9dd808b9872dd9d23d_dirt20clipart-dirt-clipart_2400-876.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Environment\Common\portal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Environment\Desert\bg_desert.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2187,6 +2190,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Objects\Tiles\castleRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Objects\Tiles\clock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Objects\Tiles\dirt.png">

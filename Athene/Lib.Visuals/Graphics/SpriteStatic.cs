@@ -28,7 +28,7 @@ namespace Lib.Visuals.Graphics
 		/// <param name="scale"></param>
 		public void Draw(Vector2 position, Vector2 scale)
 		{
-			base.Draw(position, scale, SpriteTexture);
+			Draw(position, scale, SpriteTexture);
 		}
 	}
 }

@@ -66,6 +66,7 @@ namespace Lib.Visuals.Graphics
                 SetTextureCoordinate(vertices[index]);
                 SetVertexPosition(vertices[index], position, scale, spriteTexture.Width, spriteTexture.Height);
 			}
+           
 
 			GL.End();
 			spriteTexture.Disable();
