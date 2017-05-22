@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\ICreateable.cs" />
+    <Compile Include="Base\IRemoveable.cs" />
     <Compile Include="Base\LevelItemBase.cs" />
     <Compile Include="Base\IIntersectable.cs" />
     <Compile Include="Base\IDrawable.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="Items\Collectable.cs" />
     <Compile Include="Items\IInventoryItem.cs" />
     <Compile Include="Items\Inventory.cs" />
+    <Compile Include="Items\InventoryItem.cs" />
     <Compile Include="Items\ParalaxBackground.cs" />
     <Compile Include="Items\ParalaxBackgroundItem.cs" />
     <Compile Include="Items\Player.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System;
 
 namespace Lib.Visuals.Graphics
 {
@@ -26,10 +27,10 @@ namespace Lib.Visuals.Graphics
 		private Stopwatch TimeSource { get; set; }
 
 
-		/// <summary>
-		/// Initialises a animated sprite
-		/// </summary>
-		public SpriteAnimated(Vector2 size)
+        /// <summary>
+        /// Initialises a animated sprite
+        /// </summary>
+        public SpriteAnimated(Vector2 size)
             : base(size)
 		{
 			TimeSource = new Stopwatch();

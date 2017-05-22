@@ -11,7 +11,7 @@ using Lib.LevelLoader.LevelItems;
 
 namespace Lib.Level.Items
 {
-    public class Collectable : LevelItemBase, IDrawable, IIntersectable, IInventoryItem
+    public class Collectable : LevelItemBase, IDrawable, IIntersectable, IInventoryItem, IRemoveable, IMoveable
     {
         /// <summary>
         /// Determines if the collectable can be collected or not
@@ -28,6 +28,32 @@ namespace Lib.Level.Items
         /// </summary>
         public bool HasCollisionCorrection { get; set; }
 
+        /// <summary>
+        /// Removes the item from the level when set
+        /// </summary>
+        public bool Remove { get; set; }
+        
+
+        /// <summary>
+        /// Maximum size which the collectable can reach for the animation
+        /// </summary>
+        private float AddedAnimatedZoom { get; set; }
+
+        /// <summary>
+        /// Amount of steps to reach the end of the animation
+        /// </summary>
+        private int AnimationLength { get; set; }
+
+        /// <summary>
+        /// current step of the animation
+        /// </summary>
+        private int CurrentAnimationStep { get; set; }
+
+        /// <summary>
+        /// Step counter which will be used to calculate the easing for the zoom factor
+        /// </summary>
+        private int CurrentEasingStep { get; set; }
+
 
         /// <summary>
         /// Initialises a clollectable
@@ -36,11 +62,18 @@ namespace Lib.Level.Items
         /// <param name="startPosition"></param>
         /// <param name="type"></param>
         public Collectable(ISprite sprite, Vector2 startPosition, ItemType type)
-            : base(startPosition, new Vector2(0.75f, 0.75f))
+            : base(startPosition, new Vector2(1.5f, 1.5f))
         {
-            Sprite = sprite;
             IsActive = true;
             ItemType = type;
+
+            Sprite = sprite;
+            Sprite.SetSize(HitBox.Size);
+
+            AddedAnimatedZoom = .25f;
+            AnimationLength = 120;
+            CurrentAnimationStep = 0;
+            CurrentEasingStep = 0;
         }
 
 
@@ -49,8 +82,30 @@ namespace Lib.Level.Items
         /// </summary>
         public void Draw()
         {
-            if(IsActive)
-                Sprite.Draw(HitBox.Position, new Vector2(0.8f));
+            var CurrentZoom = 1 + (AddedAnimatedZoom * Easing.Linear(CurrentEasingStep, AnimationLength));
+            var spriteSizeDiff = (Sprite.Size * CurrentZoom) - Sprite.Size;
+            var positionCorrection = new Vector2((spriteSizeDiff.X / 2), 0);
+
+            Sprite.Draw(HitBox.Position - positionCorrection, Vector2.One * CurrentZoom);
+        }
+        
+        /// <summary>
+        /// Hovers the collectable to be more visible for the players
+        /// </summary>
+        public void Move()
+        {
+            if (CurrentAnimationStep >= AnimationLength)
+                CurrentAnimationStep = 0;
+            else
+                CurrentAnimationStep++;
+
+            if (CurrentAnimationStep < (AnimationLength / 2))
+                CurrentEasingStep += 2;
+            else
+                CurrentEasingStep -= 2;
+
+            CurrentEasingStep = Math.Min(CurrentEasingStep, AnimationLength);
+            CurrentEasingStep = Math.Max(CurrentEasingStep, 0);
         }
 
         /// <summary>
@@ -58,5 +113,6 @@ namespace Lib.Level.Items
         /// </summary>
         /// <param name="intersectingItems"></param>
         public void HandleCollisions(List<IIntersectable> intersectingItems) { }
+
     }
 }

@@ -19,6 +19,11 @@ namespace Lib.Visuals.Graphics
 		/// Flips the texture of the sprite on the Y axis
 		/// </summary>
 		public bool FlipTextureVertical { get; set; }
+
+        /// <summary>
+        /// Size of the sprite
+        /// </summary>
+        public Vector2 Size { get; private set; }
         
 
         /// <summary>
@@ -47,10 +52,10 @@ namespace Lib.Visuals.Graphics
         private float ScrollCycleDuration { get; set; }
 
 
-		/// <summary>
-		/// Initialises a sprite
-		/// </summary>
-		public SpriteBase(Vector2 size)
+        /// <summary>
+        /// Initialises a sprite
+        /// </summary>
+        public SpriteBase(Vector2 size)
 		{
 			FlipTextureHorizontal = false;
 			FlipTextureVertical = true;
@@ -80,6 +85,7 @@ namespace Lib.Visuals.Graphics
         /// <param name=""></param>
         public void SetSize(Vector2 size)
         {
+            Size = size;
             BaseVertecieCoordinates = new[]
             {
                 new Vector2(0, 0),

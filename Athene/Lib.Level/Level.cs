@@ -90,6 +90,9 @@ namespace Lib.Level
         /// </summary>
         public void UpdateLogic()
         {
+            var newCreatedItems = new List<LevelItemBase>();
+            var removedItems = new List<LevelItemBase>();
+
             foreach (var item in DynamicObjects)
             {
                 if (item is IMoveable moveItem)
@@ -110,7 +113,24 @@ namespace Lib.Level
                     intersectingItems.Remove((IIntersectable)item);
                     interactItem.HandleInteractions(intersectingItems);
                 }
+
+
+                if (item is ICreateable creatingItem)
+                {
+                    newCreatedItems.AddRange(creatingItem.GetCreatedItems());
+                    creatingItem.ClearCreatedItems();
+                }
+
+
+                if (item is IRemoveable removeableItem && removeableItem.Remove)
+                    removedItems.Add((LevelItemBase)removeableItem);
             }
+
+
+            DynamicObjects.AddRange(newCreatedItems);
+            foreach (var item in removedItems)
+                DynamicObjects.Remove(item);
+
 
             CalculateCameraInformations();
         }
@@ -313,14 +333,14 @@ namespace Lib.Level
                 if(xmlCollectable == null)
                     throw  new Exception("Collectable not found");
 
-                SpriteStatic sprite = new SpriteStatic(Vector2.One, xmlCollectable.Path);
+                SpriteStatic sprite = new SpriteStatic(Vector2.One * 2, xmlCollectable.Path);
 
                 Collectable collectable = new Collectable(sprite, new Vector2(xmlLevelCollectable.X, xmlLevelCollectable.Y), xmlCollectable.ItemType);
                 DynamicObjects.Add(collectable);
             }
             
             InitialiseQuadTree();
-            Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, -.06f, xmlLevel.Backgrounds);
+            Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, -.2f, xmlLevel.Backgrounds);
         }
 
 

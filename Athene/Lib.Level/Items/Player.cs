@@ -14,7 +14,7 @@ using System.Linq;
 namespace Lib.Level.Items
 {
     public class Player
-        : LevelItemBase, IDrawable, IMoveable, IInteractable, IIntersectable
+        : LevelItemBase, IDrawable, IMoveable, IInteractable, IIntersectable, ICreateable
 	{
 		/// <summary>
 		/// Sets the values for the offset where the camera should point on
@@ -72,13 +72,18 @@ namespace Lib.Level.Items
             Status = new PlayerStatus();
 			InputValues = new PlayerActions();
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
-            Inventory = new Inventory();
+            Inventory = new Inventory(0.5f, 0.01f, 1);
             Physics = new PhysicBody(impulseProperties, forceProperties);
             
 			Sprite = sprite;
             HasCollisionCorrection = true;
-            InteractionBox = HitBox;
 
+            //float interactionSizeFactor = 2f;
+            //float interactionSizeX = HitBox.Size.X * interactionSizeFactor;
+            //float interactionSizeY = HitBox.Size.Y * interactionSizeFactor;
+
+            //InteractionBox = new Box2D(HitBox.Position.X - (interactionSizeX / 2), HitBox.Position.Y - (interactionSizeY / 2), interactionSizeX, interactionSizeY);
+            InteractionBox = HitBox;
         }
                 
 
@@ -94,7 +99,6 @@ namespace Lib.Level.Items
             var y = HitBox.Position.Y + offsetValue;
 
             ViewPoint = new Vector2(x, y);
-            Inventory.Draw();
 
             if (Physics.Energy.X > 0)
                 Sprite.FlipTextureHorizontal = false;
@@ -102,6 +106,9 @@ namespace Lib.Level.Items
                 Sprite.FlipTextureHorizontal = true;
             
             Sprite.Draw(HitBox.Position, new Vector2(0.8f));
+
+            Inventory.Position = new Vector2(HitBox.Center.X, HitBox.MaximumY);
+            Inventory.Draw();
 		}
 
         /// <summary>
@@ -150,9 +157,29 @@ namespace Lib.Level.Items
             {
                 if (item is Collectable collectable && collectable.IsActive)
                 {
-                    Inventory.AddItem(collectable);
+                    collectable.Remove = true;
                     collectable.IsActive = false;
+                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                 }
+
+                /* look for checkpoints to activate */
+                if (item is Checkpoint checkpoint && !checkpoint.IsActivated)
+                {
+                    var getItem = Inventory.GetFirstItemofType(checkpoint.ActivationItemType);
+                    if (getItem != null)
+                    {
+                        checkpoint.Activate();
+                        Inventory.RemoveItem(getItem);
+                    }
+                }
+
+                /* check teleporter */
+                if (item is Teleporter teleporter && teleporter.IsActivated)
+                    teleporter.Teleport(this);
             }
         }
 
@@ -168,38 +195,33 @@ namespace Lib.Level.Items
                 Physics.StopBodyOnAxisX();
             if (report.CorrectedVertical)
                 Physics.StopBodyOnAxisY();
-
-            foreach (var item in intersectingItems)
-            {
-                /* look for checkpoints to activate */
-                if (item is Checkpoint checkpoint && !checkpoint.IsActivated)
-                {
-                    var getItem = Inventory.GetFirstItemofType(checkpoint.ActivationItemType);
-                    if (getItem != null)
-                    {
-                        checkpoint.Activate();
-                        Inventory.RemoveItem(getItem);
-                    }
-                }
-
-                /* check teleporter */
-                if (item is Teleporter teleporter && ((Teleporter)item).IsActivated)
-                {
-                    teleporter.Teleport(this);
-                 
-                }
-            }
-
+            
             SetEnvironment(intersectingItems);
             SetPlayerStatus(report);
         }
 
+        /// <summary>
+        /// Retruns all items that has been created from the player
+        /// </summary>
+        /// <returns></returns>
+        public List<LevelItemBase> GetCreatedItems()
+        {
+            return new List<LevelItemBase>();
+        }
 
-	    /// <summary>
-	    /// Evaluates the collision report and sets values for the player
-	    /// </summary>
-	    /// <param name="report"></param>
-	    private void SetPlayerStatus(CollisionReport report)
+        /// <summary>
+        /// Clears all created items
+        /// </summary>
+        public void ClearCreatedItems()
+        {
+        }
+
+
+        /// <summary>
+        /// Evaluates the collision report and sets values for the player
+        /// </summary>
+        /// <param name="report"></param>
+        private void SetPlayerStatus(CollisionReport report)
         {
             if (Physics.Energy.Y < 0)
             {
