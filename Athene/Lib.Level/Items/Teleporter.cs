@@ -42,14 +42,6 @@ namespace Lib.Level.Items
                 Sprite.Draw(HitBox.Position, new Vector2(0.8f));
         }
 
-        /// <summary>
-        /// teleports a item to the destination
-        /// </summary>
-        /// <param name="item"></param>
-        public void Teleport(LevelItemBase item)
-        {
-            item.HitBox.Position = DestinationPosition;
-        }
 
         /// <summary>
         /// Reacts to intersections with items

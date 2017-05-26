@@ -86,13 +86,18 @@ namespace Lib.Level.Items
         /// </summary>
         public void Draw()
         {
+            foreach (var attachedSprite in AttachedSprites)
+                attachedSprite.Draw(HitBox.Position, new Vector2(1f));
+
             if (!IsActivated)
                 Sprite.Draw(HitBox.Position, new Vector2(0.8f));
             else
             {
                 SpriteActivated.Draw(HitBox.Position, new Vector2(0.8f));
             }
-                
+
+         
+
         }
 
         /// <summary>

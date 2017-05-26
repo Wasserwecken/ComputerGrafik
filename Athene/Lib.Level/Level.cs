@@ -240,24 +240,7 @@ namespace Lib.Level
                     }
                     if (xmlBlock.AttachedLink != null)
                     {
-                        if (xmlBlock.AttachedLinkType == BlockLinkType.Image.ToString())
-                        {
-                            var attachedTexture = xmlLevel.Textures.FirstOrDefault(t => t.Id == xmlBlock.AttachedLink);
-                            attachedSprite = new SpriteStatic(Vector2.One, attachedTexture?.Path);
-                        }
-                        if (xmlBlock.AttachedLinkType == BlockLinkType.Animation.ToString())
-                        {
-
-                            attachedSprite = new SpriteAnimated(Vector2.One);
-                            var xmlAnimation = AnimationLoader.GetBlockAnimations().Animations.First(a => a.Id == xmlBlock.AttachedLink);
-                            if (xmlAnimation == null)
-                                throw new Exception("Animation not found");
-                            ((SpriteAnimated)attachedSprite).AddAnimation(xmlAnimation.Path, xmlAnimation.AnimationLength);
-                            // start animation
-                            ((SpriteAnimated)attachedSprite).StartAnimation(new DirectoryInfo(xmlAnimation.Path).Name);
-                        }
-
-
+                        attachedSprite = Helper.AttachedSpriteHelper.GetAttachedSprite(xmlBlock, xmlLevel);
                     }
                 }
                 if (xmlBlock.LinkType == BlockLinkType.Animation)
@@ -301,18 +284,16 @@ namespace Lib.Level
                 spriteActivated.AddAnimation(xmlCheckpointAnimation.ActivationPath, xmlCheckpointAnimation.ActivationAnimationLength);
                 spriteActivated.StartAnimation(new FileInfo(xmlCheckpointAnimation.ActivationPath).Name);
 
+
                 ISprite teleporterSprite = new SpriteStatic(Vector2.One, @"Images\Environment\Common\portal.png");
                 Teleporter teleporter = new Teleporter(new Vector2(xmlLevelCheckpoint.X + 1, xmlLevelCheckpoint.Y), 
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY), 
                     new Vector2(0.8f), 
                     teleporterSprite);
-
-             
                 Teleporter backTeleporter = new Teleporter(new Vector2(xmlLevelCheckpoint.DestinationX - 1, xmlLevelCheckpoint.DestinationY),
                     new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y),
                     new Vector2(0.8f),
                     teleporterSprite);
-
                 Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y), 
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY),
                     sprite,
@@ -320,6 +301,18 @@ namespace Lib.Level
                     (ItemType) Enum.Parse(typeof(ItemType), xmlCheckpointAnimation.CollectableItemType),
                     teleporter,
                     backTeleporter);
+
+
+                /* create the attached Sprites */
+                if (xmlLevelCheckpoint.AttachedLink != null)
+                {
+                    ISprite attachedSprite = Helper.AttachedSpriteHelper.GetAttachedSprite(xmlLevelCheckpoint, xmlLevel);
+                    checkPoint.AttachedSprites.Add(attachedSprite);
+                }
+               
+
+
+
                 DynamicObjects.Add(checkPoint);
                 DynamicObjects.Add(teleporter);
                 DynamicObjects.Add(backTeleporter);
@@ -336,6 +329,16 @@ namespace Lib.Level
                 SpriteStatic sprite = new SpriteStatic(Vector2.One * 2, xmlCollectable.Path);
 
                 Collectable collectable = new Collectable(sprite, new Vector2(xmlLevelCollectable.X, xmlLevelCollectable.Y), xmlCollectable.ItemType);
+
+
+                /* create the attached Sprites */
+                if (xmlLevelCollectable.AttachedLink != null)
+                {
+                    ISprite attachedSprite = Helper.AttachedSpriteHelper.GetAttachedSprite(xmlLevelCollectable, xmlLevel);
+                    collectable.AttachedSprites.Add(attachedSprite);
+                }
+
+
                 DynamicObjects.Add(collectable);
             }
             

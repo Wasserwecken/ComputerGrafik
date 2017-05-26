@@ -82,6 +82,10 @@ namespace Lib.Level.Items
         /// </summary>
         public void Draw()
         {
+            foreach (var attachedSprite in AttachedSprites)
+                attachedSprite.Draw(HitBox.Position, new Vector2(1f));
+
+
             var CurrentZoom = 1 + (AddedAnimatedZoom * Easing.Linear(CurrentEasingStep, AnimationLength));
             var spriteSizeDiff = (Sprite.Size * CurrentZoom) - Sprite.Size;
             var positionCorrection = new Vector2((spriteSizeDiff.X / 2), 0);

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" MaxX="45" MaxY="5" MinX="-15" MinY="-5" SpawnX="-3" SpawnY="9">
+  <Blocks>
+    <Block X="-11" Y="1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="1" AttachedLinkType="Animation" AttachedLink="water" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-9" Y="1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="1" AttachedLinkType="Animation" AttachedLink="water" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-6" Y="1" AttachedLinkType="Animation" AttachedLink="water" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-5" Y="1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="1" AttachedLinkType="Animation" AttachedLink="water" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-3" Y="1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-2" Y="1" AttachedLinkType="Animation" AttachedLink="water" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="forest_pack_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-11" Y="-1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-10" Y="-1" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-9" Y="-1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-8" Y="-1" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-7" Y="-1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-6" Y="-1" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-5" Y="-1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-4" Y="-1" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-3" Y="-1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-2" Y="-1" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="-1" Y="-1" AttachedLinkType="Image" AttachedLink="forest_pack_101" Id="0" Link="lava" LinkType="Animation" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="0" ScrollingDirectionX="0" ScrollingDirectionY="0" Collision="true" Damage="0" />
+  </Blocks>
+  <Textures>
+    <Texture Id="forest_pack_05" Path="Images\Environment\Forest\forest_pack_05.png" />
+    <Texture Id="forest_pack_101" Path="Images\Environment\Forest\forest_pack_101.png" />
+    <Texture Id="bg_jungle_5" Path="Images\Backgrounds\bg_jungle_5.png" />
+    <Texture Id="bg_snow_4" Path="Images\Backgrounds\bg_snow_4.png" />
+    <Texture Id="portal" Path="Images\Environment\Common\portal.png" />
+  </Textures>
+  <Enemies />
+  <Collectables>
+    <Collectable X="-4" Y="0" AttachedLinkType="Animation" AttachedLink="torch" Link="crystal_blue" />
+    <Collectable X="-1" Y="0" AttachedLinkType="Image" AttachedLink="portal" Link="crystal_yellow" />
+  </Collectables>
+  <Checkpoints>
+    <Checkpoint X="-11" Y="0" AttachedLinkType="Animation" AttachedLink="lava_top" DestinationX="0" DestinationY="0" Link="checkpoint_robot_green" />
+    <Checkpoint X="-9" Y="0" AttachedLinkType="Image" AttachedLink="bg_jungle_5" DestinationX="0" DestinationY="0" Link="checkpoint_robot_green" />
+    <Checkpoint X="-6" Y="0" AttachedLinkType="Image" AttachedLink="bg_snow_4" DestinationX="0" DestinationY="0" Link="checkpoint_robot_red" />
+  </Checkpoints>
+  <Backgrounds>
+    <Background Index="0" Path="Images/Backgrounds/bg_forest_2.png" />
+    <Background Index="1" Path="Images/Backgrounds/bg_forest_3.png" />
+  </Backgrounds>
+</Level>

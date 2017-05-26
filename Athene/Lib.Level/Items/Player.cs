@@ -147,11 +147,11 @@ namespace Lib.Level.Items
             HitBox.Position += Status.MoveDirection;
         }
 
-        /// <summary>
-        /// Execute interactions with other items
-        /// </summary>
-        /// <param name="interactableItem"></param>
-        public void HandleInteractions(List<IIntersectable> intersectionItems)
+	    /// <summary>
+	    /// Execute interactions with other items
+	    /// </summary>
+	    /// <param name="intersectionItems"></param>
+	    public void HandleInteractions(List<IIntersectable> intersectionItems)
         {
             foreach(var item in intersectionItems)
             {
@@ -160,10 +160,10 @@ namespace Lib.Level.Items
                     collectable.Remove = true;
                     collectable.IsActive = false;
                     Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
-                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
-                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
-                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
-                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    //Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    //Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    //Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    //Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                 }
 
                 /* look for checkpoints to activate */
@@ -179,7 +179,7 @@ namespace Lib.Level.Items
 
                 /* check teleporter */
                 if (item is Teleporter teleporter && teleporter.IsActivated)
-                    teleporter.Teleport(this);
+                    HitBox.Position = teleporter.DestinationPosition;
             }
         }
 
