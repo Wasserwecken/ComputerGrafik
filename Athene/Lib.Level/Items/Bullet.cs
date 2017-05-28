@@ -65,9 +65,9 @@ namespace Lib.Level.Items
             var report = CollisionManager.HandleCollisions(HitBox, intersectingItems);
 
             if (report.CorrectedHorizontal)
-                Physics.StopOnAxisX();
+                Physics.BounceOnAxisX();
             if (report.CorrectedVertical)
-                Physics.StopOnAxisY();
+                Physics.BounceOnAxisY();
 
             foreach(var item in intersectingItems)
             {

@@ -71,7 +71,7 @@ namespace Lib.Level.Physics
         public void StopOnAxisX()
         {
             Energy = new Vector2(0, Energy.Y);
-            LastInput = new Vector2(0, LastInput.Y);
+            LastInput = Energy;
         }
 
         /// <summary>
@@ -80,7 +80,25 @@ namespace Lib.Level.Physics
         public void StopOnAxisY()
         {
             Energy = new Vector2(Energy.X, 0);
-            LastInput = new Vector2(LastInput.X, 0);
+            LastInput = Energy;
+        }
+
+        /// <summary>
+        /// Inverts the energy on the x axis to simulate a bounce
+        /// </summary>
+        public void BounceOnAxisX()
+        {
+            Energy = new Vector2(Energy.X * -1, Energy.Y);
+            LastInput = Energy;
+        }
+
+        /// <summary>
+        /// Inverts the energy on the x axis to simulate a bounce
+        /// </summary>
+        public void BounceOnAxisY()
+        {
+            Energy = new Vector2(Energy.X, Energy.Y * -1);
+            LastInput = Energy;
         }
 
         /// <summary>
