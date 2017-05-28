@@ -7,22 +7,18 @@ using Lib.Input.Mapping;
 using Lib.Level.Base;
 using Lib.LevelLoader.LevelItems;
 using Lib.Tools;
+using System.Diagnostics;
 using Lib.Visuals.Graphics;
 using OpenTK;
 
 namespace Lib.Level.Items
 {
-    public class Checkpoint : LevelItemBase, IDrawable, IIntersectable
+    public class Checkpoint : LevelItemBase, IDrawable, IIntersectable, ICreateable, IRemoveable, IMoveable
     {
         /// <summary>
         /// collission of the block
         /// </summary>
         public bool HasCollisionCorrection { get; set; }
-
-        /// <summary>
-        /// Destination of the checkpoint
-        /// </summary>
-        public Vector2 DestinationPosition { get; set; }
 
         /// <summary>
         /// ActivationItemType of the block
@@ -31,15 +27,10 @@ namespace Lib.Level.Items
         public ItemType ActivationItemType { get; set; }
 
         /// <summary>
-        /// returns if the Checkpoint is activated
+        /// Defines if the checkpoint has been activated
         /// </summary>
-        public bool IsActivated { get; private set; }
-
-        /// <summary>
-        /// the sprite when the checkpoint is activated
-        /// </summary>
-        public ISprite SpriteActivated { get; set; }
-
+        public bool IsActive { get; private set; }
+                
         /// <summary>
         /// the teleporter to the destination
         /// </summary>
@@ -51,34 +42,52 @@ namespace Lib.Level.Items
         public Teleporter BackTeleporter { get; set; }
 
         /// <summary>
-        /// Initialises a checkpoint
+        /// Defines if the item has to be removed from the level
         /// </summary>
-        /// <param name="startPosition"></param>
-        /// <param name="destinationPosition"></param>
-        /// <param name="damageSprite"></param>
-        /// <param name="activationItemType"></param>
-        /// <param name="activatedSprite"></param>
-        /// <param name="teleporter"></param>
-        /// <param name="backTeleporter"></param>
-        public Checkpoint(Vector2 startPosition, Vector2 destinationPosition, ISprite damageSprite, ISprite activatedSprite, ItemType activationItemType, Teleporter teleporter, Teleporter backTeleporter)
-            : base(startPosition, new Vector2(0.75f, 0.75f))
-        {
-            DestinationPosition = destinationPosition;
-            Sprite = damageSprite;
-            ActivationItemType = activationItemType;
-            SpriteActivated = activatedSprite;
-            Teleporter = teleporter;
-            BackTeleporter = backTeleporter;
-        }
+        public bool Remove { get { return ActivationWatch.ElapsedMilliseconds > ActivationTime; } set { } }
+
 
         /// <summary>
-        /// activates the checkpoint
+        /// Watch to control the activation time
         /// </summary>
-        public void Activate()
+        private Stopwatch ActivationWatch { get; set; }
+
+        /// <summary>
+        /// Destination of the checkpoint
+        /// </summary>
+        private Vector2 DestinationPosition { get; set; }
+
+        /// <summary>
+        /// Time until the checkpoint is active
+        /// </summary>
+        private int ActivationTime { get; set; }
+
+        /// <summary>
+        /// Position of the checkpoint on levelstart
+        /// </summary>
+        private Vector2 OriginalPosition { get; set; }
+        
+
+
+        /// <summary>
+        /// Initialises a checkpoint
+        /// </summary>
+        public Checkpoint(Vector2 startPosition, Vector2 destinationPosition, ItemType activationItemType)
+            : base(startPosition, new Vector2(0.75f, 0.75f))
         {
-            IsActivated = true;
-            Teleporter.IsActivated = true;
-            BackTeleporter.IsActivated = true;
+            OriginalPosition = startPosition;
+            DestinationPosition = destinationPosition;
+            ActivationItemType = activationItemType;
+            ActivationWatch = new Stopwatch();
+            ActivationTime = 1000;
+
+
+            var checkPointAnimations = new SpriteAnimated(Vector2.One);
+            checkPointAnimations.AddAnimation("Animations/checkpoint/red/activating", ActivationTime);
+            checkPointAnimations.AddAnimation("Animations/checkpoint/red/disabled", 2000);
+            checkPointAnimations.StartAnimation("disabled");
+
+            Sprite = checkPointAnimations;
         }
 
         /// <summary>
@@ -86,18 +95,21 @@ namespace Lib.Level.Items
         /// </summary>
         public void Draw()
         {
-            foreach (var attachedSprite in AttachedSprites)
-                attachedSprite.Draw(HitBox.Position, new Vector2(1f));
+            Sprite.Draw(HitBox.Position, Vector2.One);
+        }
 
-            if (!IsActivated)
-                Sprite.Draw(HitBox.Position, new Vector2(0.8f));
-            else
+        /// <summary>
+        /// Activates the checkpoint
+        /// </summary>
+        public void Activate()
+        {
+            if (IsActive == false)
             {
-                SpriteActivated.Draw(HitBox.Position, new Vector2(0.8f));
+                ((SpriteAnimated)Sprite).StartAnimation("activating");
+                ActivationWatch.Start();
             }
 
-         
-
+            IsActive = true;
         }
 
         /// <summary>
@@ -105,5 +117,39 @@ namespace Lib.Level.Items
         /// </summary>
         /// <param name="intersectingItems"></param>
         public void HandleCollisions(List<IIntersectable> intersectingItems) { }
+
+        /// <summary>
+        /// Returns two teleporters if activated
+        /// </summary>
+        /// <returns></returns>
+        public List<LevelItemBase> GetCreatedItems()
+        {
+            var teleporters = new List<LevelItemBase>();
+
+            if (IsActive && ActivationWatch.ElapsedMilliseconds > ActivationTime)
+            {
+                teleporters.Add(new Teleporter(HitBox.Position, DestinationPosition, Vector2.One, new SpriteStatic(Vector2.One, @"Images\Environment\Common\portal.png")));
+                teleporters.Add(new Teleporter(DestinationPosition, HitBox.Position, Vector2.One, new SpriteStatic(Vector2.One, @"Images\Environment\Common\portal.png")));
+            }
+
+            return teleporters;
+        }
+
+        /// <summary>
+        /// This will never happen, after item creation, this item will die
+        /// </summary>
+        public void ClearCreatedItems() { }
+
+        /// <summary>
+        /// Moves the checkpoint upwards for the activation
+        /// </summary>
+        public void Move()
+        {
+            if (IsActive)
+            {
+                var activationProgress = Easing.Linear(ActivationWatch.ElapsedMilliseconds , ActivationTime);
+                HitBox.Position = OriginalPosition + new Vector2(0, 2 * activationProgress);
+            }
+        }
     }
 }

@@ -107,7 +107,7 @@ namespace Lib.Level.Items
             
             Sprite.Draw(HitBox.Position, new Vector2(0.8f));
 
-            Inventory.Position = new Vector2(HitBox.Center.X, HitBox.MaximumY);
+            Inventory.Position = new Vector2(HitBox.Center.X, HitBox.MaximumY + 0.1f);
             Inventory.Draw();
 		}
 
@@ -160,14 +160,10 @@ namespace Lib.Level.Items
                     collectable.Remove = true;
                     collectable.IsActive = false;
                     Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
-                    //Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
-                    //Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
-                    //Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
-                    //Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                 }
 
                 /* look for checkpoints to activate */
-                if (item is Checkpoint checkpoint && !checkpoint.IsActivated)
+                if (item is Checkpoint checkpoint && !checkpoint.IsActive)
                 {
                     var getItem = Inventory.GetFirstItemofType(checkpoint.ActivationItemType);
                     if (getItem != null)
@@ -178,8 +174,13 @@ namespace Lib.Level.Items
                 }
 
                 /* check teleporter */
-                if (item is Teleporter teleporter && teleporter.IsActivated)
+                if (item is Teleporter teleporter)
+                {
                     HitBox.Position = teleporter.DestinationPosition;
+                    //Manipulating the position in the direction where the player is moving, else the 
+                    //player would be teleported immidiatly back
+                    HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
+                }
             }
         }
 

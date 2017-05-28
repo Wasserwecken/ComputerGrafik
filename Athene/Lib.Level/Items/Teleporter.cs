@@ -21,11 +21,14 @@ namespace Lib.Level.Items
         /// </summary>
         public Vector2 DestinationPosition { get; set; }
 
-        /// <summary>
-        /// says if the teleporter is activated
-        /// </summary>
-        public bool IsActivated { get; set; }
 
+        /// <summary>
+        /// Initialises a new teleporter
+        /// </summary>
+        /// <param name="startPosition"></param>
+        /// <param name="destinationPosition"></param>
+        /// <param name="boxSize"></param>
+        /// <param name="sprite"></param>
         public Teleporter(Vector2 startPosition, Vector2 destinationPosition, Vector2 boxSize, ISprite sprite)
             : base(startPosition, boxSize)
         {
@@ -38,8 +41,7 @@ namespace Lib.Level.Items
         /// </summary>
         public void Draw()
         {
-            if(IsActivated)
-                Sprite.Draw(HitBox.Position, new Vector2(0.8f));
+            Sprite.Draw(HitBox.Position, new Vector2(0.8f));
         }
 
 

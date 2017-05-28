@@ -275,47 +275,12 @@ namespace Lib.Level
 
                 if (xmlCheckpointAnimation == null)
                     throw new Exception("Checkpoint Animation in xml Datei nicht gefunden");
-
-                SpriteAnimated sprite = new SpriteAnimated(Vector2.One);
-                sprite.AddAnimation(xmlCheckpointAnimation.Path, xmlCheckpointAnimation.AnimationLength);
-                sprite.StartAnimation(new FileInfo(xmlCheckpointAnimation.Path).Name);
-                // TODO: alles in einen Sprite
-                SpriteAnimated spriteActivated = new SpriteAnimated(Vector2.One);
-                spriteActivated.AddAnimation(xmlCheckpointAnimation.ActivationPath, xmlCheckpointAnimation.ActivationAnimationLength);
-                spriteActivated.StartAnimation(new FileInfo(xmlCheckpointAnimation.ActivationPath).Name);
-
-
-                ISprite teleporterSprite = new SpriteStatic(Vector2.One, @"Images\Environment\Common\portal.png");
-                Teleporter teleporter = new Teleporter(new Vector2(xmlLevelCheckpoint.X + 1, xmlLevelCheckpoint.Y), 
-                    new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY), 
-                    new Vector2(0.8f), 
-                    teleporterSprite);
-                Teleporter backTeleporter = new Teleporter(new Vector2(xmlLevelCheckpoint.DestinationX - 1, xmlLevelCheckpoint.DestinationY),
-                    new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y),
-                    new Vector2(0.8f),
-                    teleporterSprite);
-                Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y), 
+                
+                Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y),
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY),
-                    sprite,
-                    spriteActivated,
-                    (ItemType) Enum.Parse(typeof(ItemType), xmlCheckpointAnimation.CollectableItemType),
-                    teleporter,
-                    backTeleporter);
-
-
-                /* create the attached Sprites */
-                if (xmlLevelCheckpoint.AttachedLink != null)
-                {
-                    ISprite attachedSprite = Helper.AttachedSpriteHelper.GetAttachedSprite(xmlLevelCheckpoint, xmlLevel);
-                    checkPoint.AttachedSprites.Add(attachedSprite);
-                }
-               
-
-
-
+                    (ItemType)Enum.Parse(typeof(ItemType), xmlCheckpointAnimation.CollectableItemType));
+                
                 DynamicObjects.Add(checkPoint);
-                DynamicObjects.Add(teleporter);
-                DynamicObjects.Add(backTeleporter);
             }
 
             foreach (var xmlLevelCollectable in xmlLevel.Collectables)
@@ -343,7 +308,7 @@ namespace Lib.Level
             }
             
             InitialiseQuadTree();
-            Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, -.2f, xmlLevel.Backgrounds);
+            Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, new Vector2(.1f, -.1f), xmlLevel.Backgrounds);
         }
 
 

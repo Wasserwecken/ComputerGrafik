@@ -1,4 +1,5 @@
 ﻿using Lib.Visuals.Graphics;
+using OpenTK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Lib.Level.Items
         /// <summary>
         /// Relative movement factor to the source
         /// </summary>
-        public float DisplacementFactor { get; set; }
+        public Vector2 DisplacementFactor { get; set; }
 
         /// <summary>
         /// Sprite of the background
@@ -28,7 +29,7 @@ namespace Lib.Level.Items
         /// <summary>
         /// Initialises the item
         /// </summary>
-        public ParalaxBackgroundItem(int index, float displacementFactor, SpriteStatic sprite)
+        public ParalaxBackgroundItem(int index, Vector2 displacementFactor, SpriteStatic sprite)
         {
             Index = index;
             DisplacementFactor = displacementFactor;

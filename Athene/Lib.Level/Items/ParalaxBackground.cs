@@ -27,16 +27,6 @@ namespace Lib.Level.Items
         /// <summary>
         /// 
         /// </summary>
-        private Vector2 SpriteSize { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private float SpriteSizeFactor { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         private Vector2 BackgroundTileSize { get; set; }
 
         /// <summary>
@@ -49,13 +39,13 @@ namespace Lib.Level.Items
         /// Initialises a new parallax background
         /// </summary>
         /// <param name="parentLevel"></param>
-        public ParalaxBackground(Vector2 position, Vector2 levelSize, float backgroundHeight, float paralaxFactor, List<XmlBackgroundItem> givenLayers)
+        public ParalaxBackground(Vector2 position, Vector2 levelSize, float backgroundHeight, Vector2 paralaxFactor, List<XmlBackgroundItem> givenLayers)
         {
             Position = position;
             LevelSize = levelSize;
-            SpriteSizeFactor = (1 + (Math.Abs(paralaxFactor) * 2)); // Because of the displacement, the sprite has to be the facctor bigger than the level
-            SpriteSize = LevelSize * SpriteSizeFactor; // calculating the sprite size total
-            BackgroundTileSize = new Vector2(backgroundHeight * (SpriteSize.X / SpriteSize.Y), backgroundHeight); // size of one tile of the background which will be repeated on the sprite
+
+            var levelAspectRatio = (LevelSize.X / LevelSize.Y);
+            BackgroundTileSize = new Vector2(backgroundHeight * levelAspectRatio, backgroundHeight); // size of one tile of the background which will be repeated on the sprite
 
             Layers = PrepareBackgroundItems(givenLayers);
             Layers = Layers.OrderByDescending(f => f.Index).ToList();
@@ -70,11 +60,12 @@ namespace Lib.Level.Items
         /// </summary>
         public void Draw(Vector2 viewPoint)
         {
-            Vector2 displacementFactor = new Vector2(viewPoint.X / (LevelSize.X / 2), viewPoint.Y / (LevelSize.Y / 2)); //displacement will be relative to the position of the player to the level center
+            //displacement will be relative to the position of the player to the level center
+            Vector2 displacementFactor = new Vector2(viewPoint.X / (LevelSize.X / 2), viewPoint.Y / (LevelSize.Y / 2));
             Vector2 displacementValue = BackgroundTileSize * displacementFactor; // applying the factor to get the absolute displacement
 
             foreach (var layer in Layers)
-                layer.Sprite.Draw((Position * SpriteSizeFactor) + (displacementValue * layer.DisplacementFactor), Vector2.One);
+                layer.Sprite.Draw((Position) + (displacementValue * layer.DisplacementFactor), Vector2.One);
         }
 
         
@@ -90,7 +81,7 @@ namespace Lib.Level.Items
             {
                 SpriteStatic sprite = GetBackgroundSprite(givenLayers[index].Path);
                 int layerIndex = givenLayers[index].Index;
-                layers.Add(new ParalaxBackgroundItem(layerIndex, 0, sprite));
+                layers.Add(new ParalaxBackgroundItem(layerIndex, Vector2.Zero, sprite));
             }
 
             return layers;
@@ -103,9 +94,10 @@ namespace Lib.Level.Items
         /// <returns></returns>
         public SpriteStatic GetBackgroundSprite(string imagePath)
         {
-            SpriteStatic sprite = new SpriteStatic(SpriteSize, imagePath, TextureWrapMode.MirroredRepeat, TextureWrapMode.ClampToEdge);
-            float textureAspectRatio = sprite.SpriteTexture.Width / sprite.SpriteTexture.Height; //respect the texture aspect ratio to avoid verzerrte textures
-            float tileHeightCoverFactor = SpriteSize.Y / BackgroundTileSize.Y; // calculate how often a tile has space on the sprite
+            SpriteStatic sprite = new SpriteStatic(LevelSize, imagePath, TextureWrapMode.MirroredRepeat, TextureWrapMode.ClampToEdge);
+            //respect the texture aspect ratio to avoid verzerrte textures
+            float textureAspectRatio = sprite.SpriteTexture.Width / sprite.SpriteTexture.Height;
+            float tileHeightCoverFactor = LevelSize.Y / BackgroundTileSize.Y; // calculate how often a tile has space on the sprite
             float tileCoverFactorX = tileHeightCoverFactor;
             float tileCoverFactorY = tileHeightCoverFactor * textureAspectRatio;
 
