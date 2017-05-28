@@ -9,6 +9,7 @@ using Lib.Visuals.Graphics;
 using OpenTK;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Lib.Level.Items
@@ -57,6 +58,11 @@ namespace Lib.Level.Items
         /// </summary>
         public Box2D InteractionBox { get; set; }
 
+        /// <summary>
+        /// Delay for the the next shoot in logic ticks
+        /// </summary>
+        private int ReloadTime { get; set; }
+
 
         /// <summary>
         /// Initialises a player
@@ -77,6 +83,7 @@ namespace Lib.Level.Items
             
 			Sprite = sprite;
             HasCollisionCorrection = true;
+            ReloadTime = 0;
 
             //float interactionSizeFactor = 2f;
             //float interactionSizeX = HitBox.Size.X * interactionSizeFactor;
@@ -145,6 +152,9 @@ namespace Lib.Level.Items
             //Apply now the added energy
             Status.MoveDirection = Physics.Process(HitBox.Position);
             HitBox.Position += Status.MoveDirection;
+
+            //Shooting things
+            ReloadTime = Math.Max(0, ReloadTime - 1);
         }
 
 	    /// <summary>
@@ -207,7 +217,16 @@ namespace Lib.Level.Items
         /// <returns></returns>
         public List<LevelItemBase> GetCreatedItems()
         {
-            return new List<LevelItemBase>();
+            var bulletList = new List<LevelItemBase>();
+
+            if (InputValues.Shoot && ReloadTime <= 0)
+            {
+                var direction = new Vector2(Math.Sign(Physics.Energy.X), 0.3f);
+                bulletList.Add(new Bullet(HitBox.Center + direction, direction));
+                ReloadTime = 5;
+            }
+
+            return bulletList;
         }
 
         /// <summary>

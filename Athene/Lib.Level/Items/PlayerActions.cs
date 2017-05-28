@@ -41,6 +41,11 @@ namespace Lib.Level.Items
         /// </summary>
         public bool Helping { get; set; }
 
+        /// <summary>
+        /// Player hs to shoot
+        /// </summary>
+        public bool Shoot { get; set; }
+
 
 		/// <summary>
 		/// Instance of the last device that was used

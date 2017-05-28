@@ -29,6 +29,7 @@ namespace Lib.Level.Items
             mapList.AddMappingGamePad(playerId, pad => pad.ThumbSticks.Left, inp => inp.MoveDown, (inval, curval) => inval.Length > 0.01 && inval.Y < 0 ? -inval.Y : 0);
             mapList.AddMappingGamePad(playerId, pad => pad.Triggers.Right, inp => inp.Helping, (inval, curval) => inval > 0.5f ? true : false);
             mapList.AddMappingGamePad(playerId, pad => pad.Buttons.A, inp => inp.Jump, (inval, curval) => inval == ButtonState.Pressed);
+            mapList.AddMappingGamePad(playerId, pad => pad.Buttons.B, inp => inp.Shoot, (inval, curval) => inval == ButtonState.Pressed);
 
             //Optic
             SpriteAnimated playerSprite = new SpriteAnimated(Vector2.One);
@@ -77,6 +78,7 @@ namespace Lib.Level.Items
                     mapList.AddMappingKeyboard(Key.Down, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
                     mapList.AddMappingKeyboard(Key.ControlRight, inp => inp.Jump, (inval, curval) => inval);
                     mapList.AddMappingKeyboard(Key.Number0, inp => inp.Helping, (inval, curval) => inval);
+                    mapList.AddMappingKeyboard(Key.ShiftRight, inp => inp.Shoot, (inval, curval) => inval);
                     break;
 
                 case 1:
@@ -86,6 +88,7 @@ namespace Lib.Level.Items
                     mapList.AddMappingKeyboard(Key.S, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
                     mapList.AddMappingKeyboard(Key.Space, inp => inp.Jump, (inval, curval) => inval);
                     mapList.AddMappingKeyboard(Key.ControlLeft, inp => inp.Helping, (inval, curval) => inval);
+                    mapList.AddMappingKeyboard(Key.ShiftLeft, inp => inp.Shoot, (inval, curval) => inval);
                     break;
 
                 case 2:
