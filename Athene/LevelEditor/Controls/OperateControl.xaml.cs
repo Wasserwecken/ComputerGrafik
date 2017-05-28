@@ -88,6 +88,20 @@ namespace LevelEditor.Controls
 
         }
 
+        public void InitEnemies()
+        {
+            var enemyList = EnemyLoader.GetEnemies();
+            var folder = new TextureFolderControl("Enemies");
+
+            foreach (var xmlEnemy in enemyList.Enemies)
+            {
+                RadioButtonSelectEnemy radioButton = new RadioButtonSelectEnemy(xmlEnemy);
+                radioButton.Checked += _parentLevelEditor.TextureRadioButton_Checked;
+                folder.AddRadioButton(radioButton);
+            }
+            TextureWrapPanel.Children.Add(folder);
+        }
+
         public void InitCollectableItems()
         {
             var itemList = CollectableLoader.GetCollectables();
@@ -129,7 +143,7 @@ namespace LevelEditor.Controls
             {
                 var dir = new DirectoryInfo(sDir);
                 var files = dir.GetFiles();
-                var texFolderControl = new TextureFolderControl(dir.Name, true);
+                var texFolderControl = new TextureFolderControl(dir.Name + " (Blöcke)", true);
                 foreach (var fileInfo in files)
                 {
                     /* Only png files */

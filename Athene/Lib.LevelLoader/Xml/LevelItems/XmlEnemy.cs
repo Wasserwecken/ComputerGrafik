@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Lib.LevelLoader.LevelItems;
 
-namespace Lib.LevelLoader.Xml
+namespace Lib.LevelLoader.Xml.LevelItems
 {
     /// <summary>
     /// represents a enemy in a level.xml
@@ -16,7 +13,7 @@ namespace Lib.LevelLoader.Xml
         /// <summary>
         /// name of the enemy type
         /// </summary>
-        [XmlAttribute("Type")]
-        public string Type { get; set; }
+        [XmlAttribute("Link")]
+        public string Link { get; set; }
     }
 }

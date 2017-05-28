@@ -76,6 +76,7 @@ namespace LevelEditor.Controls
             OperateControl.InitOperateControl();
             OperateControl.InitCheckpoints();
             OperateControl.InitCollectableItems();
+            OperateControl.InitEnemies();
             OperateControl.InitAnimatedBlocks();
             OperateControl.InitDirectory(Directory.GetCurrentDirectory() + Properties.Settings.Default.ImageBaseFolder);
             /* Init the block types */
@@ -126,34 +127,42 @@ namespace LevelEditor.Controls
             LevelItemButton button = sender as LevelItemButton;
             var selectedRadioButton = SelectedRadioButton;
 
-
             if (selectedRadioButton == null || button == null) return;
 
-            if (selectedRadioButton is RadioButtonSelectTexture)
+            switch (selectedRadioButton)
             {
-                HandleTextureRadioButton(selectedRadioButton as RadioButtonSelectTexture, button);
+                case RadioButtonSelectTexture textureRadioButton:
+                    HandleTextureRadioButton(textureRadioButton, button);
+                    break;
+                case RadioButtonSelectAnimation animationsRadioButton:
+                    HandleAnimationRadioButton(animationsRadioButton, button);
+                    break;
+                case RadioButtonTool toolRadioButton:
+                    HandleRadioButtonTool(toolRadioButton, button);
+                    break;
+                case RadioButtonSelectCollectable collectableRadioButton:
+                    HandleRadioButtonCollectable(collectableRadioButton, button);
+                    break;
+                case RadioButtonSelectCheckpoint checkpointRadioButton:
+                    HandleCheckpointRadioButton(checkpointRadioButton, button);
+                    break;
+                case RadioButtonSelectEnemy enemyRadioButton:
+                    HandleEnemyRadioButton(enemyRadioButton, button);
+                    break;
             }
-            if (selectedRadioButton is RadioButtonSelectAnimation)
-            {
-                HandleAnimationRadioButton(selectedRadioButton as RadioButtonSelectAnimation, button);
-            }
-            if (selectedRadioButton is RadioButtonTool)
-            {
-                HandleRadioButtonTool(selectedRadioButton as RadioButtonTool, button);
-            }
-            if (selectedRadioButton is RadioButtonSelectCollectable)
-            {
-                HandleRadioButtonCollectable(selectedRadioButton as RadioButtonSelectCollectable, button);
-            }
-            if (selectedRadioButton is RadioButtonSelectCheckpoint)
-            {
-                HandleCheckpointRadioButton(selectedRadioButton as RadioButtonSelectCheckpoint, button);
-            }
+
+          
         }
 
         #endregion
 
         #region radioButton handler
+
+        private void HandleEnemyRadioButton(RadioButtonSelectEnemy radioButton, LevelItemButton button)
+        {
+            button.SetXmlEnemy(radioButton.XmlEnemyItem);
+            
+        }
 
         /// <summary>
         /// handles a animation radio button

@@ -75,12 +75,14 @@
     <Compile Include="Controls\LevelItemPresenter\XmlBlockPresenter.cs" />
     <Compile Include="Controls\LevelItemPresenter\XmlCheckpointPresenter.cs" />
     <Compile Include="Controls\LevelItemPresenter\XmlCollectablePresenter.cs" />
+    <Compile Include="Controls\LevelItemPresenter\XmlEnemyPresenter.cs" />
     <Compile Include="Controls\OperateControl.xaml.cs">
       <DependentUpon>OperateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RadioButtons\RadioButtonBase.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectCheckpoint.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectCollectable.cs" />
+    <Compile Include="Controls\RadioButtons\RadioButtonSelectEnemy.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonTool.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectAnimation.cs" />
     <Compile Include="Controls\RadioButtons\RadioButtonSelectTexture.cs" />

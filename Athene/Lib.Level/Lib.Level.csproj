@@ -50,6 +50,7 @@
     <Compile Include="Base\IDrawable.cs" />
     <Compile Include="Base\IInteractable.cs" />
     <Compile Include="Base\IMoveable.cs" />
+    <Compile Include="Helper\AttachedSpriteHelper.cs" />
     <Compile Include="Items\Block.cs" />
     <Compile Include="Collision\CollisionManager.cs" />
     <Compile Include="Collision\CollisionReport.cs" />

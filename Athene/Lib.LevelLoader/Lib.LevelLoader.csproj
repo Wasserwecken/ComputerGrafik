@@ -47,7 +47,9 @@
     <Compile Include="BackgroundLoader.cs" />
     <Compile Include="CheckpointLoader.cs" />
     <Compile Include="CollectableLoader.cs" />
+    <Compile Include="EnemyLoader.cs" />
     <Compile Include="LevelItems\BlockLinkType.cs" />
+    <Compile Include="LevelItems\EnemyType.cs" />
     <Compile Include="LevelItems\EnvironmentType.cs" />
     <Compile Include="LevelLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,12 +60,14 @@
     <Compile Include="Xml\LinkTypes\XmlCheckpointItem.cs" />
     <Compile Include="Xml\LinkTypes\XmlCollectableItem.cs" />
     <Compile Include="LevelItems\ItemType.cs" />
+    <Compile Include="Xml\LinkTypes\XmlEnemyItem.cs" />
     <Compile Include="Xml\LinkTypes\XmlLinkTypeBase.cs" />
     <Compile Include="Xml\Root\XmlAnimationList.cs" />
     <Compile Include="Xml\LevelItems\XmlBlock.cs" />
     <Compile Include="Xml\LevelItems\XmlEnemy.cs" />
     <Compile Include="Xml\Root\XmlCheckpointList.cs" />
     <Compile Include="Xml\Root\XmlCollectableList.cs" />
+    <Compile Include="Xml\Root\XmlEnemyList.cs" />
     <Compile Include="Xml\Root\XmlLevel.cs" />
     <Compile Include="Xml\LevelItems\XmlLevelItemBase.cs" />
     <Compile Include="Xml\LinkTypes\XmlTexture.cs" />
@@ -214,6 +218,54 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Animations\checkpoint_robot_yellow_damage\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_green_fly_default\fly1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_green_fly_default\fly2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_grump_fly_default\1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_grump_fly_default\2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_grump_fly_default\3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_grump_fly_default\4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_grump_fly_default\5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_grump_fly_default\6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_worm_default\frame-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_worm_default\frame-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_worm_default\frame-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_worm_default\frame-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_worm_default\frame-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_worm_default\frame-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_worm_default\frame-7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_worm_default\frame-8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Animations\lava\AA.png">
@@ -1314,6 +1366,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Animations\water_top\AP.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Enemies\Enemies.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Backgrounds\bg_jungle_1.png">
@@ -2695,6 +2750,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Level\Level44.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Level\Level55.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Level\Level8.xml">

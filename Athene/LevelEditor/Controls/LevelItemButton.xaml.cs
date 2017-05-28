@@ -70,6 +70,11 @@ namespace LevelEditor.Controls
         /// <param name="environmentType">Blocktype</param>
         /// <param name="collision">collision</param>
         /// <param name="damage">damage</param>
+        /// <param name="isScrolling"></param>
+        /// <param name="scrollingDirectionY"></param>
+        /// <param name="attachedLink"></param>
+        /// <param name="scrollingLength"></param>
+        /// <param name="scrollingDirectionX"></param>
         public void SetXmlBlock(XmlTexture texture, EnvironmentType environmentType, bool collision, int damage, bool isScrolling = false, 
             int scrollingLength = 0, float scrollingDirectionX = 0, float scrollingDirectionY = 0, XmlLinkTypeBase attachedLink = null)
         {
@@ -111,7 +116,8 @@ namespace LevelEditor.Controls
         /// <param name="checkpointItem"></param>
         /// <param name="destinationX"></param>
         /// <param name="destinationY"></param>
-        public void SetXmlCheckpoint(XmlCheckpointItem checkpointItem, float destinationX = 0, float destinationY = 0)
+        /// <param name="attachedLink"></param>
+        public void SetXmlCheckpoint(XmlCheckpointItem checkpointItem, float destinationX = 0, float destinationY = 0, XmlLinkTypeBase attachedLink = null)
         {
             ResetTextBlock();
 
@@ -125,15 +131,50 @@ namespace LevelEditor.Controls
                 X = X,
                 Y = Y,
                 DestinationX = destinationX,
-                DestinationY = destinationY
+                DestinationY = destinationY,
+                AttachedLink = attachedLink?.Id
             };
 
             ItemPresenter = new XmlCheckpointPresenter()
             {
-                XmLLevelItemBase = xmlCheckpoint
+                XmLLevelItemBase = xmlCheckpoint,
+                XmlAttachedLink = attachedLink
             };
 
+            if (attachedLink is XmlAnimation)
+                AttachLink(BlockLinkType.Animation, attachedLink);
+            else if (attachedLink is XmlTexture)
+                AttachLink(BlockLinkType.Image, attachedLink);
+
             SetImage(checkpointItem.GetFirstImage().FullName, UriKind.Absolute);
+        }
+
+        public void SetXmlEnemy(XmlEnemyItem enemy, XmlLinkTypeBase attachedLink = null)
+        {
+            XmlEnemy xmlEnemy = new XmlEnemy()
+            {
+                Link = enemy.Id,
+                X = X,
+                Y = Y,
+                AttachedLink = attachedLink?.Id
+            };
+
+            TitleTextBlock.Text = "Enemy";
+            TitleTextBlock.Foreground = Brushes.Blue;
+            TitleTextBlock.FontWeight = FontWeights.Bold;
+
+            ItemPresenter = new XmlEnemyPresenter()
+            {
+                XmLLevelItemBase = xmlEnemy,
+                XmlAttachedLink = attachedLink
+            };
+
+            if (attachedLink is XmlAnimation)
+                AttachLink(BlockLinkType.Animation, attachedLink);
+            else if (attachedLink is XmlTexture)
+                AttachLink(BlockLinkType.Image, attachedLink);
+
+            SetImage(enemy.GetFirstImage().FullName, UriKind.Absolute);
         }
 
         public void SetXmlCollectable(XmlCollectableItem collectable, XmlLinkTypeBase attachedLink = null)
@@ -142,7 +183,8 @@ namespace LevelEditor.Controls
             {
                 Link = collectable.Id,
                 X = X,
-                Y = Y
+                Y = Y,
+                AttachedLink = attachedLink?.Id
             };
 
             TitleTextBlock.Text = "Coll.";
@@ -151,7 +193,8 @@ namespace LevelEditor.Controls
 
             ItemPresenter = new XmlCollectablePresenter()
             {
-                XmLLevelItemBase = xmlCollectable
+                XmLLevelItemBase = xmlCollectable,
+                XmlAttachedLink = attachedLink
             };
 
             if (attachedLink is XmlAnimation)
@@ -169,7 +212,7 @@ namespace LevelEditor.Controls
         /// <param name="type">Blocktype</param>
         /// <param name="collision">collision</param>
         /// <param name="damage">damage</param>
-        public void SetXmlAnimatedBlock(XmlAnimation animation, EnvironmentType environmentType, bool collision, int damage)
+        public void SetXmlAnimatedBlock(XmlAnimation animation, EnvironmentType environmentType, bool collision, int damage, XmlLinkTypeBase attachedLink = null)
         {
             ResetTextBlock();
 
@@ -181,12 +224,19 @@ namespace LevelEditor.Controls
                 Link = animation.Id,
                 LinkType = BlockLinkType.Animation,
                 Collision = collision,
-                Damage = damage
+                Damage = damage,
+                AttachedLink = attachedLink?.Id
             };
             ItemPresenter = new XmlBlockPresenter()
             {
-                XmLLevelItemBase = xmlBlock
+                XmLLevelItemBase = xmlBlock,
+                XmlAttachedLink = attachedLink
             };
+            if (attachedLink is XmlAnimation)
+                AttachLink(BlockLinkType.Animation, attachedLink);
+            else if (attachedLink is XmlTexture)
+                AttachLink(BlockLinkType.Image, attachedLink);
+
             SetImage(animation.GetFirstImage().FullName, UriKind.Absolute);
         }
 

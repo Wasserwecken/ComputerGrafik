@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<EnemyList>
+  <Enemies>
+    <Enemy EnemyType="GreenFly" Id="enemy_greenFly" DefaultAnimation="Animations/enemy_green_fly_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_green_fly_default" />
+    <Enemy EnemyType="Worm" Id="enemy_worm" DefaultAnimation="Animations/enemy_worm_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_worm_default" />
+    <Enemy EnemyType="GrumpyFly" Id="enemy_grumpyFly" DefaultAnimation="Animations/enemy_grump_fly_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_grump_fly_default" />
+  </Enemies>
+</EnemyList>
