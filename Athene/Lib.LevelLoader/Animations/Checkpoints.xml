@@ -3,7 +3,6 @@
   <Checkpoints>
     <Checkpoint CollectableItemType="CrystalBlue" Id="checkpoint_robot_blue" ActivationAnimationLength="500" ActivationPath="Animations/checkpoint_robot_blue_activate" AnimationLength="500" Path="Animations/checkpoint_robot_blue_damage" />
     <Checkpoint CollectableItemType="CrystalGreen" Id="checkpoint_robot_green" ActivationAnimationLength="500" ActivationPath="Animations/checkpoint_robot_green_activate" AnimationLength="500" Path="Animations/checkpoint_robot_green_damage" />
-    <Checkpoint CollectableItemType="CrystalRed" Id="checkpoint_robot_red" ActivationAnimationLength="500" ActivationPath="Animations/checkpoint_robot_red_activate" AnimationLength="500" Path="Animations/checkpoint_robot_red_damage" />
     <Checkpoint CollectableItemType="CrystalYellow" Id="checkpoint_robot_yellow" ActivationAnimationLength="500" ActivationPath="Animations/checkpoint_robot_yellow_activate" AnimationLength="500" Path="Animations/checkpoint_robot_yellow_damage" />
   </Checkpoints>
 </CheckpointList>
