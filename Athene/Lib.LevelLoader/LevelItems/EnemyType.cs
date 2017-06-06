@@ -10,6 +10,8 @@ namespace Lib.LevelLoader.LevelItems
     {
         GreenFly,
         Worm,
-        GrumpyFly
+        GrumpyFly,
+        GreenMonster,
+        BoneCruncherMonster
     }
 }

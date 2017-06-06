@@ -66,13 +66,17 @@ namespace Lib.Level.Items
         /// Position of the checkpoint on levelstart
         /// </summary>
         private Vector2 OriginalPosition { get; set; }
-        
+
 
 
         /// <summary>
         /// Initialises a checkpoint
         /// </summary>
-        public Checkpoint(Vector2 startPosition, Vector2 destinationPosition, ItemType activationItemType)
+        /// <param name="startPosition"></param>
+        /// <param name="destinationPosition"></param>
+        /// <param name="activationItemType"></param>
+        /// <param name="path">path to the files (disabled & activating folders must be there)</param>
+        public Checkpoint(Vector2 startPosition, Vector2 destinationPosition, ItemType activationItemType, string path)
             : base(startPosition, new Vector2(0.75f, 0.75f))
         {
             OriginalPosition = startPosition;
@@ -81,10 +85,11 @@ namespace Lib.Level.Items
             ActivationWatch = new Stopwatch();
             ActivationTime = 1000;
 
+            
 
             var checkPointAnimations = new SpriteAnimated(Vector2.One);
-            checkPointAnimations.AddAnimation("Animations/checkpoint/red/activating", ActivationTime);
-            checkPointAnimations.AddAnimation("Animations/checkpoint/red/disabled", 2000);
+            checkPointAnimations.AddAnimation(path + "/activating", ActivationTime);
+            checkPointAnimations.AddAnimation(path + "/disabled", 2000);
             checkPointAnimations.StartAnimation("disabled");
 
             Sprite = checkPointAnimations;

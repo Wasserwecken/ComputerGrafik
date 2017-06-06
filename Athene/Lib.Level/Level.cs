@@ -269,16 +269,16 @@ namespace Lib.Level
 
             foreach (var xmlLevelCheckpoint in xmlLevel.Checkpoints)
             {
-                var xmlCheckpointAnimation =
+                var xmlCheckpointItem =
                     CheckpointLoader.GetCheckpoints()
                         .Checkpoints.FirstOrDefault(c => c.Id == xmlLevelCheckpoint.Link);
 
-                if (xmlCheckpointAnimation == null)
-                    throw new Exception("Checkpoint Animation in xml Datei nicht gefunden");
+                if (xmlCheckpointItem == null)
+                    throw new Exception("Checkpoint in xml Datei nicht gefunden");
                 
                 Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y),
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY),
-                    (ItemType)Enum.Parse(typeof(ItemType), xmlCheckpointAnimation.CollectableItemType));
+                    (ItemType)Enum.Parse(typeof(ItemType), xmlCheckpointItem.CollectableItemType), xmlCheckpointItem.Path);
                 
                 DynamicObjects.Add(checkPoint);
             }
@@ -318,7 +318,7 @@ namespace Lib.Level
                 enemySprite.AddAnimation(xmlEnemyItem.DefaultAnimation, xmlEnemyItem.DefaultAnimationLength);
                 enemySprite.StartAnimation(new DirectoryInfo(xmlEnemyItem.DefaultAnimation).Name);
                 
-                Enemy enemy = new Enemy(new Vector2(xmlLevelEnemy.X, xmlLevelEnemy.Y), enemySprite, xmlEnemyItem.EnemyType);
+                Enemy enemy = new Enemy(new Vector2(xmlLevelEnemy.X, xmlLevelEnemy.Y), enemySprite, xmlEnemyItem.EnemyType, xmlEnemyItem.MovementType);
 
                 DynamicObjects.Add(enemy);
 

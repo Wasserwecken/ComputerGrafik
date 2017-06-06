@@ -22,6 +22,12 @@ namespace Lib.LevelLoader.Xml.LinkTypes
         public EnemyType EnemyType { get; set; }
 
         /// <summary>
+        /// enemy type of the enemy
+        /// </summary>
+        [XmlAttribute("MovementType")]
+        public MovementType MovementType { get; set; }
+
+        /// <summary>
         /// path to the default animationm
         /// </summary>
         [XmlAttribute("DefaultAnimation")]

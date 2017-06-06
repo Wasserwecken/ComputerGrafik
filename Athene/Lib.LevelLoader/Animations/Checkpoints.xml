@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CheckpointList>
   <Checkpoints>
-    <Checkpoint CollectableItemType="CrystalBlue" Id="checkpoint_robot_blue" ActivationAnimationLength="500" ActivationPath="Animations/checkpoint_robot_blue_activate" AnimationLength="500" Path="Animations/checkpoint_robot_blue_damage" />
-    <Checkpoint CollectableItemType="CrystalGreen" Id="checkpoint_robot_green" ActivationAnimationLength="500" ActivationPath="Animations/checkpoint_robot_green_activate" AnimationLength="500" Path="Animations/checkpoint_robot_green_damage" />
-    <Checkpoint CollectableItemType="CrystalYellow" Id="checkpoint_robot_yellow" ActivationAnimationLength="500" ActivationPath="Animations/checkpoint_robot_yellow_activate" AnimationLength="500" Path="Animations/checkpoint_robot_yellow_damage" />
+    <Checkpoint CollectableItemType="CrystalBlue" Id="checkpoint_robot_blue" Path="Animations/checkpoint/blue" />
+    <Checkpoint CollectableItemType="CrystalRed" Id="checkpoint_robot_red" Path="Animations/checkpoint/red" />
+    <Checkpoint CollectableItemType="CrystalGreen" Id="checkpoint_robot_green" Path="Animations/checkpoint/green" />
+    <Checkpoint CollectableItemType="CrystalYellow" Id="checkpoint_robot_yellow" Path="Animations/checkpoint/yellow" />
   </Checkpoints>
 </CheckpointList>

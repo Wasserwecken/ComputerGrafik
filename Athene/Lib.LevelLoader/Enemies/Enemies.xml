@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <EnemyList>
   <Enemies>
-    <Enemy EnemyType="GreenFly" Id="enemy_greenFly" DefaultAnimation="Animations/enemy_green_fly_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_green_fly_default" />
-    <Enemy EnemyType="Worm" Id="enemy_worm" DefaultAnimation="Animations/enemy_worm_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_worm_default" />
-    <Enemy EnemyType="GrumpyFly" Id="enemy_grumpyFly" DefaultAnimation="Animations/enemy_grump_fly_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_grump_fly_default" />
+    <Enemy EnemyType="GreenFly" MovementType="Walk" Id="enemy_greenFly" DefaultAnimation="Animations/enemy_green_fly_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_green_fly_default" />
+    <Enemy EnemyType="Worm" MovementType="Walk" Id="enemy_worm" DefaultAnimation="Animations/enemy_worm_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_worm_default" />
+    <Enemy EnemyType="GrumpyFly" MovementType="Fly" Id="enemy_grumpyFly" DefaultAnimation="Animations/enemy_grump_fly_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_grump_fly_default" />
+    <Enemy EnemyType="BoneCruncherMonster" MovementType="Walk" Id="enemy_boneCruncherMonster" DefaultAnimation="Animations/enemy_bone_cruncher_monster_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_bone_cruncher_monster_default" />
+    <Enemy EnemyType="GreenMonster" MovementType="Swim" Id="enemy_greenMonster" DefaultAnimation="Animations/enemy_green_monster_default" DefaultAnimationLength="500" AttackAnimationLength="500" AttackAnimation="Animations/enemy_green_monster_default" />
   </Enemies>
 </EnemyList>

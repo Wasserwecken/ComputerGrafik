@@ -284,6 +284,14 @@ namespace LevelEditor.Controls
         {
             if (ItemPresenter != null && xmlLinkType != null)
             {
+                if (ItemPresenter.XmLLevelItemBase is XmlEnemy)
+                {
+                    MessageBox.Show("Enemies können keine Texturen angehängt werden");
+                    return;
+                }
+
+
+
                 ItemPresenter.XmLLevelItemBase.AttachedLink = xmlLinkType.Id;
                 ItemPresenter.XmLLevelItemBase.AttachedLinkType = attachedLinkType.ToString();
 

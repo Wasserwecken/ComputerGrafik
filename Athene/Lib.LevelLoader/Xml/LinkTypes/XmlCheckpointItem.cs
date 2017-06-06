@@ -23,24 +23,6 @@ namespace Lib.LevelLoader.Xml.LinkTypes
         public string Path { get; set; }
 
         /// <summary>
-        /// length of the animation
-        /// </summary>
-        [XmlAttribute("AnimationLength")]
-        public int AnimationLength { get; set; }
-
-        /// <summary>
-        /// path to the frames of the animation
-        /// </summary>
-        [XmlAttribute("ActivationPath")]
-        public string ActivationPath { get; set; }
-
-        /// <summary>
-        /// length of the animation
-        /// </summary>
-        [XmlAttribute("ActivationAnimationLength")]
-        public int ActivationAnimationLength { get; set; }
-
-        /// <summary>
         /// ActivationItemId of the checkpoint
         /// </summary>
         [XmlAttribute("CollectableItemType")]

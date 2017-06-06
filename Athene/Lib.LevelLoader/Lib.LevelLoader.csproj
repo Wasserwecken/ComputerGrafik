@@ -51,6 +51,7 @@
     <Compile Include="LevelItems\BlockLinkType.cs" />
     <Compile Include="LevelItems\EnemyType.cs" />
     <Compile Include="LevelItems\EnvironmentType.cs" />
+    <Compile Include="LevelItems\MovementType.cs" />
     <Compile Include="LevelLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Xml\LevelItems\XmlBackgroundItem.cs" />
@@ -184,46 +185,106 @@
     <Content Include="Animations\checkpoint\red\disabled\robot_redDrive2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_blue_activate\AA.png">
+    <Content Include="Animations\checkpoint\blue\activating\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_blue_activate\AB.png">
+    <Content Include="Animations\checkpoint\blue\activating\AB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_blue_damage\AA.png">
+    <Content Include="Animations\checkpoint\blue\disabled\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_blue_damage\AB.png">
+    <Content Include="Animations\checkpoint\blue\disabled\AB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_green_damage\AA.png">
+    <Content Include="Animations\checkpoint\green\disabled\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_green_damage\AB.png">
+    <Content Include="Animations\checkpoint\green\disabled\AB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_green_activate\AA.png">
+    <Content Include="Animations\checkpoint\green\activating\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_green_activate\AB.png">
+    <Content Include="Animations\checkpoint\green\activating\AB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_yellow_activate\AA.png">
+    <Content Include="Animations\checkpoint\yellow\activating\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_yellow_activate\AB.png">
+    <Content Include="Animations\checkpoint\yellow\activating\AB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_yellow_damage\AA.png">
+    <Content Include="Animations\checkpoint\yellow\disabled\AA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Animations\checkpoint_robot_yellow_damage\AB.png">
+    <Content Include="Animations\checkpoint\yellow\disabled\AB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\A.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\B.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\C.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\D.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\E.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\F.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\G.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\H.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\I.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\J.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\K.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\L.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\M.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_bone_cruncher_monster_default\N.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Animations\enemy_green_fly_default\fly1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Animations\enemy_green_fly_default\fly2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_green_monster_default\1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_green_monster_default\2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_green_monster_default\3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_green_monster_default\4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_green_monster_default\5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\enemy_green_monster_default\6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Animations\enemy_grump_fly_default\1.png">
@@ -2790,6 +2851,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Animations\checkpoint_robot_blue_activate\" />
+    <Folder Include="Animations\checkpoint_robot_blue_damage\" />
+    <Folder Include="Animations\checkpoint_robot_green_activate\" />
+    <Folder Include="Animations\checkpoint_robot_green_damage\" />
+    <Folder Include="Animations\checkpoint_robot_yellow_activate\" />
+    <Folder Include="Animations\checkpoint_robot_yellow_damage\" />
     <Folder Include="Animations\player\2\idle\" />
     <Folder Include="Animations\player\3\idle\" />
   </ItemGroup>
