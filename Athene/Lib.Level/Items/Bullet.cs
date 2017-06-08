@@ -62,23 +62,8 @@ namespace Lib.Level.Items
         /// <param name="intersectingItems"></param>
         public void HandleCollisions(List<IIntersectable> intersectingItems)
         {
-            var report = CollisionManager.HandleCollisions(HitBox, intersectingItems);
-
-            if (report.CorrectedHorizontal)
-                Physics.BounceOnAxisX();
-            if (report.CorrectedVertical)
-                Physics.BounceOnAxisY();
-
-            foreach(var item in intersectingItems)
-            {
-                if (item is Teleporter teleporter)
-                {
-                    HitBox.Position = teleporter.DestinationPosition;
-                    //Manipulating the position in the direction where the player is moving, else the 
-                    //player would be teleported immidiatly back
-                    HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
-                }
-            }
+            if (intersectingItems.Count > 0)
+                Remove = true;
         }
 
 
