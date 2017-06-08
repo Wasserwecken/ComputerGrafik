@@ -52,7 +52,10 @@ namespace Lib.Visuals.Graphics
 		public void StartAnimation(string animationName)
 		{
             if (ActiveAnimation != null && ActiveAnimation.Name == animationName)
+            {
+                TimeSource.Start();
                 return;
+            }
 
             foreach(var animation in Animations)
             {

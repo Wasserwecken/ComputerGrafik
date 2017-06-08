@@ -71,7 +71,7 @@ namespace Lib.Level.Physics
         public void StopOnAxisX()
         {
             Energy = new Vector2(0, Energy.Y);
-            LastInput = Energy;
+            LastInput = new Vector2(0, LastInput.Y);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Lib.Level.Physics
         public void StopOnAxisY()
         {
             Energy = new Vector2(Energy.X, 0);
-            LastInput = Energy;
+            LastInput = new Vector2(LastInput.X, 0);
         }
 
         /// <summary>
@@ -125,12 +125,18 @@ namespace Lib.Level.Physics
 
             //Calc energy, also resets the last processed force if there is no input anymore and all energy has been build down
             float newEnergyX = GetNewEnergyValue(Energy.X, Input.X, LastInput.X, CurrentProperties.Momentum.X);
-            if (Math.Abs(newEnergyX) <= 0)
-                LastInput = new Vector2(0, LastInput.Y);
+            if (Math.Abs(newEnergyX) <= 0.0001)
+            {
+                StopOnAxisX();
+                newEnergyX = 0;
+            }
 
             float newEnergyY = GetNewEnergyValue(Energy.Y, Input.Y, LastInput.Y, CurrentProperties.Momentum.Y);
-            if (Math.Abs(newEnergyY) <= 0)
-                LastInput = new Vector2(LastInput.X, 0);
+            if (Math.Abs(newEnergyY) <= 0.0001)
+            {
+                StopOnAxisY();
+                newEnergyY = 0;
+            }
 
             //Adding the energy level to the position to get the new calculated position
             Input = Vector2.Zero;
