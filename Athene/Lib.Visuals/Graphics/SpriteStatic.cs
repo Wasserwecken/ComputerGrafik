@@ -19,7 +19,7 @@ namespace Lib.Visuals.Graphics
         /// Initialises a sprite
         /// </summary>
         public SpriteStatic(Vector2 size, string path)
-            : this(size, path, TextureWrapMode.Repeat, TextureWrapMode.Repeat) { }
+            : this(size, path, TextureWrapMode.Repeat, TextureWrapMode.MirroredRepeat) { }
 
         /// <summary>
         /// Initialises a sprite
