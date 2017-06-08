@@ -1478,7 +1478,15 @@
     <Texture Id="jungle_pack_03" Path="Images\Environment\Jungle\jungle_pack_03.png" />
     <Texture Id="jungle_pack_21" Path="Images\Environment\Jungle\jungle_pack_21.png" />
   </Textures>
-  <Enemies />
+  <Enemies>
+    <Enemy X="32" Y="11" Link="enemy_grumpyFly" />
+    <Enemy X="23" Y="10" Link="enemy_grumpyFly" />
+    <Enemy X="27" Y="10" Link="enemy_grumpyFly" />
+    <Enemy X="35" Y="8" Link="enemy_grumpyFly" />
+    <Enemy X="24" Y="6" Link="enemy_worm" />
+    <Enemy X="29" Y="6" Link="enemy_worm" />
+    <Enemy X="2" Y="2" Link="enemy_greenFly" />
+  </Enemies>
   <Collectables>
     <Collectable X="36" Y="6" Link="crystal_blue" />
     <Collectable X="-7" Y="-10" Link="crystal_yellow" />

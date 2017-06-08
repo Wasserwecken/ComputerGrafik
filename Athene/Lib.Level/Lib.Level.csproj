@@ -58,6 +58,7 @@
     <Compile Include="Items\Bullet.cs" />
     <Compile Include="Items\Checkpoint.cs" />
     <Compile Include="Items\Collectable.cs" />
+    <Compile Include="Items\Enemy.cs" />
     <Compile Include="Items\IInventoryItem.cs" />
     <Compile Include="Items\Inventory.cs" />
     <Compile Include="Items\InventoryItem.cs" />

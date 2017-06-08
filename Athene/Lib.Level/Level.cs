@@ -306,7 +306,25 @@ namespace Lib.Level
 
                 DynamicObjects.Add(collectable);
             }
-            
+
+            foreach (var xmlLevelEnemy in xmlLevel.Enemies)
+            {
+                var xmlEnemyItem = EnemyLoader.GetEnemies().Enemies.FirstOrDefault(e => e.Id == xmlLevelEnemy.Link);
+
+                if (xmlEnemyItem == null)
+                    throw new Exception("Enemy not found");
+
+                SpriteAnimated enemySprite = new SpriteAnimated(Vector2.One);
+                enemySprite.AddAnimation(xmlEnemyItem.DefaultAnimation, xmlEnemyItem.DefaultAnimationLength);
+                enemySprite.StartAnimation(new DirectoryInfo(xmlEnemyItem.DefaultAnimation).Name);
+                
+                Enemy enemy = new Enemy(new Vector2(xmlLevelEnemy.X, xmlLevelEnemy.Y), enemySprite, xmlEnemyItem.EnemyType);
+
+                DynamicObjects.Add(enemy);
+
+
+            }
+
             InitialiseQuadTree();
             Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, new Vector2(.1f, -.1f), xmlLevel.Backgrounds);
         }
