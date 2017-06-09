@@ -39,6 +39,8 @@ namespace LevelEditor.Extensions
                 MaxY = grid.MaxY,
                 SpawnX = levelEditor.SettingsLevelControl.SpawnX,
                 SpawnY = levelEditor.SettingsLevelControl.SpawnY,
+                FinishX = levelEditor.SettingsLevelControl.FinishX,
+                FinishY = levelEditor.SettingsLevelControl.FinishY,
                 Backgrounds = levelEditor.SettingsBackgroundControl.BackgroundItems
             };
 
@@ -101,6 +103,8 @@ namespace LevelEditor.Extensions
             {
                 levelEditor.SettingsLevelControl.InputStartpositionX.Text = level.SpawnX.ToString();
                 levelEditor.SettingsLevelControl.InputStartpositionY.Text = level.SpawnY.ToString();
+                levelEditor.SettingsLevelControl.InputFinishX.Text = level.FinishX.ToString();
+                levelEditor.SettingsLevelControl.InputFinishY.Text = level.FinishY.ToString();
                 levelEditor.SettingsBackgroundControl.BackgroundItems = level.Backgrounds;
 
             }

@@ -52,6 +52,7 @@ namespace Lib.Level.Items
 
         public MovementType MovementType { get; set; }
 
+
         /// <summary>
         /// initializes a player
         /// </summary>
@@ -70,6 +71,7 @@ namespace Lib.Level.Items
 
             Physics = EnemyPhysicsFactory.GetPhysicsByEnemyType(enemyType);
             InteractionBox = HitBox;
+            Damage = 50;
         }
 
         public void Draw()
@@ -140,8 +142,10 @@ namespace Lib.Level.Items
             if (report.CorrectedVertical)
                 Physics.StopBodyOnAxisY();
 
+            
+
             /* if enemy is walking and on side is a block, then the enemy has to jump */
-            if (report.IsSolidOnSide && MovementType == MovementType.Walk)
+            if (report.IsSolidOnSide && MovementType == MovementType.Walk && EnemyType == EnemyType.BoneCruncherMonster)
             {
                 Commands.Jump = true;
             }

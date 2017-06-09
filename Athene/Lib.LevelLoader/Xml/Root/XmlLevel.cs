@@ -54,5 +54,11 @@ namespace Lib.LevelLoader.Xml
 
         [XmlAttribute("SpawnY")]
         public int SpawnY { get; set; }
+
+        [XmlAttribute("FinishX")]
+        public int FinishX { get; set; }
+
+        [XmlAttribute("FinishY")]
+        public int FinishY { get; set; }
     }
 }

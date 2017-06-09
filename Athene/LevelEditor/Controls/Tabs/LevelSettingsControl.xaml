@@ -43,7 +43,24 @@
             <TextBox Text="0" Margin="2" Grid.Row="2" Grid.Column="1" x:Name="InputStartpositionY" />
         </Grid>
 
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
 
+            <TextBlock Text="Endposition" Grid.Row="0" Padding="0,0,5,0" Grid.Column="0" />
+
+            <TextBlock HorizontalAlignment="Center" Text="X" Grid.Row="1" Padding="0,0,5,0" Grid.Column="0" />
+            <TextBox Text="0" Margin="2" Grid.Row="1" Grid.Column="1" x:Name="InputFinishX" />
+            <TextBlock  HorizontalAlignment="Center" Text="Y" Grid.Row="2" Padding="0,0,5,0" Grid.Column="0" />
+            <TextBox Text="0" Margin="2" Grid.Row="2" Grid.Column="1" x:Name="InputFinishY" />
+        </Grid>
     </Grid>
 
 </UserControl>

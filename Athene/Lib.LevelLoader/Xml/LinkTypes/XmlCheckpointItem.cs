@@ -34,7 +34,8 @@ namespace Lib.LevelLoader.Xml.LinkTypes
         /// <returns></returns>
         public FileInfo GetFirstImage()
         {
-            return new DirectoryInfo(Directory.GetCurrentDirectory() + @"\" + Path).GetFiles()[0];
+            string path = Directory.GetCurrentDirectory() + @"/" + Path + "/disabled";
+            return new DirectoryInfo(path).GetFiles()[0];
         }
     }
 }

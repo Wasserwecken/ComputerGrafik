@@ -23,7 +23,7 @@
             </Grid>
             
            
-            <WrapPanel x:Name="MainWrapPanel" Grid.Row="1" />
+            <WrapPanel x:Name="MainWrapPanel" Visibility="Collapsed" Grid.Row="1" />
 
         </Grid>
         

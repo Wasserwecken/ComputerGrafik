@@ -27,5 +27,8 @@ namespace LevelEditor.Controls.Tabs
 
         public int SpawnX => Convert.ToInt32(InputStartpositionX.Text);
         public int SpawnY => Convert.ToInt32(InputStartpositionY.Text);
+
+        public int FinishX => Convert.ToInt32(InputFinishX.Text);
+        public int FinishY => Convert.ToInt32(InputFinishY.Text);
     }
 }

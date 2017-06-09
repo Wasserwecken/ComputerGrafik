@@ -21,6 +21,8 @@ namespace Lib.Level.Items
             {
                 case EnemyType.GreenFly:
                     return GetWalkPhysics();
+                case EnemyType.BoneCruncherMonster:
+                    return GetWalkPhysics();
                 case EnemyType.GreenMonster:
                     return GetSwimPhysics();
                 case  EnemyType.GrumpyFly:
