@@ -32,6 +32,10 @@ namespace Lib.Level.Items
         /// </summary>
         public bool HasCollisionCorrection { get; set; }
 
+        /// <summary>
+        /// life of the player
+        /// </summary>
+        private int Life { get; set; }
 
         /// <summary>
         /// The physical position and movement of the player
@@ -92,7 +96,11 @@ namespace Lib.Level.Items
             //InteractionBox = new Box2D(HitBox.Position.X - (interactionSizeX / 2), HitBox.Position.Y - (interactionSizeY / 2), interactionSizeX, interactionSizeY);
             InteractionBox = HitBox;
         }
-                
+
+	    private void TakeDamage(int damage)
+	    {
+	        Life -= damage;
+	    }
 
         /// <summary>
         /// Draws the player on the screen
@@ -190,6 +198,13 @@ namespace Lib.Level.Items
                     //Manipulating the position in the direction where the player is moving, else the 
                     //player would be teleported immidiatly back
                     HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
+                }
+
+                /* check enemy and get damage */
+                if (item is Enemy enemy)
+                {
+                    TakeDamage(enemy.Damage);
+                    Console.WriteLine("Life: " + Life);
                 }
             }
         }

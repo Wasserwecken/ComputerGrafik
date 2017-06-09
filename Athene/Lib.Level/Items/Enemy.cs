@@ -71,7 +71,7 @@ namespace Lib.Level.Items
 
             Physics = EnemyPhysicsFactory.GetPhysicsByEnemyType(enemyType);
             InteractionBox = HitBox;
-            Damage = 50;
+            Damage = 5;
         }
 
         public void Draw()
