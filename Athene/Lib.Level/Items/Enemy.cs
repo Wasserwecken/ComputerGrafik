@@ -145,7 +145,7 @@ namespace Lib.Level.Items
             
 
             /* if enemy is walking and on side is a block, then the enemy has to jump */
-            if (report.IsSolidOnSide && MovementType == MovementType.Walk && EnemyType == EnemyType.BoneCruncherMonster)
+            if (report.IsSolidOnSide && MovementType == MovementType.Walk)
             {
                 Commands.Jump = true;
             }
