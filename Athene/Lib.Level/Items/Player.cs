@@ -262,9 +262,16 @@ namespace Lib.Level.Items
                 Status.IsGrounded = true;
             }
             
-
-            Status.IsIdle = (Math.Abs(Physics.Energy.X) <= 0 && Math.Abs(Physics.Energy.Y) <= 0);                
-
+            if (Status.IsGrounded && Math.Abs(Physics.Energy.X) <= 0)
+            {
+                Status.IsWalking = false;
+                Status.IsIdle = true;
+            }
+            else
+            {
+                Status.IsWalking = true;
+                Status.IsIdle = false;
+            }
 
             if (Status.Environment == EnvironmentType.Air)
                 Status.IsJumpAllowed = (report.IsBottomWater && report.IsSolidOnSide) || Status.IsGrounded;
@@ -277,11 +284,34 @@ namespace Lib.Level.Items
         {
             var playerSprite = (SpriteAnimated)Sprite;
 
-            if (Status.Environment == EnvironmentType.Water)
-                playerSprite.StartAnimation("swim");
+            switch(Status.Environment)
+            {
+                case EnvironmentType.Water:
+                    if (Status.IsIdle)
+                        playerSprite.StopAnimation();
+                    else
+                        playerSprite.StartAnimation("swim");
+                    break;
 
-            if (Status.Environment == EnvironmentType.Air)
-                playerSprite.StartAnimation("walk");
+                case EnvironmentType.Ladder:
+                    if (Status.IsIdle)
+                        playerSprite.StopAnimation();
+                    else
+                        playerSprite.StartAnimation("climb");
+                    break;
+
+                case EnvironmentType.Air:
+                    if (Status.IsIdle)
+                        playerSprite.StartAnimation("idle");
+
+                    else if (Status.IsFalling || Status.IsJumping)
+                        playerSprite.StartAnimation("fall");
+
+                    else if (Status.IsWalking)
+                        playerSprite.StartAnimation("walk");
+                    break;
+
+            }
         }
 
         /// <summary>

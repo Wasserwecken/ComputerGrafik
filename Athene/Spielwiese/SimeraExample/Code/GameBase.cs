@@ -47,7 +47,7 @@ namespace SimeraExample
             
 
             float axisSize = 0f;
-            float playersViewRange = 10f;
+            float playersViewRange = 7f;
 
             if (Window.AspectRatio > 0)
             {
