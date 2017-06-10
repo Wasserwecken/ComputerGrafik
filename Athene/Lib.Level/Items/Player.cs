@@ -16,11 +16,16 @@ namespace Lib.Level.Items
 {
     public class Player
         : LevelItemBase, IDrawable, IMoveable, IInteractable, IIntersectable, ICreateable
-	{
-		/// <summary>
-		/// Sets the values for the offset where the camera should point on
-		/// </summary>
-		public Vector2 ViewPoint { get; private set; }
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ZLevel { get; set; }
+
+        /// <summary>
+        /// Sets the values for the offset where the camera should point on
+        /// </summary>
+        public Vector2 ViewPoint { get; private set; }
         
         /// <summary>
         /// List of inventory items
@@ -84,6 +89,7 @@ namespace Lib.Level.Items
 			Sprite = sprite;
             HasCollisionCorrection = true;
             ReloadTime = 0;
+            ZLevel = 2;
 
             //float interactionSizeFactor = 2f;
             //float interactionSizeX = HitBox.Size.X * interactionSizeFactor;

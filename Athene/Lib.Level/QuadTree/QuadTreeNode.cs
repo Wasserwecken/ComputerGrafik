@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Lib.Level.QuadTree
 {
-    [DebuggerDisplay("Node: Elements={ElementCount}")]
+    [DebuggerDisplay("Node: Elements={ElementCount}, Quadrants={QuadrantCount}, Size={Size}")]
     internal class QuadTreeNode
         : QuadTreeQuadrant
     {
@@ -29,6 +29,26 @@ namespace Lib.Level.QuadTree
 
                 foreach (QuadTreeQuadrant quadrant in Quadrants)
                     counter += quadrant.ElementCount;
+
+                return counter;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int QuadrantCount
+        {
+            get
+            {
+                int counter = 0;
+                foreach(QuadTreeQuadrant quadrant in Quadrants)
+                {
+                    if (quadrant is QuadTreeNode)
+                        counter += ((QuadTreeNode)quadrant).QuadrantCount;
+                    else
+                        counter++;
+                }
 
                 return counter;
             }
@@ -87,6 +107,27 @@ namespace Lib.Level.QuadTree
         }
 
         /// <summary>
+        /// removes a lement from a node
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public override bool RemoveElement(IIntersectable element)
+        {
+            bool result = false;
+            for (int index = 0; index < Quadrants.Count; index++)
+            {
+                var quadrant = Quadrants[index];
+                bool isInside = element.HitBox.IsInside(quadrant.Size);
+                bool doesIntersect = element.HitBox.IntersectsWith(quadrant.Size);
+
+                if (isInside || doesIntersect)
+                    result = quadrant.RemoveElement(element);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Returns all intersecting or including elements in the given range
         /// </summary>
         /// <param name="range"></param>
@@ -101,7 +142,7 @@ namespace Lib.Level.QuadTree
                     result.AddRange(quadrant.GetElementsIn(range));
             }
 
-            return result.Distinct().ToList();
+            return result;
         }
     }
 }

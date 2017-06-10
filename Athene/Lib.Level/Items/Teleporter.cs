@@ -12,6 +12,11 @@ namespace Lib.Level.Items
     public class Teleporter : LevelItemBase, IDrawable, IIntersectable
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public int ZLevel { get; set; }
+
+        /// <summary>
         /// collission of the block
         /// </summary>
         public bool HasCollisionCorrection { get; set; }
@@ -34,6 +39,7 @@ namespace Lib.Level.Items
         {
             DestinationPosition = destinationPosition;
             Sprite = sprite;
+            ZLevel = 1;
         }
 
         /// <summary>

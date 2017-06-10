@@ -33,20 +33,15 @@ namespace Lib.Level
 
 
         /// <summary>
+        /// 
+        /// </summary>
+        private List<LevelItemBase> LevelItems { get; set; }
+
+        /// <summary>
         /// Blocks which can change their status / appereance / position
         /// </summary>
         private List<LevelItemBase> DynamicObjects { get; set; }
-
-        /// <summary>
-        /// Static objects which are loaded
-        /// </summary>
-        private List<LevelItemBase> EnvironmentObjects { get; set; }
-
-        /// <summary>
-        /// Players which are participating in the level
-        /// </summary>
-        private List<Player> ActivePlayers { get; set; }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -55,13 +50,13 @@ namespace Lib.Level
         /// <summary>
         /// QuadTree for static ojects
         /// </summary>
-        private QuadTreeRoot EnvironmentQuadTree { get; set; }
-        
+        private QuadTreeRoot LevelItemsQuadTree { get; set; }
+
         /// <summary>
-        /// Startposition of players
+        /// 
         /// </summary>
-        private Vector2 SpawnPosition { get; set; }
-        
+        private Box2D CameraFOV { get; set; }
+
 
         /// <summary>
         /// Initializes a empty level
@@ -69,159 +64,178 @@ namespace Lib.Level
         public Level(XmlLevel xmlLevel)
 		{
             DynamicObjects = new List<LevelItemBase>();
-            EnvironmentObjects = new List<LevelItemBase>();
-            ActivePlayers = new List<Player>();
 
+            LevelItems = LoadLevelFromXmlLevel(xmlLevel);
+            LevelSize = GetLevelSize(LevelItems);
+            LevelItemsQuadTree = InitialiseQuadTree(LevelSize, LevelItems);
 
-            LoadLevelFromXmlLevel(xmlLevel);
+            foreach(var item in LevelItems)
+            {
+                if (!(item is Block))
+                    DynamicObjects.Add(item);
+            }
 
-            var player1 = PlayerFactory.CreatePlayer(0, SpawnPosition);
-            var player2 = PlayerFactory.CreatePlayer(1, SpawnPosition + new Vector2(1,1));
-
-            DynamicObjects.Add(player1);
-            DynamicObjects.Add(player2);
-            ActivePlayers.Add(player1);
-            ActivePlayers.Add(player2);
-		}
+            Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, new Vector2(.1f, -.1f), xmlLevel.Backgrounds);
+        }
 
 
         /// <summary>
         /// updates the level
         /// </summary>
-        public void UpdateLogic()
+        public void UpdateLogic(Box2D cameraFOV)
         {
+            Vector2 playersPositionSum = Vector2.Zero;
+            float minPlayerXPos = 50000;
+            float minPlayerYPos = 50000;
+            float maxPlayerXPos = -50000;
+            float maxPlayerYPos = -50000;
+            int playerCount = 0;
+
             var newCreatedItems = new List<LevelItemBase>();
             var removedItems = new List<LevelItemBase>();
+            CameraFOV = cameraFOV;
 
+            
             foreach (var item in DynamicObjects)
             {
-                if (item is IMoveable moveItem)
-                    moveItem.Move();
-
-
-                if (item is IIntersectable intersecItem)
+                if (item.HitBox.IntersectsWith(CameraFOV))
                 {
-                    List<IIntersectable> intersectingItems = GetIntersectingItems(intersecItem.HitBox);
-                    intersectingItems.Remove(intersecItem);
-                    intersecItem.HandleCollisions(intersectingItems);
+                    var updateQuadTree = (item is IIntersectable) && (item is IMoveable);
+
+
+                    if (updateQuadTree)
+                        LevelItemsQuadTree.RemoveElement((IIntersectable)item);
+
+
+                    if (item is IMoveable moveItem)
+                        moveItem.Move();
+
+
+                    if (item is IIntersectable intersecItem)
+                    {
+                        List<IIntersectable> intersectingItems = LevelItemsQuadTree.GetElementsIn(intersecItem.HitBox);
+                        intersectingItems.Remove(intersecItem);
+                        intersecItem.HandleCollisions(intersectingItems);
+                    }
+
+
+                    if (updateQuadTree)
+                        LevelItemsQuadTree.InsertElement((IIntersectable)item);
+
+
+                    if (item is IInteractable interactItem)
+                    {
+                        List<IIntersectable> intersectingItems = LevelItemsQuadTree.GetElementsIn(interactItem.InteractionBox);
+                        intersectingItems.Remove((IIntersectable)item);
+                        interactItem.HandleInteractions(intersectingItems);
+                    }
+
+
+                    if (item is ICreateable creatingItem)
+                    {
+                        newCreatedItems.AddRange(creatingItem.GetCreatedItems());
+                        creatingItem.ClearCreatedItems();
+                    }
+
+
+                    if (item is IRemoveable removeableItem && removeableItem.Remove)
+                        removedItems.Add((LevelItemBase)removeableItem);
                 }
 
 
-                if (item is IInteractable interactItem)
+                if (item is Player player)
                 {
-                    List<IIntersectable> intersectingItems = GetIntersectingItems(interactItem.InteractionBox);
-                    intersectingItems.Remove((IIntersectable)item);
-                    interactItem.HandleInteractions(intersectingItems);
+                    playerCount++;
+                    playersPositionSum += player.HitBox.Position;
+                    minPlayerXPos = Math.Min(minPlayerXPos, player.ViewPoint.X);
+                    minPlayerYPos = Math.Min(minPlayerYPos, player.ViewPoint.Y);
+                    maxPlayerXPos = Math.Max(maxPlayerXPos, player.ViewPoint.X);
+                    maxPlayerYPos = Math.Max(maxPlayerYPos, player.ViewPoint.Y);
                 }
-
-
-                if (item is ICreateable creatingItem)
-                {
-                    newCreatedItems.AddRange(creatingItem.GetCreatedItems());
-                    creatingItem.ClearCreatedItems();
-                }
-
-
-                if (item is IRemoveable removeableItem && removeableItem.Remove)
-                    removedItems.Add((LevelItemBase)removeableItem);
             }
 
+            MaxPlayersDistance = new Vector2(maxPlayerXPos - minPlayerXPos, maxPlayerYPos - minPlayerYPos);
+            PlayersCenter = playersPositionSum / playerCount;
 
-            DynamicObjects.AddRange(newCreatedItems);
+
+            foreach (var item in newCreatedItems)
+            {
+                DynamicObjects.Add(item);
+                if (item is IIntersectable)
+                    LevelItemsQuadTree.InsertElement((IIntersectable)item);
+            }
+
             foreach (var item in removedItems)
+            {
                 DynamicObjects.Remove(item);
-
-
-            CalculateCameraInformations();
+                if (item is IIntersectable)
+                    LevelItemsQuadTree.RemoveElement((IIntersectable)item);
+            }
         }
         
         /// <summary>
         /// Draws the level
         /// </summary>
-        public void Draw(Box2D cameraFOV)
+        public void Draw()
         {
-            Background.Draw(PlayersCenter);
-
-            //Using the quadtree here because, only blocks in the camera view has to be drawn
-            foreach (LevelItemBase item in EnvironmentQuadTree.GetElementsIn(cameraFOV))
+            if (CameraFOV != null)
             {
-                if (item is IDrawable)
-                    ((IDrawable)item).Draw();
-            }
+                Background.Draw(PlayersCenter);
 
-            foreach (LevelItemBase item in DynamicObjects)
-            {
-                if (item is IDrawable)
-                    ((IDrawable)item).Draw();
+                //Using the quadtree here because, only blocks in the camera view has to be drawn
+                List<IIntersectable> drawCandiates = LevelItemsQuadTree.GetElementsIn(CameraFOV);
+                List<IDrawable> drawableItems = new List<IDrawable>();
+                foreach (var item in drawCandiates)
+                {
+                    if (item is IDrawable)
+                        drawableItems.Add((IDrawable)item);
+                }
+                DrawByZLevel(drawableItems, 0);
             }
         }
 
 
         /// <summary>
-        /// Gets a list with all interesecting items in the level
+        /// Draws recursivly items based on their Z level
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        private List<IIntersectable> GetIntersectingItems(Box2D range)
+        /// <param name="items"></param>
+        private void DrawByZLevel(List<IDrawable> items, int zLevel)
         {
-            var intersections = new List<IIntersectable>();
-
-            //Static things
-            intersections.AddRange(EnvironmentQuadTree.GetElementsIn(range));
-
-            //dynamic things
-            foreach(var dynamicItem in DynamicObjects)
+            List<IDrawable> drawableItems = new List<IDrawable>();
+            foreach (var item in items)
             {
-                if (dynamicItem is IIntersectable && dynamicItem.HitBox.IntersectsWith(range))
-                    intersections.Add(((IIntersectable)dynamicItem));
+                if (item.ZLevel > zLevel)
+                    drawableItems.Add(item);
+                else
+                    item.Draw();
             }
 
-            return intersections;
+            if (drawableItems.Count > 0)
+                DrawByZLevel(drawableItems, zLevel + 1);
         }
-
-
-        /// <summary>
-        /// Calculates the information which is needed for the camera
-        /// Like zoom level and position
-        /// </summary>
-        private void CalculateCameraInformations()
-        {
-            Vector2 playersPositionSum = ActivePlayers[0].HitBox.Position;
-            float minPlayerXPos = ActivePlayers[0].ViewPoint.X;
-            float minPlayerYPos = ActivePlayers[0].ViewPoint.Y;
-            float maxPlayerXPos = ActivePlayers[0].ViewPoint.X;
-            float maxPlayerYPos = ActivePlayers[0].ViewPoint.Y;
-
-            for (int index = 1; index < ActivePlayers.Count; index ++)
-            {
-                playersPositionSum = playersPositionSum + ActivePlayers[index].HitBox.Position;
-                minPlayerXPos = Math.Min(minPlayerXPos, ActivePlayers[index].ViewPoint.X);
-                minPlayerYPos = Math.Min(minPlayerYPos, ActivePlayers[index].ViewPoint.Y);
-                maxPlayerXPos = Math.Max(maxPlayerXPos, ActivePlayers[index].ViewPoint.X);
-                maxPlayerYPos = Math.Max(maxPlayerYPos, ActivePlayers[index].ViewPoint.Y);
-            }
-            
-            MaxPlayersDistance = new Vector2(maxPlayerXPos - minPlayerXPos, maxPlayerYPos - minPlayerYPos);
-            PlayersCenter = playersPositionSum / ActivePlayers.Count;
-        }
-
 
         /// <summary>
         /// Loads a level from the infos of a XmlLevel
         /// </summary>
         /// <param name="xmlLevel">XmlLevel</param>
         /// <returns>Returns the level</returns>
-        private void LoadLevelFromXmlLevel(XmlLevel xmlLevel)
+        private List<LevelItemBase> LoadLevelFromXmlLevel(XmlLevel xmlLevel)
         {
+            var Elements = new List<LevelItemBase>();
+
             if (xmlLevel == null)
                 throw new Exception("XmLLevel is null");
-            
+
+
+            var spawnPosition = new Vector2(xmlLevel.SpawnX, xmlLevel.SpawnY);
+            Elements.Add(PlayerFactory.CreatePlayer(0, spawnPosition));
+            Elements.Add(PlayerFactory.CreatePlayer(1, spawnPosition + new Vector2(1, 1)));
+
+
             // all animated sprites should start at the same time.
             // all animated sprites are later started from the list
             // spriteAnimated is the sprite, string is the animation name
             var animatedSpriteList = new Dictionary<SpriteAnimated, string>();
-
-            SpawnPosition = new Vector2(xmlLevel.SpawnX, xmlLevel.SpawnY);
 
             foreach (var xmlBlock in xmlLevel.Blocks)
             {
@@ -258,7 +272,7 @@ namespace Lib.Level
                 if (attachedSprite != null)
                     block.AttachedSprites.Add(attachedSprite);
 
-                EnvironmentObjects.Add(block);
+                Elements.Add(block);
             }
 
             // start animations of all animated blocks in the level
@@ -279,8 +293,8 @@ namespace Lib.Level
                 Checkpoint checkPoint = new Checkpoint(new Vector2(xmlLevelCheckpoint.X, xmlLevelCheckpoint.Y),
                     new Vector2(xmlLevelCheckpoint.DestinationX, xmlLevelCheckpoint.DestinationY),
                     (ItemType)Enum.Parse(typeof(ItemType), xmlCheckpointItem.CollectableItemType), xmlCheckpointItem.Path);
-                
-                DynamicObjects.Add(checkPoint);
+
+                Elements.Add(checkPoint);
             }
 
             foreach (var xmlLevelCollectable in xmlLevel.Collectables)
@@ -303,8 +317,7 @@ namespace Lib.Level
                     collectable.AttachedSprites.Add(attachedSprite);
                 }
 
-
-                DynamicObjects.Add(collectable);
+                Elements.Add(collectable);
             }
 
             foreach (var xmlLevelEnemy in xmlLevel.Enemies)
@@ -317,52 +330,69 @@ namespace Lib.Level
                 SpriteAnimated enemySprite = new SpriteAnimated(Vector2.One);
                 enemySprite.AddAnimation(xmlEnemyItem.DefaultAnimation, xmlEnemyItem.DefaultAnimationLength);
                 enemySprite.StartAnimation(new DirectoryInfo(xmlEnemyItem.DefaultAnimation).Name);
-                
+
                 Enemy enemy = new Enemy(new Vector2(xmlLevelEnemy.X, xmlLevelEnemy.Y), enemySprite, xmlEnemyItem.EnemyType, xmlEnemyItem.MovementType);
 
-                DynamicObjects.Add(enemy);
-
-
+                Elements.Add(enemy);
             }
 
-            InitialiseQuadTree();
-            Background = new ParalaxBackground(LevelSize.Position, LevelSize.Size, LevelSize.Size.Y, new Vector2(.1f, -.1f), xmlLevel.Backgrounds);
+            return Elements;
         }
 
 
         /// <summary>
         /// Builds up a quadtree for the environment
         /// </summary>
-        private void InitialiseQuadTree()
+        private QuadTreeRoot InitialiseQuadTree(Box2D levelSize, List<LevelItemBase> Elements)
         {
             var quadList = new List<IIntersectable>();
+
+            Box2D quadSize;
+            //calculate a dedicated size which will be quadratic for the quadtree
+            //this will be more cleaner for splitting the nodes
+            if (levelSize.Size.X > levelSize.Size.Y)
+                quadSize = new Box2D(levelSize.Position.X, levelSize.Center.Y - (levelSize.Size.X / 2), LevelSize.Size.X, LevelSize.Size.X);
+            else
+                quadSize = new Box2D(levelSize.Center.X - (levelSize.Size.Y / 2), levelSize.Position.Y, LevelSize.Size.Y, LevelSize.Size.Y);
+
+
+            foreach (var levelBlock in Elements)
+            {
+                if (levelBlock is IIntersectable)
+                    quadList.Add((IIntersectable)levelBlock);
+            }
+            
+            return new QuadTreeRoot(quadSize, 5, quadList);
+        }
+
+        /// <summary>
+        /// Gets the boundaries of the level, based on the levelitems it contians
+        /// </summary>
+        /// <param name="Elements"></param>
+        /// <returns></returns>
+        private Box2D GetLevelSize(List<LevelItemBase> Elements)
+        {
             float MinX = 0;
             float MinY = 0;
             float MaxX = 0;
             float MaxY = 0;
 
-            foreach (LevelItemBase levelBlock in EnvironmentObjects)
+            foreach (var levelBlock in Elements)
             {
-                if (levelBlock is IIntersectable)
-                {
-                    if (levelBlock.HitBox.Position.X < MinX)
-                        MinX = levelBlock.HitBox.Position.X;
+                if (levelBlock.HitBox.Position.X < MinX)
+                    MinX = levelBlock.HitBox.Position.X;
 
-                    if (levelBlock.HitBox.MaximumX > MaxX)
-                        MaxX = levelBlock.HitBox.MaximumX;
+                if (levelBlock.HitBox.MaximumX > MaxX)
+                    MaxX = levelBlock.HitBox.MaximumX;
 
-                    if (levelBlock.HitBox.Position.Y < MinY)
-                        MinY = levelBlock.HitBox.Position.Y;
+                if (levelBlock.HitBox.Position.Y < MinY)
+                    MinY = levelBlock.HitBox.Position.Y;
 
-                    if (levelBlock.HitBox.MaximumY > MaxY)
-                        MaxY = levelBlock.HitBox.MaximumY;
-
-                    quadList.Add((IIntersectable)levelBlock);
-                }
+                if (levelBlock.HitBox.MaximumY > MaxY)
+                    MaxY = levelBlock.HitBox.MaximumY;
             }
 
-            LevelSize = new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);
-            EnvironmentQuadTree = new QuadTreeRoot(LevelSize, 4, quadList);
+            return new Box2D(MinX, MinY, MaxX - MinX, MaxY - MinY);
         }
     }
 }

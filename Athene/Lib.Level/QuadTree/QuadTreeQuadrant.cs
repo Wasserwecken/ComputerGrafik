@@ -44,6 +44,12 @@ namespace Lib.Level.QuadTree
         public abstract bool InsertElement(IIntersectable newElement);
 
         /// <summary>
+        /// removes a lement from a node
+        /// </summary>
+        /// <param name=""></param>
+        public abstract bool RemoveElement(IIntersectable element);
+
+        /// <summary>
         /// Returns all intersecting or including elements in the given range
         /// </summary>
         /// <param name="range"></param>

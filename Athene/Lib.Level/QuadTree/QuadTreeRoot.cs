@@ -38,13 +38,22 @@ namespace Lib.Level.QuadTree
         }
 
         /// <summary>
+        /// Removes an item from the tree
+        /// </summary>
+        /// <param name="element"></param>
+        public bool RemoveElement(IIntersectable element)
+        {
+            return RootNode.RemoveElement(element);
+        }
+
+        /// <summary>
         /// Returns all intersecting or including elements in the given range
         /// </summary>
         /// <param name="range"></param>
         /// <returns></returns>
         public List<IIntersectable> GetElementsIn(Box2D range)
         {
-            return RootNode.GetElementsIn(range);
+            return RootNode.GetElementsIn(range).Distinct().ToList();
         }
     }
 }

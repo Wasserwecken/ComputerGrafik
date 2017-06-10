@@ -11,6 +11,11 @@ namespace Lib.Level.Items
         : LevelItemBase, IDrawable, IIntersectable
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public int ZLevel { get; set; }
+
+        /// <summary>
         /// collission of the block
         /// </summary>
         public bool HasCollisionCorrection { get; set; }
@@ -37,6 +42,7 @@ namespace Lib.Level.Items
             Environment = environmentType;
             HasCollisionCorrection = collision;
             Damage = damage;
+            ZLevel = 0;
         }
 
         /// <summary>
