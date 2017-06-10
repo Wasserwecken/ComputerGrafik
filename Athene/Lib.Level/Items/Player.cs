@@ -113,11 +113,12 @@ namespace Lib.Level.Items
 
             ViewPoint = new Vector2(x, y);
 
-            if (Physics.Energy.X > 0)
+            if (Status.ViewDirection > 0)
                 Sprite.FlipTextureHorizontal = false;
-            if (Physics.Energy.X < 0)
+            else if (Status.ViewDirection < 0)
                 Sprite.FlipTextureHorizontal = true;
             
+
             Sprite.Draw(HitBox.Position, new Vector2(0.8f));
 
             Inventory.Position = new Vector2(HitBox.Center.X, HitBox.MaximumY + 0.1f);
@@ -149,14 +150,14 @@ namespace Lib.Level.Items
                 Status.IsJumpAllowed = false;
             }
 
-            if (InputValues.Helping && Status.IsJumpAllowed && !Status.IsJumping)
-            {
-                Physics.ApplyImpulse(new Vector2(0.5f, 0.4f));
-                Status.IsJumpAllowed = false;
-            }
-
             //Apply now the added energy
             Status.MoveDirection = Physics.Process(HitBox.Position);
+
+            if (Status.MoveDirection.X > 0)
+                Status.ViewDirection = 1;
+            else if (Status.MoveDirection.X < 0)
+                Status.ViewDirection = -1;
+
             HitBox.Position += Status.MoveDirection;
 
             //Shooting things
@@ -197,6 +198,15 @@ namespace Lib.Level.Items
                     //player would be teleported immidiatly back
                     HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
                 }
+
+
+                if (item is Player otherPlayer)
+                {
+                    if (InputValues.Helping)
+                    {
+                        //Physics.ApplyImpulse(new Vector2(0.5f, 0.4f));
+                    }
+                }
             }
         }
 
@@ -227,7 +237,7 @@ namespace Lib.Level.Items
 
             if (InputValues.Shoot && ReloadTime <= 0)
             {
-                var direction = new Vector2(Math.Sign(Physics.Energy.X), 0.3f);
+                var direction = new Vector2(Status.ViewDirection, 0.3f);
                 bulletList.Add(new Bullet(HitBox.Center + direction, direction));
                 ReloadTime = 5;
             }

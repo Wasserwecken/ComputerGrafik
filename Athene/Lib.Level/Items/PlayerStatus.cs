@@ -41,6 +41,11 @@ namespace Lib.Level.Items
         public Vector2 MoveDirection { get; set; }
 
         /// <summary>
+        /// -1 for left 1 for right
+        /// </summary>
+        public int ViewDirection { get; set; }
+
+        /// <summary>
         /// Determines if the object stands on someting
         /// </summary>
         public bool IsGrounded { get; set; }
