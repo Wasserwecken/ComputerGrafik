@@ -114,21 +114,15 @@ namespace Lib.Level
                     if (item is IIntersectable intersecItem)
                     {
                         List<IIntersectable> intersectingItems = LevelItemsQuadTree.GetElementsIn(intersecItem.HitBox);
-                        intersectingItems.Remove(intersecItem);
                         intersecItem.HandleCollisions(intersectingItems);
+
+                        if (item is IInteractable interactItem)
+                            interactItem.HandleInteractions(intersectingItems);
                     }
 
 
                     if (updateQuadTree)
                         LevelItemsQuadTree.InsertElement((IIntersectable)item);
-
-
-                    if (item is IInteractable interactItem)
-                    {
-                        List<IIntersectable> intersectingItems = LevelItemsQuadTree.GetElementsIn(interactItem.InteractionBox);
-                        intersectingItems.Remove((IIntersectable)item);
-                        interactItem.HandleInteractions(intersectingItems);
-                    }
 
 
                     if (item is ICreateable creatingItem)

@@ -57,11 +57,6 @@ namespace Lib.Level.Items
         /// Input layout for the player
         /// </summary>
         private InputLayout<PlayerActions> InputLayout { get; set; }
-        
-        /// <summary>
-        /// Range where interactions can be requested by other items
-        /// </summary>
-        public Box2D InteractionBox { get; set; }
 
         /// <summary>
         /// Delay for the the next shoot in logic ticks
@@ -86,17 +81,10 @@ namespace Lib.Level.Items
             Inventory = new Inventory(0.5f, 0.01f, 1);
             Physics = new PhysicBody(impulseProperties, forceProperties);
             
-			Sprite = sprite;
+            Sprite = sprite;
             HasCollisionCorrection = true;
             ReloadTime = 0;
             ZLevel = 2;
-
-            //float interactionSizeFactor = 2f;
-            //float interactionSizeX = HitBox.Size.X * interactionSizeFactor;
-            //float interactionSizeY = HitBox.Size.Y * interactionSizeFactor;
-
-            //InteractionBox = new Box2D(HitBox.Position.X - (interactionSizeX / 2), HitBox.Position.Y - (interactionSizeY / 2), interactionSizeX, interactionSizeY);
-            InteractionBox = HitBox;
         }
                 
 
@@ -119,7 +107,7 @@ namespace Lib.Level.Items
                 Sprite.FlipTextureHorizontal = true;
             
 
-            Sprite.Draw(HitBox.Position, new Vector2(0.8f));
+            Sprite.Draw(HitBox.Position, Vector2.One);
 
             Inventory.Position = new Vector2(HitBox.Center.X, HitBox.MaximumY + 0.1f);
             Inventory.Draw();
@@ -202,9 +190,12 @@ namespace Lib.Level.Items
 
                 if (item is Player otherPlayer)
                 {
-                    if (InputValues.Helping)
+                    if (InputValues.Helping && !otherPlayer.InputValues.Helping)
                     {
-                        //Physics.ApplyImpulse(new Vector2(0.5f, 0.4f));
+                        otherPlayer.HitBox.Position += new Vector2(0, 1);
+
+                        if (otherPlayer.Status.IsGrounded)
+                            otherPlayer.Physics.ApplyImpulse(new Vector2(0.3f * Status.ViewDirection, 0.6f));
                     }
                 }
             }

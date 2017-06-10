@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 namespace Lib.Level.Base
 {
     public interface IInteractable
+        : IIntersectable
     {
-        /// <summary>
-        /// Range where the interaction can be triggered
-        /// </summary>
-        Box2D InteractionBox { get; set; }
-
         /// <summary>
         /// Interacts with the given objects
         /// </summary>
