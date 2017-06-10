@@ -111,17 +111,26 @@ namespace Lib.Level.Collision
         {
             if (reportItem.Item is Block blockItem)
             {
-                if (reportItem.ItemAlignment == Alignment.Bottom)
+                switch(reportItem.ItemAlignment)
                 {
-                    if (blockItem.Environment == EnvironmentType.Water)
-                        report.IsBottomWater = true;
-                }
-                if (reportItem.ItemAlignment == Alignment.Left || reportItem.ItemAlignment == Alignment.Right)
-                {
-                    if (blockItem.Environment == EnvironmentType.Solid)
-                        report.IsSolidOnSide = true;
+                    case Alignment.Bottom:
+                        if (blockItem.Environment == EnvironmentType.Water)
+                            report.IsBottomWater = true;
+
+                        if (blockItem.Environment == EnvironmentType.Solid)
+                            report.IsSolidOnBottom = true;
+                        break;
+
+                    case Alignment.Left:
+                    case Alignment.Right:
+                        if (blockItem.Environment == EnvironmentType.Solid)
+                            report.IsSolidOnSide = true;
+                        break;
                 }
             }
+
+            else if (reportItem.Item.HasCollisionCorrection && reportItem.ItemAlignment == Alignment.Bottom)
+                report.IsSolidOnBottom = true;
         }
 
         /// <summary>
