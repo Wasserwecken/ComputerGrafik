@@ -92,7 +92,7 @@ namespace Lib.Level.Items
             Status = new PlayerStatus();
 			InputValues = new PlayerActions();
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
-            Inventory = new Inventory(0.5f, 0.01f, 1);
+            Inventory = new Inventory(0.5f, 0.01f, 2);
             Physics = new PhysicBody(impulseProperties, forceProperties);
 		    SpawnPosition = startPosition;
             
@@ -184,12 +184,12 @@ namespace Lib.Level.Items
                 {
                     if (collectable.ItemType == ItemType.Medikit)
                     {
-                        Life += 50;
-                    }
-                    else
-                    {
+                        Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                        Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                     }
+                    else
+                        Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
 
                     collectable.Remove = true;
                     collectable.IsActive = false;
@@ -224,10 +224,15 @@ namespace Lib.Level.Items
                     {
                         //can cause error in the quadtree!!!!
                         bool isLeftOrRight = Math.Abs(HitBox.Center.X - otherPlayer.HitBox.Center.X) > Math.Abs(HitBox.Center.Y - otherPlayer.HitBox.Center.Y);
-
                         otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, HitBox.MaximumY);
-                        if (otherPlayer.Status.IsGrounded && isLeftOrRight)
+
+                        var getItem = Inventory.GetFirstItemofType(ItemType.Softice);
+                        if (otherPlayer.Status.IsGrounded && isLeftOrRight && getItem != null)
+                        {
+                            Inventory.RemoveItem(getItem);
                             otherPlayer.Physics.ApplyImpulse(new Vector2(0.4f * Status.ViewDirection * -1, 0.4f));
+                        }
+
                     }
                 }
             }
