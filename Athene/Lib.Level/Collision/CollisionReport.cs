@@ -29,11 +29,16 @@ namespace Lib.Level.Collision
         /// 
         /// </summary>
         public bool IsBottomWater { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>
         public bool IsSolidOnBottom { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsPlayerOnBottom { get; set; }
 
         /// <summary>
         /// 

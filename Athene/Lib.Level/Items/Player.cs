@@ -95,12 +95,6 @@ namespace Lib.Level.Items
             ReloadTime = 0;
             ZLevel = 2;
 		    Life = 100;
-            //float interactionSizeFactor = 2f;
-            //float interactionSizeX = HitBox.Size.X * interactionSizeFactor;
-            //float interactionSizeY = HitBox.Size.Y * interactionSizeFactor;
-
-            //InteractionBox = new Box2D(HitBox.Position.X - (interactionSizeX / 2), HitBox.Position.Y - (interactionSizeY / 2), interactionSizeX, interactionSizeY);
-            //InteractionBox = HitBox;
         }
 
 	    private void TakeDamage(int damage)
@@ -211,9 +205,11 @@ namespace Lib.Level.Items
                 {
                     if (Status.IsHelping && !otherPlayer.Status.IsHelping)
                     {
-                        otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, HitBox.MaximumY);
+                        //can cause error in the quadtree!!!!
+                        bool isLeftOrRight = Math.Abs(HitBox.Center.X - otherPlayer.HitBox.Center.X) > Math.Abs(HitBox.Center.Y - otherPlayer.HitBox.Center.Y);
 
-                        if (otherPlayer.Status.IsGrounded)
+                        otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, HitBox.MaximumY);
+                        if (otherPlayer.Status.IsGrounded && isLeftOrRight)
                             otherPlayer.Physics.ApplyImpulse(new Vector2(0.4f * Status.ViewDirection * -1, 0.4f));
                     }
                 }
