@@ -114,6 +114,7 @@ namespace Lib.Level
                     if (item is IIntersectable intersecItem)
                     {
                         List<IIntersectable> intersectingItems = LevelItemsQuadTree.GetElementsIn(intersecItem.HitBox);
+                        intersectingItems.Remove(intersecItem);
                         intersecItem.HandleCollisions(intersectingItems);
                     }
 
@@ -121,6 +122,7 @@ namespace Lib.Level
                     if (item is IInteractable interactItem)
                     {
                         List<IIntersectable> intersectingItems = LevelItemsQuadTree.GetElementsIn(interactItem.InteractionBox);
+                        intersectingItems.Remove((IIntersectable)interactItem);
                         interactItem.HandleInteractions(intersectingItems);
                     }
 
@@ -360,7 +362,7 @@ namespace Lib.Level
                     quadList.Add((IIntersectable)levelBlock);
             }
             
-            return new QuadTreeRoot(quadSize, 5, quadList);
+            return new QuadTreeRoot(quadSize, 10, quadList);
         }
 
         /// <summary>

@@ -209,12 +209,12 @@ namespace Lib.Level.Items
 
                 if (item is Player otherPlayer)
                 {
-                    if (Status.IsHelping)
+                    if (Status.IsHelping && !otherPlayer.Status.IsHelping)
                     {
-                        otherPlayer.HitBox.Position += new Vector2(0, 1);
+                        otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, HitBox.MaximumY);
 
-                        //if (otherPlayer.Status.IsGrounded)
-                        //    otherPlayer.Physics.ApplyImpulse(new Vector2(0.3f * Status.ViewDirection, 0.6f));
+                        if (otherPlayer.Status.IsGrounded)
+                            otherPlayer.Physics.ApplyImpulse(new Vector2(0.4f * Status.ViewDirection * -1, 0.4f));
                     }
                 }
             }

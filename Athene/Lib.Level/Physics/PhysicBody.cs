@@ -51,7 +51,7 @@ namespace Lib.Level.Physics
 		{
 			//An implus does not build up energy, its directly added
 			ImpulseObject.Energy += impuls;
-            ImpulseObject.SetLastInput(impuls);
+            ImpulseObject.SetLastInput(ImpulseObject.Energy);
 		}
 
 		/// <summary>
