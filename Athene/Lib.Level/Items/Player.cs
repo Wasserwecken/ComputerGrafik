@@ -67,6 +67,11 @@ namespace Lib.Level.Items
         /// </summary>
         private int ReloadTime { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Box2D InteractionBox { get; set; }
+
 
         /// <summary>
         /// Initialises a player
@@ -136,8 +141,9 @@ namespace Lib.Level.Items
             if (Physics.CurrentEnvironment == EnvironmentType.Air)
                 directionVertical = 0;
 
-            Physics.ApplyForce(new Vector2(directionHorizontal, directionVertical));
-
+            if (!InputValues.Helping)
+                Physics.ApplyForce(new Vector2(directionHorizontal, directionVertical));
+            
 
             // tries to execute a jump of the player. In some environments or situations
             // it will be not allowed to jump (e.g. water)
@@ -155,9 +161,11 @@ namespace Lib.Level.Items
             else if (Status.MoveDirection.X < 0)
                 Status.ViewDirection = -1;
 
+            //Positioning
             HitBox.Position += Status.MoveDirection;
             Vector2 offsetValue = new Vector2(2f) * new Vector2(directionHorizontal, directionVertical);
             ViewPoint = HitBox.Position + offsetValue;
+            InteractionBox = HitBox.Scale(2f);
 
             //Shooting things
             ReloadTime = Math.Max(0, ReloadTime - 1);
@@ -201,12 +209,12 @@ namespace Lib.Level.Items
 
                 if (item is Player otherPlayer)
                 {
-                    if (InputValues.Helping && !otherPlayer.InputValues.Helping)
+                    if (Status.IsHelping)
                     {
                         otherPlayer.HitBox.Position += new Vector2(0, 1);
 
-                        if (otherPlayer.Status.IsGrounded)
-                            otherPlayer.Physics.ApplyImpulse(new Vector2(0.3f * Status.ViewDirection, 0.6f));
+                        //if (otherPlayer.Status.IsGrounded)
+                        //    otherPlayer.Physics.ApplyImpulse(new Vector2(0.3f * Status.ViewDirection, 0.6f));
                     }
                 }
             }
@@ -219,6 +227,7 @@ namespace Lib.Level.Items
         public void HandleCollisions(List<IIntersectable> intersectingItems)
         {
             var report = CollisionManager.HandleCollisions(HitBox, intersectingItems);
+            InteractionBox = HitBox.Scale(2f);
 
             if (report.CorrectedHorizontal)
                 Physics.StopBodyOnAxisX();
@@ -292,7 +301,10 @@ namespace Lib.Level.Items
             }
 
             if (Status.Environment == EnvironmentType.Air)
+            {
                 Status.IsJumpAllowed = (report.IsBottomWater && report.IsSolidOnSide) || Status.IsGrounded;
+                Status.IsHelping = InputValues.Helping && Status.IsGrounded;
+            }
         }
         
         /// <summary>
@@ -320,7 +332,12 @@ namespace Lib.Level.Items
 
                 case EnvironmentType.Air:
                     if (Status.IsIdle)
-                        playerSprite.StartAnimation("idle");
+                    {
+                        if (Status.IsHelping)
+                            playerSprite.StartAnimation("help");
+                        else
+                            playerSprite.StartAnimation("idle");
+                    }
 
                     else if (Status.IsFalling || Status.IsJumping)
                         playerSprite.StartAnimation("fall");

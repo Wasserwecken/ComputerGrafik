@@ -35,9 +35,10 @@ namespace Lib.Level.Items
             SpriteAnimated playerSprite = new SpriteAnimated(new Vector2(0.75f));
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/walk", playerId), 600);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/fall", playerId), 600);
-            playerSprite.AddAnimation(String.Format("Animations/player/{0}/climb", playerId), 600);
+            playerSprite.AddAnimation(String.Format("Animations/player/{0}/climb", playerId), 400);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/idle", playerId), 1000);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/swim", playerId), 1000);
+            playerSprite.AddAnimation(String.Format("Animations/player/{0}/help", playerId), 1000);
             playerSprite.StartAnimation("walk");
 
             //Physics
@@ -80,7 +81,7 @@ namespace Lib.Level.Items
                     mapList.AddMappingKeyboard(Key.Up, inp => inp.MoveUp, (inval, curval) => inval ? +1 : 0);
                     mapList.AddMappingKeyboard(Key.Down, inp => inp.MoveDown, (inval, curval) => inval ? +1 : 0);
                     mapList.AddMappingKeyboard(Key.ControlRight, inp => inp.Jump, (inval, curval) => inval);
-                    mapList.AddMappingKeyboard(Key.Number0, inp => inp.Helping, (inval, curval) => inval);
+                    mapList.AddMappingKeyboard(Key.Keypad0, inp => inp.Helping, (inval, curval) => inval);
                     mapList.AddMappingKeyboard(Key.ShiftRight, inp => inp.Shoot, (inval, curval) => inval);
                     break;
 

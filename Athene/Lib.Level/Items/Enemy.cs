@@ -194,7 +194,7 @@ namespace Lib.Level.Items
             {
                 Status.IsFalling = false;
                 Status.IsJumping = false;
-                Status.IsGrounded = true;
+                Status.IsGrounded = report.IsSolidOnBottom;
             }
             
 

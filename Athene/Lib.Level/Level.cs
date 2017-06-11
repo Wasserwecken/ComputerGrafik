@@ -115,9 +115,13 @@ namespace Lib.Level
                     {
                         List<IIntersectable> intersectingItems = LevelItemsQuadTree.GetElementsIn(intersecItem.HitBox);
                         intersecItem.HandleCollisions(intersectingItems);
+                    }
 
-                        if (item is IInteractable interactItem)
-                            interactItem.HandleInteractions(intersectingItems);
+
+                    if (item is IInteractable interactItem)
+                    {
+                        List<IIntersectable> intersectingItems = LevelItemsQuadTree.GetElementsIn(interactItem.InteractionBox);
+                        interactItem.HandleInteractions(intersectingItems);
                     }
 
 

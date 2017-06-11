@@ -21,6 +21,11 @@ namespace Lib.Level.Items
         public bool IsWalking { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool IsHelping { get; set; }
+
+        /// <summary>
         /// Determines if the object is jumping
         /// </summary>
         public bool IsJumping { get; set; }

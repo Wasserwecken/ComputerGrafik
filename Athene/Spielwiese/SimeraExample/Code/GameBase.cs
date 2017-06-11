@@ -24,6 +24,7 @@ namespace SimeraExample
         public GameBase()
 		{
 			Window = new GameWindowBase(4, 15);
+            //Window.WindowState = WindowState.Fullscreen;
 
 			Window.Load += Window_Load;
 			Window.UpdateFrame += Window_UpdateFrame;
