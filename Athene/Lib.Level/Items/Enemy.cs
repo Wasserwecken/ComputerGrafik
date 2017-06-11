@@ -13,7 +13,7 @@ using OpenTK;
 
 namespace Lib.Level.Items
 {
-    public class Enemy : LevelItemBase, IDrawable, IMoveable, IIntersectable
+    public class Enemy : LevelItemBase, IDrawable, IMoveable, IIntersectable, IRemoveable
     {
         /// <summary>
         /// 
@@ -59,6 +59,11 @@ namespace Lib.Level.Items
         /// 
         /// </summary>
         public MovementType MovementType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool Remove { get; set; }
 
 
         /// <summary>
@@ -151,7 +156,13 @@ namespace Lib.Level.Items
             if (report.CorrectedVertical)
                 Physics.StopBodyOnAxisY();
 
-            
+
+            foreach (var item in intersectingItems)
+            {
+                Remove = (item is Bullet);
+                break;
+            }
+
 
             /* if enemy is walking and on side is a block, then the enemy has to jump */
             if (report.IsSolidOnSide && MovementType == MovementType.Walk)
