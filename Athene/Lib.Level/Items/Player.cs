@@ -244,7 +244,10 @@ namespace Lib.Level.Items
                         //can cause error in the quadtree!!!!
                         var playerAlignment = AlignmentTools.EvaluateAlignment(HitBox.Center, otherPlayer.HitBox.Center);
 
-                        switch(playerAlignment)
+                        if (playerAlignment != Alignment.Top)
+                            otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, InteractionBox.MaximumY + 0.1f);
+
+                        switch (playerAlignment)
                         {
                             case Alignment.Left:
                             case Alignment.Right:
@@ -257,7 +260,6 @@ namespace Lib.Level.Items
                                 break;
 
                             case Alignment.Bottom:
-                                otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, HitBox.MaximumY + 0.1f);
                                 otherPlayer.Physics.StopBodyOnAxisX();
                                 otherPlayer.Physics.StopBodyOnAxisY();
                                 break;
