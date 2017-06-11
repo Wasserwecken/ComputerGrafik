@@ -90,7 +90,10 @@ namespace Lib.Level.Items
             ActivationWatch = new Stopwatch();
             ActivationTime = 1000;
 
-            
+
+            SpriteAnimated teleporterSprite = new SpriteAnimated(new Vector2(0.75f));
+            teleporterSprite.AddAnimation("Animations/portal/wobble", 1000);
+
 
             var checkPointAnimations = new SpriteAnimated(Vector2.One);
             checkPointAnimations.AddAnimation(path + "/activating", ActivationTime);
@@ -139,8 +142,11 @@ namespace Lib.Level.Items
 
             if (IsActive && ActivationWatch.ElapsedMilliseconds > ActivationTime)
             {
-                teleporters.Add(new Teleporter(HitBox.Position, DestinationPosition, Vector2.One, new SpriteStatic(Vector2.One, @"Images\Environment\Common\portal.png")));
-                teleporters.Add(new Teleporter(DestinationPosition, HitBox.Position, Vector2.One, new SpriteStatic(Vector2.One, @"Images\Environment\Common\portal.png")));
+                SpriteAnimated teleporterSprite = new SpriteAnimated(new Vector2(0.75f));
+                teleporterSprite.AddAnimation("Animations/portal/wobble", 1000);
+                teleporterSprite.StartAnimation("wobble");
+                teleporters.Add(new Teleporter(HitBox.Position, DestinationPosition, Vector2.One, teleporterSprite));
+                teleporters.Add(new Teleporter(DestinationPosition, HitBox.Position, Vector2.One, teleporterSprite));
             }
 
             return teleporters;
