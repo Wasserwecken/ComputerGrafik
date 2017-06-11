@@ -239,16 +239,26 @@ namespace Lib.Level.Items
                     if (Status.IsHelping && !otherPlayer.Status.IsHelping)
                     {
                         //can cause error in the quadtree!!!!
-                        bool isLeftOrRight = Math.Abs(HitBox.Center.X - otherPlayer.HitBox.Center.X) > Math.Abs(HitBox.Center.Y - otherPlayer.HitBox.Center.Y);
-                        otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, HitBox.MaximumY);
+                        var playerAlignment = AlignmentTools.EvaluateAlignment(HitBox.Center, otherPlayer.HitBox.Center);
 
-                        var getItem = Inventory.GetFirstItemofType(ItemType.Softice);
-                        if (otherPlayer.Status.IsGrounded && isLeftOrRight && getItem != null)
+                        switch(playerAlignment)
                         {
-                            Inventory.RemoveItem(getItem);
-                            otherPlayer.Physics.ApplyImpulse(new Vector2(0.4f * Status.ViewDirection * -1, 0.4f));
-                        }
+                            case Alignment.Left:
+                            case Alignment.Right:
+                                var getItem = Inventory.GetFirstItemofType(ItemType.Softice);
+                                if (otherPlayer.Status.IsGrounded && getItem != null)
+                                {
+                                    Inventory.RemoveItem(getItem);
+                                    otherPlayer.Physics.ApplyImpulse(new Vector2(0.4f * Status.ViewDirection * -1, 0.4f));
+                                }
+                                break;
 
+                            case Alignment.Bottom:
+                                otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, HitBox.MaximumY + 0.1f);
+                                otherPlayer.Physics.StopBodyOnAxisX();
+                                otherPlayer.Physics.StopBodyOnAxisY();
+                                break;
+                        }
                     }
                 }
             }
