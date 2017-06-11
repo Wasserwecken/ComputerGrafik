@@ -13,6 +13,8 @@ namespace Lib.LevelLoader.LevelItems
         CrystalYellow,
         CrystalGreen,
         Medikit,
-        Softice
+        Softice,
+        SmallCheckpoint,
+        Weapon
     }
 }

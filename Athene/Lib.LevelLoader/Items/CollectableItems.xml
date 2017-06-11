@@ -7,5 +7,7 @@
     <Collectable Id="crystal_green" ItemType="CrystalRed" Path="Images\Environment\Jungle\jungle_pack_67.png" />
     <Collectable Id="medikit" ItemType="Medikit" Path="Images\Objects\Items\objects_48.png" />
     <Collectable Id="ice" ItemType="Softice" Path="Images\Environment\Candy\creamPink.png" />
+    <Collectable Id="smallcheckpoint" ItemType="SmallCheckpoint" Path="Images\Objects\Tiles\boxItemAlt.png" />
+    <Collectable Id="weapon" ItemType="Weapon" Path="Images\Objects\Bullets\bullet.png" />
   </Items>
 </CollectableList>
