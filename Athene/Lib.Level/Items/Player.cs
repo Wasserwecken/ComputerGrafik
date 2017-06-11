@@ -57,7 +57,10 @@ namespace Lib.Level.Items
         /// </summary>
         private PlayerStatus Status { get; set; }
 
-        private Checkpoint
+        /// <summary>
+        /// current spawn position of the player
+        /// </summary>
+        private Vector2 SpawnPosition { get; set; }
 
         /// <summary>
         /// Input layout for the player
@@ -91,6 +94,7 @@ namespace Lib.Level.Items
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
             Inventory = new Inventory(0.5f, 0.01f, 1);
             Physics = new PhysicBody(impulseProperties, forceProperties);
+		    SpawnPosition = startPosition;
             
             Sprite = sprite;
             HasCollisionCorrection = true;
@@ -200,6 +204,7 @@ namespace Lib.Level.Items
                     {
                         checkpoint.Activate();
                         Inventory.RemoveItem(getItem);
+                        SpawnPosition = checkpoint.OriginalPosition;
                     }
                 }
 
@@ -207,7 +212,9 @@ namespace Lib.Level.Items
                 /* check enemy */
                 if (item is Enemy enemy)
                 {
-                    TakeDamage(enemy.Damage);
+                    //TakeDamage(enemy.Damage);
+                    //HitBox = new Box2D(SpawnPosition, new Vector2(0.75f, 0.75f));
+                    HitBox.Position = SpawnPosition;
                 }
 
 

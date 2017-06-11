@@ -70,7 +70,7 @@ namespace Lib.Level.Items
         /// <summary>
         /// Position of the checkpoint on levelstart
         /// </summary>
-        private Vector2 OriginalPosition { get; set; }
+        public Vector2 OriginalPosition { get; set; }
 
 
 
