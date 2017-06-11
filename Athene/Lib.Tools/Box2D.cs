@@ -127,7 +127,7 @@ namespace Lib.Tools
             if (MaximumX > otherBox.MaximumX)
                 return false;
 
-            if (Position.X < otherBox.Position.Y)
+            if (Position.Y < otherBox.Position.Y)
                 return false;
 
             if (MaximumY > otherBox.MaximumY)
