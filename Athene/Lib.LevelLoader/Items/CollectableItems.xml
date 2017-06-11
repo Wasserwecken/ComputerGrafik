@@ -6,5 +6,6 @@
     <Collectable Id="crystal_red" ItemType="CrystalRed" Path="Images\Environment\Jungle\jungle_pack_67.png" />
     <Collectable Id="crystal_green" ItemType="CrystalRed" Path="Images\Environment\Jungle\jungle_pack_67.png" />
     <Collectable Id="medikit" ItemType="Medikit" Path="Images\Objects\Items\objects_48.png" />
+    <Collectable Id="ice" ItemType="Softice" Path="Images\Environment\Candy\creamPink.png" />
   </Items>
 </CollectableList>

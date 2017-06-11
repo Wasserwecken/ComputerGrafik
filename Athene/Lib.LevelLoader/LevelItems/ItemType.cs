@@ -12,6 +12,7 @@ namespace Lib.LevelLoader.LevelItems
         CrystalBlue,
         CrystalYellow,
         CrystalGreen,
-        Medikit
+        Medikit,
+        Softice
     }
 }

@@ -72,6 +72,11 @@ namespace Lib.Level.Items
             IsActive = true;
             ItemType = type;
 
+            if (ItemType == ItemType.Medikit)
+            {
+                HitBox.Size = new Vector2(0.75f, 0.75f);
+            }
+
             ZLevel = 1;
             Sprite = sprite;
             Sprite.SetSize(HitBox.Size);

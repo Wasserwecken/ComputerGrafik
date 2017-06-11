@@ -57,6 +57,8 @@ namespace Lib.Level.Items
         /// </summary>
         private PlayerStatus Status { get; set; }
 
+        private Checkpoint
+
         /// <summary>
         /// Input layout for the player
         /// </summary>
@@ -176,9 +178,18 @@ namespace Lib.Level.Items
             {
                 if (item is Collectable collectable && collectable.IsActive)
                 {
+                    if (collectable.ItemType == ItemType.Medikit)
+                    {
+                        Life += 50;
+                    }
+                    else
+                    {
+                        Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    }
+
                     collectable.Remove = true;
                     collectable.IsActive = false;
-                    Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                   
                 }
 
                 /* look for checkpoints to activate */
