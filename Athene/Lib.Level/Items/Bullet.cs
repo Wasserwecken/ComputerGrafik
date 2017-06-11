@@ -35,6 +35,11 @@ namespace Lib.Level.Items
         /// </summary>
         private EnergyObject Physics { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private int BounceLife { get; set; }
+
 
         /// <summary>
         /// Initialises a new bullet
@@ -43,7 +48,7 @@ namespace Lib.Level.Items
         /// <param name="boxSize"></param>
         public Bullet(Vector2 startPosition, Vector2 moveDirection) : base(startPosition, Vector2.One * 0.3f)
         {
-            var bulletSpeed = 0.3f;
+            var bulletSpeed = 0.2f;
             var bulletMass = 0.5f;
             var bulletPhysicProps = new Dictionary<EnvironmentType, EnergyObjectProperties>
             {
@@ -60,6 +65,7 @@ namespace Lib.Level.Items
             Sprite = new SpriteStatic(HitBox.Size, "Images/Objects/Bullets/bullet.png");
             HasCollisionCorrection = true;
             ZLevel = 2;
+            BounceLife = 2;
         }
 
         /// <summary>
@@ -68,8 +74,23 @@ namespace Lib.Level.Items
         /// <param name="intersectingItems"></param>
         public void HandleCollisions(List<IIntersectable> intersectingItems)
         {
-            if (intersectingItems.Count > 0)
+            if (BounceLife <= 0)
                 Remove = true;
+            else
+            {
+                var report = CollisionManager.HandleCollisions(HitBox, intersectingItems);
+
+                if (report.CorrectedHorizontal)
+                {
+                    Physics.BounceOnAxisX();
+                    BounceLife--;
+                }
+                if (report.CorrectedVertical)
+                {
+                    Physics.BounceOnAxisY();
+                    BounceLife--;
+                }
+            }
         }
 
 
