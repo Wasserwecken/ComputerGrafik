@@ -95,7 +95,7 @@ namespace Lib.Level.Items
             //float interactionSizeY = HitBox.Size.Y * interactionSizeFactor;
 
             //InteractionBox = new Box2D(HitBox.Position.X - (interactionSizeX / 2), HitBox.Position.Y - (interactionSizeY / 2), interactionSizeX, interactionSizeY);
-            InteractionBox = HitBox;
+            //InteractionBox = HitBox;
         }
 
 	    private void TakeDamage(int damage)
