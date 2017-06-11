@@ -37,6 +37,10 @@ namespace Lib.Level.Items
         /// </summary>
         public bool HasCollisionCorrection { get; set; }
 
+        /// <summary>
+        /// life of the player
+        /// </summary>
+        private int Life { get; set; }
 
         /// <summary>
         /// The physical position and movement of the player
@@ -85,8 +89,19 @@ namespace Lib.Level.Items
             HasCollisionCorrection = true;
             ReloadTime = 0;
             ZLevel = 2;
+		    Life = 100;
+            //float interactionSizeFactor = 2f;
+            //float interactionSizeX = HitBox.Size.X * interactionSizeFactor;
+            //float interactionSizeY = HitBox.Size.Y * interactionSizeFactor;
+
+            //InteractionBox = new Box2D(HitBox.Position.X - (interactionSizeX / 2), HitBox.Position.Y - (interactionSizeY / 2), interactionSizeX, interactionSizeY);
+            //InteractionBox = HitBox;
         }
-                
+
+	    private void TakeDamage(int damage)
+	    {
+	        Life -= damage;
+	    }
 
         /// <summary>
         /// Draws the player on the screen
