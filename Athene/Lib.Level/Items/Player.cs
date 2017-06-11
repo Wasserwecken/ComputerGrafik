@@ -88,7 +88,7 @@ namespace Lib.Level.Items
 			Sprite = sprite;
             HasCollisionCorrection = true;
             ReloadTime = 0;
-
+		    Life = 100;
             //float interactionSizeFactor = 2f;
             //float interactionSizeX = HitBox.Size.X * interactionSizeFactor;
             //float interactionSizeY = HitBox.Size.Y * interactionSizeFactor;
