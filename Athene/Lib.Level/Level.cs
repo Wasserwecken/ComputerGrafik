@@ -98,7 +98,7 @@ namespace Lib.Level
             
             foreach (var item in DynamicObjects)
             {
-                if (item.HitBox.IntersectsWith(CameraFOV))
+                if (item is Player || item.HitBox.IntersectsWith(CameraFOV))
                 {
                     var updateQuadTree = (item is IIntersectable) && (item is IMoveable);
 

@@ -94,13 +94,7 @@ namespace Lib.Level.Items
         public void Draw()
 		{
             SetAnimation();
-
-            float offsetValue = 2f;
-            var x = HitBox.Position.X + offsetValue;
-            var y = HitBox.Position.Y + offsetValue;
-
-            ViewPoint = new Vector2(x, y);
-
+            
             if (Status.ViewDirection > 0)
                 Sprite.FlipTextureHorizontal = false;
             else if (Status.ViewDirection < 0)
@@ -147,6 +141,8 @@ namespace Lib.Level.Items
                 Status.ViewDirection = -1;
 
             HitBox.Position += Status.MoveDirection;
+            Vector2 offsetValue = new Vector2(2f) * new Vector2(directionHorizontal, directionVertical);
+            ViewPoint = HitBox.Position + offsetValue;
 
             //Shooting things
             ReloadTime = Math.Max(0, ReloadTime - 1);
