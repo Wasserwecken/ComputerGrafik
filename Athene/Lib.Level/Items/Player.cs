@@ -38,11 +38,6 @@ namespace Lib.Level.Items
         public bool HasCollisionCorrection { get; set; }
 
         /// <summary>
-        /// life of the player
-        /// </summary>
-        private int Life { get; set; }
-
-        /// <summary>
         /// The physical position and movement of the player
         /// </summary>
         private PhysicBody Physics { get; }
@@ -100,15 +95,10 @@ namespace Lib.Level.Items
             HasCollisionCorrection = true;
             ReloadTime = 0;
             ZLevel = 2;
-		    Life = 100;
+
         }
 
-	    private void TakeDamage(int damage)
-	    {
-	        Life -= damage;
-            Console.WriteLine("Life: " + Life);
-	    }
-
+	 
         /// <summary>
         /// Draws the player on the screen
         /// </summary>
@@ -182,11 +172,15 @@ namespace Lib.Level.Items
             {
                 if (item is Collectable collectable && collectable.IsActive)
                 {
-                    if (collectable.ItemType == ItemType.Medikit)
+                    if (collectable.ItemType == ItemType.Medikit || collectable.ItemType == ItemType.Softice)
                     {
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                    }
+                    else if (collectable.ItemType == ItemType.SmallCheckpoint)
+                    {
+                        SpawnPosition = collectable.HitBox.Position;
                     }
                     else
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
@@ -213,23 +207,32 @@ namespace Lib.Level.Items
                 {
                     float knockBackStrength = 0.2f;
                     Alignment enemyAlignment = AlignmentTools.EvaluateAlignment(HitBox.Center, enemy.HitBox.Center);
-                    switch (enemyAlignment)
+                    var checkMedikit = Inventory.GetFirstItemofType(ItemType.Medikit);
+                    if (checkMedikit != null)
                     {
-                        case Alignment.Top:
-                            Physics.ApplyImpulse(new Vector2(0, -1) * knockBackStrength);
-                            break;
+                        Inventory.RemoveItem(checkMedikit);
+                        switch (enemyAlignment)
+                        {
+                            case Alignment.Top:
+                                Physics.ApplyImpulse(new Vector2(0, -1) * knockBackStrength);
+                                break;
 
-                        case Alignment.Left:
-                            Physics.ApplyImpulse(new Vector2(1, 1) * knockBackStrength);
-                            break;
+                            case Alignment.Left:
+                                Physics.ApplyImpulse(new Vector2(1, 1) * knockBackStrength);
+                                break;
 
-                        case Alignment.Right:
-                            Physics.ApplyImpulse(new Vector2(-1, 1) * knockBackStrength);
-                            break;
+                            case Alignment.Right:
+                                Physics.ApplyImpulse(new Vector2(-1, 1) * knockBackStrength);
+                                break;
 
-                        case Alignment.Bottom:
-                            Physics.ApplyImpulse(new Vector2(0, 1) * knockBackStrength);
-                            break;
+                            case Alignment.Bottom:
+                                Physics.ApplyImpulse(new Vector2(0, 1) * knockBackStrength);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        HitBox.Position = SpawnPosition;
                     }
                 }
 

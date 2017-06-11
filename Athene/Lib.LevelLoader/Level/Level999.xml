@@ -24,6 +24,7 @@
 	<Block X="45" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
 	<Block X="36" Y="2" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
 	<Block X="35" Y="2" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="-6" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="69" Y="50" Id="0" Link="volcano_pack_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="70" Y="50" Id="0" Link="volcano_pack_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="72" Y="50" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -252,7 +253,7 @@
     <Block X="14" Y="40" Id="0" Link="forest_pack_07" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="28" Y="40" Id="0" Link="forest_pack_03" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="29" Y="40" Id="0" Link="forest_pack_07" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="30" Y="40" Id="0" Link="forest_pack_94" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="30" Y="40" Id="0" Link="forest_pack_94" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="35" Y="40" Id="0" Link="forest_pack_106" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="63" Y="40" Id="0" Link="volcano_pack_alt_03" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="64" Y="40" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -2930,15 +2931,6 @@
     <Block X="25" Y="4" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="26" Y="4" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="27" Y="4" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="28" Y="4" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="29" Y="4" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="30" Y="4" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="31" Y="4" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="32" Y="4" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="33" Y="4" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="34" Y="4" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="35" Y="4" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="36" Y="4" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="37" Y="4" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="38" Y="4" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="39" Y="4" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -2986,14 +2978,9 @@
     <Block X="25" Y="3" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="26" Y="3" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="27" Y="3" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="28" Y="3" AttachedLinkType="Image" AttachedLink="objects_03" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="29" Y="3" AttachedLinkType="Image" AttachedLink="objects_06" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="31" Y="3" AttachedLinkType="Image" AttachedLink="objects_47" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="32" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="33" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="34" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="35" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="36" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="28" Y="3" Id="0" Link="objects_03" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="29" Y="3" Id="0" Link="objects_06" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="31" Y="3" Id="0" Link="objects_45" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="37" Y="3" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="38" Y="3" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="39" Y="3" Id="0" Link="forest_pack_90" LinkType="Image" EnvironmentType="Water" IsScrolling="true" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
@@ -3163,6 +3150,7 @@
     <Block X="2" Y="-1" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="3" Y="-1" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="4" Y="-1" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="16" Y="-1" Id="0" Link="forest_pack_71" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="26" Y="-1" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="27" Y="-1" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="28" Y="-1" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -4189,6 +4177,7 @@
     <Block X="145" Y="85" Id="0" Link="volcano_pack_alt_05" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="146" Y="85" Id="0" Link="volcano_pack_alt_07" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="148" Y="85" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="149" Y="85" Id="0" Link="volcano_pack_alt_07" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="153" Y="85" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="155" Y="85" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="158" Y="85" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -4303,8 +4292,6 @@
     <Block X="145" Y="77" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="146" Y="77" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="148" Y="77" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="151" Y="77" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="155" Y="77" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="158" Y="77" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="159" Y="77" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="160" Y="77" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -4321,7 +4308,7 @@
     <Block X="146" Y="75" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="149" Y="75" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="151" Y="75" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="153" Y="75" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="154" Y="75" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="158" Y="75" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="159" Y="75" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="160" Y="75" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -4336,7 +4323,9 @@
     <Block X="144" Y="73" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="145" Y="73" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="146" Y="73" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="150" Y="73" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="151" Y="73" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="155" Y="73" Id="0" Link="volcano_pack_alt_09" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
+    <Block X="156" Y="73" Id="0" Link="volcano_pack_alt_33" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="158" Y="73" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="159" Y="73" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="160" Y="73" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -8073,7 +8062,8 @@
     <Texture Id="forest_pack_51" Path="Images\Environment\Forest\forest_pack_51.png" />
     <Texture Id="objects_46" Path="Images\Objects\Items\objects_46.png" />
     <Texture Id="objects_03" Path="Images\Objects\Items\objects_03.png" />
-    <Texture Id="objects_47" Path="Images\Objects\Items\objects_47.png" />
+    <Texture Id="objects_45" Path="Images\Objects\Items\objects_45.png" />
+    <Texture Id="forest_pack_71" Path="Images\Environment\Forest\forest_pack_71.png" />
 	<Texture Id="volcano_pack_35" Path="Images\Environment\Volcano\volcano_pack_35.png" />
     <Texture Id="volcano_pack_alt_35" Path="Images\Environment\Volcano\volcano_pack_alt_35.png" />
     <Texture Id="volcano_pack_59" Path="Images\Environment\Volcano\volcano_pack_59.png" />
@@ -8159,7 +8149,6 @@
     <Enemy X="10" Y="1" Link="enemy_grumpyFly" />
     <Enemy X="21" Y="1" Link="enemy_grumpyFly" />
     <Enemy X="10" Y="-1" Link="enemy_grumpyFly" />
-    <Enemy X="7" Y="-3" Link="enemy_grumpyFly" />
     <Enemy X="23" Y="-3" Link="enemy_grumpyFly" />
     <Enemy X="21" Y="-5" Link="enemy_grumpyFly" />
     <Enemy X="10" Y="-7" Link="enemy_grumpyFly" />
@@ -8184,7 +8173,7 @@
     <Enemy X="111" Y="39" Link="enemy_grumpyFly" />
     <Enemy X="101" Y="37" Link="enemy_grumpyFly" />
     <Enemy X="114" Y="37" Link="enemy_grumpyFly" />
-	<Enemy X="246" Y="120" Link="enemy_boneCruncherMonster" />
+	 <Enemy X="246" Y="120" Link="enemy_boneCruncherMonster" />
     <Enemy X="256" Y="120" Link="enemy_boneCruncherMonster" />
     <Enemy X="263" Y="120" Link="enemy_boneCruncherMonster" />
     <Enemy X="207" Y="116" Link="enemy_grumpyFly" />
@@ -8196,7 +8185,7 @@
     <Enemy X="191" Y="96" Link="enemy_greenFly" />
     <Enemy X="195" Y="96" Link="enemy_greenFly" />
     <Enemy X="227" Y="94" Link="enemy_grumpyFly" />
-	<Enemy X="206" Y="124" Link="enemy_greenMonster" />
+	 <Enemy X="206" Y="124" Link="enemy_greenMonster" />
 	<Enemy X="208" Y="122" Link="enemy_greenMonster" />
 	<Enemy X="204" Y="120" Link="enemy_greenMonster" />
 	<Enemy X="236" Y="99" Link="enemy_greenMonster" />
@@ -8205,27 +8194,34 @@
 	<Enemy X="37" Y="1" Link="enemy_greenMonster" />
   </Enemies>
   <Collectables>
-    <Collectable X="9" Y="40" Link="crystal_yellow" />
-    <Collectable X="74" Y="23" Link="medikit" />
-    <Collectable X="9" Y="4" Link="crystal_blue" />
-    <Collectable X="-6" Y="3" AttachedLinkType="Image" AttachedLink="stoneCenterBlack" Link="medikit" />
-    <Collectable X="30" Y="3" AttachedLinkType="Image" AttachedLink="stoneCenterBlack" Link="medikit" />
-	 <Collectable X="98" Y="61" Link="medikit" />
-    <Collectable X="91" Y="45" Link="medikit" />
-    <Collectable X="157" Y="42" Link="crystal_red" />
-    <Collectable X="118" Y="34" Link="medikit" />
+	<Collectable X="9" Y="40" Link="crystal_yellow" />
+	<Collectable X="-6" Y="27" Link="ice" />
+	<Collectable X="74" Y="23" Link="medikit" />
+	<Collectable X="9" Y="4" Link="crystal_blue" />
+	<Collectable X="-6" Y="3" Link="medikit" />
+	<Collectable X="30" Y="3" Link="medikit" />
+	<Collectable X="32" Y="3" Link="weapon" />
+	<Collectable X="12" Y="-14" Link="smallcheckpoint" />
+	<Collectable X="166" Y="94" Link="smallcheckpoint" />
+	<Collectable X="142" Y="63" Link="smallcheckpoint" />
+	<Collectable X="98" Y="61" Link="medikit" />
+	<Collectable X="91" Y="45" Link="medikit" />
+	<Collectable X="157" Y="42" Link="crystal_red" />
+	<Collectable X="118" Y="34" Link="medikit" />
+	<Collectable X="91" Y="31" Link="ice" />
 	<Collectable X="213" Y="118" Link="medikit" />
-    <Collectable X="214" Y="116" Link="crystal_blue" />
-    <Collectable X="221" Y="107" Link="medikit" />
-    <Collectable X="222" Y="94" Link="medikit" />
-    <Collectable X="223" Y="94" Link="crystal_yellow" />
+	<Collectable X="214" Y="116" Link="crystal_blue" />
+	<Collectable X="221" Y="107" Link="medikit" />
+	<Collectable X="209" Y="101" Link="ice" />
+	<Collectable X="222" Y="94" Link="medikit" />
+	<Collectable X="223" Y="94" Link="crystal_yellow" />
   </Collectables>
   <Checkpoints>
-	<Checkpoint X="35" Y="29" DestinationX="36" DestinationY="20" Link="checkpoint_robot_yellow" />
-	<Checkpoint X="52" Y="26" DestinationX="76" DestinationY="31" Link="checkpoint_robot_blue" />
+    <Checkpoint X="35" Y="29" DestinationX="36" DestinationY="20" Link="checkpoint_robot_yellow" />
+    <Checkpoint X="52" Y="26" DestinationX="76" DestinationY="31" Link="checkpoint_robot_blue" />
 	<Checkpoint X="149" Y="45" DestinationX="141" DestinationY="65" Link="checkpoint_robot_red" />
-	<Checkpoint X="193" Y="127" DestinationX="193" DestinationY="144" Link="checkpoint_robot_blue" />
-	<Checkpoint X="247" Y="102" DestinationX="0" DestinationY="0" Link="checkpoint_robot_yellow" />
+	 <Checkpoint X="193" Y="127" DestinationX="193" DestinationY="144" Link="checkpoint_robot_blue" />
+    <Checkpoint X="247" Y="102" DestinationX="0" DestinationY="0" Link="checkpoint_robot_yellow" />
   </Checkpoints>
   <Backgrounds />
 </Level>
