@@ -128,9 +128,12 @@ namespace Lib.Level.Collision
                         break;
                 }
             }
-
             else if (reportItem.Item.HasCollisionCorrection && reportItem.ItemAlignment == Alignment.Bottom)
                 report.IsSolidOnBottom = true;
+
+
+            if (reportItem.Item is Player player)
+                report.IsPlayerOnBottom = reportItem.ItemAlignment == Alignment.Bottom;
         }
 
         /// <summary>
