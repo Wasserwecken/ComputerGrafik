@@ -298,6 +298,12 @@ namespace Lib.Level.Items
                     //player would be teleported immidiatly back
                     HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
                 }
+
+                if (item.Item is Block block && block.Environment == EnvironmentType.Lava)
+                {
+                    if (Alignment.Bottom == AlignmentTools.EvaluateAlignment(HitBox.Center, block.HitBox.Center) && Physics.Energy.Y <= 0)
+                        Physics.ApplyImpulse(new Vector2(0, 0.5f));
+                }
             }
 
 
