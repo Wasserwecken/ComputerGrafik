@@ -106,6 +106,7 @@ namespace Lib.Level.Items
 	    private void TakeDamage(int damage)
 	    {
 	        Life -= damage;
+            Console.WriteLine("Life: " + Life);
 	    }
 
         /// <summary>
@@ -204,6 +205,12 @@ namespace Lib.Level.Items
                     //Manipulating the position in the direction where the player is moving, else the 
                     //player would be teleported immidiatly back
                     HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
+                }
+
+                /* check enemy */
+                if (item is Enemy enemy)
+                {
+                    TakeDamage(enemy.Damage);
                 }
 
 
