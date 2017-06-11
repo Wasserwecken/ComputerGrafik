@@ -42,9 +42,7 @@ namespace SimeraExample
 		private void Window_UpdateFrame(object sender, FrameEventArgs e)
 		{
             //calculate all logic within the lever (players / enemies / etc)
-			Level.UpdateLogic();
-
-            
+			Level.UpdateLogic(Window.Camera.FOV);
 
             float axisSize = 0f;
             float playersViewRange = 7f;
@@ -64,7 +62,7 @@ namespace SimeraExample
 
 		private void Window_RenderFrame(object sender, FrameEventArgs e)
 		{
-            Level.Draw(Window.Camera.FOV);
+            Level.Draw();
         }
 	}
 }

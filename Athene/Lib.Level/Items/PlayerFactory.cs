@@ -32,7 +32,7 @@ namespace Lib.Level.Items
             mapList.AddMappingGamePad(playerId, pad => pad.Buttons.B, inp => inp.Shoot, (inval, curval) => inval == ButtonState.Pressed);
 
             //Optic
-            SpriteAnimated playerSprite = new SpriteAnimated(Vector2.One);
+            SpriteAnimated playerSprite = new SpriteAnimated(new Vector2(0.75f));
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/walk", playerId), 600);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/fall", playerId), 600);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/climb", playerId), 600);

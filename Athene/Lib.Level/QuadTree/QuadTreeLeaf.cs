@@ -54,8 +54,20 @@ namespace Lib.Level.QuadTree
             if (Elements.Count >= ElementLimit)
                 return false;
             
-            Elements.Add(newElement);
+            if (!Elements.Contains(newElement))
+                Elements.Add(newElement);
+
             return true;
+        }
+
+        /// <summary>
+        /// removes a lement from a node
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public override bool RemoveElement(IIntersectable element)
+        {
+            return Elements.Remove(element);
         }
 
         /// <summary>

@@ -12,6 +12,11 @@ namespace Lib.Level.Items
     public class Inventory : IDrawable
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public int ZLevel { get; set; }
+
+        /// <summary>
         /// Position of the inventory
         /// </summary>
         public Vector2 Position { get; set; }
@@ -53,6 +58,7 @@ namespace Lib.Level.Items
         /// </summary>
         public Inventory(float iconSize, float itemMargin, int itemsPerLine)
         {
+            ZLevel = 1;
             ItemMargin = itemMargin;
             IconSize = iconSize;
             ItemsPerLine = itemsPerLine;

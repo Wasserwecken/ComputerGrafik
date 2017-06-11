@@ -33,6 +33,11 @@ namespace Lib.Level.Collision
         /// <summary>
         /// 
         /// </summary>
+        public bool IsSolidOnBottom { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsSolidOnSide { get; set; }
 
 

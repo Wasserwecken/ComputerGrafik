@@ -16,6 +16,11 @@ namespace Lib.Level.Items
     public class Enemy : LevelItemBase, IDrawable, IMoveable, IIntersectable
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public int ZLevel { get; set; }
+
+        /// <summary>
         /// the type of the enemy
         /// </summary>
         public EnemyType EnemyType { get; set; }
@@ -50,6 +55,9 @@ namespace Lib.Level.Items
         /// </summary>
         public EnemyCommands Commands { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MovementType MovementType { get; set; }
 
 
@@ -62,6 +70,7 @@ namespace Lib.Level.Items
         /// <param name="movementType"></param>
         public Enemy(Vector2 startPosition, SpriteAnimated sprite, EnemyType enemyType, MovementType movementType) : base(startPosition, new Vector2(0.75f, 0.75f))
         {
+            ZLevel = 1;
             Sprite = sprite;
             EnemyType = enemyType;
             Status = new EnemyStatus {MoveDirection = new Vector2(1f, 0)};

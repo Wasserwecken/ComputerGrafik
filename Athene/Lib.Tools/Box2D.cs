@@ -45,9 +45,19 @@ namespace Lib.Tools
         /// <param name="sizeX">width</param>
         /// <param name="sizeY">height</param>
         public Box2D(float x, float y, float sizeX, float sizeY)
+        : this(new Vector2(x, y), new Vector2(sizeX, sizeY)) { }
+
+        /// <summary>
+        /// creates an AABR, an 2D axis aligned bounding box
+        /// </summary>
+        /// <param name="x">left side x coordinate</param>
+        /// <param name="y">bottom side y coordinate</param>
+        /// <param name="sizeX">width</param>
+        /// <param name="sizeY">height</param>
+        public Box2D(Vector2 position, Vector2 size)
         {
-            Position = new Vector2(x, y);
-            Size = new Vector2(sizeX, sizeY);
+            Position = position;
+            Size = size;
         }
 
 
@@ -86,6 +96,22 @@ namespace Lib.Tools
                 intersectSizeY = Math.Min(MaximumY, otherBox.MaximumY) - Math.Max(Position.Y, otherBox.Position.Y);
 
             return new Vector2(intersectSizeX, intersectSizeY);
+        }
+
+        /// <summary>
+        /// Scales the box
+        /// </summary>
+        /// <param name="factor"></param>
+        /// <returns></returns>
+        public Box2D Scale(float factor)
+        {
+            var diff = Size * factor;
+            var positionCorrection = diff / 4;
+
+            var newPosition = Position - positionCorrection;
+            var newSize = Size * factor;
+
+            return new Box2D(newPosition, newSize);
         }
 
         /// <summary>

@@ -18,6 +18,11 @@ namespace Lib.Level.Items
         /// <summary>
         /// 
         /// </summary>
+        public int ZLevel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public bool HasCollisionCorrection { get; set; }
 
         /// <summary>
@@ -54,6 +59,7 @@ namespace Lib.Level.Items
 
             Sprite = new SpriteStatic(HitBox.Size, "Images/Objects/Bullets/bullet.png");
             HasCollisionCorrection = true;
+            ZLevel = 2;
         }
 
         /// <summary>

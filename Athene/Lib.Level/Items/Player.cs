@@ -16,11 +16,16 @@ namespace Lib.Level.Items
 {
     public class Player
         : LevelItemBase, IDrawable, IMoveable, IInteractable, IIntersectable, ICreateable
-	{
-		/// <summary>
-		/// Sets the values for the offset where the camera should point on
-		/// </summary>
-		public Vector2 ViewPoint { get; private set; }
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ZLevel { get; set; }
+
+        /// <summary>
+        /// Sets the values for the offset where the camera should point on
+        /// </summary>
+        public Vector2 ViewPoint { get; private set; }
         
         /// <summary>
         /// List of inventory items
@@ -56,11 +61,6 @@ namespace Lib.Level.Items
         /// Input layout for the player
         /// </summary>
         private InputLayout<PlayerActions> InputLayout { get; set; }
-        
-        /// <summary>
-        /// Range where interactions can be requested by other items
-        /// </summary>
-        public Box2D InteractionBox { get; set; }
 
         /// <summary>
         /// Delay for the the next shoot in logic ticks
@@ -85,9 +85,10 @@ namespace Lib.Level.Items
             Inventory = new Inventory(0.5f, 0.01f, 1);
             Physics = new PhysicBody(impulseProperties, forceProperties);
             
-			Sprite = sprite;
+            Sprite = sprite;
             HasCollisionCorrection = true;
             ReloadTime = 0;
+            ZLevel = 2;
 		    Life = 100;
             //float interactionSizeFactor = 2f;
             //float interactionSizeX = HitBox.Size.X * interactionSizeFactor;
@@ -115,12 +116,13 @@ namespace Lib.Level.Items
 
             ViewPoint = new Vector2(x, y);
 
-            if (Physics.Energy.X > 0)
+            if (Status.ViewDirection > 0)
                 Sprite.FlipTextureHorizontal = false;
-            if (Physics.Energy.X < 0)
+            else if (Status.ViewDirection < 0)
                 Sprite.FlipTextureHorizontal = true;
             
-            Sprite.Draw(HitBox.Position, new Vector2(0.8f));
+
+            Sprite.Draw(HitBox.Position, Vector2.One);
 
             Inventory.Position = new Vector2(HitBox.Center.X, HitBox.MaximumY + 0.1f);
             Inventory.Draw();
@@ -151,14 +153,14 @@ namespace Lib.Level.Items
                 Status.IsJumpAllowed = false;
             }
 
-            if (InputValues.Helping && Status.IsJumpAllowed && !Status.IsJumping)
-            {
-                Physics.ApplyImpulse(new Vector2(0.5f, 0.4f));
-                Status.IsJumpAllowed = false;
-            }
-
             //Apply now the added energy
             Status.MoveDirection = Physics.Process(HitBox.Position);
+
+            if (Status.MoveDirection.X > 0)
+                Status.ViewDirection = 1;
+            else if (Status.MoveDirection.X < 0)
+                Status.ViewDirection = -1;
+
             HitBox.Position += Status.MoveDirection;
 
             //Shooting things
@@ -200,11 +202,16 @@ namespace Lib.Level.Items
                     HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
                 }
 
-                /* check enemy and get damage */
-                if (item is Enemy enemy)
+
+                if (item is Player otherPlayer)
                 {
-                    TakeDamage(enemy.Damage);
-                    Console.WriteLine("Life: " + Life);
+                    if (InputValues.Helping && !otherPlayer.InputValues.Helping)
+                    {
+                        otherPlayer.HitBox.Position += new Vector2(0, 1);
+
+                        if (otherPlayer.Status.IsGrounded)
+                            otherPlayer.Physics.ApplyImpulse(new Vector2(0.3f * Status.ViewDirection, 0.6f));
+                    }
                 }
             }
         }
@@ -236,7 +243,7 @@ namespace Lib.Level.Items
 
             if (InputValues.Shoot && ReloadTime <= 0)
             {
-                var direction = new Vector2(Math.Sign(Physics.Energy.X), 0.3f);
+                var direction = new Vector2(Status.ViewDirection, 0.3f);
                 bulletList.Add(new Bullet(HitBox.Center + direction, direction));
                 ReloadTime = 5;
             }
@@ -274,7 +281,7 @@ namespace Lib.Level.Items
             {
                 Status.IsFalling = false;
                 Status.IsJumping = false;
-                Status.IsGrounded = true;
+                Status.IsGrounded = report.IsSolidOnBottom;
             }
             
             if (Status.IsGrounded && Math.Abs(Physics.Energy.X) <= 0)

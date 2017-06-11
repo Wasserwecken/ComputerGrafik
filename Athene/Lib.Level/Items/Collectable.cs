@@ -14,6 +14,11 @@ namespace Lib.Level.Items
     public class Collectable : LevelItemBase, IDrawable, IIntersectable, IInventoryItem, IRemoveable, IMoveable
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public int ZLevel { get; set; }
+
+        /// <summary>
         /// Determines if the collectable can be collected or not
         /// </summary>
         public bool IsActive { get; set; }
@@ -67,6 +72,7 @@ namespace Lib.Level.Items
             IsActive = true;
             ItemType = type;
 
+            ZLevel = 1;
             Sprite = sprite;
             Sprite.SetSize(HitBox.Size);
 
