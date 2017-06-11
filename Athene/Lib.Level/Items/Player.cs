@@ -42,6 +42,11 @@ namespace Lib.Level.Items
         /// </summary>
         private PhysicBody Physics { get; }
 
+        /// <summary>
+        /// the role of the player
+        /// </summary>
+        private PlayerRole PlayerRole { get; set; }
+
 		/// <summary>
 		/// Setted values from the input
 		/// </summary>
@@ -90,7 +95,8 @@ namespace Lib.Level.Items
             Inventory = new Inventory(0.5f, 0.01f, 2);
             Physics = new PhysicBody(impulseProperties, forceProperties);
 		    SpawnPosition = startPosition;
-            
+            PlayerRole = PlayerRole.Interacter;
+		    
             Sprite = sprite;
             HasCollisionCorrection = true;
             ReloadTime = 0;
@@ -172,6 +178,9 @@ namespace Lib.Level.Items
             {
                 if (item is Collectable collectable && collectable.IsActive)
                 {
+                    collectable.Remove = true;
+                    collectable.IsActive = false;
+
                     if (collectable.ItemType == ItemType.Medikit || collectable.ItemType == ItemType.Softice)
                     {
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
@@ -181,12 +190,16 @@ namespace Lib.Level.Items
                     else if (collectable.ItemType == ItemType.SmallCheckpoint)
                     {
                         SpawnPosition = collectable.HitBox.Position;
+                        collectable.Remove = false;
+                    }
+                    else if (collectable.ItemType == ItemType.Weapon)
+                    {
+                        PlayerRole = PlayerRole.Shooter;
                     }
                     else
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
 
-                    collectable.Remove = true;
-                    collectable.IsActive = false;
+                    
                    
                 }
 

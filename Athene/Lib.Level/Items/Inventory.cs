@@ -74,11 +74,7 @@ namespace Lib.Level.Items
         /// <param name="item"></param>
         public void AddItem(InventoryItem item)
         {
-           
             item.Sprite.SetSize(Vector2.One * IconSize);
-            
-
-            
             Items.Add(item);
         }
 
