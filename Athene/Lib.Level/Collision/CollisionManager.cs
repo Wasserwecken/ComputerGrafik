@@ -95,7 +95,7 @@ namespace Lib.Level.Collision
 
             foreach (var reportItem in report)
             {
-                EvaluateAlignment(sourceCenter, reportItem);
+                reportItem.ItemAlignment = AlignmentTools.EvaluateAlignment(sourceCenter, reportItem.Item.HitBox.Center);
                 EvaluateSurroundings(report, reportItem);
 
                 report.CorrectedVertical = report.CorrectedVertical || reportItem.CausedVerticalCorrection;
@@ -134,30 +134,6 @@ namespace Lib.Level.Collision
 
             if (reportItem.Item is Player player)
                 report.IsPlayerOnBottom = reportItem.ItemAlignment == Alignment.Bottom;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        private static void EvaluateAlignment(Vector2 sourceCenter, CollisionReportItem reportItem)
-        {
-            var itemCenter = reportItem.Item.HitBox.Center;
-
-            if (Math.Abs(sourceCenter.X - itemCenter.X) > Math.Abs(sourceCenter.Y - itemCenter.Y))
-            {
-                if (itemCenter.X > sourceCenter.X)
-                    reportItem.ItemAlignment = Alignment.Left;
-                else
-                    reportItem.ItemAlignment = Alignment.Right;
-            }
-            else
-            {
-                if (itemCenter.Y > sourceCenter.Y)
-                    reportItem.ItemAlignment = Alignment.Top;
-                else
-                    reportItem.ItemAlignment = Alignment.Bottom;
-            }
         }
     }
 }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlignmentTools.cs" />
     <Compile Include="Box2D.cs" />
     <Compile Include="Easing.cs" />
     <Compile Include="NumberExtensions.cs" />

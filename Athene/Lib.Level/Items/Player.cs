@@ -166,7 +166,7 @@ namespace Lib.Level.Items
             HitBox.Position += Status.MoveDirection;
             Vector2 offsetValue = new Vector2(2f) * new Vector2(directionHorizontal, directionVertical);
             ViewPoint = HitBox.Position + offsetValue;
-            InteractionBox = HitBox.Scale(2f);
+            InteractionBox = HitBox.Scale(1.5f);
 
             //Shooting things
             ReloadTime = Math.Max(0, ReloadTime - 1);
@@ -209,12 +209,28 @@ namespace Lib.Level.Items
                 }
 
 
-                /* check enemy */
                 if (item is Enemy enemy)
                 {
-                    //TakeDamage(enemy.Damage);
-                    //HitBox = new Box2D(SpawnPosition, new Vector2(0.75f, 0.75f));
-                    HitBox.Position = SpawnPosition;
+                    float knockBackStrength = 0.2f;
+                    Alignment enemyAlignment = AlignmentTools.EvaluateAlignment(HitBox.Center, enemy.HitBox.Center);
+                    switch (enemyAlignment)
+                    {
+                        case Alignment.Top:
+                            Physics.ApplyImpulse(new Vector2(0, -1) * knockBackStrength);
+                            break;
+
+                        case Alignment.Left:
+                            Physics.ApplyImpulse(new Vector2(1, 1) * knockBackStrength);
+                            break;
+
+                        case Alignment.Right:
+                            Physics.ApplyImpulse(new Vector2(-1, 1) * knockBackStrength);
+                            break;
+
+                        case Alignment.Bottom:
+                            Physics.ApplyImpulse(new Vector2(0, 1) * knockBackStrength);
+                            break;
+                    }
                 }
 
 
@@ -245,7 +261,7 @@ namespace Lib.Level.Items
         public void HandleCollisions(List<IIntersectable> intersectingItems)
         {
             var report = CollisionManager.HandleCollisions(HitBox, intersectingItems);
-            InteractionBox = HitBox.Scale(2f);
+            InteractionBox = HitBox.Scale(1.5f);
 
             if (report.CorrectedHorizontal)
                 Physics.StopBodyOnAxisX();
@@ -254,9 +270,9 @@ namespace Lib.Level.Items
 
 
             /* check teleporter */
-            foreach (var item in intersectingItems)
+            foreach (var item in report)
             {
-                if (item is Teleporter teleporter)
+                if (item.Item is Teleporter teleporter)
                 {
                     HitBox.Position = teleporter.DestinationPosition;
                     if (Physics.Energy.Y > 0)
@@ -284,9 +300,9 @@ namespace Lib.Level.Items
 
             if (InputValues.Shoot && ReloadTime <= 0)
             {
-                var direction = new Vector2(Status.ViewDirection, 0.3f);
+                var direction = new Vector2(Status.ViewDirection, 0.15f);
                 bulletList.Add(new Bullet(HitBox.Center + direction, direction));
-                ReloadTime = 5;
+                ReloadTime = 7;
             }
 
             return bulletList;
