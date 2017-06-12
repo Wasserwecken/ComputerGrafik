@@ -78,6 +78,15 @@ namespace Lib.Level.Items
             Items.Add(item);
         }
 
+        public void RemoveLooseableItems()
+        {
+            Items.RemoveAll(i =>
+                (i.ItemType != ItemType.CrystalBlue) &&
+                (i.ItemType != ItemType.CrystalGreen) &&
+                (i.ItemType != ItemType.CrystalRed) &&
+                (i.ItemType != ItemType.CrystalYellow));
+        }
+
         /// <summary>
         /// removes a item from the inventory
         /// </summary>

@@ -176,7 +176,7 @@ namespace Lib.Level.Items
         {
             foreach(var item in intersectionItems)
             {
-                if (item is Collectable collectable && collectable.IsActive)
+                if (item is Collectable collectable && collectable.IsActive && PlayerRole == PlayerRole.Interacter)
                 {
                     collectable.Remove = true;
                     collectable.IsActive = false;
@@ -195,6 +195,7 @@ namespace Lib.Level.Items
                     else if (collectable.ItemType == ItemType.Weapon)
                     {
                         PlayerRole = PlayerRole.Shooter;
+                        Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                     }
                     else
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
@@ -211,7 +212,7 @@ namespace Lib.Level.Items
                     {
                         checkpoint.Activate();
                         Inventory.RemoveItem(getItem);
-                        SpawnPosition = checkpoint.OriginalPosition;
+                        SpawnPosition = new Vector2(checkpoint.Teleporter.DestinationPosition.X, checkpoint.Teleporter.DestinationPosition.Y - 1);
                     }
                 }
 
@@ -305,6 +306,11 @@ namespace Lib.Level.Items
                         Physics.ApplyImpulse(new Vector2(0.1f * Status.ViewDirection, 0f));
 
 
+                    PlayerRole = PlayerRole.Interacter;
+                    Inventory.RemoveLooseableItems();
+                   
+
+
                     //Manipulating the position in the direction where the player is moving, else the 
                     //player would be teleported immidiatly back
                     HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
@@ -324,11 +330,11 @@ namespace Lib.Level.Items
         {
             var bulletList = new List<LevelItemBase>();
 
-            if (InputValues.Shoot && ReloadTime <= 0)
+            if (InputValues.Shoot && ReloadTime <= 0 && PlayerRole == PlayerRole.Shooter)
             {
                 var direction = new Vector2(Status.ViewDirection, 0.15f);
                 bulletList.Add(new Bullet(HitBox.Center + direction, direction));
-                ReloadTime = 7;
+                ReloadTime = 30;
             }
 
             return bulletList;
