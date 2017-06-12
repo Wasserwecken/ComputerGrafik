@@ -321,7 +321,7 @@ namespace Lib.Level.Items
                     HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
                 }
 
-                if (item.Item is Block block && block.Environment == EnvironmentType.Lava && !appliedLavaKnockback)
+                if (item.Item is Block block && block.Environment == EnvironmentType.Lava && !appliedLavaKnockback && !report.IsSolidOnBottom)
                 {
                     if (Alignment.Bottom == AlignmentTools.EvaluateAlignment(HitBox.Center, block.HitBox.Center) && Physics.Energy.Y <= 0)
                     {
@@ -398,14 +398,7 @@ namespace Lib.Level.Items
                 Status.IsIdle = false;
             }
 
-            if (report.IsBottomWater)
-            {
-                Status.IsAboutWater = true;
-            }
-            else
-            {
-                Status.IsAboutWater = false;
-            }
+            Status.IsAboutWater = report.IsBottomWater;
                 
 
             if (Status.Environment == EnvironmentType.Air)

@@ -102,6 +102,10 @@
     <Compile Include="Extensions\LevelEditorXmlExtension.cs" />
     <Compile Include="Helper\FindWindowHelper.cs" />
     <Compile Include="Controls\LevelGrid.cs" />
+    <Compile Include="LevelCombiner\CombineLevelControl.xaml.cs">
+      <DependentUpon>CombineLevelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LevelCombiner\LevelCheckbox.cs" />
     <Compile Include="Windows\AddLevelWindow.xaml.cs">
       <DependentUpon>AddLevelWindow.xaml</DependentUpon>
     </Compile>
@@ -144,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TextureFolderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LevelCombiner\CombineLevelControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

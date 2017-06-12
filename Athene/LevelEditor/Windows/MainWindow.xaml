@@ -17,6 +17,7 @@
             <MenuItem Header="Neues Level" x:Name="AddLevelMenuItem" />
             <MenuItem Header="Level exportieren" x:Name="ExportGridMenuItem" />
             <MenuItem Header="Level importieren" x:Name="ImportGridMenuItem" />
+            <MenuItem Header="Level kombinieren" x:Name="CombineLevelMenuItem" />
         </Menu>
 
         <ContentControl HorizontalContentAlignment="Left"  x:Name="GridContentControl" Grid.Row="1" />

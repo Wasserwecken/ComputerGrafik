@@ -164,8 +164,6 @@ namespace Lib.Level.Items
                     Remove = true;
                     break;
                 }
-
-               
             }
 
 
