@@ -102,6 +102,8 @@ namespace Lib.Level.Items
             ReloadTime = 0;
             ZLevel = 2;
 
+           
+
         }
 
 	 
@@ -396,6 +398,16 @@ namespace Lib.Level.Items
                 Status.IsIdle = false;
             }
 
+            if (report.IsBottomWater)
+            {
+                Status.IsAboutWater = true;
+            }
+            else
+            {
+                Status.IsAboutWater = false;
+            }
+                
+
             if (Status.Environment == EnvironmentType.Air)
             {
                 Status.IsJumpAllowed = (report.IsBottomWater && report.IsSolidOnSide) || Status.IsGrounded;
@@ -434,6 +446,9 @@ namespace Lib.Level.Items
                         else
                             playerSprite.StartAnimation("idle");
                     }
+
+                    if(Status.IsAboutWater && !Status.IsGrounded)
+                        playerSprite.StartAnimation("swim");
 
                     else if (Status.IsFalling || Status.IsJumping)
                         playerSprite.StartAnimation("fall");

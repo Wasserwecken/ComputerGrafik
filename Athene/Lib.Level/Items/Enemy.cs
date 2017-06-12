@@ -159,8 +159,13 @@ namespace Lib.Level.Items
 
             foreach (var item in intersectingItems)
             {
-                Remove = (item is Bullet);
-                break;
+                if (item is Bullet)
+                {
+                    Remove = true;
+                    break;
+                }
+
+               
             }
 
 
