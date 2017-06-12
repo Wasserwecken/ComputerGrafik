@@ -258,7 +258,10 @@ namespace Lib.Level.Items
                         //can cause error in the quadtree!!!!
                         var playerAlignment = AlignmentTools.EvaluateAlignment(HitBox.Center, otherPlayer.HitBox.Center);
 
-                        switch(playerAlignment)
+                        if (playerAlignment != Alignment.Top)
+                            otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, InteractionBox.MaximumY + 0.1f);
+
+                        switch (playerAlignment)
                         {
                             case Alignment.Left:
                             case Alignment.Right:
@@ -271,7 +274,6 @@ namespace Lib.Level.Items
                                 break;
 
                             case Alignment.Bottom:
-                                otherPlayer.HitBox.Position = new Vector2(HitBox.Position.X, HitBox.MaximumY + 0.1f);
                                 otherPlayer.Physics.StopBodyOnAxisX();
                                 otherPlayer.Physics.StopBodyOnAxisY();
                                 break;
@@ -297,6 +299,7 @@ namespace Lib.Level.Items
 
 
             /* check teleporter */
+            bool appliedLavaKnockback = false;
             foreach (var item in report)
             {
                 if (item.Item is Teleporter teleporter)
@@ -314,6 +317,15 @@ namespace Lib.Level.Items
                     //Manipulating the position in the direction where the player is moving, else the 
                     //player would be teleported immidiatly back
                     HitBox.Position += new Vector2(Math.Sign(Physics.Energy.X), Math.Sign(Physics.Energy.Y));
+                }
+
+                if (item.Item is Block block && block.Environment == EnvironmentType.Lava && !appliedLavaKnockback)
+                {
+                    if (Alignment.Bottom == AlignmentTools.EvaluateAlignment(HitBox.Center, block.HitBox.Center) && Physics.Energy.Y <= 0)
+                    {
+                        Physics.ApplyImpulse(new Vector2(0, 0.7f));
+                        appliedLavaKnockback = true;
+                    }
                 }
             }
 
