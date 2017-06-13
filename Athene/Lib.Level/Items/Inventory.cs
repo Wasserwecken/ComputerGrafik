@@ -56,14 +56,13 @@ namespace Lib.Level.Items
         /// <summary>
         /// initializes a new inventory
         /// </summary>
-        public Inventory(float iconSize, float itemMargin, int itemsPerLine)
+        public Inventory(float iconSize, float itemMargin)
         {
             ZLevel = 1;
             ItemMargin = itemMargin;
             IconSize = iconSize;
-            ItemsPerLine = itemsPerLine;
+            ItemsPerLine = 1;
             SingleItemStep = (IconSize + (2 * ItemMargin));
-            InventoryLineWidth = SingleItemStep * ItemsPerLine;
 
             Items = new List<InventoryItem>();
         }
@@ -71,11 +70,45 @@ namespace Lib.Level.Items
         /// <summary>
         /// adds a item to the inventory
         /// </summary>
-        /// <param name="item"></param>
-        public void AddItem(InventoryItem item)
+        /// <param name="newItem"></param>
+        public void AddItem(InventoryItem newItem)
         {
-            item.Sprite.SetSize(Vector2.One * IconSize);
-            Items.Add(item);
+            //check if the inventory has already enough items of the type
+            int counter = 0;
+            foreach(var inventoryItem in Items)
+            {
+                if (inventoryItem.ItemType == newItem.ItemType)
+                    counter++;
+            }
+
+            int allowedAmout = 0;
+            switch(newItem.ItemType)
+            {
+                case ItemType.CrystalBlue:
+                case ItemType.CrystalGreen:
+                case ItemType.CrystalRed:
+                case ItemType.CrystalYellow:
+                case ItemType.Weapon:
+                    allowedAmout = 1;
+                    break;
+
+                case ItemType.Softice:
+                case ItemType.Medikit:
+                    allowedAmout = 3;
+                    break;
+
+                default:
+                    allowedAmout = 0;
+                    break;
+            }
+
+            if (counter < allowedAmout)
+            {
+                newItem.Sprite.SetSize(Vector2.One * IconSize);
+                Items.Add(newItem);
+                ItemsPerLine = (int)Math.Sqrt(Items.Count);
+                InventoryLineWidth = SingleItemStep * ItemsPerLine;
+            }
         }
 
         public void RemoveLooseableItems()
