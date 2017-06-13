@@ -228,8 +228,18 @@ namespace Lib.Level
 
 
             var spawnPosition = new Vector2(xmlLevel.SpawnX, xmlLevel.SpawnY);
-            //Elements.Add(PlayerFactory.CreatePlayer(0, spawnPosition));
-            Elements.Add(PlayerFactory.CreatePlayer(1, spawnPosition + new Vector2(1, 1)));
+
+            var player1 = PlayerFactory.CreatePlayer(0, spawnPosition);
+            var player2 = PlayerFactory.CreatePlayer(1, spawnPosition + new Vector2(1, 1));
+
+            
+            
+
+            player1.CommunicationPlayer = player2;
+            player2.CommunicationPlayer = player1;
+
+            Elements.Add(player1);
+            Elements.Add(player2);
 
 
             // all animated sprites should start at the same time.

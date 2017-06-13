@@ -111,6 +111,9 @@ namespace Lib.Level.Items
             }
         }
 
+        /// <summary>
+        /// removes all items which are loosable
+        /// </summary>
         public void RemoveLooseableItems()
         {
             Items.RemoveAll(i =>
@@ -118,6 +121,15 @@ namespace Lib.Level.Items
                 (i.ItemType != ItemType.CrystalGreen) &&
                 (i.ItemType != ItemType.CrystalRed) &&
                 (i.ItemType != ItemType.CrystalYellow));
+        }
+
+        public List<InventoryItem> GetLoosableItems()
+        {
+            return Items.Where(i =>
+               (i.ItemType != ItemType.CrystalBlue) &&
+               (i.ItemType != ItemType.CrystalGreen) &&
+               (i.ItemType != ItemType.CrystalRed) &&
+               (i.ItemType != ItemType.CrystalYellow)).ToList();
         }
 
         /// <summary>

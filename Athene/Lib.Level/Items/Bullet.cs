@@ -49,7 +49,7 @@ namespace Lib.Level.Items
         public Bullet(Vector2 startPosition, Vector2 moveDirection) : base(startPosition, Vector2.One * 0.3f)
         {
             var bulletSpeed = 0.2f;
-            var bulletMass = 0.5f;
+            var bulletMass = 0.1f;
             var bulletPhysicProps = new Dictionary<EnvironmentType, EnergyObjectProperties>
             {
                 {EnvironmentType.Air, new EnergyObjectProperties    (200, 200, bulletSpeed, bulletMass)},

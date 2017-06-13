@@ -86,6 +86,11 @@ namespace LevelEditor.LevelCombiner
                 if (xmlLevel.MinY < level.MinY)
                     level.MinY = xmlLevel.MinY;
 
+                if (xmlLevel.SpawnX != 0)
+                    level.SpawnX = xmlLevel.SpawnX;
+
+                if (xmlLevel.SpawnY != 0)
+                    level.SpawnY = xmlLevel.SpawnY;
             }
 
             return level;

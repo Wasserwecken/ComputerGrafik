@@ -15,7 +15,7 @@ using System.Linq;
 namespace Lib.Level.Items
 {
     public class Player
-        : LevelItemBase, IDrawable, IMoveable, IInteractable, IIntersectable, ICreateable
+        : LevelItemBase, IDrawable, IMoveable, IInteractable, IIntersectable, ICreateable, IPlayerCommunication
     {
         /// <summary>
         /// 
@@ -27,6 +27,16 @@ namespace Lib.Level.Items
         /// </summary>
         public Vector2 ViewPoint { get; private set; }
         
+        /// <summary>
+        /// list of the created items
+        /// </summary>
+        private List<LevelItemBase> CreatedItems { get; set; }
+
+        /// <summary>
+        /// communication to the other player
+        /// </summary>
+        public IPlayerCommunication CommunicationPlayer { get; set; }
+
         /// <summary>
         /// List of inventory items
         /// </summary>
@@ -96,13 +106,14 @@ namespace Lib.Level.Items
             Physics = new PhysicBody(impulseProperties, forceProperties);
 		    SpawnPosition = startPosition;
             PlayerRole = PlayerRole.Interacter;
-		    
+		    CreatedItems = new List<LevelItemBase>();
             Sprite = sprite;
             HasCollisionCorrection = true;
             ReloadTime = 0;
             ZLevel = 2;
 
-           
+            Inventory.AddItem(new InventoryItem(new SpriteStatic(Vector2.One, @"Images\Objects\Weapons\ak.png"), ItemType.Weapon));
+            PlayerRole = PlayerRole.Shooter;
 
         }
 
@@ -188,15 +199,34 @@ namespace Lib.Level.Items
                     }
                     else if (collectable.ItemType == ItemType.SmallCheckpoint)
                     {
-                        SpawnPosition = collectable.HitBox.Position;
+                        SetSpawnPosition(collectable.HitBox.Position);
+                        CommunicationPlayer.SetSpawnPosition(collectable.HitBox.Position);
                     }
                     else if (collectable.ItemType == ItemType.Weapon)
                     {
-                        PlayerRole = PlayerRole.Shooter;
-                        Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                        if (!CommunicationPlayer.IsShooter())
+                        {
+                            var dropItems = Inventory.GetLoosableItems();
+
+                            foreach (var inventoryItem in dropItems)
+                            {
+                                var dropItem = new Collectable(inventoryItem.Sprite, HitBox.Position,
+                                    inventoryItem.ItemType);
+                                CreatedItems.Add(dropItem);
+                                Inventory.RemoveItem(inventoryItem);
+                            }
+
+                            PlayerRole = PlayerRole.Shooter;
+                            Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                        }
+
                     }
                     else
+                    {
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
+                        collectable.Remove = true;
+                    }
+                       
 
                     
                    
@@ -210,7 +240,11 @@ namespace Lib.Level.Items
                     {
                         checkpoint.Activate();
                         Inventory.RemoveItem(getItem);
-                        SpawnPosition = new Vector2(checkpoint.Teleporter.DestinationPosition.X, checkpoint.Teleporter.DestinationPosition.Y - 1);
+
+                        var newSpawnPosition = new Vector2(checkpoint.Teleporter.DestinationPosition.X,
+                            checkpoint.Teleporter.DestinationPosition.Y - 1);
+                        SetSpawnPosition(newSpawnPosition);
+                        CommunicationPlayer.SetSpawnPosition(newSpawnPosition);
                     }
                 }
 
@@ -244,6 +278,8 @@ namespace Lib.Level.Items
                     }
                     else
                     {
+                        Inventory.RemoveLooseableItems();
+                        PlayerRole = PlayerRole.Interacter;
                         HitBox.Position = SpawnPosition;
                     }
                 }
@@ -321,8 +357,21 @@ namespace Lib.Level.Items
                 {
                     if (Alignment.Bottom == AlignmentTools.EvaluateAlignment(HitBox.Center, block.HitBox.Center) && Physics.Energy.Y <= 0)
                     {
-                        Physics.ApplyImpulse(new Vector2(0, 0.7f));
-                        appliedLavaKnockback = true;
+                        var checkMedikit = Inventory.GetFirstItemofType(ItemType.Medikit);
+                        if (checkMedikit != null)
+                        {
+                            Inventory.RemoveItem(checkMedikit);
+                            Physics.ApplyImpulse(new Vector2(0, 0.7f));
+                            appliedLavaKnockback = true;
+                        }
+                        else
+                        {
+                            Inventory.RemoveLooseableItems();
+                            PlayerRole = PlayerRole.Interacter;
+                            HitBox.Position = SpawnPosition;
+                        }
+
+                      
                     }
                 }
             }
@@ -338,19 +387,19 @@ namespace Lib.Level.Items
         /// <returns></returns>
         public List<LevelItemBase> GetCreatedItems()
         {
-            var bulletList = new List<LevelItemBase>();
+           // var bulletList = new List<LevelItemBase>();
 
             if (InputValues.Shoot && ReloadTime <= 0 && PlayerRole == PlayerRole.Shooter)
             {
                 var direction = new Vector2(Status.ViewDirection, 0.1f);
-                bulletList.Add(new Bullet(HitBox.Center + direction, direction));
-                ReloadTime = 30;
+                CreatedItems.Add(new Bullet(HitBox.Center + direction, direction));
+                ReloadTime = 10;
                 Status.IsShooting = true;
             }
             else if (!InputValues.Shoot)
                 Status.IsShooting = false;
 
-            return bulletList;
+            return CreatedItems;
         }
 
         /// <summary>
@@ -358,6 +407,7 @@ namespace Lib.Level.Items
         /// </summary>
         public void ClearCreatedItems()
         {
+            CreatedItems.Clear();
         }
 
 
@@ -474,6 +524,16 @@ namespace Lib.Level.Items
 
             Status.Environment = playerEnvironment;
             Physics.SetEnvironment(playerEnvironment);
+        }
+
+        public void SetSpawnPosition(Vector2 position)
+        {
+            SpawnPosition = position;
+        }
+
+        public bool IsShooter()
+        {
+            return PlayerRole == PlayerRole.Shooter;
         }
     }
 }
