@@ -35,6 +35,7 @@ namespace Lib.Level.Items
             SpriteAnimated playerSprite = new SpriteAnimated(new Vector2(0.75f));
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/walk", playerId), 600);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/fall", playerId), 600);
+            playerSprite.AddAnimation(String.Format("Animations/player/{0}/shoot", playerId), 140);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/climb", playerId), 400);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/idle", playerId), 1000);
             playerSprite.AddAnimation(String.Format("Animations/player/{0}/swim", playerId), 1000);

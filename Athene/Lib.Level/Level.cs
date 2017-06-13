@@ -228,7 +228,7 @@ namespace Lib.Level
 
 
             var spawnPosition = new Vector2(xmlLevel.SpawnX, xmlLevel.SpawnY);
-            Elements.Add(PlayerFactory.CreatePlayer(0, spawnPosition));
+            //Elements.Add(PlayerFactory.CreatePlayer(0, spawnPosition));
             Elements.Add(PlayerFactory.CreatePlayer(1, spawnPosition + new Vector2(1, 1)));
 
 

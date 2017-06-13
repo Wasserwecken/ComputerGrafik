@@ -346,10 +346,13 @@ namespace Lib.Level.Items
 
             if (InputValues.Shoot && ReloadTime <= 0 && PlayerRole == PlayerRole.Shooter)
             {
-                var direction = new Vector2(Status.ViewDirection, 0.15f);
+                var direction = new Vector2(Status.ViewDirection, 0.1f);
                 bulletList.Add(new Bullet(HitBox.Center + direction, direction));
                 ReloadTime = 30;
+                Status.IsShooting = true;
             }
+            else if (!InputValues.Shoot)
+                Status.IsShooting = false;
 
             return bulletList;
         }
@@ -432,6 +435,12 @@ namespace Lib.Level.Items
                     break;
 
                 case EnvironmentType.Air:
+                    if (Status.IsShooting)
+                    {
+                        playerSprite.StartAnimation("shoot");
+                        break;
+                    }
+
                     if (Status.IsIdle)
                     {
                         if (Status.IsHelping)
