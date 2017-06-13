@@ -344,7 +344,7 @@ namespace Lib.Level.Items
         {
             var bulletList = new List<LevelItemBase>();
 
-            if (InputValues.Shoot && ReloadTime <= 0) // && PlayerRole == PlayerRole.Shooter)
+            if (InputValues.Shoot && ReloadTime <= 0 && PlayerRole == PlayerRole.Shooter)
             {
                 var direction = new Vector2(Status.ViewDirection, 0.1f);
                 bulletList.Add(new Bullet(HitBox.Center + direction, direction));
