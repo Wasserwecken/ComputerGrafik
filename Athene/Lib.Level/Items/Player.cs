@@ -92,7 +92,7 @@ namespace Lib.Level.Items
             Status = new PlayerStatus();
 			InputValues = new PlayerActions();
 			InputLayout = new InputLayout<PlayerActions>(InputValues, inputMapping);
-            Inventory = new Inventory(0.5f, 0.01f, 2);
+            Inventory = new Inventory(0.5f, 0.01f);
             Physics = new PhysicBody(impulseProperties, forceProperties);
 		    SpawnPosition = startPosition;
             PlayerRole = PlayerRole.Interacter;

@@ -56,14 +56,13 @@ namespace Lib.Level.Items
         /// <summary>
         /// initializes a new inventory
         /// </summary>
-        public Inventory(float iconSize, float itemMargin, int itemsPerLine)
+        public Inventory(float iconSize, float itemMargin)
         {
             ZLevel = 1;
             ItemMargin = itemMargin;
             IconSize = iconSize;
-            ItemsPerLine = itemsPerLine;
+            ItemsPerLine = 1;
             SingleItemStep = (IconSize + (2 * ItemMargin));
-            InventoryLineWidth = SingleItemStep * ItemsPerLine;
 
             Items = new List<InventoryItem>();
         }
@@ -107,6 +106,8 @@ namespace Lib.Level.Items
             {
                 newItem.Sprite.SetSize(Vector2.One * IconSize);
                 Items.Add(newItem);
+                ItemsPerLine = (int)Math.Sqrt(Items.Count);
+                InventoryLineWidth = SingleItemStep * ItemsPerLine;
             }
         }
 
