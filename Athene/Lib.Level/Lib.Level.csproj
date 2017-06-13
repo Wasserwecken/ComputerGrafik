@@ -65,6 +65,7 @@
     <Compile Include="Items\IInventoryItem.cs" />
     <Compile Include="Items\Inventory.cs" />
     <Compile Include="Items\InventoryItem.cs" />
+    <Compile Include="Items\IPlayerCommunication.cs" />
     <Compile Include="Items\ParalaxBackground.cs" />
     <Compile Include="Items\ParalaxBackgroundItem.cs" />
     <Compile Include="Items\Player.cs" />
