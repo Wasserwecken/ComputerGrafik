@@ -180,9 +180,6 @@ namespace Lib.Level.Items
             {
                 if (item is Collectable collectable && collectable.IsActive && PlayerRole == PlayerRole.Interacter)
                 {
-                    collectable.Remove = true;
-                    collectable.IsActive = false;
-
                     if (collectable.ItemType == ItemType.Medikit || collectable.ItemType == ItemType.Softice)
                     {
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
@@ -192,7 +189,6 @@ namespace Lib.Level.Items
                     else if (collectable.ItemType == ItemType.SmallCheckpoint)
                     {
                         SpawnPosition = collectable.HitBox.Position;
-                        collectable.Remove = false;
                     }
                     else if (collectable.ItemType == ItemType.Weapon)
                     {
