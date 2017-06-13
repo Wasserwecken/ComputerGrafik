@@ -67,7 +67,7 @@ namespace Lib.Level.Items
         /// <param name="startPosition"></param>
         /// <param name="type"></param>
         public Collectable(ISprite sprite, Vector2 startPosition, ItemType type)
-            : base(startPosition, new Vector2(1.5f, 1.5f))
+            : base(startPosition, new Vector2(0.75f, 0.75f))
         {
             IsActive = true;
             ItemType = type;

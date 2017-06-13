@@ -140,13 +140,17 @@ namespace Lib.Level.Items
         {
             var teleporters = new List<LevelItemBase>();
 
+            SpriteAnimated teleporterSprite = new SpriteAnimated(new Vector2(0.75f));
+            teleporterSprite.AddAnimation("Animations/portal/wobble", 1000);
+            teleporterSprite.StartAnimation("wobble");
+            Teleporter = new Teleporter(HitBox.Position, DestinationPosition, Vector2.One, teleporterSprite);
+            BackTeleporter = new Teleporter(DestinationPosition, HitBox.Position, Vector2.One, teleporterSprite);
+
             if (IsActive && ActivationWatch.ElapsedMilliseconds > ActivationTime)
             {
-                SpriteAnimated teleporterSprite = new SpriteAnimated(new Vector2(0.75f));
-                teleporterSprite.AddAnimation("Animations/portal/wobble", 1000);
-                teleporterSprite.StartAnimation("wobble");
-                teleporters.Add(new Teleporter(HitBox.Position, DestinationPosition, Vector2.One, teleporterSprite));
-                teleporters.Add(new Teleporter(DestinationPosition, HitBox.Position, Vector2.One, teleporterSprite));
+               
+                teleporters.Add(Teleporter);
+                teleporters.Add(BackTeleporter);
             }
 
             return teleporters;

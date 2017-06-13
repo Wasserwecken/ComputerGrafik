@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CollectableList>
   <Items>
-    <Collectable Id="crystal_yellow" ItemType="CrystalYellow" Path="Images\Environment\Jungle\jungle_pack_68.png" />
-    <Collectable Id="crystal_blue" ItemType="CrystalBlue" Path="Images\Environment\Jungle\jungle_pack_64.png" />
-    <Collectable Id="crystal_red" ItemType="CrystalRed" Path="Images\Environment\Jungle\jungle_pack_67.png" />
-    <Collectable Id="crystal_green" ItemType="CrystalRed" Path="Images\Environment\Jungle\jungle_pack_67.png" />
-    <Collectable Id="medikit" ItemType="Medikit" Path="Images\Objects\Items\objects_48.png" />
-    <Collectable Id="ice" ItemType="Softice" Path="Images\Environment\Candy\creamPink.png" />
-    <Collectable Id="smallcheckpoint" ItemType="SmallCheckpoint" Path="Images\Objects\Tiles\boxItemAlt.png" />
-    <Collectable Id="weapon" ItemType="Weapon" Path="Images\Objects\Bullets\bullet.png" />
+    <Collectable Id="crystal_yellow" ItemType="CrystalYellow" Path="Images\Objects\Collectable\crystal_yellow.png" />
+    <Collectable Id="crystal_blue" ItemType="CrystalBlue" Path="Images\Objects\Collectable\crystal_blue.png" />
+    <Collectable Id="crystal_red" ItemType="CrystalRed" Path="Images\Objects\Collectable\crystal_red.png" />
+    <Collectable Id="crystal_green" ItemType="CrystalGreen" Path="Images\Objects\Collectable\crystal_green.png" />
+    <Collectable Id="medikit" ItemType="Medikit" Path="Images\Objects\Collectable\medikit.png" />
+    <Collectable Id="ice" ItemType="Softice" Path="Images\Objects\Collectable\cherry.png" />
+    <Collectable Id="smallcheckpoint" ItemType="SmallCheckpoint" Path="Images\Objects\Collectable\checkpoint.png" />
+    <Collectable Id="weapon" ItemType="Weapon" Path="Images\Objects\Weapons\ak.png" />
   </Items>
 </CollectableList>

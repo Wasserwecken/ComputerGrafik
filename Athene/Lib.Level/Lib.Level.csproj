@@ -70,6 +70,7 @@
     <Compile Include="Items\Player.cs" />
     <Compile Include="Items\PlayerActions.cs" />
     <Compile Include="Items\PlayerFactory.cs" />
+    <Compile Include="Items\PlayerRole.cs" />
     <Compile Include="Items\PlayerStatus.cs" />
     <Compile Include="Items\Teleporter.cs" />
     <Compile Include="Level.cs" />

@@ -36,6 +36,11 @@ namespace Lib.Level.Items
         public bool IsJumpAllowed { get; set; }
 
         /// <summary>
+        /// Defines if the player is about water
+        /// </summary>
+        public bool IsAboutWater { get; set; }
+
+        /// <summary>
         /// Defines if the object has note been moved
         /// </summary>
         public bool IsIdle { get; set; }
