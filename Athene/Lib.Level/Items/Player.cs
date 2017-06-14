@@ -111,9 +111,7 @@ namespace Lib.Level.Items
             HasCollisionCorrection = true;
             ReloadTime = 0;
             ZLevel = 2;
-
-            Inventory.AddItem(new InventoryItem(new SpriteStatic(Vector2.One, @"Images\Objects\Weapons\ak.png"), ItemType.Weapon));
-            PlayerRole = PlayerRole.Shooter;
+            
 
         }
 
