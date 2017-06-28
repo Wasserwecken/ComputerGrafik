@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" MaxX="90" MaxY="50" MinX="-15" MinY="-20" SpawnX="-2" SpawnY="25" FinishX="0" FinishY="0">
+  <Blocks>
+	<Block X="25" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="26" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="27" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="28" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="29" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="30" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="31" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="32" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="33" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="34" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="35" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="36" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="37" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="38" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="39" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="40" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="41" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="42" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="43" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="44" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="45" Y="11" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="36" Y="2" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="35" Y="2" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="-6" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	
+	<Block X="28" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="29" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="30" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="31" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+	<Block X="32" Y="3" Id="0" Link="stoneCenterBlack" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+  </Blocks>
+  <Textures>
+    
+  </Textures>
+  <Enemies>
+    <Enemy X="206" Y="124" Link="enemy_greenMonster" />
+	<Enemy X="208" Y="122" Link="enemy_greenMonster" />
+	<Enemy X="204" Y="120" Link="enemy_greenMonster" />
+	<Enemy X="236" Y="99" Link="enemy_greenMonster" />
+	<Enemy X="236" Y="96" Link="enemy_greenMonster" />
+	<Enemy X="234" Y="92" Link="enemy_greenMonster" />
+	<Enemy X="37" Y="1" Link="enemy_greenMonster" />
+	
+	
+	<Enemy X="131" Y="34" Link="enemy_greenMonster" />
+	<Enemy X="132" Y="29" Link="enemy_greenMonster" />
+	<Enemy X="151" Y="13" Link="enemy_greenMonster" />
+  </Enemies>
+  <Collectables>
+  
+  </Collectables>
+  <Checkpoints>
+    
+  </Checkpoints>
+  <Backgrounds />
+</Level>
