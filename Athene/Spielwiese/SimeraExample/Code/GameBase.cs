@@ -24,7 +24,7 @@ namespace SimeraExample
         public GameBase()
 		{
 			Window = new GameWindowBase(4, 15);
-            //Window.WindowState = WindowState.Fullscreen;
+            Window.WindowState = WindowState.Fullscreen;
 
 			Window.Load += Window_Load;
 			Window.UpdateFrame += Window_UpdateFrame;
@@ -35,7 +35,7 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-            int level = 888;
+            int level = 81;
             XmlLevel levelData = LevelLoader.LoadFromXml(@"Level\Level" + level + ".xml");
             Level = new Level(levelData);
         }
