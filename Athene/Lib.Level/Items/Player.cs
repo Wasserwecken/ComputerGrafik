@@ -231,19 +231,21 @@ namespace Lib.Level.Items
                 }
 
                 /* look for checkpoints to activate */
-                if (item is Checkpoint checkpoint && !checkpoint.IsActive)
+                if (item is Checkpoint checkpoint)
                 {
-                    var getItem = Inventory.GetFirstItemofType(checkpoint.ActivationItemType);
-                    if (getItem != null)
+                    if (!checkpoint.IsActive)
                     {
-                        checkpoint.Activate();
-                        Inventory.RemoveItem(getItem);
-
-                        var newSpawnPosition = new Vector2(checkpoint.Teleporter.DestinationPosition.X,
-                            checkpoint.Teleporter.DestinationPosition.Y - 1);
-                        SetSpawnPosition(newSpawnPosition);
-                        CommunicationPlayer.SetSpawnPosition(newSpawnPosition);
+                        var getItem = Inventory.GetFirstItemofType(checkpoint.ActivationItemType);
+                        if (getItem != null)
+                        {
+                            checkpoint.Activate();
+                            Inventory.RemoveItem(getItem);
+                        }
                     }
+                    var newSpawnPosition = new Vector2(checkpoint.Teleporter.DestinationPosition.X,
+                        checkpoint.Teleporter.DestinationPosition.Y - 1);
+                    SetSpawnPosition(newSpawnPosition);
+                    CommunicationPlayer.SetSpawnPosition(newSpawnPosition);
                 }
 
 
@@ -337,9 +339,10 @@ namespace Lib.Level.Items
                 if (item.Item is Teleporter teleporter)
                 {
                     HitBox.Position = teleporter.DestinationPosition;
+
                     if (Physics.Energy.Y > 0)
                         Physics.ApplyImpulse(new Vector2(0.1f * Status.ViewDirection, 0f));
-
+                  
 
                     PlayerRole = PlayerRole.Interacter;
                     Inventory.RemoveLooseableItems();

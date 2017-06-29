@@ -44,7 +44,7 @@ namespace LevelEditor
         {
             FolderBrowserDialog objDialog = new FolderBrowserDialog();
             objDialog.Description = Directory.GetCurrentDirectory();
-            objDialog.SelectedPath = @"C:\";      
+            objDialog.SelectedPath = Directory.GetCurrentDirectory();
             DialogResult objResult = objDialog.ShowDialog();
             if (objResult == System.Windows.Forms.DialogResult.OK)
             {
@@ -108,6 +108,7 @@ namespace LevelEditor
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML-Files (.xml)|*.xml";
+            openFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + @"\workspace";
             if (openFileDialog.ShowDialog() == true)
             {
                 var window = new ImportLevelWindow(openFileDialog.FileName);

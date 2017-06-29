@@ -35,7 +35,7 @@ namespace SimeraExample
 
 		private void Window_Load(object sender, EventArgs e)
 		{
-            int level = 81;
+            int level = 1;
             XmlLevel levelData = LevelLoader.LoadFromXml(@"Level\Level" + level + ".xml");
             Level = new Level(levelData);
         }
