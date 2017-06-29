@@ -187,9 +187,12 @@ namespace Lib.Level.Items
         {
             foreach(var item in intersectionItems)
             {
-                if (item is Collectable collectable && collectable.IsActive && PlayerRole == PlayerRole.Interacter)
+                if (item is Collectable collectable)
                 {
-                    if (collectable.ItemType == ItemType.Medikit || collectable.ItemType == ItemType.Softice)
+                    if(!collectable.IsActive)
+                        continue;
+
+                    if (collectable.ItemType == ItemType.Medikit || collectable.ItemType == ItemType.Softice && PlayerRole == PlayerRole.Interacter)
                     {
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
@@ -200,7 +203,7 @@ namespace Lib.Level.Items
                         SetSpawnPosition(collectable.HitBox.Position);
                         CommunicationPlayer.SetSpawnPosition(collectable.HitBox.Position);
                     }
-                    else if (collectable.ItemType == ItemType.Weapon)
+                    else if (collectable.ItemType == ItemType.Weapon && PlayerRole == PlayerRole.Interacter)
                     {
                         if (!CommunicationPlayer.IsShooter())
                         {
@@ -219,7 +222,7 @@ namespace Lib.Level.Items
                         }
 
                     }
-                    else
+                    else if (PlayerRole == PlayerRole.Interacter)
                     {
                         Inventory.AddItem(new InventoryItem(collectable.Sprite, collectable.ItemType));
                         collectable.Remove = true;
@@ -242,10 +245,14 @@ namespace Lib.Level.Items
                             Inventory.RemoveItem(getItem);
                         }
                     }
-                    var newSpawnPosition = new Vector2(checkpoint.Teleporter.DestinationPosition.X,
-                        checkpoint.Teleporter.DestinationPosition.Y - 1);
-                    SetSpawnPosition(newSpawnPosition);
-                    CommunicationPlayer.SetSpawnPosition(newSpawnPosition);
+                    if (checkpoint.IsActive)
+                    {
+                        var newSpawnPosition = new Vector2(checkpoint.Teleporter.DestinationPosition.X,
+                       checkpoint.Teleporter.DestinationPosition.Y - 1);
+                        SetSpawnPosition(newSpawnPosition);
+                        CommunicationPlayer.SetSpawnPosition(newSpawnPosition);
+                    }
+                   
                 }
 
 
