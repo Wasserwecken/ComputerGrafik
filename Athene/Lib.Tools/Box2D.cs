@@ -114,6 +114,20 @@ namespace Lib.Tools
             return new Box2D(newPosition, newSize);
         }
 
+
+        /// <summary>
+        /// Adds a given range to the current size of the box
+        /// </summary>
+        /// <param name="additionalRange"></param>
+        /// <returns></returns>
+        public Box2D AddRange(float additionalRange)
+        {
+            var newPosition = Position - new Vector2(additionalRange / 2);
+            var newSize = Size + new Vector2(additionalRange);
+
+            return new Box2D(newPosition, newSize);
+        }
+
         /// <summary>
         /// Check if a box is inside of this box
         /// </summary>

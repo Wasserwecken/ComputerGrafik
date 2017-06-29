@@ -98,7 +98,7 @@ namespace Lib.Level
             
             foreach (var item in DynamicObjects)
             {
-                if (item is Player || item.HitBox.IntersectsWith(CameraFOV.Scale(2f)))
+                if (item is Player || item.HitBox.IntersectsWith(CameraFOV.AddRange(10f)))
                 {
                     var updateQuadTree = (item is IIntersectable) && (item is IMoveable);
 
@@ -372,7 +372,7 @@ namespace Lib.Level
                     quadList.Add((IIntersectable)levelBlock);
             }
             
-            return new QuadTreeRoot(quadSize, 10, quadList);
+            return new QuadTreeRoot(quadSize, 15, quadList);
         }
 
         /// <summary>

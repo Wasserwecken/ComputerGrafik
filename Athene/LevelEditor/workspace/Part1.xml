@@ -124,7 +124,7 @@
     <Block X="-13" Y="46" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="-8" Y="46" Id="0" Link="forest_pack_97" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="-6" Y="46" Id="0" Link="signLeft" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="4" Y="46" Id="0" Link="sign" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="4" Y="46" Id="0" Link="signTutorialThrow" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="63" Y="46" Id="0" Link="volcano_pack_alt_36" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="64" Y="46" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="65" Y="46" Id="0" Link="volcano_pack_alt_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -435,6 +435,7 @@
     <Block X="17" Y="39" Id="0" Link="forest_pack_106" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="20" Y="39" Id="0" Link="forest_pack_92" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="22" Y="39" Id="0" Link="forest_pack_103" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="24" Y="39" Id="0" Link="signTutorialEnemy" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="25" Y="39" Id="0" Link="forest_pack_104" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="26" Y="39" Id="0" Link="forest_pack_97" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="28" Y="39" Id="0" Link="forest_pack_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
@@ -754,7 +755,7 @@
     <Block X="-13" Y="32" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="-12" Y="32" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="-11" Y="32" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="-10" Y="32" Id="0" Link="forest_pack_94" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-9" Y="32" Id="0" Link="signTutorialHelp" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="-8" Y="32" Id="0" Link="forest_pack_97" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="4" Y="32" Id="0" Link="forest_pack_35" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="32" Y="32" Id="0" Link="ladder_mid" LinkType="Image" EnvironmentType="Ladder" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
@@ -1125,7 +1126,7 @@
     <Block X="-2" Y="25" Id="0" Link="forest_pack_104" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="0" Y="25" Id="0" Link="forest_pack_97" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="1" Y="25" Id="0" Link="forest_pack_94" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
-    <Block X="3" Y="25" Id="0" Link="forest_pack_92" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="3" Y="25" Id="0" Link="signTutorialCrystal" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="5" Y="25" Id="0" Link="forest_pack_94" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="6" Y="25" Id="0" Link="forest_pack_103" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="8" Y="25" Id="0" Link="forest_pack_97" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
@@ -4052,7 +4053,7 @@
     <Block X="-8" Y="-19" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="-7" Y="-19" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
     <Block X="-6" Y="-19" Id="0" Link="forest_pack_73" LinkType="Image" EnvironmentType="Solid" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="true" Damage="0" />
-    <Block X="-4" Y="-19" Id="0" Link="forest_pack_94" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
+    <Block X="-4" Y="-19" Id="0" Link="signTutorialJumpHelp" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="-3" Y="-19" Id="0" Link="forest_pack_104" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="-1" Y="-19" Id="0" Link="forest_pack_95" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
     <Block X="0" Y="-19" Id="0" Link="forest_pack_94" LinkType="Image" EnvironmentType="Air" IsScrolling="false" ScrollingLength="5000" ScrollingDirectionX="1" ScrollingDirectionY="0" Collision="false" Damage="0" />
@@ -4143,7 +4144,7 @@
     <Texture Id="volcano_pack_alt_36" Path="Images\Environment\Volcano\volcano_pack_alt_36.png" />
     <Texture Id="forest_pack_97" Path="Images\Environment\Forest\forest_pack_97.png" />
     <Texture Id="signLeft" Path="Images\Objects\Tiles\signLeft.png" />
-    <Texture Id="sign" Path="Images\Objects\Tiles\sign.png" />
+    <Texture Id="signTutorialThrow" Path="Images\Objects\Tiles\signTutorialThrow.png" />
     <Texture Id="forest_pack_94" Path="Images\Environment\Forest\forest_pack_94.png" />
     <Texture Id="forest_pack_51" Path="Images\Environment\Forest\forest_pack_51.png" />
     <Texture Id="forest_pack_52" Path="Images\Environment\Forest\forest_pack_52.png" />
@@ -4166,6 +4167,7 @@
     <Texture Id="forest_pack_106" Path="Images\Environment\Forest\forest_pack_106.png" />
     <Texture Id="volcano_pack_alt_03" Path="Images\Environment\Volcano\volcano_pack_alt_03.png" />
     <Texture Id="forest_pack_17" Path="Images\Environment\Forest\forest_pack_17.png" />
+    <Texture Id="signTutorialEnemy" Path="Images\Objects\Tiles\signTutorialEnemy.png" />
     <Texture Id="forest_pack_11" Path="Images\Environment\Forest\forest_pack_11.png" />
     <Texture Id="volcano_pack_59" Path="Images\Environment\Volcano\volcano_pack_59.png" />
     <Texture Id="forest_pack_21" Path="Images\Environment\Forest\forest_pack_21.png" />
@@ -4173,6 +4175,7 @@
     <Texture Id="forest_pack_09" Path="Images\Environment\Forest\forest_pack_09.png" />
     <Texture Id="volcano_pack_alt_05" Path="Images\Environment\Volcano\volcano_pack_alt_05.png" />
     <Texture Id="forest_pack_53" Path="Images\Environment\Forest\forest_pack_53.png" />
+    <Texture Id="signTutorialHelp" Path="Images\Objects\Tiles\signTutorialHelp.png" />
     <Texture Id="forest_pack_95" Path="Images\Environment\Forest\forest_pack_95.png" />
     <Texture Id="volcano_pack_73" Path="Images\Environment\Volcano\volcano_pack_73.png" />
     <Texture Id="volcano_pack_51" Path="Images\Environment\Volcano\volcano_pack_51.png" />
@@ -4182,6 +4185,7 @@
     <Texture Id="volcano_pack_74" Path="Images\Environment\Volcano\volcano_pack_74.png" />
     <Texture Id="jungle_pack_63" Path="Images\Environment\Jungle\jungle_pack_63.png" />
     <Texture Id="forest_pack_102" Path="Images\Environment\Forest\forest_pack_102.png" />
+    <Texture Id="signTutorialCrystal" Path="Images\Objects\Tiles\signTutorialCrystal.png" />
     <Texture Id="stoneCenterBlack" Path="Images\Objects\Tiles\stoneCenterBlack.png" />
     <Texture Id="volcano_pack_71" Path="Images\Environment\Volcano\volcano_pack_71.png" />
     <Texture Id="volcano_pack_70" Path="Images\Environment\Volcano\volcano_pack_70.png" />
@@ -4197,6 +4201,7 @@
     <Texture Id="objects_03" Path="Images\Objects\Items\objects_03.png" />
     <Texture Id="objects_45" Path="Images\Objects\Items\objects_45.png" />
     <Texture Id="forest_pack_60" Path="Images\Environment\Forest\forest_pack_60.png" />
+    <Texture Id="signTutorialJumpHelp" Path="Images\Objects\Tiles\signTutorialJumpHelp.png" />
   </Textures>
   <Enemies>
     <Enemy X="18" Y="39" Link="enemy_boneCruncherMonster" />
@@ -4220,9 +4225,9 @@
     <Collectable X="-6" Y="3" Link="medikit" />
     <Collectable X="30" Y="3" Link="medikit" />
     <Collectable X="32" Y="3" Link="weapon" />
-    <Collectable X="-7" Y="-14" Link="weapon" />
+    <Collectable X="-7" Y="-14" Link="medikit" />
+    <Collectable X="-6" Y="-14" Link="weapon" />
     <Collectable X="12" Y="-14" Link="smallcheckpoint" />
-    <Collectable X="-5" Y="-19" Link="ice" />
   </Collectables>
   <Checkpoints>
     <Checkpoint X="69" Y="42" DestinationX="76" DestinationY="31" Link="checkpoint_robot_blue" />

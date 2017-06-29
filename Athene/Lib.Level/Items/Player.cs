@@ -171,7 +171,7 @@ namespace Lib.Level.Items
 
             //Positioning
             HitBox.Position += Status.MoveDirection;
-            Vector2 offsetValue = new Vector2(2f) * new Vector2(directionHorizontal, directionVertical);
+            Vector2 offsetValue = new Vector2(0f) * new Vector2(directionHorizontal, directionVertical);
             ViewPoint = HitBox.Position + offsetValue;
             InteractionBox = HitBox.Scale(1.5f);
 
