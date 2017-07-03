@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4DC59D6F-026F-4079-BD40-1E584C98A502}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>SimeraExample</RootNamespace>
     <AssemblyName>SimeraExample</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
