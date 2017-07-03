@@ -372,7 +372,7 @@ namespace Lib.Level
                     quadList.Add((IIntersectable)levelBlock);
             }
             
-            return new QuadTreeRoot(quadSize, 15, quadList);
+            return new QuadTreeRoot(quadSize, 10, quadList);
         }
 
         /// <summary>

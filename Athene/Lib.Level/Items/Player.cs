@@ -211,9 +211,9 @@ namespace Lib.Level.Items
 
                             foreach (var inventoryItem in dropItems)
                             {
-                                var dropItem = new Collectable(inventoryItem.Sprite, HitBox.Position,
-                                    inventoryItem.ItemType);
-                                CreatedItems.Add(dropItem);
+                                //var dropItem = new Collectable(inventoryItem.Sprite, HitBox.Position,
+                                //    inventoryItem.ItemType);
+                                //CreatedItems.Add(dropItem);
                                 Inventory.RemoveItem(inventoryItem);
                             }
 
