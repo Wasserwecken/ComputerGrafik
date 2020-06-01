@@ -12,3 +12,6 @@ Co-op game which heavily inspired by the game `BattleBlocks Theatre`. The two pl
 - Level editor
 - Rigidbody physics
 - Quadtree and Grid implementation for collision
+
+## Open the project
+The correct solution for starting and diving into the game is located at: `\Athene\Spielwiese\`
